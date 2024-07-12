@@ -17,7 +17,7 @@ import Posgrado from "./components/Admin/Principal/posgradoScreen"
 import Investigacion from "./components/Admin/Principal/inv_cientScreen"
 import Extension from "./components/Admin/Principal/ext_univScreen"
 import ErrorPage from './components/error-page';
-import InfoInicio from "./components/Admin/Principal/Info/infoInicio"
+import InfoInicio from "./components/Admin/Principal/Info/infoNavBar"
 
 
 
@@ -38,71 +38,21 @@ const router = createBrowserRouter([
       path: "admin/*",
       element: <Admin />,
       errorElement: <ErrorPage />,
-      // children: [
-      //     {
-      //       path: "inicio/*",
-      //       element: <Inicio />,
-      //       errorElement: <ErrorPage />,
-      //       children:[
-      //         {
-      //           path: "info/:id",
-      //           element: <InfoInicio/>,
-                
-      //         }
-      //       ]
-            
-      //     },
-      //     {
-      //         path: "facultad",
-      //         element: <Facultad />,
-          
-      //     },
-      //     {
-      //         path: "pregrado",
-      //         element: <Pregrado />,
-          
-      //     },
-      //     {
-      //         path: "posgrado",
-      //         element: <Posgrado />,
-          
-      //     },
-      //     {
-      //         path: "inv_cient",
-      //         element: <Investigacion />,
-          
-      //     },
-      //     {
-      //         path: "ext_univ",
-      //         element: <Extension />,
-          
-      //     },
-      //   ],
+      
   },
   {
-      path: "teacher",
+      path: "teacher/*",
       element: <Teacher />,
       errorElement: <ErrorPage />,
       
   },
   {
-      path: "faculty",
+      path: "faculty/*",
       element: <Faculty />,
       errorElement: <ErrorPage />,
       
   },
 
-  // {
-  //     path: "contacts/:contactId",
-  //     element: <Contact />,
-  //     children: [
-  //         {
-  //           path: "contacts/:contactId",
-  //           element: <Contact />,
-            
-  //         },
-  //       ],
-  //   },
 ]);
 
 

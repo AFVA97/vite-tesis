@@ -9,7 +9,6 @@ export default function App() {
     <>      
         <Header />
         <Routes>
-          <Route exact path="/" element={<Inicio/>}/>
           <Route exact path="/inicio" element={<Inicio/>}/>
           <Route path="/login" element={<Login />} />
         </Routes>

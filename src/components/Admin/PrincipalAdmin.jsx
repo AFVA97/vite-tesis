@@ -6,7 +6,7 @@ import Pregrado from "./Principal/pregradoScreen"
 import Posgrado from "./Principal/posgradoScreen"
 import Investigacion from "./Principal/inv_cientScreen"
 import Extension from "./Principal/ext_univScreen"
-import InfoInicio from "./Principal/Info/infoInicio"
+import InfoScreen  from "./Principal/Info/infoScreen"
 import Login from "../login"
 
 
@@ -23,7 +23,7 @@ export default function App() {
           <Route path="/posgrado" element={<Posgrado />} />
           <Route path="/inv_cient" element={<Investigacion />} />
           <Route path="/ext_univ" element={<Extension />} />          
-          <Route path="/inicio/info/:id" element={<InfoInicio />} />
+          <Route path="/inicio/info/:id" element={<InfoScreen title={"General"}/>} />
           
         </Routes>
       
