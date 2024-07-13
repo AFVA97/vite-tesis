@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom"
+import UserAccount from './userAccount'
 
 function Header() {
     
@@ -75,14 +76,7 @@ function Header() {
             </div>
 
             <ul className="navbar-nav ml-auto">
-                <NavLink 
-                    activeclassname="active"
-                    className="nav-item nav-link" 
-                    
-                    to="/login"
-                >
-                    Logout
-                </NavLink>
+                <UserAccount/>
             </ul>
             
         </nav>

@@ -5,11 +5,14 @@ import LayoutPregrado from "./layouts/layoutPregrado"
 import LayoutPosgrado from "./layouts/layoutPosgrado"
 import LayoutInvCient from "./layouts/layoutInvCient"
 import LayoutExtUniv from "./layouts/layoutExtUniv"
+import LayoutFacultad from "./layouts/layoutFacultad"
 
 
 function infoScreen({title}){
     function layout(){
         switch(title){
+          case "Facultad":
+            return <LayoutFacultad/>;
             case "Pregrado":
               return <LayoutPregrado/>;
             case "Posgrado":
@@ -22,10 +25,9 @@ function infoScreen({title}){
                 return <LayoutInicio/>;
           }
     }
-
     return(
         <>
-            <InfoNavBar {...title}/>
+            <InfoNavBar {...{title}}/>
             {
                 layout()
             }

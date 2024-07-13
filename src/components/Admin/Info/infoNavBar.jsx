@@ -1,7 +1,6 @@
 //import { useParams } from "react-router-dom"
 import { Link, NavLink } from "react-router-dom"
 import PropTypes from "prop-types"
-import inicio from "../inicioScreen";
 
 function infoInicio({title}) {
     let link = "inicio";
@@ -21,7 +20,6 @@ function infoInicio({title}) {
       }
     
     // const params=useParams();
-    // console.log(params);
     return (
       <>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark ">
@@ -42,7 +40,7 @@ function infoInicio({title}) {
               <a className="nav-link text-white " href="#">Información {title}</a>
             </li>   
             
-            <li><img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/></li>
+            <li><img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block "/></li>
             <li>
               <NavLink 
                 activeclassname="active"

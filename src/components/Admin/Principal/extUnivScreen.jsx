@@ -1,20 +1,21 @@
+import ThExtUniv from "./TableHead/thExtUniv"
 import Header from "../HeaderAdmin"
-import ThFacultad from "./TableHead/thFacultad" 
-import ElementFacultad from "./Elements/elementFacultad"
+import ElementExtUniv from "./Elements/elementExtUniv"
 
-function facultad() {
+function ExtUniv() {
   const propsi={
     id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
+ 
     return (
       <>
         <div className="sticky-top"> 
           
           <Header />       
-          <ThFacultad />
+          <ThExtUniv />
           
         </div>
         <div className="container-fluid justify-content-center">
-          <ElementFacultad 
+          <ElementExtUniv 
             key={propsi.id} 
             {...propsi}
           />
@@ -22,9 +23,8 @@ function facultad() {
         
       
         </div>
-        
       </>
     )
   }
   
-  export default facultad
+  export default ExtUniv

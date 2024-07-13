@@ -1,5 +1,5 @@
-import ThInicio from "./TableHead/th_inicio"
-import Header from "../Header_Admin"
+import ThInicio from "./TableHead/thInicio"
+import Header from "../HeaderAdmin"
 import ElementInicio from "./Elements/elementInicio"
 
 function inicio() {
@@ -23,7 +23,7 @@ function inicio() {
         
       
         </div>
-        </>
+      </>
     )
   }
   

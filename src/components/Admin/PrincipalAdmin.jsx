@@ -1,13 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Header from "./Header_Admin"
+import Header from "./HeaderAdmin"
 import Inicio from "./Principal/inicioScreen"
 import Facultad from "./Principal/facultadScreen"
 import Pregrado from "./Principal/pregradoScreen"
 import Posgrado from "./Principal/posgradoScreen"
-import Investigacion from "./Principal/inv_cientScreen"
-import Extension from "./Principal/ext_univScreen"
-import InfoScreen  from "./Principal/Info/infoScreen"
-import Login from "../login"
+import Investigacion from "./Principal/invCientScreen"
+import Extension from "./Principal/extUnivScreen"
+import InfoScreen  from "./Info/infoScreen"
 
 
 export default function App() {
@@ -24,7 +23,11 @@ export default function App() {
           <Route path="/inv_cient" element={<Investigacion />} />
           <Route path="/ext_univ" element={<Extension />} />          
           <Route path="/inicio/info/:id" element={<InfoScreen title={"General"}/>} />
-          
+          <Route path="/facultad/info/:id" element={<InfoScreen title={"Facultad"}/>} />
+          <Route path="/pregrado/info/:id" element={<InfoScreen title={"Pregrado"}/>} />
+          <Route path="/posgrado/info/:id" element={<InfoScreen title={"Posgrado"}/>} />
+          <Route path="/inv_cient/info/:id" element={<InfoScreen title={"Investigación Científica"}/>} />
+          <Route path="/ext_univ/info/:id" element={<InfoScreen title={"Extensión Universitaria"}/>} />
         </Routes>
       
     </>

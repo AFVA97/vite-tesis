@@ -1,6 +1,6 @@
 
 
-function th_inicio() {
+function thInicio() {
        
     return (
         <>
@@ -17,4 +17,4 @@ function th_inicio() {
     )
   }
   
-  export default th_inicio
+  export default thInicio
