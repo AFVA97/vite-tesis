@@ -1,8 +1,13 @@
 import Header from "../HeaderAdmin"
 import ThFacultad from "./TableHead/thFacultad" 
 import ElementFacultad from "./Elements/elementFacultad"
+import SearchBar from "./searchBar"
+import { useState } from "react"
 
 function Facultad() {
+
+  const [search, setsearch] = useState("")
+
   const propsi={
     facultad: "nombre facultad", ca:2, cg:3, cef:4, th:5}
     return (
@@ -10,6 +15,10 @@ function Facultad() {
         <div className="sticky-top"> 
           
           <Header />       
+          <SearchBar 
+            search={search}
+            setsearch={setsearch}
+          />
           <ThFacultad />
           
         </div>

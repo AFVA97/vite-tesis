@@ -1,8 +1,13 @@
 import ThInicio from "./TableHead/thPosgrado"
 import Header from "../HeaderAdmin"
 import ElementPosgrado from "./Elements/elementPosgrado"
+import SearchBar from "./searchBar"
+import { useState } from "react"
 
 function inicio() {
+
+  const [search, setsearch] = useState("")
+
   const propsi={
     id:1,nombre:"Name", apellidos:"Last", hi:5, hr:6, th:9}
  
@@ -10,7 +15,11 @@ function inicio() {
       <>
         <div className="sticky-top"> 
           
-          <Header />       
+          <Header />    
+          <SearchBar 
+            search={search}
+            setsearch={setsearch}
+          />   
           <ThInicio />
           
         </div>

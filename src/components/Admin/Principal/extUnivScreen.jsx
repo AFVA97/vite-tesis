@@ -1,8 +1,13 @@
 import ThExtUniv from "./TableHead/thExtUniv"
 import Header from "../HeaderAdmin"
 import ElementExtUniv from "./Elements/elementExtUniv"
+import SearchBar from "./searchBar"
+import { useState } from "react"
 
 function ExtUniv() {
+
+  const [search, setsearch] = useState("")
+
   const propsi={
     id:1,nombre:"Name", apellidos:"Last", are:5, tch:6, ae:7, th:9}
  
@@ -10,7 +15,11 @@ function ExtUniv() {
       <>
         <div className="sticky-top"> 
           
-          <Header />       
+          <Header />      
+          <SearchBar 
+            search={search}
+            setsearch={setsearch}
+          /> 
           <ThExtUniv />
           
         </div>

@@ -1,8 +1,13 @@
 import ThInvCient from "./TableHead/thInvCient"
 import Header from "../HeaderAdmin"
 import ElementInvCient from "./Elements/elementInvCient"
+import SearchBar from "./searchBar"
+import { useState } from "react"
 
 function InvCient() {
+
+  const [search, setsearch] = useState("")
+
   const propsi={
     id:1,nombre:"Name", apellidos:"Last", pt:3, tf:5, pi:6, tt:7, th:9}
  
@@ -10,7 +15,11 @@ function InvCient() {
       <>
         <div className="sticky-top"> 
           
-          <Header />       
+          <Header />    
+          <SearchBar 
+            search={search}
+            setsearch={setsearch}
+          />  
           <ThInvCient />
           
         </div>
