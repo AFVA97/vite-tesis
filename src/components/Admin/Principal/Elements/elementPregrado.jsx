@@ -2,19 +2,19 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementPregrado({id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th}){
+function elementPregrado({id,nombre, apellidos, first, second, te, tm, th}){
     const [active, setactive] = useState(false);
-    
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className="col-4">{nombre} {apellidos}</div>
-                <div scope="col" className="col-3">{graduado}</div>
-                <div scope="col" className="col-1">{hpre}</div>
-                <div scope="col" className="col-1">{hpos}</div>
-                <div scope="col" className="col-1">{hic}</div>
-                <div scope="col" className="col-1">{heu}</div>
-                <div scope="col" className="col-1">{th}</div> 
+                <div scope="col" className="col-4 text-truncate">{nombre} {apellidos}</div>
+                <div scope="col" className="col-3 row justify-content-center text-center container-fluid">
+                    <div>{first?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
+                    <div>{second?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
+                </div>
+                <div scope="col" className="col-1 text-truncate">{te}</div>
+                <div scope="col" className="col-1 text-truncate">{tm}</div>
+                <div scope="col" className="col-1 text-truncate">{th}</div> 
             </div>
             
             {active &&
@@ -43,11 +43,10 @@ elementPregrado.propTypes={
     id:PropTypes.number,
     nombre:PropTypes.string,
     apellidos:PropTypes.string,
-    graduado:PropTypes.string,
-    hpre:PropTypes.number,
-    hpos:PropTypes.number,
-    hic:PropTypes.number,
-    heu:PropTypes.number,
+    first:PropTypes.bool, 
+    second:PropTypes.bool, 
+    te:PropTypes.number, 
+    tm:PropTypes.number, 
     th:PropTypes.number
 }
 

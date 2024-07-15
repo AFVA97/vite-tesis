@@ -4,7 +4,7 @@ import ElementFacultad from "./Elements/elementPregrado"
 
 function Pregrado() {
   const propsi={
-    id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
+    id:1,nombre:"Name", apellidos:"Last", first:true, second:false, te:6, tm:7, th:9}
     return (
       <>
         <div className="sticky-top"> 

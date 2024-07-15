@@ -2,19 +2,18 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementExtUniv({id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th}){
+function elementExtUniv({id,nombre, apellidos, are, tch, ae, th}){
     const [active, setactive] = useState(false);
     
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className="col-4">{nombre} {apellidos}</div>
-                <div scope="col" className="col-3">{graduado}</div>
-                <div scope="col" className="col-1">{hpre}</div>
-                <div scope="col" className="col-1">{hpos}</div>
-                <div scope="col" className="col-1">{hic}</div>
-                <div scope="col" className="col-1">{heu}</div>
-                <div scope="col" className="col-1">{th}</div> 
+            <div scope="col" className=" col-4 text-truncate">{nombre} {apellidos}</div>
+                <div scope="col" className=" col-2 text-truncate">{are}</div>
+                <div scope="col" className=" col-2 text-truncate">{tch}</div>
+                <div scope="col" className=" col-2 text-truncate">{ae}</div>
+                <div scope="col" className=" col-2 text-truncate">{th}</div> 
+                
             </div>
             
             {active &&
@@ -43,11 +42,9 @@ elementExtUniv.propTypes={
     id:PropTypes.number,
     nombre:PropTypes.string,
     apellidos:PropTypes.string,
-    graduado:PropTypes.string,
-    hpre:PropTypes.number,
-    hpos:PropTypes.number,
-    hic:PropTypes.number,
-    heu:PropTypes.number,
+    are:PropTypes.number,
+    tch:PropTypes.number,
+    ae:PropTypes.number,
     th:PropTypes.number
 }
 

@@ -2,9 +2,9 @@ import Header from "../HeaderAdmin"
 import ThFacultad from "./TableHead/thFacultad" 
 import ElementFacultad from "./Elements/elementFacultad"
 
-function facultad() {
+function Facultad() {
   const propsi={
-    id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
+    facultad: "nombre facultad", ca:2, cg:3, cef:4, th:5}
     return (
       <>
         <div className="sticky-top"> 
@@ -15,7 +15,7 @@ function facultad() {
         </div>
         <div className="container-fluid justify-content-center">
           <ElementFacultad 
-            key={propsi.id} 
+            key={propsi.facultad} 
             {...propsi}
           />
             
@@ -27,4 +27,4 @@ function facultad() {
     )
   }
   
-  export default facultad
+  export default Facultad

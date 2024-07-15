@@ -4,7 +4,7 @@ import ElementInvCient from "./Elements/elementInvCient"
 
 function InvCient() {
   const propsi={
-    id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
+    id:1,nombre:"Name", apellidos:"Last", pt:3, tf:5, pi:6, tt:7, th:9}
  
     return (
       <>

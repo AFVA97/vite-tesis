@@ -4,7 +4,7 @@ import ElementPosgrado from "./Elements/elementPosgrado"
 
 function inicio() {
   const propsi={
-    id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
+    id:1,nombre:"Name", apellidos:"Last", hi:5, hr:6, th:9}
  
     return (
       <>

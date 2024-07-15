@@ -8,6 +8,9 @@ function infoInicio({title}) {
         case "Pregrado":
           link="pregrado";
           break;
+        case "Facultad":
+          link="facultad";
+          break;
         case "Posgrado":
           link="posgrado";
           break;

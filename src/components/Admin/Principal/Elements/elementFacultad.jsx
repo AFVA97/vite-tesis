@@ -2,26 +2,24 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementFacultad({id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th}){
+function elementFacultad({facultad, ca, cg, cef, th}){
     const [active, setactive] = useState(false);
     
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className="col-4">{nombre} {apellidos}</div>
-                <div scope="col" className="col-3">{graduado}</div>
-                <div scope="col" className="col-1">{hpre}</div>
-                <div scope="col" className="col-1">{hpos}</div>
-                <div scope="col" className="col-1">{hic}</div>
-                <div scope="col" className="col-1">{heu}</div>
-                <div scope="col" className="col-1">{th}</div> 
+                <div scope="col" className=" col-4 text-truncate ">{facultad}</div>
+                <div scope="col" className=" col-2 text-truncate " >{ca}</div>
+                <div scope="col" className=" col-2 text-truncate ">{cg}</div>
+                <div scope="col" className=" col-2 text-truncate ">{cef}</div>
+                <div scope="col" className=" col-2 text-truncate ">{th}</div>
             </div>
             
             {active &&
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${id}`}>
+                        <div className="col table-info"><Link to={`info/${facultad}`}>
                             Información</Link>
                         </div>
                         
@@ -40,14 +38,10 @@ function elementFacultad({id,nombre, apellidos, graduado, hpre, hpos, hic, heu, 
 }
 
 elementFacultad.propTypes={
-    id:PropTypes.number,
-    nombre:PropTypes.string,
-    apellidos:PropTypes.string,
-    graduado:PropTypes.string,
-    hpre:PropTypes.number,
-    hpos:PropTypes.number,
-    hic:PropTypes.number,
-    heu:PropTypes.number,
+    facultad:PropTypes.string, 
+    ca:PropTypes.number, 
+    cg:PropTypes.number, 
+    cef:PropTypes.number, 
     th:PropTypes.number
 }
 

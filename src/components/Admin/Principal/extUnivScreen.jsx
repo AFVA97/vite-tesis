@@ -4,7 +4,7 @@ import ElementExtUniv from "./Elements/elementExtUniv"
 
 function ExtUniv() {
   const propsi={
-    id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
+    id:1,nombre:"Name", apellidos:"Last", are:5, tch:6, ae:7, th:9}
  
     return (
       <>
