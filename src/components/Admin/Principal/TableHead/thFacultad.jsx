@@ -1,6 +1,6 @@
 
 
-function thInicio() {
+function thFacultad() {
        
     return (
         <>
@@ -15,4 +15,4 @@ function thInicio() {
     )
   }
   
-  export default thInicio
+  export default thFacultad

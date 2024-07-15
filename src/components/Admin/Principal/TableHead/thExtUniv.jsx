@@ -1,6 +1,6 @@
 
 
-function thInicio() {
+function thExtUniv() {
        
     return (
         <>
@@ -15,4 +15,4 @@ function thInicio() {
     )
   }
   
-  export default thInicio
+  export default thExtUniv

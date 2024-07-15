@@ -1,8 +1,8 @@
-function layoutExtUniv(){
+function layoutFacultad({id}){
     return(
         <>
             <h1>layoutFacultad</h1>
         </>
     )
 }
-export default layoutExtUniv
+export default layoutFacultad

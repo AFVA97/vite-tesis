@@ -1,6 +1,6 @@
 
 
-function thInicio() {
+function thInvCient() {
        
     return (
         <>
@@ -16,4 +16,4 @@ function thInicio() {
     )
   }
   
-  export default thInicio
+  export default thInvCient

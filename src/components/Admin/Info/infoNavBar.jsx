@@ -57,6 +57,7 @@ function infoInicio({title}) {
           </ul>
           
         </nav>
+        
       </>
     )
   }

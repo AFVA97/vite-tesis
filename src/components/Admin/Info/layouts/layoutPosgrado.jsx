@@ -1,7 +1,15 @@
-function layoutPosgrado(){
+import ThlPosgrado from "./thlayout/thlPosgrado"
+import ElPosgrado from "./elemlayout/elPosgrado"
+import RlPosgrado from "./reviewlayout/rlPosgrado"
+
+function layoutPosgrado({id}){
+    const review={hi:2, hr:4,th:6}
+    const element={nombre:"posgrado",impartido:true,modalidad:"Qwerty",ubicacion:"Sede",cc:3,horas:6}
     return(
         <>
-            <h1>layoutPosgrado</h1>
+            <ThlPosgrado />
+            <ElPosgrado {...element}/>
+            <RlPosgrado {...review}/>
         </>
     )
 }

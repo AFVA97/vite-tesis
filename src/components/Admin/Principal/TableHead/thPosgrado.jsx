@@ -1,6 +1,6 @@
 
 
-function thInicio() {
+function thPosgrado() {
        
     return (
         <>
@@ -14,4 +14,4 @@ function thInicio() {
     )
   }
   
-  export default thInicio
+  export default thPosgrado

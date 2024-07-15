@@ -4,14 +4,14 @@ import LayoutInvCient from "./layoutInvCient"
 import LayoutExtUniv from "./layoutExtUniv"
 
 
-function layoutInicio(){
+function layoutInicio({id}){
     return(
         <>
             <div className="container-fluid">
-                <LayoutPregrado/>
-                <LayoutPosgrado/>
-                <LayoutInvCient/>
-                <LayoutExtUniv/>
+                <LayoutPregrado {...id}/>
+                <LayoutPosgrado {...id}/>
+                <LayoutInvCient {...id}/>
+                <LayoutExtUniv {...id}/>
             </div>
         </>
     )
