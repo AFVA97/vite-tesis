@@ -3,6 +3,7 @@ import Header from "../HeaderAdmin"
 import ElementInvCient from "./Elements/elementInvCient"
 import SearchBar from "./searchBar"
 import { useState } from "react"
+import 'animate.css';
 
 function InvCient() {
 
@@ -23,7 +24,7 @@ function InvCient() {
           <ThInvCient />
           
         </div>
-        <div className="container-fluid justify-content-center">
+        <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           <ElementInvCient 
             key={propsi.id} 
             {...propsi}

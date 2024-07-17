@@ -25,12 +25,7 @@ function elementInvCient({id,nombre, apellidos, pt, tf, pi, tt, th}){
                             Información</Link>
                         </div>
                         
-                        <div className="col table-success">
-                            Modificar
-                        </div>
-                        <div className="col table-danger">
-                            Eliminar
-                        </div>
+                        
                     </div>
                 
                 

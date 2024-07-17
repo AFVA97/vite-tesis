@@ -3,6 +3,7 @@ import ThPregrado from "./TableHead/thPregrado"
 import ElementFacultad from "./Elements/elementPregrado"
 import SearchBar from "./searchBar"
 import { useState } from "react"
+import 'animate.css';
 
 function Pregrado() {
   
@@ -22,7 +23,7 @@ function Pregrado() {
           <ThPregrado />
           
         </div>
-        <div className="container-fluid justify-content-center">
+        <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           <ElementFacultad 
             key={propsi.id} 
             {...propsi}

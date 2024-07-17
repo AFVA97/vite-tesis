@@ -3,6 +3,7 @@ import Header from "../HeaderAdmin"
 import ElementExtUniv from "./Elements/elementExtUniv"
 import SearchBar from "./searchBar"
 import { useState } from "react"
+import 'animate.css';
 
 function ExtUniv() {
 
@@ -23,7 +24,7 @@ function ExtUniv() {
           <ThExtUniv />
           
         </div>
-        <div className="container-fluid justify-content-center">
+        <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           <ElementExtUniv 
             key={propsi.id} 
             {...propsi}

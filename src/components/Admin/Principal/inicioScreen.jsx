@@ -3,6 +3,7 @@ import Header from "../HeaderAdmin"
 import ElementInicio from "./Elements/elementInicio"
 import SearchBar from "./searchBar"
 import { useState } from "react"
+import 'animate.css';
 
 function inicio() {
   
@@ -25,7 +26,7 @@ function inicio() {
           <ThInicio />
           
         </div>
-        <div className="container-fluid justify-content-center">
+        <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           <ElementInicio 
             key={propsi.id} 
             {...propsi}

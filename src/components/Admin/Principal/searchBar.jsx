@@ -1,18 +1,18 @@
 import { useForm } from '../../../hooks/useForm';
 
-function searchBar  ({search,setsearch})  {
+
+function searchBar  ({setsearch})  {
+    
     
     const [ formValues, handleInputChange, reset, especific ] = useForm({
         searchText: ""
     });
     const { searchText } = formValues;
     
-    
    
     const handleSearch = (e) => {
         e.preventDefault();
         setsearch(searchText);
-        
     }
 
     return (

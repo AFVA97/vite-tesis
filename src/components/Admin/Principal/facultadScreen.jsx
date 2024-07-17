@@ -3,6 +3,7 @@ import ThFacultad from "./TableHead/thFacultad"
 import ElementFacultad from "./Elements/elementFacultad"
 import SearchBar from "./searchBar"
 import { useState } from "react"
+import 'animate.css';
 
 function Facultad() {
 
@@ -22,7 +23,7 @@ function Facultad() {
           <ThFacultad />
           
         </div>
-        <div className="container-fluid justify-content-center">
+        <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           <ElementFacultad 
             key={propsi.facultad} 
             {...propsi}

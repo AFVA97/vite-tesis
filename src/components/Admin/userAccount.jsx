@@ -1,41 +1,43 @@
 import { useState } from "react"
-import {  Link } from "react-router-dom"
+import "../../App.css"
 
 
-
-function userAccount() {
-    const [active, setactive] = useState("invisible")
-    function onClick() {
-        if(active==="invisible")
-            setactive("visible")
-        else
-            setactive("invisible")
-    }
-    return(
-        <>
-                <div className="dropdown">
-                    <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img 
-                            src="/user.svg" 
-                            alt="Logo" 
-                            width="30" 
-                            height="24" 
-                            className="d-inline-block align-text-top"
-                        />  
-                    </button>
-                    <ul className="dropdown-menu dropstart">
-                        <li><a className="dropdown-item" href="#">Action</a></li>
-                        <li><a className="dropdown-item" href="#">Another action</a></li>
-                        <li><a className="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
-
-
-
-            
-              
-            
-        </>
+function ProfileMenu() {
+    return (
+      <ul className=" profile-menu">
+        <li >Opcion 1</li>
+        <li >Opcion 2</li>
+        <li >Opcion 3</li>
+        <li >Opcion 4</li>
+        <li >Cerrar Sesión</li>
+      </ul>
     )
+  }
+
+function UserAccount() {
+  const [showProfile, setShowProfile] = useState(false)
+  return (
+      
+
+      <div className="profile">
+        <button
+          onClick={() => {
+            setShowProfile(!showProfile)
+          }}
+          className="btn btn-secondary"
+        >
+          <img 
+            src="/user.svg" 
+            alt="Logo" 
+            width="30" 
+            height="24" 
+            className="d-inline-block align-text-top"
+        />  
+        </button>
+        {showProfile ? <ProfileMenu /> : ""}
+      </div>
+    
+  )
 }
-export default userAccount
+
+export default UserAccount

@@ -24,12 +24,7 @@ function elementExtUniv({id,nombre, apellidos, are, tch, ae, th}){
                             Información</Link>
                         </div>
                         
-                        <div className="col table-success">
-                            Modificar
-                        </div>
-                        <div className="col table-danger">
-                            Eliminar
-                        </div>
+                        
                     </div>
                 
                 
