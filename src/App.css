@@ -2,5 +2,26 @@
     background-color: rgb(36, 34, 34);
     position: fixed;
     right: 10px;
-    color: white;
+    color: black;
+    background-color: white;
+    
+  }
+  .floatingbutton{
+    position: fixed;
+    right: 10px;
+    bottom: 10px
+  }
+  ul {
+    list-style: none;
+    padding: 10px 10px;
+    
+  }
+  
+  li {
+    margin-top: 2px;
+    padding: 3px;
+  }
+  
+  li:hover {
+    cursor: pointer;
   }

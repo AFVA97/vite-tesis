@@ -1,21 +1,24 @@
 import { useState } from "react"
 import "../../App.css"
+import { useAuth } from "../../context/authContext";
 
 
-function ProfileMenu() {
+
+
+function UserAccount() {
+  const [showProfile, setShowProfile] = useState(false)
+  const {logout}=useAuth();
+  function ProfileMenu() {
     return (
       <ul className=" profile-menu">
         <li >Opcion 1</li>
         <li >Opcion 2</li>
         <li >Opcion 3</li>
         <li >Opcion 4</li>
-        <li >Cerrar Sesión</li>
+        <li onClick={()=>{logout()}}>Cerrar Sesión</li>
       </ul>
     )
   }
-
-function UserAccount() {
-  const [showProfile, setShowProfile] = useState(false)
   return (
       
 

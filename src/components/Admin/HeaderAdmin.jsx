@@ -1,7 +1,9 @@
-import { Link, NavLink } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import UserAccount from './userAccount'
+import { useAuth } from "../../context/authContext";
+import { useEffect } from "react";
 
-function Header() {
+function Header({username}) {
     
   return (
     <>
@@ -14,7 +16,7 @@ function Header() {
                 
                     
                     <img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/>
-                    Name
+                    {username}
                     
                 
             </Link>

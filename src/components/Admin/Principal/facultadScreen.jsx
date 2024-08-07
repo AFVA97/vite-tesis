@@ -5,7 +5,7 @@ import SearchBar from "./searchBar"
 import { useState } from "react"
 import 'animate.css';
 
-function Facultad() {
+function Facultad({username}) {
 
   const [search, setsearch] = useState("")
 
@@ -15,7 +15,7 @@ function Facultad() {
       <>
         <div className="sticky-top"> 
           
-          <Header />       
+          <Header username={username}/>       
           <SearchBar 
             search={search}
             setsearch={setsearch}

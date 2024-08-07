@@ -5,7 +5,7 @@ import SearchBar from "./searchBar"
 import { useState } from "react"
 import 'animate.css';
 
-function ExtUniv() {
+function ExtUniv({username}) {
 
   const [search, setsearch] = useState("")
 
@@ -16,7 +16,7 @@ function ExtUniv() {
       <>
         <div className="sticky-top"> 
           
-          <Header />      
+          <Header username={username}/>      
           <SearchBar 
             search={search}
             setsearch={setsearch}

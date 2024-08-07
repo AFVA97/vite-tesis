@@ -1,10 +1,14 @@
 import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
+import { useProfesor } from "../../../../context/profesorContext";
 
-function elementInicio({id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th}){
+function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th}){
     const [active, setactive] = useState(false);
-    
+    const {deletesProfesor}=useProfesor()
+    const handleDelete=()=>{
+        deletesProfesor(_id);
+    }
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
@@ -21,14 +25,14 @@ function elementInicio({id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${id}`}>
+                        <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
                         
-                        <div className="col table-success">
-                            Modificar
+                        <div className="col table-success"><Link to={`/admin/addprofesor/${_id}`}>
+                        Modificar</Link>
                         </div>
-                        <div className="col table-danger">
+                        <div className="col table-danger" onClick={handleDelete}>
                             Eliminar
                         </div>
                     </div>

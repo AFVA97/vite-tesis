@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes,Navigate, useNavigate } from "react-router-dom"
 import Header from "./HeaderAdmin"
 import Inicio from "./Principal/inicioScreen"
 import Facultad from "./Principal/facultadScreen"
@@ -7,21 +7,46 @@ import Posgrado from "./Principal/posgradoScreen"
 import Investigacion from "./Principal/invCientScreen"
 import Extension from "./Principal/extUnivScreen"
 import InfoScreen  from "./Info/infoScreen"
+import { useAuth } from "../../context/authContext"
+import AddProfesor from "./Principal/AddProfesor"
+import { useEffect, useState } from "react"
 
 
 export default function App() {
+  const {user,loading,isAuthenticated}=useAuth();
+const navigate=useNavigate();
+  useEffect(()=>{
+    if(isAuthenticated){
+      if(user.ciuser) 
+        navigate('/teacher/inicio')
+      else if(user.facuser)
+        navigate('/faculty/inicio')
+      else
+      navigate('/admin/inicio') 
+    }
+  },[isAuthenticated])
+  const [username, setusername] = useState("UserName");
   
+  useEffect(() => {
+    if(user)
+      setusername(user.username)
+  }, [user]);
+  
+
   return (
     <>
       
         
         <Routes>
-          <Route path="/inicio" element={<Inicio/>}/>
-          <Route path="/facultad" element={<Facultad />} />
-          <Route path="/pregrado" element={<Pregrado />} />
-          <Route path="/posgrado" element={<Posgrado />} />
-          <Route path="/inv_cient" element={<Investigacion />} />
-          <Route path="/ext_univ" element={<Extension />} />          
+          <Route path="/inicio" element={<Inicio username={username}/>}/>
+          <Route path="/addprofesor" element={<AddProfesor/>}/>
+          <Route path="/addprofesor/:_id" element={<AddProfesor/>}/>
+          
+          <Route path="/facultad" element={<Facultad username={username}/>} />
+          <Route path="/pregrado" element={<Pregrado username={username}/>} />
+          <Route path="/posgrado" element={<Posgrado username={username}/>} />
+          <Route path="/inv_cient" element={<Investigacion username={username}/>} />
+          <Route path="/ext_univ" element={<Extension username={username}/>} />          
           <Route path="/inicio/info/:id" element={<InfoScreen title={"General"}/>} />
           <Route path="/facultad/info/:id" element={<InfoScreen title={"Facultad"}/>} />
           <Route path="/pregrado/info/:id" element={<InfoScreen title={"Pregrado"}/>} />

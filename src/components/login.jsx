@@ -1,31 +1,71 @@
-import React, { useState } from "react"
-import { Routes, Route, Link, useNavigate, Navigate } from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import {useForm} from 'react-hook-form'
+import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom"
 
 function login() {
     
-    const [activeadmin, setactiveadmin] = useState(false)
-    const [activefaculty, setactivefaculty] = useState(false)
-    const [activeteacher, setactiveteacher] = useState(false)
+  const{register,handleSubmit, formState:{errors}}=useForm();
+  const {signin, errors:signinErrors,isAuthenticated,user}=useAuth();
+  
+  const onSubmit=handleSubmit(data=>{
+    signin(data);
+    
+  })
+
+  const navigate=useNavigate();
+
+useEffect(()=>{
+  if(isAuthenticated){
+    if(user.ciuser) 
+      navigate('/teacher/inicio')
+    else if(user.facuser)
+      navigate('/faculty/inicio')
+    else
+    navigate('/admin/inicio') 
+  }
+},[isAuthenticated])
+    
     return (
       <>
-      <div className="container m-20 ">
-        
-          {/* <div className="row mb-3">
-            <label  className="col-sm-2 col-form-label">Email</label>
-            <div className="col-sm-10">
-              <input type="email" className="form-control" id="inputEmail3"/>
-            </div>
+      <div className="container p-5 ">
+        {signinErrors.map((error,i)=>(
+          <div key={i}>
+            {error}
           </div>
-          <div className="row mb-3">
-            <label  className="col-sm-2 col-form-label">Password</label>
-            <div className="col-sm-10">
-              <input type="password" className="form-control" id="inputPassword3"/>
-            </div>
-          </div> */}
+        ))}
+          <div className="mb-3 ">
+           <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                label="Escribe tu Usuario"
+                className="form-control mb-3 mt-5 "
+                name="username"
+                placeholder="Nombre de Usuario"
+                {...register("username", { required: true })}
+              />
+              {errors.username && (
+                <p className="form-label"> username is required</p>
+              )}
+
+              <input
+                type="password"
+                name="password"
+                className="form-control mb-3"
+                placeholder="Write your password"
+                {...register("password", { required: true, minLength: 6 })}
+              />
+              {errors.password && (
+                <p className="form-label"> password is required</p>
+              )}
+
+              <button type="submit" className="btn btn-primary mb-3">Login</button>
+            </form>
+        
+          </div>
+            
+      </div> 
           
-          {/* <Link
-            to="/admin/inicio"
-          > */}
+{/*           
           {activeadmin && (<Navigate to="/admin/inicio" replace={true} />)}
             <button
             type="submit"
@@ -34,10 +74,7 @@ function login() {
             >
               Sign in Admin
             </button>
-          {/* </Link> */}
-          {/* <Link
-            to="/teacher/inicio"
-          > */}
+         
             {activeteacher && (<Navigate to="/teacher/inicio" replace={true} />)}
             <button
             type="submit"
@@ -46,10 +83,7 @@ function login() {
             >
               Sign in Prof
             </button>
-          {/* </Link>
-          <Link
-            to="/faculty/inicio"
-          > */}
+         
             {activefaculty && (<Navigate to="/faculty/inicio" replace={true} />)}
             <button
             type="submit"
@@ -58,10 +92,9 @@ function login() {
             >
               Sign in Fac
             </button>
-          {/* </Link> */}
-          
+         */}
         
-        </div>
+        
       </>
     )
   }

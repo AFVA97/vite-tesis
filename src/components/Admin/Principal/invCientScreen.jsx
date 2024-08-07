@@ -5,7 +5,7 @@ import SearchBar from "./searchBar"
 import { useState } from "react"
 import 'animate.css';
 
-function InvCient() {
+function InvCient({username}) {
 
   const [search, setsearch] = useState("")
 
@@ -16,7 +16,7 @@ function InvCient() {
       <>
         <div className="sticky-top"> 
           
-          <Header />    
+          <Header username={username}/>    
           <SearchBar 
             search={search}
             setsearch={setsearch}

@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom"
 import PropTypes from "prop-types"
 
 function infoInicio({title}) {
+    let text="Información";
     let link = "inicio";
       switch(title){
         case "Pregrado":
@@ -20,6 +21,9 @@ function infoInicio({title}) {
         case "Extensión Universitaria":
           link="ext_univ";
           break;  
+        case "Añadir Profesor":
+          text="";
+          break;
       }
     
     // const params=useParams();
@@ -40,20 +44,11 @@ function infoInicio({title}) {
 
           <ul className="navbar-nav ml-auto text-white ">
             <li className="nav-item">
-              <a className="nav-link text-white " href="#">Información {title}</a>
+              <a className="nav-link text-white " href="#">{text} {title}</a>
             </li>   
             
             <li><img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block "/></li>
-            <li>
-              <NavLink 
-                activeclassname="active"
-                className="nav-item nav-link" 
-                
-                to="/login"
-              >
-                Logout
-              </NavLink>
-            </li>
+            
           </ul>
           
         </nav>

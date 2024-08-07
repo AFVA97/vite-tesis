@@ -5,7 +5,7 @@ import SearchBar from "./searchBar"
 import { useState } from "react"
 import 'animate.css';
 
-function Pregrado() {
+function Pregrado({username}) {
   
   const [search, setsearch] = useState("")
 
@@ -15,7 +15,7 @@ function Pregrado() {
       <>
         <div className="sticky-top"> 
           
-          <Header />       
+          <Header username={username}/>       
           <SearchBar 
             search={search}
             setsearch={setsearch}
