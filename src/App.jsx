@@ -15,24 +15,27 @@ import ErrorPage from './components/error-page';
 import { AuthProvider } from './context/authContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import { ProfesorProvider } from './context/profesorContext';
+import { FacultadProvider } from './context/facultadContext';
 
 function App() {
   return (
     <>
-    <AuthProvider>
-      <ProfesorProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
-          <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
-          <Route element={<ProtectedRoute/>}>
-            <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
-            <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
-            <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
-          </Route>
-        </Routes>
-      </BrowserRouter>
-      </ProfesorProvider>
+      <AuthProvider>
+        <ProfesorProvider>
+          <FacultadProvider>  
+            <BrowserRouter>
+              <Routes>
+                <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
+                <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
+                <Route element={<ProtectedRoute/>}>
+                  <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
+                  <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
+                  <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </FacultadProvider>
+        </ProfesorProvider>
       </AuthProvider>
     </>
   )

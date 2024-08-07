@@ -23,7 +23,12 @@ function infoInicio({title}) {
           break;  
         case "Añadir Profesor":
           text="";
+          link="inicio"
           break;
+          case "Añadir Facultad":
+            text="";
+            link="facultad"
+            break;
       }
     
     // const params=useParams();

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createProfesorRequest,
   deleteProfesorRequest,
@@ -24,6 +24,26 @@ export function ProfesorProvider({ children }) {
     setProfesors(res.data);
   };
 
+  useEffect(() => {
+    if (errors.length > 0) {
+      const timer = setTimeout(() => {
+        setErrors([]);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [errors]);
+
+  const createsProfesor = async (Profesor) => {
+    try {
+      const res = await createProfesorRequest(Profesor);
+      if(res.status===200)
+        getProfesor();
+    } catch (error) {
+      console.log(error.response.data);
+      setErrors(error.response.data);
+    }
+  };
+
   const deletesProfesor = async (id) => {
     try {
       const res = await deleteProfesorRequest(id);
@@ -34,14 +54,7 @@ export function ProfesorProvider({ children }) {
     }
   };
 
-  const createsProfesor = async (Profesor) => {
-    try {
-      const res = await createProfesorRequest(Profesor);
-    } catch (error) {
-      console.log(error);
-      setErrors(error.response.data);
-    }
-  };
+  
 
   const getProfesor = async (id) => {
     try {
@@ -67,6 +80,7 @@ export function ProfesorProvider({ children }) {
     <ProfesorContext.Provider
       value={{
         Profesors,
+        errors,
         getProfesors,
         deletesProfesor,
         createsProfesor,

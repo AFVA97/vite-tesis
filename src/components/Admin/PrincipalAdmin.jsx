@@ -10,6 +10,7 @@ import InfoScreen  from "./Info/infoScreen"
 import { useAuth } from "../../context/authContext"
 import AddProfesor from "./Principal/AddProfesor"
 import { useEffect, useState } from "react"
+import AddFacultad from "./Principal/AddFacultad"
 
 
 export default function App() {
@@ -41,6 +42,8 @@ const navigate=useNavigate();
           <Route path="/inicio" element={<Inicio username={username}/>}/>
           <Route path="/addprofesor" element={<AddProfesor/>}/>
           <Route path="/addprofesor/:_id" element={<AddProfesor/>}/>
+          <Route path="/addfacultad" element={<AddFacultad/>}/>
+          <Route path="/addfacultad/:_id" element={<AddFacultad/>}/>
           
           <Route path="/facultad" element={<Facultad username={username}/>} />
           <Route path="/pregrado" element={<Pregrado username={username}/>} />

@@ -11,16 +11,14 @@ function inicio({username}) {
   
   const [search, setsearch] = useState("")
  
-  const propsi={
-    id:1,nombre:"Name", apellidos:"Last", graduado:"graduado", hpre:5, hpos:6, hic:7, heu:8, th:9}
-    const { Profesors, getProfesors } = useProfesor();
+   
+  const { Profesors, getProfesors } = useProfesor();
 
   useEffect(() => {
     getProfesors();
   }, []);
 
   
-    const navigate=useNavigate()
     return (
       <>
         <div className="sticky-top"> 
