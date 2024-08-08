@@ -29,6 +29,10 @@ function infoInicio({title}) {
             text="";
             link="facultad"
             break;
+          default:
+            text="";
+            link="inicio";
+            break;
       }
     
     // const params=useParams();

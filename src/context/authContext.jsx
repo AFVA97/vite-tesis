@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import { loginRequest, registerRequest, verifyTokenRequest } from "../api/auth";
+import { loginRequest, registerRequest, verifyTokenRequest,getUsersRequest,getUserRequest, deleteUserRequest } from "../api/auth";
 import Cookies from "js-cookie";
+import Users from "../components/Admin/user/Users";
 
 const AuthContext = createContext();
 
@@ -13,6 +14,8 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
+  
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,6 +43,24 @@ export const AuthProvider = ({ children }) => {
     }
   }; 
 
+  const getUsers=async()=>{
+    
+    const res=await getUsersRequest();
+    
+    setUsers(res.data);
+  }
+
+  const getUser=async()=>{
+    
+    try {
+      const res = await getUserRequest(id); 
+      
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  }
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
@@ -58,6 +79,19 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setIsAuthenticated(false);
   };
+  const deleteUser= async (id)=>{
+    try {
+      const res = await deleteUserRequest(id);
+      if (res.status === 204) 
+        getUsers();
+    } catch (error) {
+      console.log(error);
+      setErrors(error.response.data);
+    }
+  };
+
+  
+
 
   useEffect(() => {
     const checkLogin = async () => {
@@ -97,9 +131,13 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        users,
+        getUser,
+        getUsers,
         signup,
         signin,
         logout,
+        deleteUser,
         isAuthenticated,
         errors,
         loading,

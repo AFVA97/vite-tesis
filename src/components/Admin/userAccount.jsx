@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "../../App.css"
 import { useAuth } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -8,13 +9,15 @@ import { useAuth } from "../../context/authContext";
 function UserAccount() {
   const [showProfile, setShowProfile] = useState(false)
   const {logout}=useAuth();
+  const navigate=useNavigate();
+  
   function ProfileMenu() {
     return (
       <ul className=" profile-menu">
         <li >Opcion 1</li>
         <li >Opcion 2</li>
         <li >Opcion 3</li>
-        <li >Opcion 4</li>
+        <li onClick={()=>{navigate("/admin/users")}}>Usuarios</li>
         <li onClick={()=>{logout()}}>Cerrar Sesión</li>
       </ul>
     )

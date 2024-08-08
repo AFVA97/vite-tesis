@@ -11,6 +11,9 @@ import { useAuth } from "../../context/authContext"
 import AddProfesor from "./Principal/AddProfesor"
 import { useEffect, useState } from "react"
 import AddFacultad from "./Principal/AddFacultad"
+import Users from "./user/Users"
+import AddUser from "./user/AddUser"
+import InfoUSer from "./Info/InfoUSer"
 
 
 export default function App() {
@@ -44,7 +47,12 @@ const navigate=useNavigate();
           <Route path="/addprofesor/:_id" element={<AddProfesor/>}/>
           <Route path="/addfacultad" element={<AddFacultad/>}/>
           <Route path="/addfacultad/:_id" element={<AddFacultad/>}/>
+          <Route path="/users" element={<Users/>}/>
+          <Route path="/users/info/:_id" element={<InfoUSer/>}/>
           
+          <Route path="/users/add" element={<AddUser/>}/>
+          <Route path="/users/add/:_id" element={<AddUser/>}/>
+
           <Route path="/facultad" element={<Facultad username={username}/>} />
           <Route path="/pregrado" element={<Pregrado username={username}/>} />
           <Route path="/posgrado" element={<Posgrado username={username}/>} />
