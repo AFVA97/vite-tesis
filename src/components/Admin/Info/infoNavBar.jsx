@@ -25,14 +25,18 @@ function infoInicio({title}) {
           text="";
           link="inicio"
           break;
-          case "Añadir Facultad":
-            text="";
-            link="facultad"
-            break;
-          default:
-            text="";
-            link="inicio";
-            break;
+        case "Añadir Facultad":
+          text="";
+          link="facultad"
+          break;
+        case "Añadir Usuario":
+          text="";
+          link="users";
+          break;
+        default:
+          text="";
+          link="inicio";
+          break;
       }
     
     // const params=useParams();

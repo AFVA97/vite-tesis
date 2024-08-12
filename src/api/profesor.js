@@ -3,7 +3,7 @@ import axios from "./axios";
 
 export const getProfesoresRequest=()=>axios.get(`/profesor`);
 
-export const getProfesorRequest=(id)=>axios.get(`/profesor/${id}`);
+export const getProfesorRequest=(_id)=>axios.get(`/profesor/${_id}`);
 
 export const createProfesorRequest=(profesor)=>axios.post(`/profesor`,profesor);
 

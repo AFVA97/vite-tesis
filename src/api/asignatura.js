@@ -7,6 +7,10 @@ export const createAsignaturaRequest =(asignatura,carrera)=>axios.post(`/asignat
 
 export const getAsignaturaRequest=(id)=>axios.get(`/asignatura/${id}`);
 
+export const getAsignaturaProfRequest=(id)=>axios.get(`/asignatura/prof/${id}`);
+
+export const getAsignaturaFacRequest=(id)=>axios.get(`/asignatura/fac/${id}`);
+
 export const updateAsignaturaRequest=(asignatura)=>axios.put(`/asignatura/${asignatura._id}`,asignatura);
 
 export const deleteAsignaturaRequest=(id)=>axios.delete(`/asignatura/${id}`);

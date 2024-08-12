@@ -38,6 +38,20 @@ const AddProfesor = () => {
                     setcargo(true)
                     setValue('funcionDireccion',profesor.funcionDireccion)
                 }
+                setValue('trabajoec',0)
+                setValue('trabajoc',0)
+                setValue('trabajod',0)
+                setValue('tutoria',0)
+                setValue('examene',0)
+                setValue('trabajometo',0)
+            }
+            else{
+                setValue('trabajoec',0)
+                setValue('trabajoc',0)
+                setValue('trabajod',0)
+                setValue('tutoria',0)
+                setValue('examene',0)
+                setValue('trabajometo',0)
             }
         }
         loadProfesor()
@@ -49,7 +63,8 @@ const AddProfesor = () => {
 
     const onSubmit=handleSubmit(data=>{        
         try {
-            if(!params._id){                
+            if(!params._id){  
+                     
                 createsProfesor(data);
                 handleCancelar();
             }

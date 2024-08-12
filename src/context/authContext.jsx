@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import { loginRequest, registerRequest, verifyTokenRequest,getUsersRequest,getUserRequest, deleteUserRequest } from "../api/auth";
+import { loginRequest, registerRequest, verifyTokenRequest,getUsersRequest,getUserRequest, deleteUserRequest, getUserCIRequest, getUserFACRequest } from "../api/auth";
 import Cookies from "js-cookie";
 import Users from "../components/Admin/user/Users";
 
@@ -50,10 +50,31 @@ export const AuthProvider = ({ children }) => {
     setUsers(res.data);
   }
 
-  const getUser=async()=>{
-    
+  const getUser=async(_id)=>{
     try {
-      const res = await getUserRequest(id); 
+      const res = await getUserRequest(_id); 
+      
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  }
+  const getUserCI=async(_id)=>{
+    try {
+      const res = await getUserCIRequest(_id); 
+      
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  }
+  const getUserFAC=async(_id)=>{
+    try {
+      console.log(_id)
+      const res = await getUserFACRequest(_id); 
+      console.log(res.data);
       
       return res.data;
     } catch (error) {
@@ -65,9 +86,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await loginRequest(user);
       setUser(res.data);
-      setIsAuthenticated(true);
-      console.log(res.data);
-      
+      setIsAuthenticated(true);      
     } catch (error) {
       console.log(error);
       setErrors(error.response.data);
@@ -79,9 +98,10 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setIsAuthenticated(false);
   };
-  const deleteUser= async (id)=>{
+  const deleteUser= async (_id)=>{
     try {
-      const res = await deleteUserRequest(id);
+      
+      const res = await deleteUserRequest(_id);
       if (res.status === 204) 
         getUsers();
     } catch (error) {
@@ -131,6 +151,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        //getUserId,
         users,
         getUser,
         getUsers,

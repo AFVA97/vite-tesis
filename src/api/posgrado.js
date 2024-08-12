@@ -1,9 +1,9 @@
 import axios from "./axios";
 
 
-export const getPosgradoesRequest=()=>axios.get(`/posgrado`)
+export const getPosgradosRequest=()=>axios.get(`/posgrado`)
 
-export const getPosgradoProfRequest=(idProfesor)=>axios.get(`posgrado/${idProfesor}`)
+export const getPosgradoProfRequest=(idProfesor)=>axios.get(`posgrado/prof/${idProfesor}`)
 
 export const createPosgradoRequest =(Posgrado)=>axios.post(`/posgrado`,Posgrado);
 

@@ -2,7 +2,7 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementPregrado({id,nombre, apellidos, first, second, te, tm, th}){
+function elementPregrado({ _id,nombre, apellidos, first, second, te, tm, th}){
     const [active, setactive] = useState(false);
     return(
         <>
@@ -21,7 +21,7 @@ function elementPregrado({id,nombre, apellidos, first, second, te, tm, th}){
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${id}`}>
+                        <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
                         

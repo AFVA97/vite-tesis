@@ -2,7 +2,7 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementPosgrado({id,nombre, apellidos, hi, hr,th}){
+function elementPosgrado({_id,nombre, apellidos, hi, hr,th}){
     const [active, setactive] = useState(false);
     
     return(
@@ -18,7 +18,7 @@ function elementPosgrado({id,nombre, apellidos, hi, hr,th}){
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${id}`}>
+                        <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
                         

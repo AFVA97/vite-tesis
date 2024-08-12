@@ -10,6 +10,10 @@ export const verifyTokenRequest = async () => axios.get(`/verify`);
 
 export const getUsersRequest=async ()=>axios.get(`/users`)
 
-export const deleteUserRequest= async (id)=>axios.delete(`/users/${id}`)
+export const deleteUserRequest= async (_id)=>axios.delete(`/users/${_id}`)
 
-export const getUserRequest= async (id)=>axios.get(`/users/${id}`)
+export const getUserRequest= async (_id)=>axios.get(`/users/${_id}`)
+
+export const getUserCIRequest= async (_id)=>axios.get(`/users/ci/${_id}`)
+
+export const getUserFACRequest= async (_id)=>axios.get(`/users/fac/${_id}`)

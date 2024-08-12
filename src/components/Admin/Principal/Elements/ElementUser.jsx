@@ -10,6 +10,8 @@ function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
     const [active, setactive] = useState(false);
     const {deleteUser}=useAuth()
     const handleDelete=()=>{
+        
+        
         deleteUser(_id);
     }
     const tipo=()=>{
@@ -19,22 +21,26 @@ function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
             return "Facultad";
         return "Administrador"
     }
+    const {getUser}=useAuth();
+    const {getFacultad}=useFacultad();
+    const {getProfesor}=useProfesor();
     const [asignado, setasignado] = useState("")
     useEffect(() => {
         async function asignar(){
             if(ciuser){
-                const {getUserId}=useAuth();
-                const usuario=await getUserId(ciuser);
+                
+                const usuario=await getProfesor(ciuser);
+                
                 setasignado(usuario.nombre);
                 return ;
             }            
             else if(facuser){
-                const {getFacultad}=useFacultad();
+                
                 const facultad=await getFacultad(facuser);
                  setasignado(facultad.nombre)
                  return;
             }
-            setasignado("")
+            setasignado("---")
         }
         asignar()
     }, [])

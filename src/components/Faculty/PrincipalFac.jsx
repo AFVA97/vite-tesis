@@ -9,16 +9,16 @@ import { useEffect } from "react";
 export default function App() {
   const {user,loading,isAuthenticated}=useAuth();
   const navigate=useNavigate();
-  useEffect(()=>{
-    if(isAuthenticated){
-      if(user.ciuser) 
-        navigate('/teacher/inicio')
-      else if(user.facuser)
-        navigate('/faculty/inicio')
-      else
-      navigate('/admin/inicio') 
-    }
-  },[isAuthenticated])
+  // useEffect(()=>{
+  //   if(isAuthenticated){
+  //     if(user.ciuser) 
+  //       navigate('/teacher/inicio')
+  //     else if(user.facuser)
+  //       navigate('/faculty/inicio')
+  //     else
+  //     navigate('/admin/inicio') 
+  //   }
+  // },[isAuthenticated])
   return (
     <>      
         <Header />

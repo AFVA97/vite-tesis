@@ -36,8 +36,10 @@ export function ProfesorProvider({ children }) {
   const createsProfesor = async (Profesor) => {
     try {
       const res = await createProfesorRequest(Profesor);
-      if(res.status===200)
-        getProfesor();
+      if(res.status===200){
+        getProfesors();
+        
+      }
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
@@ -56,9 +58,9 @@ export function ProfesorProvider({ children }) {
 
   
 
-  const getProfesor = async (id) => {
+  const getProfesor = async (_id) => {
     try {
-      const res = await getProfesorRequest(id); 
+      const res = await getProfesorRequest(_id); 
       
       return res.data;
     } catch (error) {
