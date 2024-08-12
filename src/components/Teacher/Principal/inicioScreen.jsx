@@ -1,7 +1,16 @@
+import PregradoScreen from './pregradoScreen'
+import PosgradoScreen from './posgradoScreen'
+import ExtUnivScreen from './ext_univScreen'
+import InvCientScreen from './inv_cientScreen'
+
+
 function inicio() {
     return (
       <div>
-        <h1>inicio profesor</h1>
+        <PregradoScreen/>
+        <PosgradoScreen/>
+        <InvCientScreen/>
+        <ExtUnivScreen/>
       </div>
     )
   }

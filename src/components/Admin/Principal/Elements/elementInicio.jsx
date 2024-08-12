@@ -3,11 +3,12 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useProfesor } from "../../../../context/profesorContext";
 
-function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th}){
+function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th,profesorInicio,setprofesorInicio}){
     const [active, setactive] = useState(false);
     const {deletesProfesor}=useProfesor()
     const handleDelete=()=>{
         deletesProfesor(_id);
+        setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
     }
     return(
         <>

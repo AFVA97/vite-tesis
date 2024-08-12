@@ -90,7 +90,9 @@ function inicio({username}) {
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {profesorInicio.map((profesor,i)=>(
             <ElementInicio 
-            key={profesor._id} 
+            key={profesor._id}
+            profesorInicio={profesorInicio}
+            setprofesorInicio={setprofesorInicio}
             {...profesor}
           />
             

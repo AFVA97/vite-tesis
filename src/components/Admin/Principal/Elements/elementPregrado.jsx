@@ -1,9 +1,15 @@
 import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
+import { useProfesor } from "../../../../context/profesorContext";
 
-function elementPregrado({ _id,nombre, apellidos, first, second, te, tm, th}){
+function elementPregrado({ _id,nombre, apellidos, first, second, te, tm, th,profesorInicio,setprofesorInicio}){
     const [active, setactive] = useState(false);
+    const {deletesProfesor}=useProfesor()
+    const handleDelete=()=>{
+        deletesProfesor(_id);
+        setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
+    }
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
@@ -28,7 +34,7 @@ function elementPregrado({ _id,nombre, apellidos, first, second, te, tm, th}){
                         <div className="col table-success">
                             Modificar
                         </div>
-                        <div className="col table-danger">
+                        <div className="col table-danger" onClick={handleDelete}>
                             Eliminar
                         </div>
                     </div>

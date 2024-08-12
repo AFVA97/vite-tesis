@@ -1,6 +1,6 @@
 import Header from "../HeaderAdmin"
 import ThPregrado from "./TableHead/thPregrado" 
-import ElementFacultad from "./Elements/elementPregrado"
+import ElementPregrado from "./Elements/elementPregrado"
 import SearchBar from "./searchBar"
 import { useEffect, useState } from "react"
 import 'animate.css';
@@ -77,8 +77,11 @@ function Pregrado({username}) {
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {profesorInicio.map((profesor,i)=>(
-            <ElementFacultad 
+            <ElementPregrado 
             key={profesor._id} 
+            profesorInicio={profesorInicio}
+            setprofesorInicio={setprofesorInicio}
+            
             {...profesor}
           />
           ))}

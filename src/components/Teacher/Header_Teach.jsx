@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
+import UserAccount from "./userAccount"
 
-function Header() {
+function Header({username}) {
   return (
     
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -12,7 +13,7 @@ function Header() {
            
                 
                 <img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/>
-                Name
+                {username}
                 
             
         </Link>
@@ -65,14 +66,7 @@ function Header() {
         </div>
 
         <ul className="navbar-nav ml-auto">
-            <NavLink 
-                activeclassname="active"
-                className="nav-item nav-link" 
-                
-                to="/login"
-            >
-                Logout
-            </NavLink>
+            <UserAccount/>
         </ul>
     
     </nav>

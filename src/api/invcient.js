@@ -3,7 +3,7 @@ import axios from "./axios";
 
 export const getInvCientesRequest=()=>axios.get(`/invcient`)
 
-export const getInvCientProfRequest=(idProfesor)=>axios.get(`invcient/${idProfesor}`)
+export const getInvCientProfRequest=(idProfesor)=>axios.get(`invcient/prof/${idProfesor}`)
 
 export const createInvCientRequest =(InvCient)=>axios.post(`/invcient`,InvCient);
 

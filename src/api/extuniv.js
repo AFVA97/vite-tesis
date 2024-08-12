@@ -3,7 +3,7 @@ import axios from "./axios";
 
 export const getExtesRequest=()=>axios.get(`/extuniv`)
 
-export const getExtProfRequest=(idProfesor)=>axios.get(`extuniv/${idProfesor}`)
+export const getExtProfRequest=(idProfesor)=>axios.get(`extuniv/prof/${idProfesor}`)
 
 export const createExtRequest =(Ext)=>axios.post(`/extuniv`,Ext);
 

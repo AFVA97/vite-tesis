@@ -1,14 +1,13 @@
 import { BrowserRouter, Route, Routes , useNavigate} from "react-router-dom"
 import Header from "./Header_Teach"
 import Inicio from "./Principal/inicioScreen"
-import Facultad from "./Principal/facultadScreen"
 import Pregrado from "./Principal/pregradoScreen"
 import Posgrado from "./Principal/posgradoScreen"
 import Investigacion from "./Principal/inv_cientScreen"
 import Extension from "./Principal/ext_univScreen"
 import Login from "../login"
 import { useAuth } from "../../context/authContext"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function App() {
@@ -24,18 +23,24 @@ export default function App() {
   //     navigate('/admin/inicio') 
   //   }
   // },[isAuthenticated])
+  
+  const [username, setusername] = useState("UserName");
+  
+  useEffect(() => {
+    if(user)
+      setusername(user.username)
+  }, [user]);
   return (
     <>
       
-        <Header />
+        <Header username={username}/>
         <Routes>
-          <Route exact path="/" element={<Inicio/>}/>
-          <Route path="/inicio" element={<Inicio/>}/>
-          <Route path="/facultad" element={<Facultad />} />
-          <Route path="/pregrado" element={<Pregrado />} />
-          <Route path="/posgrado" element={<Posgrado />} />
-          <Route path="/inv_cient" element={<Investigacion />} />
-          <Route path="/ext_univ" element={<Extension />} />
+          <Route exact path="/" element={<Inicio username={username}/>}/>
+          <Route path="/inicio" element={<Inicio username={username}/>}/>
+          <Route path="/pregrado" element={<Pregrado  username={username}/>} />
+          <Route path="/posgrado" element={<Posgrado  username={username}/>} />
+          <Route path="/inv_cient" element={<Investigacion  username={username}/>} />
+          <Route path="/ext_univ" element={<Extension  username={username}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
       

@@ -3,11 +3,12 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useFacultad } from "../../../../context/facultadContext";
 
-function elementFacultad({_id,nombre, ca, cg, cef, th}){
+function elementFacultad({_id,nombre, ca, cg, cef, th,facelement,setfacelement}){
     const [active, setactive] = useState(false);
     const {deletesFacultad}=useFacultad()
     const handleDelete=()=>{
         deletesFacultad(_id)
+        setfacelement(facelement.filter((Facul)=>Facul._id!==_id))
     }
     return(
         <>

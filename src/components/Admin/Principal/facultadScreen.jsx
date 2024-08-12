@@ -76,6 +76,8 @@ function Facultad({username}) {
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {facelement.map((facultad,i)=>(
             <ElementFacultad 
+            facelement={facelement}
+            setfacelement={facelement}
             key={facultad._id} 
             {...facultad}
           />
