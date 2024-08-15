@@ -76,7 +76,8 @@ const AddProfesor = () => {
                 
     }})
     
-    const handleCancelar=()=>{
+    const handleCancelar=(e)=>{
+        e.preventDefault();
         navigate("/admin/inicio")
     }
 
@@ -228,7 +229,7 @@ const AddProfesor = () => {
             </div>
             <div className="fixed-bottom p-2 row bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={handleCancelar}>Cancelar</button>
+                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>
         </form>
     </>

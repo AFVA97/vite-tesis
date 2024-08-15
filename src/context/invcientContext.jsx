@@ -19,6 +19,7 @@ export const useInvCient = () => {
 export function InvCientProvider({ children }) {
   const [InvCients, setInvCients] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [InvProf,setInvProf]=useState([])
 
   const getInvCients = async () => {
     const res = await getInvCientesRequest();
@@ -37,8 +38,9 @@ export function InvCientProvider({ children }) {
   const createsInvCient = async (InvCient) => {
     try {
       const res = await createInvCientRequest(InvCient);
-      if(res.status===200)
-        getInvCients();
+      
+      // if(res.status===200)
+      //   getInvCients();
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
@@ -58,7 +60,7 @@ export function InvCientProvider({ children }) {
   const getInvCientProf = async (id) => {
     try {
       const res = await getInvCientProfRequest(id); 
-      
+      setInvProf(res.data)
       return res.data;
     } catch (error) {
       console.error(error);
@@ -92,6 +94,7 @@ export function InvCientProvider({ children }) {
       value={{
         InvCients,
         errors,
+        InvProf,
         getInvCients,
         deletesInvCient,
         createsInvCient,

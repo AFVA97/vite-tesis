@@ -8,6 +8,7 @@ import { useProfesor } from "../../../context/profesorContext"
 import { useNavigate ,Link} from "react-router-dom"
 import { useAsignatura } from "../../../context/asignaturaContext"
 import { usePosgrado } from "../../../context/posgradoContext"
+import { useExtUniv } from "../../../context/extunivContext"
 
 function inicio({username}) {
   
@@ -18,6 +19,7 @@ function inicio({username}) {
   const {
     Asignaturas,
     errors,
+    AsigProf,
     getAsignaturas,
     deletesAsignatura,
     createsAsignatura,
@@ -26,8 +28,20 @@ function inicio({username}) {
     getAsignaturaProf,
     updatesAsignatura,
   }=useAsignatura()
+  const{
+    ExtUnivs,
+    errors:errorsExt,
+    ExtProf,
+    getExtUnivs,
+    deletesExtUniv,
+    createsExtUniv,
+    getExtUniv,
+    getExtUnivProf,
+    updatesExtUniv,
+  }=useExtUniv()
   const {
     Posgrados,
+    PosProf,
     errors:PosgradoErrors,
     getPosgrados,
     deletesPosgrado,
@@ -47,25 +61,41 @@ function inicio({username}) {
         _id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos, graduado:profesor.graduado, hpre:0, hpos:0, hic:0, heu:0, th:0
       }
       async function loadAsignaturas() {
-        setasignaturaProf(getAsignaturaProf(profesor._id))
+        getAsignaturaProf(profesor._id)
 
       }loadAsignaturas();
-      if(Array.isArray(asignaturaProf))
+      if(Array.isArray(AsigProf))
       {
-        asignaturaProf.map((asig)=>{
-          aux.hpre+=asig.horas
+        AsigProf.map((asig)=>{
+          aux.hpre+=parseInt(asig.horas)
         })
       }
       async function loadPosgrados() {
-        setposgradoProf(getPosgradoProf(profesor._id))
+        let res=getPosgradoProf(profesor._id)
+        console.log(res);
+        
 
       }loadPosgrados();
-      if(Array.isArray(posgradoProf)){
-        posgradoProf.map((posg)=>{
-          aux.hpos+=posg.horas
+      if(Array.isArray(PosProf)){
+        PosProf.map((posg)=>{
+          aux.hpos+=parseInt(posg.horas)
         })
       }
-      aux.th=aux.hpre+ aux.hpos+ aux.hic+ aux.heu
+      let res=null
+      async function loadExtUniv() {
+        res=getExtUnivProf(profesor._id)     
+        
+      }loadExtUniv()
+      console.log(ExtProf);
+      console.log(res);
+      
+      if(Array.isArray(ExtProf)){
+        ExtProf.map((extension)=>{
+          aux.heu+=parseInt(extension.horas)
+        })
+      }
+      
+      aux.th=parseInt(aux.hpre)+ parseInt(aux.hpos)+ parseInt(aux.hic)+ parseInt(aux.heu)
       
       prof.push(aux)
       
@@ -103,7 +133,6 @@ function inicio({username}) {
       
         </div>
         <Link 
-                className="navbar-brand" 
                 to="/admin/addprofesor"
             ><button className="floatingbutton btn btn-primary"
             >Agregar</button></Link>

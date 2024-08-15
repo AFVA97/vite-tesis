@@ -19,6 +19,7 @@ export const usePosgrado = () => {
 export function PosgradoProvider({ children }) {
   const [Posgrados, setPosgrados] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [PosProf, setPosProf] = useState([])
 
   const getPosgrados = async () => {
     const res = await getPosgradosRequest();
@@ -37,8 +38,8 @@ export function PosgradoProvider({ children }) {
   const createsPosgrado = async (Posgrado) => {
     try {
       const res = await createPosgradoRequest(Posgrado);
-      if(res.status===200)
-        getPosgrados();
+      // if(res.status===200)
+      //   getPosgrados();
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
@@ -59,6 +60,7 @@ export function PosgradoProvider({ children }) {
     try {
       const res = await getPosgradoProfRequest(id); 
       
+      setPosProf(res.data)
       return res.data;
     } catch (error) {
       console.error(error);
@@ -92,6 +94,7 @@ export function PosgradoProvider({ children }) {
       value={{
         Posgrados,
         errors,
+        PosProf,
         getPosgrados,
         deletesPosgrado,
         createsPosgrado,

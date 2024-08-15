@@ -19,6 +19,7 @@ export const useAsignatura = () => {
 
 export function AsignaturaProvider({ children }) {
   const [Asignaturas, setAsignaturas] = useState([]);
+  const [AsigProf,setAsigProf]=useState([])
   const [errors, setErrors] = useState([]);
 
   const getAsignaturas = async () => {
@@ -59,7 +60,7 @@ export function AsignaturaProvider({ children }) {
   const getAsignaturaProf = async (id) => {
     try {
       const res = await getAsignaturaProfRequest(id); 
-      
+      setAsigProf(res.data)
       return res.data;
     } catch (error) {
       setErrors(error.response.data);
@@ -101,6 +102,7 @@ export function AsignaturaProvider({ children }) {
       value={{
         Asignaturas,
         errors,
+        AsigProf,
         getAsignaturas,
         deletesAsignatura,
         createsAsignatura,

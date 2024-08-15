@@ -19,7 +19,7 @@ export const useExtUniv = () => {
 export function ExtUnivProvider({ children }) {
   const [ExtUnivs, setExtUnivs] = useState([]);
   const [errors, setErrors] = useState([]);
-
+  const [ExtProf, setExtProf] = useState([])
   const getExtUnivs = async () => {
     const res = await getExtesRequest();
     setExtUnivs(res.data);
@@ -58,7 +58,8 @@ export function ExtUnivProvider({ children }) {
   const getExtUnivProf = async (id) => {
     try {
       const res = await getExtProfRequest(id); 
-      
+      setExtProf(res.data)
+      console.log(res.data);      
       return res.data;
     } catch (error) {
       console.error(error);
@@ -92,6 +93,7 @@ export function ExtUnivProvider({ children }) {
       value={{
         ExtUnivs,
         errors,
+        ExtProf,
         getExtUnivs,
         deletesExtUniv,
         createsExtUniv,

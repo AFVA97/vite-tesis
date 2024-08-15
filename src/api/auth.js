@@ -16,4 +16,6 @@ export const getUserRequest= async (_id)=>axios.get(`/users/${_id}`)
 
 export const getUserCIRequest= async (_id)=>axios.get(`/users/ci/${_id}`)
 
+export const getProfileRequest=async()=>axios.get(`/profile`)
+
 export const getUserFACRequest= async (_id)=>axios.get(`/users/fac/${_id}`)

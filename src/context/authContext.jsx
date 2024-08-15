@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import { loginRequest, registerRequest, verifyTokenRequest,getUsersRequest,getUserRequest, deleteUserRequest, getUserCIRequest, getUserFACRequest } from "../api/auth";
+import { loginRequest, registerRequest,getProfileRequest, verifyTokenRequest,getUsersRequest,getUserRequest, deleteUserRequest, getUserCIRequest, getUserFACRequest } from "../api/auth";
 import Cookies from "js-cookie";
 import Users from "../components/Admin/user/Users";
 
@@ -50,6 +50,9 @@ export const AuthProvider = ({ children }) => {
     setUsers(res.data);
   }
 
+  const getProfile=async()=>{
+    return getProfileRequest()
+  }
   const getUser=async(_id)=>{
     try {
       const res = await getUserRequest(_id); 
@@ -152,6 +155,7 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         //getUserId,
+        getProfile,
         users,
         getUser,
         getUsers,
