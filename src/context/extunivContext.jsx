@@ -32,16 +32,16 @@ export function ExtUnivProvider({ children }) {
     }
   }, [errors]);
   
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getExtUnivs();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getExtUnivs();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData(); 
+  // }, [])
   
 
 

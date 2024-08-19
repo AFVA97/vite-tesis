@@ -11,56 +11,99 @@ function Pregrado({username}) {
   
   const [search, setsearch] = useState("")
 
-  const { Profesors, getProfesors } = useProfesor();
+  const { Profesores,
+    errors:errorProfesor,   
+    getProfesores,
+    createsProfesor,
+    updatesProfesor,
+    deletesProfesor, } = useProfesor();
   const {
     Asignaturas,
-    errors,
+    errors:errorAsignatura,        
     getAsignaturas,
-    deletesAsignatura,
     createsAsignatura,
-    getAsignatura,
-    getAsignaturaFac,
-    getAsignaturaProf,
     updatesAsignatura,
+    deletesAsignatura,
   }=useAsignatura()
 
   const [profesorInicio,setprofesorInicio]=useState([])
-  const [asignaturaProf, setasignaturaProf] = useState([])
   useEffect(() => {
-    getProfesors
-    let prof=[];
-    Profesors.map((profesor)=>{
+
+    const load=async()=>{
+      await getProfesores();
+      await getAsignaturas();
+    };load()
+    // getProfesors
+    // let prof=[];
+    // Profesors.map((profesor)=>{
       
-      let aux={
-        _id:profesor._id,
-        nombre:profesor.nombre, 
-        apellidos:profesor.apellidos, 
-        first:false, second:false, 
-        te:(profesor.trabajoec+profesor.trabajoc+profesor.trabajod+profesor.tutoria), 
-        tm:profesor.trabajometo, 
-        th:0}
+    //   let aux={
+    //     _id:profesor._id,
+    //     nombre:profesor.nombre, 
+    //     apellidos:profesor.apellidos, 
+    //     first:false, second:false, 
+    //     te:(profesor.trabajoec+profesor.trabajoc+profesor.trabajod+profesor.tutoria), 
+    //     tm:profesor.trabajometo, 
+    //     th:0}
         
-        async function loadAsignaturas() {
-          setasignaturaProf(getAsignaturaProf(profesor._id))
+    //     async function loadAsignaturas() {
+    //       setasignaturaProf(getAsignaturaProf(profesor._id))
   
-        }loadAsignaturas()
-        if(Array.isArray(asignaturaProf))
-          {
-            asignaturaProf.map((asig)=>{
-              if(asig.semestre){
-                aux.first=true;
-              }
-              else{
-                aux.second=true
-              }
-              aux.th+=asig.horas
-            })
-          }
-        aux.th+=aux.te+aux.tm;
-        prof.push(aux)
-    })
-    setprofesorInicio(prof)
+    //     }loadAsignaturas()
+    //     if(Array.isArray(asignaturaProf))
+    //       {
+    //         asignaturaProf.map((asig)=>{
+    //           if(asig.semestre){
+    //             aux.first=true;
+    //           }
+    //           else{
+    //             aux.second=true
+    //           }
+    //           aux.th+=asig.horas
+    //         })
+    //       }
+    //     aux.th+=aux.te+aux.tm;
+    //     prof.push(aux)
+    // })
+    // setprofesorInicio(prof)
   }, [])
+  useEffect(() => {
+    let profesoresArray=[]
+    
+    if(Array.isArray(Profesores)){
+      Profesores.map((profesor)=>{
+        let aux={
+          _id:profesor._id,
+          nombre:profesor.nombre, 
+          apellidos:profesor.apellidos, 
+          first:false, second:false, 
+          te:(parseInt(profesor.trabajoec)+parseInt(profesor.trabajoc)+parseInt(profesor.trabajod)+parseInt(profesor.tutoria)), 
+          tm:profesor.trabajometo, 
+          th:0
+        }
+            
+        if(Array.isArray(Asignaturas)){
+          let asignaturasProf=Asignaturas.filter((asignatura)=>asignatura.profesor===profesor._id)
+          asignaturasProf.map((asignatura)=>{
+            if(asignatura.semestre){
+              aux.first=true;
+            }
+            else{
+              aux.second=true
+            }
+            aux.th+=parseInt(asignatura.horas)
+          })
+        }
+        aux.th+=parseInt(aux.te)+parseInt(aux.tm)
+        
+        
+        profesoresArray.push(aux)
+      })
+    }
+    
+    setprofesorInicio(profesoresArray)
+  }, [Profesores,Asignaturas])
+  
   
 
     return (

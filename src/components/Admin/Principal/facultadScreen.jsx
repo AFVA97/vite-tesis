@@ -12,50 +12,75 @@ function Facultad({username}) {
 
   const [search, setsearch] = useState("")
 
-  const {Facultades, getFacultads }=useFacultad()
+  const {Facultades, getFacultades }=useFacultad()
   const {
     Asignaturas,
-    errors,
+    errors,        
     getAsignaturas,
-    deletesAsignatura,
     createsAsignatura,
-    getAsignatura,
-    getAsignaturaFac,
-    getAsignaturaProf,
     updatesAsignatura,
+    deletesAsignatura,
   }=useAsignatura()
 
   const [facelement, setfacelement] = useState([])
-  const [asignaturaFac, setasignaturaFac] = useState([])
+  //const [asignaturaFac, setasignaturaFac] = useState([])
   
     
   useEffect(() => {
-    getFacultads(); 
-    let facul=[]
-    Facultades.map((facultad)=>{
-      let aux={
-        _id:facultad._id,nombre:facultad.nombre,ca:0, cg:0, cef:0, th:0
-      }
-      async function loadAsignaturas() {
-        setasignaturaFac(getAsignaturaFac(facultad._id))
+    const load =async()=>{
+      await getFacultades();
+      await getAsignaturas();
+    };load()
+    // getFacultads(); 
+    // let facul=[]
+    // Facultades.map((facultad)=>{
+    //   let aux={
+    //     _id:facultad._id,nombre:facultad.nombre,ca:0, cg:0, cef:0, th:0
+    //   }
+    //   async function loadAsignaturas() {
+    //     setasignaturaFac(getAsignaturaFac(facultad._id))
 
-      }loadAsignaturas();
-      if(Array.isArray(asignaturaFac)){
-        asignaturaFac.map((asig)=>{
-          aux.ca+=1;
-          aux.cg+=asig.cantgrupos
-          if(asig.exafinal)
-           aux.cef+=1
-          aux.th+=asig.horas
+    //   }loadAsignaturas();
+    //   if(Array.isArray(asignaturaFac)){
+    //     asignaturaFac.map((asig)=>{
+    //       aux.ca+=1;
+    //       aux.cg+=asig.cantgrupos
+    //       if(asig.exafinal)
+    //        aux.cef+=1
+    //       aux.th+=asig.horas
           
-        })
-      }
-      facul.push(aux)
+    //     })
+    //   }
+    //   facul.push(aux)
       
-    })
-    setfacelement(facul)
+    // })
+    // setfacelement(facul)
   }, [])
   
+  useEffect(()=>{
+    if(Array.isArray(Facultades)){
+      let facultadesArray=[];
+      Facultades.map((facultad)=>{
+          let aux={
+            _id:facultad._id,nombre:facultad.nombre,ca:0, cg:0, cef:0, th:0
+          }
+          if(Array.isArray(Asignaturas)){
+            let asignaturasFac=Asignaturas.filter((asignatura)=>asignatura.facultad===facultad._id)
+            asignaturasFac.map((asignatura)=>{
+              aux.ca+=1;
+              aux.cg+=parseInt(asignatura.cantgrupos)
+              if(asignatura.exafinal)
+                aux.cef+=1
+              aux.th+=parseInt(asignatura.horas)
+          
+            })
+          }
+          facultadesArray.push(aux)
+      })
+      setfacelement(facultadesArray);
+
+    }
+  },[Facultades,Asignaturas])
   
   
   
@@ -76,8 +101,6 @@ function Facultad({username}) {
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {facelement.map((facultad,i)=>(
             <ElementFacultad 
-            facelement={facelement}
-            setfacelement={facelement}
             key={facultad._id} 
             {...facultad}
           />

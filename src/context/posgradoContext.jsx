@@ -33,16 +33,16 @@ export function PosgradoProvider({ children }) {
   }, [errors]);
 
 
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getPosgrados();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getPosgrados();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData(); 
+  // }, [])
 
   const getPosgrados = async () => {
     const res = await getPosgradosRequest();

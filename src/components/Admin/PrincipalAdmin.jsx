@@ -17,7 +17,7 @@ import InfoUSer from "./Info/InfoUSer"
 
 
 export default function App() {
-  const {user,loading,isAuthenticated}=useAuth();
+  const {user}=useAuth();
 
   const [username, setusername] = useState("UserName");
   

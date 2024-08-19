@@ -10,50 +10,96 @@ import { useProfesor } from "../../../context/profesorContext"
 function inicio({username}) {
 
   const [search, setsearch] = useState("")
-  const { Profesors, getProfesors } = useProfesor();
-  
+  const { Profesores,
+    errors:errorProfesor,   
+    getProfesores,
+    createsProfesor,
+    updatesProfesor,
+    deletesProfesor, } = useProfesor();
   const {
     Posgrados,
-    errors:PosgradoErrors,
+    errors:errorPosgrado,
     getPosgrados,
-    deletesPosgrado,
     createsPosgrado,
-    getPosgrado,
-    getPosgradoProf,
     updatesPosgrado,
+    deletesPosgrado,
   }=usePosgrado()
   const [profesorInicio,setprofesorInicio]=useState([])
-  const [posgradoProf, setposgradoProf] = useState([])
+  //const [posgradoProf, setposgradoProf] = useState([])
 
   useEffect(() => {
-    getProfesors();
-    let prof=[];
-    Profesors.map((profesor)=>{
-      let aux={
-        _id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos,hi:0, hr:0, th:0
-            }
-      
-      
-      async function loadPosgrados() {
-        setposgradoProf(getPosgradoProf(profesor._id))
 
-      }loadPosgrados();
-      if(Array.isArray(posgradoProf)){
-        posgradoProf.map((posg)=>{
-          if(posg.impartido)
-            aux.hi+=posg.horas
-          else
-            aux.hr+=posg.horas
+    const load=async () => {
+      await getProfesores();
+      await getPosgrados();
+    };load()
+
+    //     if(posg.impartido)
+    //         aux.hi+=posg.horas
+    //       else
+    //         aux.hr+=posg.horas
           
-        })
-      }
-      aux.th+=aux.hi+aux.hr
-      prof.push(aux)
+    //     })
+    //   }
+    //   aux.th+=aux.hi+aux.hr
+    //   prof.pugetProfesors();
+    // let prof=[];
+    // Profesors.map((profesor)=>{
+    //   let aux={
+    //     _id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos,hi:0, hr:0, th:0
+    //         }
       
       
-    })
-    setprofesorInicio(prof)
+    //   async function loadPosgrados() {
+    //     setposgradoProf(getPosgradoProf(profesor._id))
+
+    //   }loadPosgrados();
+    //   if(Array.isArray(posgradoProf)){
+    //     posgradoProf.map((posg)=>{
+    //   sh(aux)
+      
+      
+    // })
+    // setprofesorInicio(prof)
   }, []);
+
+  useEffect(() => {
+    let profesoresArray=[]
+    
+    if(Array.isArray(Profesores)){
+      Profesores.map((profesor)=>{
+        let aux={
+          _id:profesor._id,
+          nombre:profesor.nombre, 
+          apellidos:profesor.apellidos, 
+          hi:0,
+          hr:0, 
+          th:0
+        }
+            
+        if(Array.isArray(Posgrados)){
+          let posgradosProf=Posgrados.filter((posgrado)=>posgrado.profesor===profesor._id)
+          posgradosProf.map((posgrado)=>{
+            if(posgrado.impartido){
+              aux.hi+=parseInt(posgrado.horas);
+            }
+            else{
+              aux.hr+=parseInt(posgrado.horas);
+            }
+            
+          })
+        }
+        aux.th+=parseInt(aux.hi)+parseInt(aux.hr)
+        
+        
+        profesoresArray.push(aux)
+      })
+    }
+    
+    setprofesorInicio(profesoresArray)
+  }, [Profesores,Posgrados])
+  
+
 
   // const propsi={
   //   id:1,nombre:"Name", apellidos:"Last", hi:5, hr:6, th:9}

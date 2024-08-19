@@ -3,7 +3,7 @@ import axios from "./axios";
 
 export const getProfesoresRequest=async()=>await axios.get(`/profesor`);
 
-//export const getProfesorRequest=async(_id)=>await axios.get(`/profesor/${_id}`);
+export const getProfesorRequest=async(_id)=>await axios.get(`/profesor/${_id}`);
 
 export const createProfesorRequest=async(profesor)=>await axios.post(`/profesor`,profesor);
 

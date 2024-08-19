@@ -6,7 +6,7 @@ import { useCarrera } from "../../../context/carreraContext";
 import { useAsignatura } from "../../../context/asignaturaContext";
 import ElementInicio from "./ElementInicio";
 import { Link } from "react-router-dom";
-import { getCarreraProfRequest } from "../../../api/carrera";
+//import { getCarreraProfRequest } from "../../../api/carrera";
 
 
 function inicio() {

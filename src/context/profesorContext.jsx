@@ -3,7 +3,7 @@ import {
   createProfesorRequest,
   deleteProfesorRequest,
   getProfesoresRequest,
-  //getProfesorRequest,
+  getProfesorRequest,
   updateProfesorRequest
 } from "../api/profesor";
 
@@ -30,20 +30,28 @@ export function ProfesorProvider({ children }) {
     }
   }, [errors]);
 
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getProfesores();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getProfesores();
+  //       console.log(Profesores);
+        
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData(); 
+  // }, [])
 
   const getProfesores = async () => {
     const res = await getProfesoresRequest();
-    setProfesores(res.data);
+    //console.log(res);
+    if(res.status===200){
+      setProfesores(res.data);
+      //console.log(Profesores);
+      //return res.data
+      
+    }
   };
 
   const createsProfesor = async (Profesor) => {
@@ -83,16 +91,16 @@ export function ProfesorProvider({ children }) {
 
   
 
-  // const getProfesor = async (_id) => {
-  //   try {
-  //     const res = await getProfesorRequest(_id); 
+  const getProfesor = async (_id) => {
+    try {
+      const res = await getProfesorRequest(_id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -107,7 +115,7 @@ export function ProfesorProvider({ children }) {
         createsProfesor,
         updatesProfesor,
         deletesProfesor,
-        //getProfesor,
+        getProfesor,
         
         
       }}

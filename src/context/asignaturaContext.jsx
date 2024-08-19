@@ -29,16 +29,16 @@ export function AsignaturaProvider({ children }) {
   }, [errors]);
   
   
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getAsignaturas();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getAsignaturas();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData(); 
+  // }, [])
   
 
   const getAsignaturas = async () => {

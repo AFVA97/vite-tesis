@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   createFacRequest,
   deleteFacRequest,
-  //getFacRequest,
+  getFacRequest,
   getFacesRequest,
   updateFacRequest
 } from "../api/fac";
@@ -30,16 +30,16 @@ export function FacultadProvider({ children }) {
   }, [errors]);
 
 
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getFacultades();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getFacultades();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData(); 
+  // }, [])
 
   const getFacultades = async () => {
     const res = await getFacesRequest();       
@@ -61,7 +61,7 @@ export function FacultadProvider({ children }) {
   const updatesFacultad = async (Facultad) => {
     try {
       const res= await updateFacRequest( Facultad);
-      setAsignaturas(Facultades.map(facultad=>(facultad._id===Facultad._id?res.data:facultad)))
+      setFacultades(Facultades.map(facultad=>(facultad._id===Facultad._id?res.data:facultad)))
    
     } catch (error) {
       console.error(error);
@@ -81,15 +81,15 @@ export function FacultadProvider({ children }) {
 
   
 
-  // const getFacultad = async (id) => {
-  //   try {      
-  //     const res = await getFacRequest(id);       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+  const getFacultad = async (id) => {
+    try {      
+      const res = await getFacRequest(id);       
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -102,7 +102,7 @@ export function FacultadProvider({ children }) {
         createsFacultad,
         updatesFacultad,
         deletesFacultad,
-        //getFacultad,
+        getFacultad,
         
       }}
     >

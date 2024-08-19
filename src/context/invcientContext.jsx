@@ -34,16 +34,16 @@ export function InvCientProvider({ children }) {
   }, [errors]);
 
 
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getInvCients();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getInvCients();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   fetchData(); 
+  // }, [])
 
   const getInvCients = async () => {
     const res = await getInvCientesRequest();

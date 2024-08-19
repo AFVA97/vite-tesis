@@ -66,11 +66,11 @@ const AddProfesor = () => {
             if(!params._id){  
                      
                 createsProfesor(data);
-                handleCancelar();
+                navigate("/admin/inicio")
             }
             else{
                 updatesProfesor(data);
-                handleCancelar();
+                navigate("/admin/inicio")
             }
         } catch (error) {
                 
