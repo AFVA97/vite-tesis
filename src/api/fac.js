@@ -1,12 +1,12 @@
 import axios from "./axios";
 
 
-export const getFacesRequest=()=>axios.get(`/facultad`);
+export const getFacesRequest=async()=>await axios.get(`/facultad`);
 
-export const getFacRequest=(id)=>axios.get(`/facultad/${id}`);
+//export const getFacRequest=async(id)=>await axios.get(`/facultad/${id}`);
 
-export const createFacRequest=(Fac)=>axios.post(`/facultad`,Fac);
+export const createFacRequest=async(Fac)=>await axios.post(`/facultad`,Fac);
 
-export const updateFacRequest=(Fac)=>axios.put(`/facultad/${Fac._id}`,Fac);
+export const updateFacRequest=async(Fac)=>await axios.put(`/facultad/${Fac._id}`,Fac);
 
-export const deleteFacRequest=(id)=>axios.delete(`/facultad/${id}`);
+export const deleteFacRequest=async(id)=>await axios.delete(`/facultad/${id}`);

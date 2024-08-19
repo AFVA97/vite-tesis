@@ -1,12 +1,12 @@
 import axios from "./axios";
 
 
-export const getProfesoresRequest=()=>axios.get(`/profesor`);
+export const getProfesoresRequest=async()=>await axios.get(`/profesor`);
 
-export const getProfesorRequest=(_id)=>axios.get(`/profesor/${_id}`);
+//export const getProfesorRequest=async(_id)=>await axios.get(`/profesor/${_id}`);
 
-export const createProfesorRequest=(profesor)=>axios.post(`/profesor`,profesor);
+export const createProfesorRequest=async(profesor)=>await axios.post(`/profesor`,profesor);
 
-export const updateProfesorRequest=(profesor)=>axios.put(`/profesor/${profesor._id}`,profesor);
+export const updateProfesorRequest=async(profesor)=>await axios.put(`/profesor/${profesor._id}`,profesor);
 
-export const deleteProfesorRequest=(id)=>axios.delete(`/profesor/${id}`);
+export const deleteProfesorRequest=async(id)=>await axios.delete(`/profesor/${id}`);

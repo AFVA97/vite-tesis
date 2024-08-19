@@ -20,6 +20,7 @@ import { AsignaturaProvider } from './context/asignaturaContext';
 import { PosgradoProvider } from './context/posgradoContext';
 import { ExtUnivProvider } from './context/extunivContext';
 import { InvCientProvider } from './context/invcientContext';
+import { CarreraProvider } from './context/carreraContext';
 
 function App() {
   return (
@@ -31,17 +32,19 @@ function App() {
               <PosgradoProvider>
                 <ExtUnivProvider>
                   <InvCientProvider>
-                    <BrowserRouter>
-                      <Routes>
-                        <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
-                        <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
-                        <Route element={<ProtectedRoute/>}>
-                          <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
-                          <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
-                          <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
-                        </Route>
-                      </Routes>
-                    </BrowserRouter>
+                    <CarreraProvider>
+                      <BrowserRouter>
+                        <Routes>
+                          <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
+                          <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
+                          <Route element={<ProtectedRoute/>}>
+                            <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
+                            <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
+                            <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
+                          </Route>
+                        </Routes>
+                      </BrowserRouter>
+                    </CarreraProvider>
                   </InvCientProvider>
                 </ExtUnivProvider>
               </PosgradoProvider>

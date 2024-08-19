@@ -2,10 +2,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   createFacRequest,
   deleteFacRequest,
-  getFacRequest,
+  //getFacRequest,
   getFacesRequest,
   updateFacRequest
 } from "../api/fac";
+import { set } from "react-hook-form";
 
 const FacultadContext = createContext();
 
@@ -16,14 +17,8 @@ export const useFacultad = () => {
 };
 
 export function FacultadProvider({ children }) {
-  const [Facultades, setFacultads] = useState([]);
+  const [Facultades, setFacultades] = useState([]);
   const [errors, setErrors] = useState([]);
-
-  const getFacultads = async () => {
-    const res = await getFacesRequest();
-       
-    setFacultads(res.data);
-  };
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -34,13 +29,42 @@ export function FacultadProvider({ children }) {
     }
   }, [errors]);
 
+
+  useEffect(() => {
+    const fetchData= async()=>{
+      try {
+        await getFacultades();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData(); 
+  }, [])
+
+  const getFacultades = async () => {
+    const res = await getFacesRequest();       
+    setFacultades(res.data);
+  };
+
+  
+
   const createsFacultad = async (Facultad) => {
     try {
       const res = await createFacRequest(Facultad);
-      if(res.status===200)
-        getFacultads();
+      if(res.status===200)setFacultades([...Facultades,Facultad])
     } catch (error) {
       console.log(error.response.data);
+      setErrors(error.response.data);
+    }
+  };
+
+  const updatesFacultad = async (Facultad) => {
+    try {
+      const res= await updateFacRequest( Facultad);
+      setAsignaturas(Facultades.map(facultad=>(facultad._id===Facultad._id?res.data:facultad)))
+   
+    } catch (error) {
+      console.error(error);
       setErrors(error.response.data);
     }
   };
@@ -48,7 +72,7 @@ export function FacultadProvider({ children }) {
   const deletesFacultad = async (id) => {
     try {
       const res = await deleteFacRequest(id);
-      if (res.status === 204) setFacultads(Facultades.filter((Facultad) => Facultad._id !== id));
+      if(res.status===204)setFacultades(Facultades.filter((Facultad) => Facultad._id !== id));
     } catch (error) {
       console.log(error);
       setErrors(error.response.data);
@@ -57,35 +81,29 @@ export function FacultadProvider({ children }) {
 
   
 
-  const getFacultad = async (id) => {
-    try {      
-      const res = await getFacRequest(id);       
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  };
+  // const getFacultad = async (id) => {
+  //   try {      
+  //     const res = await getFacRequest(id);       
+  //     return res.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrors(error.response.data);
+  //   }
+  // };
 
-  const updatesFacultad = async (Facultad) => {
-    try {
-      await updateFacRequest( Facultad);
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  };
+  
 
   return (
     <FacultadContext.Provider
       value={{
         Facultades,
         errors,
-        getFacultads,
-        deletesFacultad,
+        getFacultades,
         createsFacultad,
-        getFacultad,
         updatesFacultad,
+        deletesFacultad,
+        //getFacultad,
+        
       }}
     >
       {children}

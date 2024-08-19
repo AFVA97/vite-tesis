@@ -1,16 +1,16 @@
 import axios from "./axios";
 
 
-export const getAsignaturasRequest=()=>axios.get(`/asignatura`)
+export const getAsignaturasRequest=async()=>await axios.get(`/asignatura`)
 
-export const createAsignaturaRequest =(asignatura,carrera)=>axios.post(`/asignatura/${carrera._id}`,asignatura);
+export const createAsignaturaRequest =async (asignatura,carrera)=>await axios.post(`/asignatura/${carrera._id}`,asignatura);
 
-export const getAsignaturaRequest=(id)=>axios.get(`/asignatura/${id}`);
+//export const getAsignaturaRequest=async(id)=>await axios.get(`/asignatura/${id}`);
 
-export const getAsignaturaProfRequest=(id)=>axios.get(`/asignatura/prof/${id}`);
+//export const getAsignaturaProfRequest=async(id)=>await axios.get(`/asignatura/prof/${id}`);
 
-export const getAsignaturaFacRequest=(id)=>axios.get(`/asignatura/fac/${id}`);
+//export const getAsignaturaFacRequest=async(_id)=>await axios.get(`/asignatura/fac/${_id}`);
 
-export const updateAsignaturaRequest=(asignatura)=>axios.put(`/asignatura/${asignatura._id}`,asignatura);
+export const updateAsignaturaRequest=async(asignatura)=>await axios.put(`/asignatura/${asignatura._id}`,asignatura);
 
-export const deleteAsignaturaRequest=(id)=>axios.delete(`/asignatura/${id}`);
+export const deleteAsignaturaRequest=async(id)=>await axios.delete(`/asignatura/${id}`);

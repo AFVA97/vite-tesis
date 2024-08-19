@@ -3,7 +3,7 @@ import {
   createProfesorRequest,
   deleteProfesorRequest,
   getProfesoresRequest,
-  getProfesorRequest,
+  //getProfesorRequest,
   updateProfesorRequest
 } from "../api/profesor";
 
@@ -16,13 +16,10 @@ export const useProfesor = () => {
 };
 
 export function ProfesorProvider({ children }) {
-  const [Profesors, setProfesors] = useState([]);
+  const [Profesores, setProfesores] = useState([]);
   const [errors, setErrors] = useState([]);
 
-  const getProfesors = async () => {
-    const res = await getProfesoresRequest();
-    setProfesors(res.data);
-  };
+  
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -33,15 +30,43 @@ export function ProfesorProvider({ children }) {
     }
   }, [errors]);
 
+  useEffect(() => {
+    const fetchData= async()=>{
+      try {
+        await getProfesores();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData(); 
+  }, [])
+
+  const getProfesores = async () => {
+    const res = await getProfesoresRequest();
+    setProfesores(res.data);
+  };
+
   const createsProfesor = async (Profesor) => {
     try {
       const res = await createProfesorRequest(Profesor);
-      if(res.status===200){
-        getProfesors();
+      if(res.status===200)
+        setProfesores([...Profesores,Profesor])
+      
         
-      }
+      // }
     } catch (error) {
       console.log(error.response.data);
+      setErrors(error.response.data);
+    }
+  };
+
+  const updatesProfesor = async (Profesor) => {
+    try {
+      const res=await updateProfesorRequest( Profesor);
+      setProfesores(Profesores.map(profesor=>(profesor._id===Profesor._id?res.data:profesor)))
+   
+    } catch (error) {
+      console.error(error);
       setErrors(error.response.data);
     }
   };
@@ -49,7 +74,7 @@ export function ProfesorProvider({ children }) {
   const deletesProfesor = async (id) => {
     try {
       const res = await deleteProfesorRequest(id);
-      if (res.status === 204) setProfesors(Profesors.filter((Profesor) => Profesor._id !== id));
+      if (res.status === 204) setProfesores(Profesores.filter((Profesor) => Profesor._id !== id));
     } catch (error) {
       console.log(error);
       setErrors(error.response.data);
@@ -58,36 +83,33 @@ export function ProfesorProvider({ children }) {
 
   
 
-  const getProfesor = async (_id) => {
-    try {
-      const res = await getProfesorRequest(_id); 
+  // const getProfesor = async (_id) => {
+  //   try {
+  //     const res = await getProfesorRequest(_id); 
       
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  };
+  //     return res.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrors(error.response.data);
+  //   }
+  // };
 
-  const updatesProfesor = async (Profesor) => {
-    try {
-      await updateProfesorRequest( Profesor);
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  };
+  
 
   return (
     <ProfesorContext.Provider
       value={{
-        Profesors,
+        Profesores,
         errors,
-        getProfesors,
-        deletesProfesor,
+        
+        
+        getProfesores,
         createsProfesor,
-        getProfesor,
         updatesProfesor,
+        deletesProfesor,
+        //getProfesor,
+        
+        
       }}
     >
       {children}

@@ -14,7 +14,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]);
   
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -30,6 +30,20 @@ export const AuthProvider = ({ children }) => {
     }
   }, [errors]);
 
+
+  useEffect(() => {
+    const fetchData= async()=>{
+      try {
+        await getProfile();
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    if(isAuthenticated)
+      fetchData(); 
+  }, [])
+  
+
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
@@ -43,48 +57,49 @@ export const AuthProvider = ({ children }) => {
     }
   }; 
 
-  const getUsers=async()=>{
+  // const getUsers=async()=>{
     
-    const res=await getUsersRequest();
+  //   const res=await getUsersRequest();
     
-    setUsers(res.data);
-  }
+  //   setUsers(res.data);
+  // }
 
   const getProfile=async()=>{
-    return getProfileRequest()
+    const res= await getProfileRequest()
+    setUser(res.data)
   }
-  const getUser=async(_id)=>{
-    try {
-      const res = await getUserRequest(_id); 
+  // const getUser=async(_id)=>{
+  //   try {
+  //     const res = await getUserRequest(_id); 
       
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  }
-  const getUserCI=async(_id)=>{
-    try {
-      const res = await getUserCIRequest(_id); 
+  //     return res.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrors(error.response.data);
+  //   }
+  // }
+  // const getUserCI=async(_id)=>{
+  //   try {
+  //     const res = await getUserCIRequest(_id); 
       
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  }
-  const getUserFAC=async(_id)=>{
-    try {
-      console.log(_id)
-      const res = await getUserFACRequest(_id); 
-      console.log(res.data);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrors(error.response.data);
+  //   }
+  // }
+  // const getUserFAC=async(_id)=>{
+  //   try {
+  //     console.log(_id)
+  //     const res = await getUserFACRequest(_id); 
+  //     console.log(res.data);
       
-      return res.data;
-    } catch (error) {
-      console.error(error);
-      setErrors(error.response.data);
-    }
-  }
+  //     return res.data;
+  //   } catch (error) {
+  //     console.error(error);
+  //     setErrors(error.response.data);
+  //   }
+  // }
   const signin = async (user) => {
     try {
       const res = await loginRequest(user);
@@ -105,8 +120,8 @@ export const AuthProvider = ({ children }) => {
     try {
       
       const res = await deleteUserRequest(_id);
-      if (res.status === 204) 
-        getUsers();
+      // if (res.status === 204) 
+      //   getUsers();
     } catch (error) {
       console.log(error);
       setErrors(error.response.data);
@@ -155,10 +170,10 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         //getUserId,
-        getProfile,
-        users,
-        getUser,
-        getUsers,
+        //getProfile,
+        //users,
+        //getUser,
+        //getUsers,
         signup,
         signin,
         logout,

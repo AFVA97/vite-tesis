@@ -4,6 +4,7 @@ import Inicio from "./Principal/inicioScreen"
 import Login from "../login"
 import { useAuth } from "../../context/authContext";
 import { useEffect } from "react";
+import AddCarrera from "./Add_Carrera/AddCarrera";
 
 
 export default function App() {
@@ -21,10 +22,11 @@ export default function App() {
   // },[isAuthenticated])
   return (
     <>      
-        <Header />
+        
         <Routes>
           <Route exact path="/inicio" element={<Inicio/>}/>
           <Route path="/login" element={<Login />} />
+          <Route path="/addcarrera" element={<AddCarrera/>}/>
         </Routes>
       
     </>

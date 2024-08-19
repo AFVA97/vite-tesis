@@ -2,20 +2,20 @@ import axios from "./axios";
 
 
 
-export const loginRequest =user=>axios.post(`/login`,user);
+export const loginRequest =async user=>await axios.post(`/login`,user);
 
-export const registerRequest=(user)=>axios.post(`/register`,user);
+export const registerRequest=async(user)=>await axios.post(`/register`,user);
 
-export const verifyTokenRequest = async () => axios.get(`/verify`);
+export const verifyTokenRequest = async () =>await  axios.get(`/verify`);
 
-export const getUsersRequest=async ()=>axios.get(`/users`)
+export const getUsersRequest=async ()=>await axios.get(`/users`)
 
-export const deleteUserRequest= async (_id)=>axios.delete(`/users/${_id}`)
+export const deleteUserRequest= async (_id)=>await axios.delete(`/users/${_id}`)
 
-export const getUserRequest= async (_id)=>axios.get(`/users/${_id}`)
+export const getUserRequest= async (_id)=>await axios.get(`/users/${_id}`)
 
-export const getUserCIRequest= async (_id)=>axios.get(`/users/ci/${_id}`)
+export const getUserCIRequest= async (_id)=>await axios.get(`/users/ci/${_id}`)
 
-export const getProfileRequest=async()=>axios.get(`/profile`)
+export const getProfileRequest=async()=>await axios.get(`/profile`)
 
-export const getUserFACRequest= async (_id)=>axios.get(`/users/fac/${_id}`)
+export const getUserFACRequest= async (_id)=>await axios.get(`/users/fac/${_id}`)

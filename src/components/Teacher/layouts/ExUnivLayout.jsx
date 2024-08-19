@@ -9,12 +9,20 @@ import { Link } from "react-router-dom"
 function ExUnivLayout() {
 
     const { getExtUnivProf,ExtProf}=useExtUniv()
-    const{user}=useAuth()
+    const{getProfile    }=useAuth()
+    const [user, setuser] = useState(null)
     const [extensiones, setextensiones] = useState([])
     useEffect(() => {
-        
-      if(user)
-        getExtUnivProf(user.ciuser)     
+        async function loadProfile(){
+          setuser( getProfile())
+          
+          
+        }loadProfile()
+        async function loadExt() {
+          await getExtUnivProf(user.ciuser) 
+        }loadExt()
+           
+        console.log(ExtProf);
         
       
       let extenss=[]
