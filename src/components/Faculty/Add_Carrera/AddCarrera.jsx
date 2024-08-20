@@ -21,20 +21,20 @@ const AddCarrera = () => {
         getCarreraProf,
         updatesCarrera,}=useCarrera()
     getProfile();
-    setValue('facultad',user.facuser)
     const navigate=useNavigate();
     const onSubmit=handleSubmit(data=>{        
         try {
-                        console.log(data);
-                        
+            setValue('facultad',user.facuser)
+           
                 createsCarrera(data);
-                handleCancelar();
+                navigate("/faculty/inicio")
           
         } catch (error) {
                 
     }})
     
-    const handleCancelar=()=>{
+    const handleCancelar=(e)=>{
+        e.preventDefault()
         navigate("/faculty/inicio")
     }
   return (
@@ -57,7 +57,7 @@ const AddCarrera = () => {
             </div>
             <div className="fixed-bottom p-2 row bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={()=>handleCancelar()}>Cancelar</button>
+                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>
         </form>
     </div>

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
     getCarrerasRequest,
     createCarreraRequest,
-    //getCarreraRequest,
+    getCarreraRequest,
     //getCarreraProfRequest,
     updateCarreraRequest,
     deleteCarreraRequest
@@ -92,16 +92,16 @@ export function CarreraProvider({ children }) {
   // };
   
 
-  // const getCarrera = async (id) => {
-  //   try {
-  //     const res = await getCarreraRequest(id); 
+  const getCarrera = async (id) => {
+    try {
+      const res = await getCarreraRequest(id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -114,10 +114,10 @@ export function CarreraProvider({ children }) {
         createsCarrera,
         updatesCarrera,
         deletesCarrera,
-        
+        getCarrera,
         // CarreraFac,
         
-        // getCarrera,
+        
         // getCarreraProf,
         
       }}

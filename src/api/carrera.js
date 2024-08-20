@@ -5,7 +5,7 @@ export const getCarrerasRequest=async()=>await axios.get(`/carrera`)
 
 export const createCarreraRequest =async(carrera)=>await axios.post(`/carrera`,carrera);
 
-//export const getCarreraRequest=async(id)=>await axios.get(`/carrera/${id}`);
+export const getCarreraRequest=async(id)=>await axios.get(`/carrera/${id}`);
 
 //export const getCarreraProfRequest=async(id)=>await axios.get(`/carrera/prof/${id}`);
 

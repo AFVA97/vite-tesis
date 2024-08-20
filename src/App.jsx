@@ -21,6 +21,7 @@ import { PosgradoProvider } from './context/posgradoContext';
 import { ExtUnivProvider } from './context/extunivContext';
 import { InvCientProvider } from './context/invcientContext';
 import { CarreraProvider } from './context/carreraContext';
+import { NombreAsignaturaProvider } from './context/nombreAsigContext';
 
 function App() {
   return (
@@ -33,17 +34,19 @@ function App() {
                 <ExtUnivProvider>
                   <InvCientProvider>
                     <CarreraProvider>
-                      <BrowserRouter>
-                        <Routes>
-                          <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
-                          <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
-                          <Route element={<ProtectedRoute/>}>
-                            <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
-                            <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
-                            <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
-                          </Route>
-                        </Routes>
-                      </BrowserRouter>
+                      <NombreAsignaturaProvider>
+                        <BrowserRouter>
+                          <Routes>
+                            <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
+                            <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
+                            <Route element={<ProtectedRoute/>}>
+                              <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
+                              <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
+                              <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
+                            </Route>
+                          </Routes>
+                        </BrowserRouter>
+                      </NombreAsignaturaProvider>
                     </CarreraProvider>
                   </InvCientProvider>
                 </ExtUnivProvider>

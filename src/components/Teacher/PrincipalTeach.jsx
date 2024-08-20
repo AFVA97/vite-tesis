@@ -28,7 +28,7 @@ export default function App() {
   
 
   const {user,getProfile}=useAuth();
-let usuario=null
+//let usuario=null
   const [username, setusername] = useState("UserName");
   useEffect(() => {
     const load=async()=>{

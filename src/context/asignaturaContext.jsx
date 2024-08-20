@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   getAsignaturasRequest,
   deleteAsignaturaRequest,
+  getAsignaturaRequest,
   createAsignaturaRequest,
   updateAsignaturaRequest
 } from "../api/asignatura";
@@ -50,6 +51,8 @@ export function AsignaturaProvider({ children }) {
 
   const createsAsignatura = async (Asignatura) => {
     try {
+      //console.log(Asignatura);
+      
       const res = await createAsignaturaRequest(Asignatura);
       if(res.status===200)
         setAsignaturas([...Asignaturas,Asignatura])
@@ -99,16 +102,16 @@ export function AsignaturaProvider({ children }) {
   //   }
   // };
 
-  // const getAsignatura = async (id) => {
-  //   try {
-  //     const res = await getAsignaturaRequest(id); 
+  const getAsignatura = async (id) => {
+    try {
+      const res = await getAsignaturaRequest(id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -122,7 +125,7 @@ export function AsignaturaProvider({ children }) {
         updatesAsignatura,
         deletesAsignatura,
         
-        /*getAsignatura,
+        getAsignatura,/*
         getAsignaturaFac,
         AsigProf,
         getAsignaturaProf,*/

@@ -3,9 +3,9 @@ import axios from "./axios";
 
 export const getAsignaturasRequest=async()=>await axios.get(`/asignatura`)
 
-export const createAsignaturaRequest =async (asignatura,carrera)=>await axios.post(`/asignatura/${carrera._id}`,asignatura);
+export const createAsignaturaRequest =async (asignatura)=>await axios.post(`/asignatura`,asignatura);
 
-//export const getAsignaturaRequest=async(id)=>await axios.get(`/asignatura/${id}`);
+export const getAsignaturaRequest=async(id)=>await axios.get(`/asignatura/${id}`);
 
 //export const getAsignaturaProfRequest=async(id)=>await axios.get(`/asignatura/prof/${id}`);
 
