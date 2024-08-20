@@ -4,10 +4,9 @@ import InvCientLayout from "../layouts/InvCientLayout"
 import { useAuth } from "../../../context/authContext"
 
 
-function inv_cient() {
+function inv_cient({user}) {
   
-  const{getProfile}=useAuth()
-  const user=getProfile()
+  
 
     return (
       <>

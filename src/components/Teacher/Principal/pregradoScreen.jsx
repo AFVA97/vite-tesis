@@ -3,9 +3,7 @@ import Header from "../Header_Teach"
 import PregradoLayout from "../layouts/PregradoLayout"
 
 
-function pregrado() {
-  const {getProfile}=useAuth()
-  const user=getProfile();
+function pregrado({user}) {
     return (
       <>
         <div className="sticky-top"> 

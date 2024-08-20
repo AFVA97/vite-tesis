@@ -26,13 +26,27 @@ export default function App() {
   //   }
   // },[isAuthenticated])
   
+
+  const {user,getProfile}=useAuth();
+let usuario=null
+  const [username, setusername] = useState("UserName");
+  useEffect(() => {
+    const load=async()=>{
+      getProfile()
+    };load();
+  }, [])
   
+
+  useEffect(() => {
+    if(user)
+      setusername(user)
+  }, [user]);
   
   return (
     <>
       
         <Routes>
-          <Route exact path="/" element={<Inicio />}/>
+          <Route exact path="/" element={<Inicio user={username}/>}/>
           <Route path="/addext_univ" element={<AddExtUniv />}/>
           <Route path="/addext_univ/:_id" element={<AddExtUniv />}/>
           <Route path="/addinv_cient" element={<AddInvCient />}/>
@@ -40,11 +54,11 @@ export default function App() {
           <Route path="/addposgrado" element={<AddPosgrado />}/>
           <Route path="/addposgrado/:_id" element={<AddPosgrado />}/>
           
-          <Route path="/inicio" element={<Inicio />}/>
-          <Route path="/pregrado" element={<Pregrado  />} />
-          <Route path="/posgrado" element={<Posgrado />} />
-          <Route path="/inv_cient" element={<Investigacion />} />
-          <Route path="/ext_univ" element={<Extension />} />
+          <Route path="/inicio" element={<Inicio user={username}/>}/>
+          <Route path="/pregrado" element={<Pregrado  user={username}/>} />
+          <Route path="/posgrado" element={<Posgrado user={username}/>} />
+          <Route path="/inv_cient" element={<Investigacion user={username}/>} />
+          <Route path="/ext_univ" element={<Extension user={username}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
       

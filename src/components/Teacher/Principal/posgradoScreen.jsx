@@ -4,9 +4,8 @@ import PosgradoLayout from '../layouts/PosgradoLayout'
 import { Link } from "react-router-dom" 
 
 
-function posgrado() {
-  const{getProfile}=useAuth()
-  const user=getProfile()
+function posgrado({user}) {
+  
     return (
       <>
         <div className="sticky-top"> 

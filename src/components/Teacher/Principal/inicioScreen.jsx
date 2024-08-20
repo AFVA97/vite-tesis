@@ -4,10 +4,14 @@ import PregradoLayout from '../layouts/PregradoLayout'
 import ExUnivLayout from '../layouts/ExUnivLayout'
 import InvCientLayout from '../layouts/InvCientLayout'
 import { useAuth } from '../../../context/authContext'
+import { useEffect } from 'react'
+import { get } from 'mongoose'
 
-function inicio() {
-  const{getProfile}=useAuth()
-  const user=getProfile()
+function inicio({user}) {
+  
+  //console.log(user);
+  
+  //const user=getProfile()
     return (
       <>
         <div className='sticky-top'>

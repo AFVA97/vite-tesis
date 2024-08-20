@@ -14,7 +14,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  //const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errors, setErrors] = useState([]);
@@ -31,17 +31,17 @@ export const AuthProvider = ({ children }) => {
   }, [errors]);
 
 
-  useEffect(() => {
-    const fetchData= async()=>{
-      try {
-        await getProfile();
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    if(isAuthenticated)
-      fetchData(); 
-  }, [])
+  // useEffect(() => {
+  //   const fetchData= async()=>{
+  //     try {
+  //       await getProfile();
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
+  //   if(isAuthenticated)
+  //     fetchData(); 
+  // }, [])
   
 
   const signup = async (user) => {
@@ -49,7 +49,7 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       if (res.status === 200) {
         setUser(res.data);
-        setIsAuthenticated(true);
+        //setIsAuthenticated(true);
       }
     } catch (error) {
       console.log(error.response.data);
@@ -57,27 +57,27 @@ export const AuthProvider = ({ children }) => {
     }
   }; 
 
-  // const getUsers=async()=>{
+  const getUsers=async()=>{
     
-  //   const res=await getUsersRequest();
-    
-  //   setUsers(res.data);
-  // }
+    const res=await getUsersRequest();
+    if(res.status===200)
+        setUsers(res.data);
+  }
 
   const getProfile=async()=>{
     const res= await getProfileRequest()
-    setUser(res.data)
+    return res.data
   }
-  // const getUser=async(_id)=>{
-  //   try {
-  //     const res = await getUserRequest(_id); 
+  const getUser=async(_id)=>{
+    try {
+      const res = await getUserRequest(_id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // }
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  }
   // const getUserCI=async(_id)=>{
   //   try {
   //     const res = await getUserCIRequest(_id); 
@@ -120,8 +120,8 @@ export const AuthProvider = ({ children }) => {
     try {
       
       const res = await deleteUserRequest(_id);
-      // if (res.status === 204) 
-      //   getUsers();
+      if (res.status === 204) setUsers(users.filter((usuario) => usuario._id !== _id));
+    
     } catch (error) {
       console.log(error);
       setErrors(error.response.data);
@@ -170,10 +170,10 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         //getUserId,
-        //getProfile,
-        //users,
-        //getUser,
-        //getUsers,
+        getProfile,
+        users,
+        getUser,
+        getUsers,
         signup,
         signin,
         logout,

@@ -21,7 +21,9 @@ const Users = () => {
 
 
     useEffect(() => {
-        getUsers()
+        const load=async()=>{
+          await getUsers()
+        };load()
         
     }, []);
     

@@ -6,8 +6,8 @@ import { useAuth } from "../../../context/authContext";
 import { useInvCient } from "../../../context/invcientContext";
 
 const AddInvCient = () => {
-    const {getProfile}=useAuth()
-    const user=getProfile();
+    const {user,getProfile}=useAuth()
+
   const params=useParams();
   const {
     InvCients,
@@ -28,6 +28,7 @@ const AddInvCient = () => {
   const [tipoSelect, settipoSelect] = useState("Default")
   useEffect(() => {
     async function loadInv() {
+        getProfile()
       if(params._id){
           const investigacion=await getInvCient(params._id);
           setValue('_id',investigacion._id)
@@ -46,15 +47,21 @@ const AddInvCient = () => {
 
 
     }loadInv()
-    setValue('profesor',user.ciuser)
+    //setValue('profesor',user.ciuser)
           
   }, [])
+
+  useEffect(() => {
+    if(user!=null){
+        setValue('profesor',user.ciuser)
+    }
+  }, [user])
+  
   const onSubmit=handleSubmit(data=>{        
     try {
         
         if(data.tipo && data.tipo!="Default"  ){
         
-            setValue('profesor',user.ciuser)
              
                 
             if(!params._id){  

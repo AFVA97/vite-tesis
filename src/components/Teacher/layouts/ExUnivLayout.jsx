@@ -6,34 +6,52 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 
-function ExUnivLayout() {
+function ExUnivLayout({user}) {
 
-    const { getExtUnivProf,ExtProf}=useExtUniv()
-    const{getProfile    }=useAuth()
-    const [user, setuser] = useState(null)
+    const { getExtUnivs,ExtUnivs}=useExtUniv()
+    
     const [extensiones, setextensiones] = useState([])
     useEffect(() => {
-        async function loadProfile(){
-          setuser( getProfile())
+      const load=async()=>{
+        await getExtUnivs();
+      };load();
+      //   async function loadProfile(){
+      //     setuser( getProfile())
           
           
-        }loadProfile()
-        async function loadExt() {
-          await getExtUnivProf(user.ciuser) 
-        }loadExt()
+      //   }loadProfile()
+      //   async function loadExt() {
+      //     await getExtUnivProf(user.ciuser) 
+      //   }loadExt()
            
-        console.log(ExtProf);
+      //   console.log(ExtProf);
         
       
-      let extenss=[]
-      if(Array.isArray(ExtProf)){
-        ExtProf.map((exten)=>{
+      // let extenss=[]
+      // if(Array.isArray(ExtProf)){
+      //   ExtProf.map((exten)=>{
           
-          extenss.push({_id:exten._id,titulo:exten.titulo,tipo:exten.tipo,horas:exten.horas,fecha:exten.fecha})
-        })
-      }
-      setextensiones(extenss)
+      //     extenss.push({_id:exten._id,titulo:exten.titulo,tipo:exten.tipo,horas:exten.horas,fecha:exten.fecha})
+      //   })
+      // }
+      // setextensiones(extenss)
     }, [])
+
+    useEffect(() => {
+      let extenss=[]
+      if(Array.isArray(ExtUnivs)){
+        let extProf=ExtUnivs.filter((exten)=>exten.profesor===user.ciuser)
+        extProf.map((exten)=>{
+          extenss.push({_id:exten._id,titulo:exten.titulo,tipo:exten.tipo,horas:exten.horas,fecha:exten.fecha})
+      //   
+        })
+        
+      }
+      //console.log(extenss);
+      
+      setextensiones(extenss)
+    }, [ExtUnivs,user])
+    
     
   
       return (

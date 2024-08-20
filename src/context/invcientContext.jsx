@@ -3,7 +3,7 @@ import {
   getInvCientesRequest,
   deleteInvCientRequest,
   createInvCientRequest,
-  //getInvCientRequest,
+  getInvCientRequest,
   //getInvCientProfRequest,
   updateInvCientRequest
 } from "../api/invcient";
@@ -97,16 +97,16 @@ export function InvCientProvider({ children }) {
   // };
   
 
-  // const getInvCient = async (id) => {
-  //   try {
-  //     const res = await getInvCientRequest(id); 
+  const getInvCient = async (id) => {
+    try {
+      const res = await getInvCientRequest(id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -120,7 +120,7 @@ export function InvCientProvider({ children }) {
         updatesInvCient,
         deletesInvCient,
         
-        // getInvCient,
+         getInvCient,
         // InvProf,
         // getInvCientProf,
         

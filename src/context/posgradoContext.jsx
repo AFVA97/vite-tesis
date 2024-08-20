@@ -96,16 +96,16 @@ export function PosgradoProvider({ children }) {
   // };
   
 
-  // const getPosgrado = async (id) => {
-  //   try {
-  //     const res = await getPosgradoRequest(id); 
+  const getPosgrado = async (id) => {
+    try {
+      const res = await getPosgradoRequest(id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -115,12 +115,13 @@ export function PosgradoProvider({ children }) {
         Posgrados,
         errors,
         getPosgrados,
+        getPosgrado,
         createsPosgrado,
         updatesPosgrado,
         deletesPosgrado,
         
         // PosProf,
-        // getPosgrado,
+         
         // getPosgradoProf,
         
       }}

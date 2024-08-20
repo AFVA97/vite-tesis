@@ -9,8 +9,7 @@ import { useAuth } from "../../../context/authContext";
 
 
 const AddExtUniv = () => {
-    const{getProfile}=useAuth()
-    const user=getProfile()
+    const{user,getProfile}=useAuth()
     const params=useParams();
     const {
         ExtUnivs,
@@ -31,6 +30,7 @@ const AddExtUniv = () => {
     
     useEffect(() => {
       async function loadExt() {
+        getProfile();
         if(params._id){
             const extension=await getExtUniv(params._id);
             setValue('_id',extension._id)
@@ -44,15 +44,23 @@ const AddExtUniv = () => {
 
 
       }loadExt()
-      setValue('profesor',user.ciuser)
+      //setValue('profesor',user.ciuser)
             
     }, [])
+    useEffect(() => {
+        //console.log(user);
+        
+        if(user!=null){
+            setValue('profesor',user.ciuser)
+        }
+        
+      }, [user])
     
     const onSubmit=handleSubmit(data=>{        
         try {
             if(data.tipo && data.tipo!="Default"  ){
             
-                setValue('profesor',user.ciuser)
+                //setValue('profesor',user.ciuser)
                     
                 if(!params._id){  
                     

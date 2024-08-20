@@ -7,7 +7,7 @@ export const getInvCientesRequest=async()=>await axios.get(`/invcient`)
 
 export const createInvCientRequest =async(InvCient)=>await axios.post(`/invcient`,InvCient);
 
-//export const getInvCientRequest=async(id)=>await axios.get(`/invcient/${id}`);
+export const getInvCientRequest=async(id)=>await axios.get(`/invcient/${id}`);
 
 export const updateInvCientRequest=async(InvCient)=>await axios.put(`/invcient/${InvCient._id}`,InvCient);
 

@@ -8,8 +8,9 @@ import { usePosgrado } from "../../../context/posgradoContext";
 
 
 const AddPosgrado = () => {
-const {getProfile}=useAuth()
-const user=getProfile()
+    //const [userModif, setuserModif] = useState(null)
+const {user,getProfile}=useAuth()
+
      const params=useParams();
     const {
     Posgrados,
@@ -27,7 +28,7 @@ const user=getProfile()
   
   useEffect(() => {
     async function loadPosgrado() {
-        
+        getProfile();
       if(params._id){
           const posgrado=await getPosgrado(params._id);
           setValue('_id',posgrado._id)
@@ -44,16 +45,24 @@ const user=getProfile()
 
 
     }loadPosgrado()
-    setValue('profesor',user.ciuser)
           
   }, [])
+  useEffect(() => {
+    //console.log(user);
+    
+    if(user!=null){
+        setValue('profesor',user.ciuser)
+    }
+    
+  }, [user])
+  
   const onSubmit=handleSubmit(data=>{        
     try {
         
         
-            setValue('profesor',user.ciuser)
+            //setValue('profesor',userModif.ciuser)
              
-                console.log(data);
+                //console.log(data);
                 
             if(!params._id){  
                 createsPosgrado(data);

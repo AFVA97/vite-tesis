@@ -4,10 +4,10 @@ import ExUnivLayout from "../layouts/ExUnivLayout"
 import { useAuth } from "../../../context/authContext"
 
 
-function ext_univ() {
-  const{getProfile}=useAuth()
-  const user=getProfile()
-  // const { getExtUnivProf,ExtProf}=useExtUniv()
+function ext_univ({user}) {
+  // const{getProfile}=useAuth()
+  // const user=getProfile()
+  // // const { getExtUnivProf,ExtProf}=useExtUniv()
   // const{user}=useAuth()
   // const [extensiones, setextensiones] = useState([])
   // useEffect(() => {
@@ -26,6 +26,7 @@ function ext_univ() {
   //   setextensiones(extenss)
   // }, [])
   
+//console.log(user);
 
     return (
       <>

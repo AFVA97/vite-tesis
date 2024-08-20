@@ -22,8 +22,8 @@ const AddUser = () => {
         isAuthenticated,
         errors:userErrors,
         loading,}=useAuth()
-        const { Profesors, getProfesors } = useProfesor();
-        const {Facultades, getFacultads }=useFacultad()
+        const { Profesores, getProfesores } = useProfesor();
+        const {Facultades, getFacultades }=useFacultad()
 
         const{register,handleSubmit, formState:{errors}, setValue}=useForm();
   
@@ -33,6 +33,9 @@ const AddUser = () => {
 
         useEffect(() => {
           async function loadUser() {
+            getProfesores();
+            getUsers();
+            getFacultades();
             if(params._id){
                 const usuario=await getUser(params._id)                
                 setValue('_id',usuario._id)
@@ -64,14 +67,14 @@ const AddUser = () => {
                 if(!params._id){ 
                     if(checkPassword()){
                         signup(data);
-                        handleCancelar();
+                        navigate("/admin/users")
                     }
                 }
                 else{
                     if(checkPassword()){
                         deleteUser(params._id);
                         signup(data)
-                        handleCancelar();
+                        navigate("/admin/users")
                     }
                 }
             } catch (error) {
@@ -79,7 +82,8 @@ const AddUser = () => {
         }})
 
 
-        const handleCancelar=()=>{
+        const handleCancelar=(e)=>{
+            e.preventDefault();
             navigate("/admin/users")
         }
 
@@ -139,19 +143,18 @@ const AddUser = () => {
             }
                 
             else if(tipoSelect==="2"){
-                getProfesors();
-                getUsers();
-                if(Array.isArray(Profesors)){
+                
+                if(Array.isArray(Profesores)){
                     
-                    for (let index = 0; index < Profesors.length; index++) {
+                    for (let index = 0; index < Profesores.length; index++) {
                         let flag=false;
                         
                             for (let index2 = 0; index2 < users.length; index2++) {
-                                if(users[index2].ciuser===Profesors[index]._id)
+                                if(users[index2].ciuser===Profesores[index]._id)
                                     flag=true;                                
                             }
                             if(!flag)
-                                profesorfiltrado.push(Profesors[index])
+                                profesorfiltrado.push(Profesores[index])
                         
                     }
                 }
@@ -186,8 +189,7 @@ const AddUser = () => {
                 return
             }
             else{
-                getFacultads();
-                getUsers();
+                
                 if(Array.isArray(Facultades)){
                     
                     for (let index = 0; index < Facultades.length; index++) {
@@ -325,7 +327,7 @@ const AddUser = () => {
            
             <div className="fixed-bottom p-2 row bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={handleCancelar}>Cancelar</button>
+                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>
         </form>
     </>

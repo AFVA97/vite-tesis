@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router-dom"
 import UserAccount from "./userAccount"
 
 function Header({username}) {
+
+    
   return (
     
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
