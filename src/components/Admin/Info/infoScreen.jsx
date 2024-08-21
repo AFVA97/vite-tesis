@@ -18,24 +18,24 @@ function infoScreen({title}){
     function layout(){
         switch(title){
           case "Facultad":
-            return <LayoutFacultad  {...params}/>;
+            return <LayoutFacultad  _id={params._id}/>;
             case "Pregrado":
-              return <LayoutPregrado {...params}/>;
+              return <LayoutPregrado _id={params._id}/>;
             case "Posgrado":
-              return <LayoutPosgrado {...params}/>;
+              return <LayoutPosgrado _id={params._id}/>;
             case "Investigación Científica":
-              return <LayoutInvCient {...params}/>;
+              return <LayoutInvCient _id={params._id}/>;
             case "Extensión Universitaria":
-              return <LayoutExtUniv {...params}/>;
+              return <LayoutExtUniv _id={params._id}/>;
             default:
-                return <LayoutInicio {...params}/>;
+                return <LayoutInicio _id={params._id}/>;
           }
     }
     return(
         <>
           <div className="sticky-top">
             <InfoNavBar {...{title}}/>
-            <TitleLayout {...params} isprofesor={(title==="Facultad")?(false):(true)} />
+            <TitleLayout _id={params._id} isprofesor={(title==="Facultad")?(false):(true)} />
           </div>
             {
                 layout()

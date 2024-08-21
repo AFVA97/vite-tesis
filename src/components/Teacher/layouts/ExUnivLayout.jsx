@@ -56,7 +56,7 @@ function ExUnivLayout({user}) {
   
       return (
         <>
-        <div className="sticky-top"> 
+        <div className=""> 
             
             
             <ThExtUniv />

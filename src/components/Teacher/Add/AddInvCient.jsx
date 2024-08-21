@@ -115,7 +115,7 @@ useEffect(() => {
                              
                            
                         >
-                        <option value="Default" >Seleccione una Opción</option>
+                        <option value="" >Seleccione una Opción</option>
                         <option value="Provincial">Provincial</option>
                         <option value="Nacional">Nacional</option>
                         <option value="Internacional">Internacional</option>

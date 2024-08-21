@@ -48,12 +48,12 @@ export default function App() {
           <Route path="/posgrado" element={<Posgrado username={username}/>} />
           <Route path="/inv_cient" element={<Investigacion username={username}/>} />
           <Route path="/ext_univ" element={<Extension username={username}/>} />          
-          <Route path="/inicio/info/:id" element={<InfoScreen title={"General"}/>} />
-          <Route path="/facultad/info/:id" element={<InfoScreen title={"Facultad"}/>} />
-          <Route path="/pregrado/info/:id" element={<InfoScreen title={"Pregrado"}/>} />
-          <Route path="/posgrado/info/:id" element={<InfoScreen title={"Posgrado"}/>} />
-          <Route path="/inv_cient/info/:id" element={<InfoScreen title={"Investigación Científica"}/>} />
-          <Route path="/ext_univ/info/:id" element={<InfoScreen title={"Extensión Universitaria"}/>} />
+          <Route path="/inicio/info/:_id" element={<InfoScreen title={"General"}/>} />
+          <Route path="/facultad/info/:_id" element={<InfoScreen title={"Facultad"}/>} />
+          <Route path="/pregrado/info/:_id" element={<InfoScreen title={"Pregrado"}/>} />
+          <Route path="/posgrado/info/:_id" element={<InfoScreen title={"Posgrado"}/>} />
+          <Route path="/inv_cient/info/:_id" element={<InfoScreen title={"Investigación Científica"}/>} />
+          <Route path="/ext_univ/info/:_id" element={<InfoScreen title={"Extensión Universitaria"}/>} />
         </Routes>
       
     </>

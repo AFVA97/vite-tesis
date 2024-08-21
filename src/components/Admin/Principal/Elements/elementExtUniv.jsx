@@ -2,7 +2,7 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementExtUniv({id,nombre, apellidos, are, tch, ae, th}){
+function elementExtUniv({_id,nombre, apellidos, are, tch, ae, th}){
     const [active, setactive] = useState(false);
     
     return(
@@ -20,7 +20,7 @@ function elementExtUniv({id,nombre, apellidos, are, tch, ae, th}){
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${id}`}>
+                        <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
                         

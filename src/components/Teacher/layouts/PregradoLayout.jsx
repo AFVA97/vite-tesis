@@ -56,7 +56,7 @@ useEffect(() => {
 
   return (
     <>
-      <div className="sticky-top">        
+      <div className="">        
         <ThPregrado/>
         </div>
 

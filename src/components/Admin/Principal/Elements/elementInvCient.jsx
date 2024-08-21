@@ -2,7 +2,7 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
-function elementInvCient({id,nombre, apellidos, proyecto, premios, publicaciones,otros}){
+function elementInvCient({_id,nombre, apellidos, proyecto, premios, publicaciones,otros}){
     const [active, setactive] = useState(false);
     
     return(
@@ -20,7 +20,7 @@ function elementInvCient({id,nombre, apellidos, proyecto, premios, publicaciones
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${id}`}>
+                        <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
                         

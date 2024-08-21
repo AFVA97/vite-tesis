@@ -58,7 +58,7 @@ const PosgradoLayout = ({user}) => {
 
   return (
     <>
-      <div className="sticky-top">        
+      <div className="">        
         <ThPosgrado/>
         </div>
 

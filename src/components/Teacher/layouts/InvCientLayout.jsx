@@ -55,7 +55,7 @@ const InvCientLayout = ({user}) => {
 
   return (
     <>
-      <div className="sticky-top">        
+      <div className="">        
         <ThInvCient/>
         </div>
 

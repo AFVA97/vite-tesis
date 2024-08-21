@@ -208,11 +208,41 @@ const AddAsignatura = ({User}) => {
                         <option value="CPE" >CPE</option>
                         
                     </select>
-                        {errors.anno && (
-                            <p className="form-label"> Nombre de la Asignatura is required</p>
+                        {errors.tipocurso && (
+                            <p className="form-label"> Tipo de Curso is required</p>
                         )}
                 </div>
+                <div className="input-group mb-3 col-6">
+                    <span className="input-group-text" id="basic-addon1">Frecuencia</span>
+                    <input 
+                        type="number" 
+                        className="form-control" 
+                        placeholder="#" 
+                        aria-label="NumeroID" 
+                        name="idUniversidad"
+                        {...register("frecuencia", { required: true })}
+                        
+                    />
+                    {errors.frecuencia && (
+                        <p className="form-label"> Frecuencia is required</p>
+                    )}
+                </div>
                 
+                <div className="input-group mb-3 col-6">
+                    <span className="input-group-text" id="basic-addon1">Tutoría a Alumnos Ayudantes</span>
+                    <input 
+                        type="number" 
+                        className="form-control" 
+                        placeholder="#" 
+                        aria-label="NumeroID" 
+                        name="idUniversidad"
+                        {...register("tutoriaaa", { required: true })}
+                        
+                    />
+                    {errors.tutoriaaa && (
+                        <p className="form-label"> Tutoria a Alumnos Ayudantes is required</p>
+                    )}
+                </div>
                 <div className="row justify-content-around container-fluid ">
 
                     
