@@ -2,9 +2,9 @@
 import { Link, NavLink } from "react-router-dom"
 import PropTypes from "prop-types"
 
-function infoInicio({title}) {
+function infoInicio({title,link}) {
     let text="Información";
-    let link = "inicio";
+    if(!link)      
       switch(title){
         case "Pregrado":
           link="pregrado";

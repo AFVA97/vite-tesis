@@ -14,6 +14,7 @@ import AddFacultad from "./Principal/AddFacultad"
 import Users from "./user/Users"
 import AddUser from "./user/AddUser"
 import InfoUSer from "./Info/InfoUSer"
+import ModificarAsignatura from "./Principal/TableHead/ModificarAsignatura"
 
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/inicio" element={<Inicio username={username}/>}/>
           <Route path="/addprofesor" element={<AddProfesor/>}/>
           <Route path="/addprofesor/:_id" element={<AddProfesor/>}/>
+          <Route path="/modificarasignatura/:_id" element={<ModificarAsignatura/>}/>
           <Route path="/addfacultad" element={<AddFacultad/>}/>
           <Route path="/addfacultad/:_id" element={<AddFacultad/>}/>
           <Route path="/users" element={<Users/>}/>
