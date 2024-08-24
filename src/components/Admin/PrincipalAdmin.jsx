@@ -14,7 +14,7 @@ import AddFacultad from "./Principal/AddFacultad"
 import Users from "./user/Users"
 import AddUser from "./user/AddUser"
 import InfoUSer from "./Info/InfoUSer"
-import ModificarAsignatura from "./Principal/TableHead/ModificarAsignatura"
+import ModificarAsignatura from "./Info/layouts/elemlayout/ModificarAsignatura"
 
 
 export default function App() {

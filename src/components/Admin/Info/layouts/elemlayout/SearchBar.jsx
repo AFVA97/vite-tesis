@@ -1,7 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const SearchBar = ({  Profesores, onSelect }) => {
+const SearchBar = ({  Profesores, onSelect, prof}) => {
     
+  useEffect(() => {
+    if(prof){      
+      const temp=Profesores.filter((profesor)=>profesor._id===prof)
+      setQuery(`${temp[0].nombre} ${temp[0].apellidos}`)
+      setFilteredSuggestions([])
+    }
+    else{
+      setFilteredSuggestions(Profesores)
+    }
+    
+  }, [,prof])
+  
     const [query, setQuery] = useState('');
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   
@@ -13,11 +25,16 @@ const SearchBar = ({  Profesores, onSelect }) => {
             profesor.nombre.toLowerCase().includes(value.toLowerCase())
           )
         );
+        if(value===''){
+          handleSuggestionClick(null)
+        }
       };
   
       const handleSuggestionClick = (profesor) => {
-        setQuery(profesor.nombre);
-        setFilteredSuggestions([]);
+        if(profesor){          
+          setQuery(`${profesor.nombre} ${profesor.apellidos}`);
+          setFilteredSuggestions([]);
+        }
         onSelect(profesor);
       };
     return (

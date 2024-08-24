@@ -10,51 +10,32 @@ import { useAsignatura } from "../../../context/asignaturaContext"
 
 function Facultad({username}) {
 
-  const [search, setsearch] = useState("")
-
   const {Facultades, getFacultades }=useFacultad()
-  const {
-    Asignaturas,
-    errors,        
-    getAsignaturas,
-    createsAsignatura,
-    updatesAsignatura,
-    deletesAsignatura,
-  }=useAsignatura()
-
+  const { Asignaturas, getAsignaturas }=useAsignatura()
   const [facelement, setfacelement] = useState([])
-  //const [asignaturaFac, setasignaturaFac] = useState([])
-  
+  const [query, setQuery] = useState('');
+  const [filteredFacultad, setFilteredFacultad] = useState([]);
+
+  const handleInputChange = (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      setFilteredFacultad(
+        facelement.filter((facultad) =>
+          facultad.nombre.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    };
+
+    useEffect(() => {
+      if(query==='')
+        setFilteredFacultad(facelement)
+    }, [query])
     
   useEffect(() => {
     const load =async()=>{
       await getFacultades();
       await getAsignaturas();
     };load()
-    // getFacultads(); 
-    // let facul=[]
-    // Facultades.map((facultad)=>{
-    //   let aux={
-    //     _id:facultad._id,nombre:facultad.nombre,ca:0, cg:0, cef:0, th:0
-    //   }
-    //   async function loadAsignaturas() {
-    //     setasignaturaFac(getAsignaturaFac(facultad._id))
-
-    //   }loadAsignaturas();
-    //   if(Array.isArray(asignaturaFac)){
-    //     asignaturaFac.map((asig)=>{
-    //       aux.ca+=1;
-    //       aux.cg+=asig.cantgrupos
-    //       if(asig.exafinal)
-    //        aux.cef+=1
-    //       aux.th+=asig.horas
-          
-    //     })
-    //   }
-    //   facul.push(aux)
-      
-    // })
-    // setfacelement(facul)
   }, [])
   
   useEffect(()=>{
@@ -78,42 +59,37 @@ function Facultad({username}) {
           facultadesArray.push(aux)
       })
       setfacelement(facultadesArray);
-
+      setFilteredFacultad(facelement)
     }
   },[Facultades,Asignaturas])
-  
-  
-  
-  
-  
+
     return (
       <>
         <div className="sticky-top"> 
-          
           <Header username={username}/>       
           <SearchBar 
-            search={search}
-            setsearch={setsearch}
+            query={query}
+            handleInputChange={handleInputChange}
+            setQuery={setQuery}
           />
           <ThFacultad />
-          
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
-          {facelement.map((facultad,i)=>(
+          {filteredFacultad.map((facultad,i)=>(
             <ElementFacultad 
-            key={facultad._id} 
-            {...facultad}
-          />
+              key={facultad._id} 
+              {...facultad}
+            />
           ))}
-            
-        
-      
         </div>
         <Link 
-                className="navbar-brand" 
-                to="/admin/addfacultad"
-            ><button className="floatingbutton btn btn-primary"
-            >Agregar</button></Link>
+          className="navbar-brand" 
+          to="/admin/addfacultad"
+        >
+          <button className="floatingbutton btn btn-primary"
+            >Agregar
+          </button>
+        </Link>
       </>
     )
   }

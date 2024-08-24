@@ -10,7 +10,7 @@ const AddFacultad = () => {
 
     const {Facultades,
         errors:createError,
-        getFacultads,
+        getFacultades,
         deletesFacultad,
         createsFacultad,
         getFacultad,
@@ -20,8 +20,16 @@ const AddFacultad = () => {
     
     const navigate=useNavigate();
 
+    const [error, seterror] = useState([])
+
+    useEffect(() => {
+        if(errors.length>0)
+          seterror([...error,...errors])
+      }, [errors])
+
     useEffect(() => {
         async function loadFacultad() {
+            await getFacultades();
             if(params._id){
                 
                 
@@ -37,9 +45,16 @@ const AddFacultad = () => {
 
     const onSubmit=handleSubmit(data=>{        
         try {
-            if(!params._id){                
-                createsFacultad(data);
-                handleCancelar();
+            if(!params._id){   
+                const factemp=Facultades.filter((facultad)=>facultad.nombre==data.nombre)
+                             
+                if(factemp.length==0){
+                    createsFacultad(data);
+                    handleCancelar();
+                }
+                else{
+                    seterror(['Nombre de Facultad en uso, rectifique su Información'])
+                }
             }
             else{
                 
@@ -50,7 +65,8 @@ const AddFacultad = () => {
                 
     }})
     
-    const handleCancelar=()=>{
+    const handleCancelar=(e)=>{
+        e.preventDefault();
         navigate("/admin/facultad")
     }
 
@@ -88,9 +104,17 @@ const AddFacultad = () => {
                 
                 
             </div>
+            {error.length>0 ? (
+                <>
+                {error.map((errores,i)=>(
+                        <p key={i} className="alert alert-danger text-center"> {errores} </p>
+                    ))}
+              
+                </>
+            ):<div></div>}  
             <div className="fixed-bottom p-2 row bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={handleCancelar}>Cancelar</button>
+                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>
         </form>
     </>

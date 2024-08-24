@@ -10,18 +10,30 @@ const AddProfesor = () => {
       
     const [fijo, setfijo] = useState(false);
     const [cargo, setcargo] = useState(false);
-    const {createsProfesor,errors:createError,updatesProfesor,getProfesor} =useProfesor();
-    
+    const {Profesores,createsProfesor,getProfesores,updatesProfesor,getProfesor} =useProfesor();
+    const [error, seterror] = useState([])
 
 
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
   
     const navigate=useNavigate()
     
-    
+    useEffect(() => {
+      if(errors.length>0)
+        seterror([...error,...errors])
+    }, [errors])
+    useEffect(() => {
+        if (error.length > 0) {
+          const timer = setTimeout(() => {
+            seterror([]);
+          }, 5000);
+          return () => clearTimeout(timer);
+        }
+      }, [error]);
     
     useEffect(() => {
         async function loadProfesor() {
+            await getProfesores();
             if(params._id){
                 const profesor=await getProfesor(params._id);
                 setValue('_id',profesor._id)
@@ -64,9 +76,24 @@ const AddProfesor = () => {
     const onSubmit=handleSubmit(data=>{        
         try {
             if(!params._id){  
-                     
-                createsProfesor(data);
-                navigate("/admin/inicio")
+                const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
+                const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
+                
+                
+                if(proftemp.length==0){
+
+                    if(proftempCI.length==0){
+                        createsProfesor(data)
+                        navigate("/admin/inicio")
+                    }
+                    else{
+                        seterror(['Carnet de Identidad en uso, rectifique su Información'])
+                    }
+                }
+                else{
+                    seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
+                }
+                
             }
             else{
                 updatesProfesor(data);
@@ -89,9 +116,12 @@ const AddProfesor = () => {
         setcargo(!cargo)
         setValue('funcionDireccion',"")
     }
+    
   return (
     <>
-      <InfoInicio title={"Añadir Profesor"}/>      
+    
+      <InfoInicio title={"Añadir Profesor"}/>    
+      
         <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
             <div className="row p-5">
                 <div className="input-group mb-3 col-6">
@@ -118,7 +148,7 @@ const AddProfesor = () => {
                         {...register("ci", { required: true })}
                     />
                     {errors.ci && (
-                        <p className="form-label"> ID is required</p>
+                        <p className="form-label"> CI is required</p>
                     )}
                 </div>
             
@@ -227,6 +257,14 @@ const AddProfesor = () => {
                     ):<div className="col"> </div>}
                 </div>
             </div>
+            {error.length>0 ? (
+                <>
+                {error.map((errores,i)=>(
+                        <p key={i} className="alert alert-danger text-center"> {errores} </p>
+                    ))}
+              
+                </>
+            ):<div></div>}  
             <div className="fixed-bottom p-2 row bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
                 <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>

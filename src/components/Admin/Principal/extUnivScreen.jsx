@@ -9,51 +9,33 @@ import { useExtUniv } from "../../../context/extunivContext"
 
 function ExtUniv({username}) {
 
-  const [search, setsearch] = useState("")
-
-  const { Profesores,
-    errors:errorProfesor,   
-    getProfesores,
-    createsProfesor,
-    updatesProfesor,
-    deletesProfesor, } = useProfesor();
-  const{
-    ExtUnivs,
-    errors:errorExtension,
-    getExtUnivs,
-    createsExtUniv,
-    updatesExtUniv,
-    deletesExtUniv,
-  }=useExtUniv()
-
+  const { Profesores, getProfesores } = useProfesor();
+  const{ ExtUnivs, getExtUnivs }=useExtUniv()
   const [profesores,setprofesores]=useState([])
-  const [extensiones, setextensiones] = useState([])
+  const [query, setQuery] = useState('');
+  const [filteredProfesor, setFilteredProfesor] = useState([]);
+
+  const handleInputChange = (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      setFilteredProfesor(
+        profesores.filter((profesor) =>
+          profesor.nombre.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    };
+
+    useEffect(() => {
+      if(query==='')
+        setFilteredProfesor(profesores)
+    }, [query])
+    
 
   useEffect(() => {
     const load=async () => {
       await getProfesores();
-      await getExtUnivs();
-      
-    };load()
-    
-    // getProfesors();
-    // let profs=[];
-    // Profesors.map((profesor)=>{
-    //   let aux={_id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos, are:0, tch:0, ae:0, th:0}
-    //   async function loadExt() {
-    //     setextensiones(getExtUnivProf(profesor._id))
-    //   }loadExt()
-    //   if(Array.isArray(extensiones)){
-    //     extensiones.map((exten)=>{
-    //       if(exten.tipo==="Atención a la Residencia"){aux.are+=exten.horas}
-    //       else if(exten.tipo==="Trabajo Cátedras Honoríficas"){aux.tch+=exten.horas}
-    //       else{aux.ae+=exten.horas}
-    //     })
-    //   }
-    //   aux.th=aux.are+aux.tch+aux.ae;
-    //   profs.push(aux)
-    // })
-    // setprofesores(profs)
+      await getExtUnivs();      
+    };load()  
   }, [])
   
   useEffect(()=>{
@@ -76,33 +58,27 @@ function ExtUniv({username}) {
       })
     }
     setprofesores(profesoresArray)
+    setFilteredProfesor(profesores) 
   },[Profesores,ExtUnivs])
 
-  // const propsi={
-  //   id:1,nombre:"Name", apellidos:"Last", are:5, tch:6, ae:7, th:9}
- 
     return (
       <>
         <div className="sticky-top"> 
-          
           <Header username={username}/>      
           <SearchBar 
-            search={search}
-            setsearch={setsearch}
+            query={query}
+            handleInputChange={handleInputChange}
+            setQuery={setQuery}
           /> 
           <ThExtUniv />
-          
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
-          {profesores.map((profesor,i)=>(
+          {filteredProfesor.map((profesor,i)=>(
             <ElementExtUniv 
             key={profesor._id} 
             {...profesor}
           />
           ))}
-            
-        
-      
         </div>
       </>
     )

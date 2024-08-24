@@ -9,9 +9,11 @@ const ElFacultad = ({asignatura}) => {
 
     useEffect(() => {
       const load=async()=>{
-        setProfesor(await getProfesor(asignatura.profesor))
+        if(asignatura.profesor){
+            setProfesor(await getProfesor(asignatura.profesor))
+        }
       };load()
-    }, [])
+    }, [,asignatura])
     
   return (
     <>

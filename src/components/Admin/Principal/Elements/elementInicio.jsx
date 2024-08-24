@@ -1,15 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useProfesor } from "../../../../context/profesorContext";
 
-function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th,profesorInicio,setprofesorInicio}){
+function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th,profesorInicio,setprofesorInicio,users}){
     const [active, setactive] = useState(false);
     const {deletesProfesor}=useProfesor()
+    const [error,seterror]=useState([])
     const handleDelete=()=>{
-        deletesProfesor(_id);
-        setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
+        const temp=users.filter((user)=>user.ciuser===_id)
+        if(temp.length==0){
+            deletesProfesor(_id);
+            setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
+        }
     }
+    useEffect(() => {
+        if (error.length > 0) {
+          const timer = setTimeout(() => {
+            seterror([]);
+          }, 5000);
+          return () => clearTimeout(timer);
+        }
+      }, [error]);
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
@@ -40,6 +52,14 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
                 
                 
             }
+            {error.length>0 ? (
+                <>
+                {error.map((errores,i)=>(
+                        <p key={i} className="alert alert-danger text-center"> {errores} </p>
+                    ))}
+              
+                </>
+            ):<div></div>}
         </>
     );
 }

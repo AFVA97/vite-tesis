@@ -5,120 +5,53 @@ import SearchBar from "./searchBar"
 import { useEffect, useState } from "react"
 import 'animate.css';
 import { useProfesor } from "../../../context/profesorContext"
-import { useNavigate ,Link} from "react-router-dom"
+import { Link} from "react-router-dom"
 import { useAsignatura } from "../../../context/asignaturaContext"
 import { usePosgrado } from "../../../context/posgradoContext"
 import { useExtUniv } from "../../../context/extunivContext"
 import { useInvCient } from "../../../context/invcientContext"
+import { useAuth } from "../../../context/authContext"
 
 function inicio({username}) {
   
-  const [search, setsearch] = useState("")
- 
-   
-  const { Profesores,
-    errors:errorProfesor,   
-    getProfesores,
-    createsProfesor,
-    updatesProfesor,
-    deletesProfesor, } = useProfesor();
-  const {
-    Asignaturas,
-    errors:errorAsignatura,        
-    getAsignaturas,
-    createsAsignatura,
-    updatesAsignatura,
-    deletesAsignatura,
-  }=useAsignatura()
-  const{
-    ExtUnivs,
-    errors:errorExtension,
-    getExtUnivs,
-    createsExtUniv,
-    updatesExtUniv,
-    deletesExtUniv,
-  }=useExtUniv()
-  const {
-    Posgrados,
-    errors:errorPosgrado,
-    getPosgrados,
-    createsPosgrado,
-    updatesPosgrado,
-    deletesPosgrado,
-  }=usePosgrado()
-  const {InvCients,
-    errors:errorInvestigacion,        
-    getInvCients,
-    createsInvCient,
-    updatesInvCient,
-    deletesInvCient,}=useInvCient()
+  const { Profesores, getProfesores } = useProfesor();
+  const {users, getUsers} =useAuth()
+  const { Asignaturas, getAsignaturas }=useAsignatura()
+  const{ ExtUnivs, getExtUnivs }=useExtUniv()
+  const { Posgrados, getPosgrados }=usePosgrado()
+  const {InvCients, getInvCients }=useInvCient()
   const [profesorInicio,setprofesorInicio]=useState([])
-  //const [Profesor, setProfesor] = useState([])
-  //const [asignaturaProf, setasignaturaProf] = useState([])
-  //const [posgradoProf, setposgradoProf] = useState([])
+  const [query, setQuery] = useState('');
+  const [filteredProfesor, setFilteredProfesor] = useState([]);
+
+  const handleInputChange = (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      setFilteredProfesor(
+        profesorInicio.filter((profesor) =>
+          profesor.nombre.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    };
+
+    useEffect(() => {
+      if(query==='')
+        setFilteredProfesor(profesorInicio)
+    }, [query])
+
   useEffect(() => {
-    //getProfesors();
     const load=async () => {
       await getProfesores();
       await getAsignaturas();
       await getPosgrados();
       await getExtUnivs();
       await getInvCients()
+      await getUsers();
     };load()
-    
-    // let prof=[];
-    // Profesores.map((profesor)=>{
-    //   let aux={
-    //     _id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos, graduado:profesor.graduado, hpre:0, hpos:0, hic:0, heu:0, th:0
-    //   }
-    //   async function loadAsignaturas() {
-    //     getAsignaturaProf(profesor._id)
-
-    //   }loadAsignaturas();
-    //   if(Array.isArray(AsigProf))
-    //   {
-    //     AsigProf.map((asig)=>{
-    //       aux.hpre+=parseInt(asig.horas)
-    //     })
-    //   }
-    //   async function loadPosgrados() {
-    //     let res=getPosgradoProf(profesor._id)
-    //     console.log(res);
-        
-
-    //   }loadPosgrados();
-    //   if(Array.isArray(PosProf)){
-    //     PosProf.map((posg)=>{
-    //       aux.hpos+=parseInt(posg.horas)
-    //     })
-    //   }
-    //   let res=null
-    //   async function loadExtUniv() {
-    //     res=getExtUnivProf(profesor._id)     
-        
-    //   }loadExtUniv()
-    //   console.log(ExtProf);
-    //   console.log(res);
-      
-    //   if(Array.isArray(ExtProf)){
-    //     ExtProf.map((extension)=>{
-    //       aux.heu+=parseInt(extension.horas)
-    //     })
-    //   }
-      
-    //   aux.th=parseInt(aux.hpre)+ parseInt(aux.hpos)+ parseInt(aux.hic)+ parseInt(aux.heu)
-      
-    //   prof.push(aux)
-      
-      
-    // })
-    //setprofesorInicio(prof)
   }, []);
 
-
   useEffect(() => {
-    let profesoresArray=[]
-    
+    let profesoresArray=[]    
     if(Array.isArray(Profesores)){
       Profesores.map((profesor)=>{
         let aux={
@@ -131,8 +64,7 @@ function inicio({username}) {
               hic:0, 
               heu:0, 
               th:0
-            }
-            
+            }            
         if(Array.isArray(Asignaturas)){
           let asignaturasProf=Asignaturas.filter((asignatura)=>asignatura.profesor===profesor._id)
           asignaturasProf.map((asignatura)=>{
@@ -162,14 +94,9 @@ function inicio({username}) {
         profesoresArray.push(aux)
       })
     }
-    
     setprofesorInicio(profesoresArray)
-    
-    //console.log('✅ profesorInicio    ', profesorInicio)
-    
-    
+    setFilteredProfesor(profesorInicio)    
   }, [Profesores,Asignaturas,Posgrados,ExtUnivs,InvCients])
-  
 
   
     return (
@@ -178,33 +105,32 @@ function inicio({username}) {
           
           <Header username={username}/> 
           <SearchBar 
-            search={search}
-            setsearch={setsearch}
+            query={query}
+            handleInputChange={handleInputChange}
+            setQuery={setQuery}
           />      
           <ThInicio />
           
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
-          {profesorInicio.map((profesor,i)=>(
+          {filteredProfesor.map((profesor,i)=>(
             <ElementInicio 
-            key={profesor._id}
-            profesorInicio={profesorInicio}
-            setprofesorInicio={setprofesorInicio}
-            {...profesor}
-          />
-            
-          ))
-            
-          }
-        
-      
+              key={profesor._id}
+              profesorInicio={profesorInicio}
+              setprofesorInicio={setprofesorInicio}
+              {...profesor}
+              users={users}
+            />
+          ))}
         </div>
         <Link 
-                to="/admin/addprofesor"
-            ><button className="floatingbutton btn btn-primary"
-            >Agregar</button></Link>
-          
-        
+          to="/admin/addprofesor"
+        >
+          <button 
+            className="floatingbutton btn btn-primary"
+            >Agregar
+          </button>
+        </Link>
       </>
     )
   }

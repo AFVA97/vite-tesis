@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useProfesor } from "../../../../context/profesorContext";
 
-function elementPregrado({ _id,nombre, apellidos, first, second, te, tm, th,profesorInicio,setprofesorInicio}){
+function elementPregrado({ _id,nombre, apellidos, first=false, second=false, te, tm, th,profesorInicio,setprofesorInicio}){
     const [active, setactive] = useState(false);
     const {deletesProfesor}=useProfesor()
     const handleDelete=()=>{

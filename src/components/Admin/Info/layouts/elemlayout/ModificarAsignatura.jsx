@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { useProfesor } from "../../../../context/profesorContext"
-import { useAsignatura } from "../../../../context/asignaturaContext"
-import InfoNavBar from "../../Info/infoNavBar"
-import { useCarrera } from "../../../../context/carreraContext"
+import { useProfesor } from "../../../../../context/profesorContext"
+import { useAsignatura } from "../../../../../context/asignaturaContext"
+import InfoNavBar from "../../infoNavBar"
+import { useCarrera } from "../../../../../context/carreraContext"
 import { useForm } from "react-hook-form"
 import SearchBar from "./SearchBar"
 
@@ -12,18 +12,25 @@ import SearchBar from "./SearchBar"
 const ModificarAsignatura = () => {
     const _id=useParams()._id
     const {Profesores,getProfesores}=useProfesor();
-    const {getAsignatura,updatesAsignatura}=useAsignatura();
+    const {getAsignatura,updatesAsignatura,getAsignaturas}=useAsignatura();
     const [asignatura, setasignatura] = useState({nombre:"",facultad:"",notas:""})
     const [carrera,setCarrera]=useState({nombre:""})
-    const [auxiliar,setauxiliar]=useState(null)
+    //const [auxiliar,setauxiliar]=useState(null)
     const {getCarrera}=useCarrera()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const navigate=useNavigate()
-    const [selectedSuggestion, setSelectedSuggestion] = useState('');
-    const [nombreProfesor, setnombreProfesor] = useState('')
+    // const [selectedSuggestion, setSelectedSuggestion] = useState('');
+    
+    // const [nombreProfesor, setnombreProfesor] = useState('')
+    
+    
     const handleSelect = (profesor) => {
-    setValue('profesor',profesor._id);
-        
+         
+        if(profesor)
+            setValue('profesor',profesor._id);
+        else
+            setValue('profesor',null);
+     
         
   };
   
@@ -65,9 +72,11 @@ const ModificarAsignatura = () => {
     
     const onSubmit=handleSubmit(data=>{        
         try {
+            //console.log(data);
             
            if(asignatura.carrera){
                 updatesAsignatura(data);
+                
                 navigate(`/admin/facultad/info/${asignatura.facultad}`)
                 
            }
@@ -89,7 +98,7 @@ const ModificarAsignatura = () => {
             <div className="row p-5">
                 <div className="col-3">
                     <span className="input-group-text w-100" id="basic-addon1">Profesor</span>
-                    <SearchBar Profesores={Profesores} onSelect={handleSelect} />
+                    <SearchBar Profesores={Profesores} onSelect={handleSelect} prof={asignatura.profesor} />
                 </div>
                 <div className="input-group mb-3 col-9 p-1 ">
                     <div className="w-100"><span className="input-group-text w-100" >Notas</span></div>
@@ -97,11 +106,9 @@ const ModificarAsignatura = () => {
                             rows={3}
                             cols={40} 
                             className="form-control " 
-                            {...register("notas", { required: true })}
+                            {...register("notas")}
                         /></div>
-                    {errors.notas && (
-                        <p className="form-label"> Descripción is required</p>
-                    )}
+                    
                 </div>
                 
                 

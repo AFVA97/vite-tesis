@@ -5,7 +5,6 @@ import SearchBar from "./searchBar"
 import { useEffect, useState } from "react"
 import 'animate.css';
 import { useInvCient } from "../../../context/invcientContext"
-//import { set } from "react-hook-form"
 import { useProfesor } from "../../../context/profesorContext"
 
 function InvCient({username}) {
@@ -24,32 +23,29 @@ function InvCient({username}) {
     updatesInvCient,
     deletesInvCient,}=useInvCient()
   const [profesores,setprofesores]=useState([])
-  //const [investigaciones, setinvestigaciones] = useState([])
+  const [query, setQuery] = useState('');
+  const [filteredProfesor, setFilteredProfesor] = useState([]);
+
+  const handleInputChange = (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      setFilteredProfesor(
+        profesores.filter((profesor) =>
+          profesor.nombre.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    };
+
+    useEffect(() => {
+      if(query==='')
+        setFilteredProfesor(profesores)
+    }, [query])
   
   useEffect(() => {
     const load=async () => {
       await getProfesores();
       await getInvCients()
-    };load()
-    // getProfesors();
-    // let profs=[];
-    // Profesors.map((profesor)=>{
-    //   let aux={_id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos, proyecto:0, premios:0, publicaciones:0,otros:0}
-    //   async function loadInv() {
-    //     set(getInvCientProf(profesor._id))
-    //   }loadInv()
-    //   if(Array.isArray(investigaciones)){
-    //     investigaciones.map((inves)=>{
-    //       if(inves.tipo==="Proyecto"){aux.proyecto+=1}
-    //       else if(inves.tipo==="Publicación Artículo"||inves.tipo==="Publicación Libro o Capítulo"){aux.publicaciones+=1}
-    //       else if(inves.tipo==="Premio ACC"||inves.tipo==="Premio BTJ"||inves.tipo==="Otro Premio"){aux.premios+=1}
-    //       else{aux.otros+=1}
-    //     })
-    //   }
-    //   profs.push(aux)
-    // })
-    // setprofesores(profs)
-  
+    };load()  
   }, [])
 
   useEffect(()=>{
@@ -70,6 +66,7 @@ function InvCient({username}) {
       })
     }
     setprofesores(profesoresArray)
+    setFilteredProfesor(profesores)
   },[Profesores,InvCients])
 
   // const propsi={
@@ -81,14 +78,15 @@ function InvCient({username}) {
           
           <Header username={username}/>    
           <SearchBar 
-            search={search}
-            setsearch={setsearch}
+            query={query}
+            handleInputChange={handleInputChange}
+            setQuery={setQuery}
           />  
           <ThInvCient />
           
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
-          {profesores.map((profesor,i)=>(
+          {filteredProfesor.map((profesor,i)=>(
             <ElementInvCient 
             key={profesor._id} 
             {...profesor}

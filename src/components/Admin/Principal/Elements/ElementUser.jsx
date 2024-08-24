@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react"
-import PropTypes from "prop-types"
+//import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../../context/authContext";
 import { useProfesor } from "../../../../context/profesorContext";
@@ -9,10 +9,10 @@ import { useFacultad } from "../../../../context/facultadContext";
 function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
     const [active, setactive] = useState(false);
     const {deleteUser}=useAuth()
-    const handleDelete=()=>{
+    const handleDelete=async()=>{
         
         
-        deleteUser(_id);
+       await deleteUser(_id);
     }
     const tipo=()=>{
         if(ciuser)
@@ -21,7 +21,7 @@ function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
             return "Facultad";
         return "Administrador"
     }
-    const {getUser}=useAuth();
+    //const {getUser}=useAuth();
     const {getFacultad}=useFacultad();
     const {getProfesor}=useProfesor();
     const [asignado, setasignado] = useState("")
@@ -66,10 +66,10 @@ function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
                             Información</Link>
                         </div>
                         
-                        <div className="col table-success"><Link to={`/admin/users/add/${_id}`}>
+                        <div className="col table-success"><Link to={`/admin/users/add/${_id}`} >
                         Modificar</Link>
                         </div>
-                        <div className="col table-danger" onClick={handleDelete}>
+                        <div className="col table-danger" onClick={()=>handleDelete()}>
                             Eliminar
                         </div>
                     </div>

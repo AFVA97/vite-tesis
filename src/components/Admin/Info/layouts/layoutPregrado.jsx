@@ -8,7 +8,7 @@ import  {useCarrera} from '../../../../context/carreraContext'
 
 
 function layoutPregrado({_id}){
-    let review={first:false, second:false, te:0, tm:0, th:0}
+    const [review, setreview] = useState({first:false, second:false, te:0, tm:0, th:0})
     //const element={carrera:"info",anno:3,semestre:true,asignatura:"Filo",horas:34,frecuencia:2,taa:3,tef:"EF"}
     const [elementos, setelementos] = useState([])
     //en el caso del semestre  es booleano ya que las asignaturas de marxismo generalmente son de un solo semestre
@@ -31,8 +31,14 @@ function layoutPregrado({_id}){
         
         let elememntoTemp=Asignaturas.filter((asignatura)=>asignatura.profesor===_id)
         let element=[]
+        let first=false;
+        let second=false
+        let te=0
+        let th=0;
+        let tm=0
         if(Array.isArray(elememntoTemp)){
             elememntoTemp.map((asignatura)=>{
+                
                 let carre=(Carreras.filter((carrera)=>carrera.id=asignatura.carrera))[0].nombre;
                 element.push({
                     carrera:carre,
@@ -45,19 +51,20 @@ function layoutPregrado({_id}){
                     taa:asignatura.tutoriaaa
                     ,tef:asignatura.exafinal?"Sí":"No"})
                 if(asignatura.semestre){
-                    review.first=true
+                    first=true
                 }
                 else
-                    review.second=true
-                review.te+=parseInt(asignatura.tutoriaaa)
-                review.th+=parseInt(asignatura.horas)
+                    second=true
+                te+=parseInt(asignatura.tutoriaaa)
+                th+=parseInt(asignatura.horas)
 
             })
         }
         setelementos(element);
         if(Profesor.trabajometo)
-            review.tm+=parseInt(Profesor.trabajometo)
-        review.th+=parseInt(review.tm)
+            tm+=parseInt(Profesor.trabajometo)
+        th+=parseInt(tm)
+        setreview({first,second,te,tm,th})
       }
     }, [Asignaturas])
     

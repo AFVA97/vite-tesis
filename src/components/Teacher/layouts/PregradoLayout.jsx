@@ -64,7 +64,7 @@ useEffect(() => {
           {asignaturas.map((pregrado,i)=>(
             <ElementPregrado 
             key={pregrado._id} 
-            {...pos}
+            {...pregrado}
           />
           ))}
             {(asignaturas.length==0) &&

@@ -25,47 +25,33 @@ function inicio({username}) {
     deletesPosgrado,
   }=usePosgrado()
   const [profesorInicio,setprofesorInicio]=useState([])
-  //const [posgradoProf, setposgradoProf] = useState([])
+  const [query, setQuery] = useState('');
+  const [filteredProfesor, setFilteredProfesor] = useState([]);
+
+  const handleInputChange = (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      setFilteredProfesor(
+        profesorInicio.filter((profesor) =>
+          profesor.nombre.toLowerCase().includes(value.toLowerCase())
+        )
+      );
+    };
+
+    useEffect(() => {
+      if(query==='')
+        setFilteredProfesor(profesorInicio)
+    }, [query])
 
   useEffect(() => {
-
     const load=async () => {
       await getProfesores();
       await getPosgrados();
     };load()
-
-    //     if(posg.impartido)
-    //         aux.hi+=posg.horas
-    //       else
-    //         aux.hr+=posg.horas
-          
-    //     })
-    //   }
-    //   aux.th+=aux.hi+aux.hr
-    //   prof.pugetProfesors();
-    // let prof=[];
-    // Profesors.map((profesor)=>{
-    //   let aux={
-    //     _id:profesor._id,nombre:profesor.nombre, apellidos:profesor.apellidos,hi:0, hr:0, th:0
-    //         }
-      
-      
-    //   async function loadPosgrados() {
-    //     setposgradoProf(getPosgradoProf(profesor._id))
-
-    //   }loadPosgrados();
-    //   if(Array.isArray(posgradoProf)){
-    //     posgradoProf.map((posg)=>{
-    //   sh(aux)
-      
-      
-    // })
-    // setprofesorInicio(prof)
   }, []);
 
   useEffect(() => {
     let profesoresArray=[]
-    
     if(Array.isArray(Profesores)){
       Profesores.map((profesor)=>{
         let aux={
@@ -76,7 +62,6 @@ function inicio({username}) {
           hr:0, 
           th:0
         }
-            
         if(Array.isArray(Posgrados)){
           let posgradosProf=Posgrados.filter((posgrado)=>posgrado.profesor===profesor._id)
           posgradosProf.map((posgrado)=>{
@@ -90,34 +75,27 @@ function inicio({username}) {
           })
         }
         aux.th+=parseInt(aux.hi)+parseInt(aux.hr)
-        
-        
         profesoresArray.push(aux)
       })
     }
-    
     setprofesorInicio(profesoresArray)
+    setFilteredProfesor(profesorInicio)
   }, [Profesores,Posgrados])
-  
 
-
-  // const propsi={
-  //   id:1,nombre:"Name", apellidos:"Last", hi:5, hr:6, th:9}
- 
     return (
       <>
         <div className="sticky-top"> 
-          
           <Header username={username}/>    
           <SearchBar 
-            search={search}
-            setsearch={setsearch}
+            query={query}
+            handleInputChange={handleInputChange}
+            setQuery={setQuery}
           />   
           <ThInicio />
           
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
-          {profesorInicio.map((profesor,i)=>(
+          {filteredProfesor.map((profesor,i)=>(
             <ElementPosgrado 
             key={profesor._id} 
             {...profesor}

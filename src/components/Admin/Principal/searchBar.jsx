@@ -1,61 +1,27 @@
-import { useForm } from '../../../hooks/useForm';
 
 
-function searchBar  ({setsearch})  {
-    
-    
-    const [ formValues, handleInputChange, reset, especific ] = useForm({
-        searchText: ""
-    });
-    const { searchText } = formValues;
-    
-   
-    const handleSearch = (e) => {
-        e.preventDefault();
-        setsearch(searchText);
-    }
-
+function searchBar  ({handleInputChange,query,setQuery})  {
     return (
-        <div className="row container-fluid">
-            <form onSubmit={ handleSearch } >
-                <div className='row'>
-                    <div className='col-6'>
-                        <input 
-                        type="text"
-                        placeholder="Buscar por Nombre"
-                        className="form-control"
-                        name="searchText"
-                        autoComplete="off"
-                        value={ searchText }
-                        onChange={ handleInputChange }
-                        />
-                    </div>              
-                    <div className='col-3'>
-                        <button
-                            type="submit"
-                            className="btn m-1 btn-block btn-outline-primary"
-                        >
-                            Search...
-                        </button>
-                    </div>
-                    <div className='col-3'>
-                        <button
-                            className="btn m-1 btn-block btn-outline-primary"
-                            onClick={reset}
-                        >
-                            Reset...
-                        </button>
-                    </div>
+        <div className='row m-1 justify-content-around'>
+            <div className='col-10'>
+                <input
+                type="text"
+                value={query}
+                className="w-100 form-control"
+                onChange={e=>handleInputChange(e)}
+                placeholder="Buscar por Nombre"
+                />
                 
-                </div>
-            </form>
-
-
+            </div>
+            <div className='col-2'>
+                <button
+                    className="btn m-1 btn-block btn-outline-primary"
+                    onClick={()=>{setQuery('')}}
+                >
+                    Reset...
+                </button>
+            </div>
         </div>
-
-
-                
-      
     )
 }
 export default searchBar
