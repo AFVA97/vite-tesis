@@ -26,20 +26,14 @@ const AddExtUniv = () => {
   
     const navigate=useNavigate()
     const [tipoSelect, settipoSelect] = useState("Default")
-        
+    const [extension, setextension] = useState(null)
     
     useEffect(() => {
       async function loadExt() {
-        getProfile();
+        await getProfile();
         if(params._id){
-            const extension=await getExtUniv(params._id);
-            setValue('_id',extension._id)
+            setextension(await getExtUniv(params._id));
             
-            setValue('fecha',new Date(extension.fecha).toISOString().slice(0, 10))
-            setValue('horas',extension.horas)
-            setValue('titulo',extension.titulo)
-            setValue('tipo',extension.tipo)
-            settipoSelect(extension.tipo)
         }
 
 
@@ -48,13 +42,24 @@ const AddExtUniv = () => {
             
     }, [])
     useEffect(() => {
-        //console.log(user);
         
         if(user!=null){
             setValue('profesor',user.ciuser)
         }
         
       }, [user])
+      useEffect(() => {
+        if(extension){
+            setValue('_id',extension._id)
+            
+            setValue('fecha',new Date(extension.fecha).toISOString().slice(0, 10))
+            setValue('horas',extension.horas)
+            setValue('titulo',extension.titulo)
+            setValue('tipo',extension.tipo)
+            settipoSelect(extension.tipo)
+        }
+      }, [extension])
+      
     
     const onSubmit=handleSubmit(data=>{        
         try {

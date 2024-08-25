@@ -6,10 +6,6 @@ import { useExtUniv } from "../../../../context/extunivContext"
 
 function layoutExtUniv({_id}){
 
-    // const review={are:1,tch:2,ae:3,th:4}
-
-    const element={nombre:"extension",tipo:"",horas:11,fecha:""}
-
     const [elementos, setelementos] = useState([])
     const {ExtUnivs, getExtUnivs,}=useExtUniv()
 
@@ -21,10 +17,9 @@ function layoutExtUniv({_id}){
             
           };load()
     }, [])
+    
     useEffect(() => {
         if(Array.isArray(ExtUnivs)){
-          //console.log(InvCients);
-          
           let elementoTemp=ExtUnivs.filter((extension)=>extension.profesor===_id)
           let extensiones=[]
           let are=0;let tch=0;let ae=0;let th=0; 

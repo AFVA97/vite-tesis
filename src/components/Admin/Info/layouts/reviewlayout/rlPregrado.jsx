@@ -1,5 +1,4 @@
 
-import PropTypes from "prop-types"
 
 function rlPregrado({first, second, te, tm, th}) {
        
@@ -21,13 +20,5 @@ function rlPregrado({first, second, te, tm, th}) {
     )
   }
 
-
-  rlPregrado.propTypes={
-    first:PropTypes.bool, 
-    second:PropTypes.bool, 
-    te:PropTypes.number, 
-    tm:PropTypes.number, 
-    th:PropTypes.number
-}
   
   export default rlPregrado

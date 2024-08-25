@@ -1,9 +1,7 @@
 
-import PropTypes from "prop-types"
 
 function elExtUniv({nombre, tipo, horas, fecha}){
     let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
-    
     return(
         <>
             <div className="row justify-content-center text-center container-fluid  m-0 p-0">
@@ -16,9 +14,6 @@ function elExtUniv({nombre, tipo, horas, fecha}){
     )
 }
 
-elExtUniv.propTypes={
-    // nombre:PropTypes.string,    
-    // horas:PropTypes.number
-}
+
 
 export default elExtUniv

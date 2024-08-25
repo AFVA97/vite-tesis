@@ -25,9 +25,7 @@ function elementPosgrado({_id,nombre,impartido,modalidad,fecha,horas}){
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${_id}`}>
-                            Información</Link>
-                        </div>
+                        
                         
                         
                         <div className="col table-danger" onClick={()=>deletesPosgrado(_id)}>

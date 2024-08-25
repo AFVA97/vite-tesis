@@ -7,6 +7,7 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
     const [active, setactive] = useState(false);
     const {deletesProfesor}=useProfesor()
     const [error,seterror]=useState([])
+
     const handleDelete=()=>{
         const temp=users.filter((user)=>user.ciuser===_id)
         if(temp.length==0){
@@ -14,6 +15,7 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
             setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
         }
     }
+
     useEffect(() => {
         if (error.length > 0) {
           const timer = setTimeout(() => {
@@ -22,6 +24,7 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
           return () => clearTimeout(timer);
         }
       }, [error]);
+      
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
@@ -33,15 +36,11 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
                 <div scope="col" className="col-1">{heu}</div>
                 <div scope="col" className="col-1">{th}</div> 
             </div>
-            
             {active &&
-                
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
-                        
                         <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
-                        
                         <div className="col table-success"><Link to={`/admin/addprofesor/${_id}`}>
                         Modificar</Link>
                         </div>
@@ -49,31 +48,18 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
                             Eliminar
                         </div>
                     </div>
-                
-                
             }
             {error.length>0 ? (
                 <>
                 {error.map((errores,i)=>(
                         <p key={i} className="alert alert-danger text-center"> {errores} </p>
                     ))}
-              
                 </>
             ):<div></div>}
         </>
     );
 }
 
-elementInicio.propTypes={
-    id:PropTypes.number,
-    nombre:PropTypes.string,
-    apellidos:PropTypes.string,
-    graduado:PropTypes.string,
-    hpre:PropTypes.number,
-    hpos:PropTypes.number,
-    hic:PropTypes.number,
-    heu:PropTypes.number,
-    th:PropTypes.number
-}
+
 
 export default elementInicio

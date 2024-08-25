@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import InfoNavBar from "./infoNavBar"
 import LayoutInicio from "./layouts/layoutInicio"
 import LayoutPregrado from "./layouts/layoutPregrado"
@@ -13,7 +12,6 @@ import { useParams} from "react-router-dom"
 
 function infoScreen({title}){
     const params=useParams();
-    
     
     function layout(){
         switch(title){
@@ -40,12 +38,8 @@ function infoScreen({title}){
             {
                 layout()
             }
-            
         </>
     )
 };
 export default infoScreen;
 
-infoScreen.propTypes={
-    title:PropTypes.string
-  }

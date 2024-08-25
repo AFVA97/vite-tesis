@@ -499,7 +499,6 @@ useEffect(() => {
             </>
         )
         break;
-  
     default:
         setselectores(
             <>

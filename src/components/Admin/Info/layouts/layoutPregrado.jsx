@@ -9,9 +9,7 @@ import  {useCarrera} from '../../../../context/carreraContext'
 
 function layoutPregrado({_id}){
     const [review, setreview] = useState({first:false, second:false, te:0, tm:0, th:0})
-    //const element={carrera:"info",anno:3,semestre:true,asignatura:"Filo",horas:34,frecuencia:2,taa:3,tef:"EF"}
     const [elementos, setelementos] = useState([])
-    //en el caso del semestre  es booleano ya que las asignaturas de marxismo generalmente son de un solo semestre
     const {Asignaturas,getAsignaturas}=useAsignatura()
     const {Carreras,getCarreras}=useCarrera()
     const [Profesor, setProfesor] = useState({nombre:"",apellidos:"",graduado:""})
@@ -25,10 +23,9 @@ function layoutPregrado({_id}){
             
           };load()
     }, [])
+
     useEffect(() => {
       if(Array.isArray(Asignaturas)){
-        //console.log(Profesor);
-        
         let elememntoTemp=Asignaturas.filter((asignatura)=>asignatura.profesor===_id)
         let element=[]
         let first=false;
@@ -38,8 +35,11 @@ function layoutPregrado({_id}){
         let tm=0
         if(Array.isArray(elememntoTemp)){
             elememntoTemp.map((asignatura)=>{
-                
-                let carre=(Carreras.filter((carrera)=>carrera.id=asignatura.carrera))[0].nombre;
+                let carre=(Carreras.filter((carrera)=>carrera.id=asignatura.carrera))[0];
+                if(carre.nombre)
+                    carre=carre.nombre
+                else
+                carre={nombre:''}
                 element.push({
                     carrera:carre,
                     _id:asignatura._id,
@@ -66,8 +66,7 @@ function layoutPregrado({_id}){
         th+=parseInt(tm)
         setreview({first,second,te,tm,th})
       }
-    }, [Asignaturas])
-    
+    }, [Carreras,Asignaturas])
     
 
     return(

@@ -22,7 +22,7 @@ function elementInvCient({_id,titulo, tipo, fecha}){
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${_id}`}>
+                        <div className="col table-info"><Link to={`/teacher/infoinv/${_id}`}>
                             Información</Link>
                         </div>
                         <div className="col table-danger" onClick={()=>deletesInvCient(_id)}>

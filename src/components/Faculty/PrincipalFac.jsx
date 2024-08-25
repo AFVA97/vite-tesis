@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes,useNavigate } from "react-router-dom"
-import Header from "./Header_Fac"
+import { Route, Routes } from "react-router-dom"
 import Inicio from "./Principal/inicioScreen"
 import Login from "../login"
 import { useAuth } from "../../context/authContext";

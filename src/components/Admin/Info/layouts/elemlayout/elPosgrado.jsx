@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+
 
 function elPosgrado({nombre,impartido,modalidad,ubicacion,cc,horas}){
     return(
@@ -14,16 +14,5 @@ function elPosgrado({nombre,impartido,modalidad,ubicacion,cc,horas}){
         </>
     )
 }
-
-
-elPosgrado.propTypes={
-    nombre:PropTypes.string, 
-    impartido:PropTypes.bool, 
-    modalidad:PropTypes.string, 
-    ubicacion:PropTypes.string, 
-    cc:PropTypes.number,
-    horas:PropTypes.number
-}
-
 
 export default elPosgrado

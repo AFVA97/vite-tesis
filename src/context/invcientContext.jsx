@@ -97,9 +97,9 @@ export function InvCientProvider({ children }) {
   // };
   
 
-  const getInvCient = async (id) => {
+  const getInvCient = async (_id) => {
     try {
-      const res = await getInvCientRequest(id); 
+      const res = await getInvCientRequest(_id); 
       
       return res.data;
     } catch (error) {

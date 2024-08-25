@@ -1,57 +1,52 @@
 import ThPregrado from '../Principal/TableHead/thPregrado'
 import ElementPregrado from '../Principal/Elements/elementPregrado'
 import {useAsignatura} from '../../../context/asignaturaContext'
-import { useAuth } from "../../../context/authContext"
 import { useEffect, useState } from "react"
-
+import { useFacultad } from '../../../context/facultadContext'
+import {useCarrera} from '../../../context/carreraContext'
 
 
 
 const PregradoLayout = ({user}) => {
-  // const{getProfile}=useAuth()
-  // const user=getProfile()
-  //   const {getAsignaturaProf,AsigProf}=useAsignatura()
-  const {
-    Asignaturas,
-    errors:errorAsignatura,        
-    getAsignaturas,
-    createsAsignatura,
-    updatesAsignatura,
-    deletesAsignatura,
-  }=useAsignatura()
+  
+  const { Asignaturas, getAsignaturas }=useAsignatura()
   const [asignaturas, setasignaturas] = useState([]);
+  const {Facultades,getFacultades}=useFacultad()
+  const {Carreras,getCarreras}=useCarrera();
+
   useEffect(() => {
     const load=async()=>{
       await getAsignaturas();
+      await getFacultades();
+      await getCarreras();
     };load();
-    // if(user){
-    //   getAsignaturaProf(user.ciuser)
-    //   let pregr=[]
-
-    //   //semestre nombre carrera facultad tipode curso horas
-    //   if(Array.isArray(AsigProf)){
-    //     AsigProf.map((pre)=>{
-    //       pregr.push({_id:pre._id,nombre:pre.nombre,semestre:pre.semestre,carrera:pre.carrera,facultad:pre.facultad,tipocurso:pre.tipocurso,horas:pre.horas})
-    //     })
-    // }
-    // setasignaturas(pregr)
-
-  
-
   }, [])
+
+
 useEffect(() => {
       let pregr=[]
-
-      //semestre nombre carrera facultad tipode curso horas
       if(Array.isArray(Asignaturas)){
         let AsigProf=Asignaturas.filter((asignatura)=>asignatura.profesor===user.ciuser)
           
         AsigProf.map((pre)=>{
-          pregr.push({_id:pre._id,nombre:pre.nombre,semestre:pre.semestre,carrera:pre.carrera,facultad:pre.facultad,tipocurso:pre.tipocurso,horas:pre.horas})
+          if(Array.isArray(Carreras)){
+            let carrTemp=Carreras.filter((carrera)=>carrera._id===pre.carrera)
+            if(carrTemp[0]){
+              let carrera=carrTemp[0].nombre
+            if(Array.isArray(Facultades)){
+              let facTemp=Facultades.filter((facultad)=>facultad._id===pre.facultad)
+              if(facTemp[0]){
+                let facultad=facTemp[0].nombre
+                pregr.push({_id:pre._id,nombre:pre.nombre,semestre:pre.semestre,carrera:carrera,facultad:facultad,tipocurso:pre.tipocurso,horas:pre.horas})
+            
+              }
+            }  
+            }         
+          }
         })
       }
     setasignaturas(pregr)
-}, [Asignaturas,user])
+}, [Carreras,Facultades,Asignaturas,user])
 
 
   return (
@@ -71,8 +66,6 @@ useEffect(() => {
                 <>
                 <h6>No tiene Asignaturas asignadas </h6>
                 </>}
-        
-      
         </div>
     </>
   )

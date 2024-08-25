@@ -11,6 +11,8 @@ import { useEffect, useState } from "react"
 import AddExtUniv from "./Add/AddExtUniv"
 import AddInvCient from "./Add/AddInvCient"
 import AddPosgrado from "./Add/AddPosgrado"
+import InfoInv from "./Info/InfoInv"
+import InfoPre from "./Info/InfoPre"
 
 
 export default function App() {
@@ -54,6 +56,9 @@ export default function App() {
           <Route path="/addposgrado" element={<AddPosgrado />}/>
           <Route path="/addposgrado/:_id" element={<AddPosgrado />}/>
           
+          <Route path="/infoinv/:_id" element={<InfoInv user={username}/>}/>
+          <Route path="/infopre/:_id" element={<InfoPre user={username}/>}/>
+
           <Route path="/inicio" element={<Inicio user={username}/>}/>
           <Route path="/pregrado" element={<Pregrado  user={username}/>} />
           <Route path="/posgrado" element={<Posgrado user={username}/>} />

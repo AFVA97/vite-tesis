@@ -6,11 +6,8 @@ import { useEffect, useState } from "react"
 
 function layoutInvCient({_id}){
     const [review, setreview] = useState({proyectos:0, publicaciones:0, premios:0, otros:0, total:0 })
-   // const element={ti:"tipo",titulo:"investigacion",alcance:"true",horas:5}
-    
     const [elementos, setelementos] = useState([])
     const {InvCients, getInvCients}=useInvCient()
-
 
     useEffect(() => {
         const load=async () => {
@@ -18,10 +15,9 @@ function layoutInvCient({_id}){
             
           };load()
     }, [])
+
     useEffect(() => {
       if(Array.isArray(InvCients)){
-        //console.log(InvCients);
-        
         let elementoTemp=InvCients.filter((investigacion)=>investigacion.profesor===_id)
         let investigaciones=[]
         let proyectos=0;let publicaciones=0; let premios=0;let otros=0; 

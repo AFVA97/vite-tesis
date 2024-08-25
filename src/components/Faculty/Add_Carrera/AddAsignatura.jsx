@@ -1,43 +1,19 @@
 import { useEffect, useState } from "react"
 import InfoNavBar from "./infoNavBar"
 import { useForm } from "react-hook-form";
-import { useExtUniv } from '../../../context/extunivContext';
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { useAuth } from "../../../context/authContext";
+import {  useNavigate, useParams } from "react-router-dom";
 import {useAsignatura} from '../../../context/asignaturaContext'
 import { useNombreAsignatura } from "../../../context/nombreAsigContext";
 
 
-
-
-
-
 const AddAsignatura = ({User}) => {
     const params=useParams();
-    
-    //console.log(useParams()._id);
-    const{Asignaturas,
-    errors:errorAsignatura,        
-    getAsignaturas,
-    createsAsignatura,
-    updatesAsignatura,
-    deletesAsignatura,
-    
-    getAsignatura,}=useAsignatura()
+    const{ createsAsignatura}=useAsignatura()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-  
-
     const [semestre, setsemestre] = useState(true);
     const [exafinal, setexafinal] = useState(true);
-    
     const navigate=useNavigate()
-    const{NombreAsignaturas,
-        errors:errorNombreAsig,
-        getNombreAsignaturas,
-        createNombreAsignaturaRequest,
-        updatesNombreAsignatura,
-        deletesNombreAsignatura,
-        getNombreAsignatura,}=useNombreAsignatura()
+    const{NombreAsignaturas, getNombreAsignaturas, }=useNombreAsignatura()
 
     useEffect(() => {
         const load=async()=>{
@@ -50,48 +26,13 @@ const AddAsignatura = ({User}) => {
           setValue('notas',"")
           if(User.facuser)
             setValue('facultad',User.facuser)
-
-          
-        
-        
-        
-        
-            
     }, [])
-
-    
-    // useEffect(() => {
-    //     async function loadAsig() {
-    //       if(params._id){
-    //           const asignatura=await getAsignatura(params._id);
-    //           setValue('_id',asignatura._id)              
-    //           setValue('nombre',asignatura.nombre)
-    //           setValue('carrera',params._id)
-    //           setValue('facultad',User.facuser)
-    //           setValue('anno',asignatura.anno)
-    //           setValue('semestre',asignatura.semestre)              
-    //           setValue('tipocurso',asignatura.tipocurso)
-    //           setValue('cantgrupos',asignatura.cantgrupos)
-    //           setValue('horas',asignatura.facuser)
-    //           setValue('exafinal',asignatura.exafinal)
-    //           setsemestre(asignatura.semestre)
-    //           setexafinal(asignatura.exafinal)
-            
-            
-            
-    //       }
-  
-  
-    //     }loadAsig()
-              
-    //   }, [])
 
     useEffect(() => {
         if(User.facuser)
             setValue('facultad',User.facuser)
     }, [User])
     
-
     
       const onSubmit=handleSubmit(data=>{        
         try {
@@ -116,40 +57,34 @@ const AddAsignatura = ({User}) => {
     }
     const handleOnChanges=()=>{
         setexafinal(!exafinal)
-        setValue('funcionDireccion',"")
+        setValue('exafinal',exafinal)
     }
     
   return (
     <>
-      <InfoNavBar title={"Añadir Profesor"} link={`/faculty/modificar/${params._id}`}/>      
+      <InfoNavBar title={"Añadir Asignatura"} link={`/faculty/modificar/${params._id}`}/>      
         <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-            <div className="row p-5">
-                {/*  //nombre asignatura
-                anno
-                tipocurso
-                 */}
-                <div className="input-group mb-3 p-1 col-6">
+            <div className="row   p-5">
+                <div className="input-group mb-3 mw-100 justify-content-center p-1 col-6">
                     <span className="input-group-text" id="basic-addon1">Asignatura</span>
                     <select 
                         className="form-select" 
                         onChange={ e => setValue('nombre',e.target.value)}
-                        //value={tipoSelect}
                     >
-                        <option value="Default" >Seleccione una Opción</option>
+                        <option value="" >Seleccione una Opción</option>
                         {NombreAsignaturas.map((asignatura)=>(
-                            <option value={asignatura.nombre} >{asignatura.nombre}</option>
+                            <option value={asignatura.nombre} key={asignatura._id}>{asignatura.nombre}</option>
                         ))}
                     </select>
                         {errors.nombre && (
                             <p className="form-label"> Nombre de la Asignatura is required</p>
                         )}
                 </div>
-                <div className="input-group mb-3 p-1 col-6">
+                <div className="input-group mb-3 p-1  justify-content-center mw-100 col-6">
                     <span className="input-group-text" id="basic-addon1">Año</span>
                     <select 
                         className="form-select" 
                         onChange={ e => setValue('anno',e.target.value)}
-                        //value={tipoSelect}
                     >
                         <option value="" >Seleccione una Opción</option>
                         <option value="1" >1ro</option>
@@ -163,16 +98,12 @@ const AddAsignatura = ({User}) => {
                             <p className="form-label"> Nombre de la Asignatura is required</p>
                         )}
                 </div>
-                
-
                 <div className="input-group mb-3 col-6">
                     <span className="input-group-text" id="basic-addon1">Cantidad de Grupos</span>
                     <input 
                         type="number" 
                         className="form-control" 
                         placeholder="#" 
-                        aria-label="NumeroID" 
-                        name="idUniversidad"
                         {...register("cantgrupos", { required: true })}
                         
                     />
@@ -186,8 +117,6 @@ const AddAsignatura = ({User}) => {
                         type="number" 
                         className="form-control" 
                         placeholder="#" 
-                        aria-label="NumeroID" 
-                        name="idUniversidad"
                         {...register("horas", { required: true })}
                         
                     />
@@ -195,31 +124,13 @@ const AddAsignatura = ({User}) => {
                         <p className="form-label"> Horas is required</p>
                     )}
                 </div>
-                <div className="input-group mb-3 p-1 col-6">
-                    <span className="input-group-text" id="basic-addon1">Tipo de Curso</span>
-                    <select 
-                        className="form-select" 
-                        onChange={ e => setValue('tipocurso',e.target.value)}
-                        //value={tipoSelect}
-                    >
-                        <option value="" >Seleccione una Opción</option>
-                        <option value="CRD" >CRD</option>
-                        <option value="CPT" >CPT</option>
-                        <option value="CPE" >CPE</option>
-                        
-                    </select>
-                        {errors.tipocurso && (
-                            <p className="form-label"> Tipo de Curso is required</p>
-                        )}
-                </div>
+                
                 <div className="input-group mb-3 col-6">
-                    <span className="input-group-text" id="basic-addon1">Frecuencia</span>
+                    <span className="input-group-text" id="basic-addon1">Frecuencia Semanal</span>
                     <input 
                         type="number" 
                         className="form-control" 
                         placeholder="#" 
-                        aria-label="NumeroID" 
-                        name="idUniversidad"
                         {...register("frecuencia", { required: true })}
                         
                     />
@@ -242,6 +153,23 @@ const AddAsignatura = ({User}) => {
                     {errors.tutoriaaa && (
                         <p className="form-label"> Tutoria a Alumnos Ayudantes is required</p>
                     )}
+                </div>
+                <div className="input-group mb-3 p-1 justify-content-center">
+                    <span className="input-group-text" id="basic-addon1">Tipo de Curso</span>
+                    <select 
+                        className="form-select" 
+                        onChange={ e => setValue('tipocurso',e.target.value)}
+                        //value={tipoSelect}
+                    >
+                        <option value="" >Seleccione una Opción</option>
+                        <option value="CRD" >CRD</option>
+                        <option value="CPT" >CPT</option>
+                        <option value="CPE" >CPE</option>
+                        
+                    </select>
+                        {errors.tipocurso && (
+                            <p className="form-label"> Tipo de Curso is required</p>
+                        )}
                 </div>
                 <div className="row justify-content-around container-fluid ">
 

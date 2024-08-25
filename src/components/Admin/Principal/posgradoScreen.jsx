@@ -9,21 +9,8 @@ import { useProfesor } from "../../../context/profesorContext"
 
 function inicio({username}) {
 
-  const [search, setsearch] = useState("")
-  const { Profesores,
-    errors:errorProfesor,   
-    getProfesores,
-    createsProfesor,
-    updatesProfesor,
-    deletesProfesor, } = useProfesor();
-  const {
-    Posgrados,
-    errors:errorPosgrado,
-    getPosgrados,
-    createsPosgrado,
-    updatesPosgrado,
-    deletesPosgrado,
-  }=usePosgrado()
+  const { Profesores, getProfesores } = useProfesor();
+  const { Posgrados, getPosgrados }=usePosgrado()
   const [profesorInicio,setprofesorInicio]=useState([])
   const [query, setQuery] = useState('');
   const [filteredProfesor, setFilteredProfesor] = useState([]);
@@ -92,7 +79,6 @@ function inicio({username}) {
             setQuery={setQuery}
           />   
           <ThInicio />
-          
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {filteredProfesor.map((profesor,i)=>(
@@ -101,9 +87,6 @@ function inicio({username}) {
             {...profesor}
           />
           ))}
-            
-        
-      
         </div>
       </>
     )

@@ -7,8 +7,6 @@ export const createCarreraRequest =async(carrera)=>await axios.post(`/carrera`,c
 
 export const getCarreraRequest=async(id)=>await axios.get(`/carrera/${id}`);
 
-//export const getCarreraProfRequest=async(id)=>await axios.get(`/carrera/prof/${id}`);
-
 export const updateCarreraRequest=async(carrera)=>await axios.put(`/carrera/${carrera._id}`,carrera);
 
 export const deleteCarreraRequest=async(id)=>await axios.delete(`/carrera/${id}`);

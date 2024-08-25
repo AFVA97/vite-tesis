@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 
 
 function rlPosgrado({hi, hr,th}) {
@@ -14,10 +13,5 @@ function rlPosgrado({hi, hr,th}) {
     )
   }
 
-  rlPosgrado.propTypes={
-    hr:PropTypes.number,
-    hi:PropTypes.number,
-    th:PropTypes.number
-}
   
   export default rlPosgrado

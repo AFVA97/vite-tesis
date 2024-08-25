@@ -11,20 +11,9 @@ import ComponentFacultad from "./elemlayout/ComponentFacultad"
 function layoutFacultad({_id}){
     const [carrerasFac, setcarrerasFac] = useState([])
     const [AsignaturasFac, setAsignaturasFac] = useState([])
-    const{
-        Asignaturas,  
-        getAsignaturas,
-        createsAsignatura,
-        updatesAsignatura,
-        deletesAsignatura,        
-        getAsignatura,}=useAsignatura()
-    const{
-        Carreras,
-        getCarreras,
-        createsCarrera,
-        updatesCarrera,
-        deletesCarrera,
-        getCarrera}= useCarrera()
+    const{ Asignaturas, getAsignaturas }=useAsignatura()
+    const{ Carreras, getCarreras }= useCarrera()
+
     useEffect(() => {
       const load=async()=>{
         await getAsignaturas();
@@ -32,6 +21,7 @@ function layoutFacultad({_id}){
 
       };load()
     }, [])
+
     useEffect(() => {
       if(Array.isArray(Carreras)){
         setcarrerasFac(Carreras.filter((carrera)=>carrera.facultad===_id))        
@@ -41,18 +31,14 @@ function layoutFacultad({_id}){
       }
     }, [Carreras,Asignaturas])
     
-
-
     return(
         <>
             {carrerasFac.map((carrera)=>(
-                
                 <ComponentFacultad
                     key={carrera._id}
                     carrera={carrera}
                     asignaturas={AsignaturasFac.filter((asignatura)=>asignatura.carrera===carrera._id)}
                 />
-                
             ))}
         </>
     )

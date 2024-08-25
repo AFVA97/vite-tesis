@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 
 function rlInvCient({proyectos, publicaciones, premios,otros, total}) {
        
@@ -15,12 +14,6 @@ function rlInvCient({proyectos, publicaciones, premios,otros, total}) {
         </>
     )
   }
-  rlInvCient.propTypes={
-    pt:PropTypes.number,
-    tf:PropTypes.number,
-    pi:PropTypes.number,
-    tt:PropTypes.number,
-    th:PropTypes.number
-}
+ 
   
   export default rlInvCient

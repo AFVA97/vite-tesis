@@ -6,10 +6,12 @@ import { useProfesor } from "../../../../context/profesorContext";
 function elementPregrado({ _id,nombre, apellidos, first=false, second=false, te, tm, th,profesorInicio,setprofesorInicio}){
     const [active, setactive] = useState(false);
     const {deletesProfesor}=useProfesor()
+
     const handleDelete=()=>{
         deletesProfesor(_id);
         setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
     }
+
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
@@ -22,15 +24,11 @@ function elementPregrado({ _id,nombre, apellidos, first=false, second=false, te,
                 <div scope="col" className="col-1 text-truncate">{tm}</div>
                 <div scope="col" className="col-1 text-truncate">{th}</div> 
             </div>
-            
             {active &&
-                
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
-                        
                         <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
-                        
                         <div className="col table-success">
                             Modificar
                         </div>
@@ -38,22 +36,11 @@ function elementPregrado({ _id,nombre, apellidos, first=false, second=false, te,
                             Eliminar
                         </div>
                     </div>
-                
-                
             }
         </>
     );
 }
 
-elementPregrado.propTypes={
-    id:PropTypes.number,
-    nombre:PropTypes.string,
-    apellidos:PropTypes.string,
-    first:PropTypes.bool, 
-    second:PropTypes.bool, 
-    te:PropTypes.number, 
-    tm:PropTypes.number, 
-    th:PropTypes.number
-}
+
 
 export default elementPregrado

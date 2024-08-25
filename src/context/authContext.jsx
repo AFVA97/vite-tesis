@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
 import { loginRequest, registerRequest,getProfileRequest, verifyTokenRequest,getUsersRequest,getUserRequest, deleteUserRequest, getUserCIRequest, getUserFACRequest } from "../api/auth";
 import Cookies from "js-cookie";
-import Users from "../components/Admin/user/Users";
+import Users from "../components/Admin/Admin_User/Users";
 
 const AuthContext = createContext();
 

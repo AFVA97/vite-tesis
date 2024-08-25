@@ -9,19 +9,8 @@ import { useProfesor } from "../../../context/profesorContext"
 
 function InvCient({username}) {
 
-  const [search, setsearch] = useState("")
-  const { Profesores,
-    errors:errorProfesor,   
-    getProfesores,
-    createsProfesor,
-    updatesProfesor,
-    deletesProfesor, } = useProfesor();
-  const {InvCients,
-    errors:errorInvestigacion,        
-    getInvCients,
-    createsInvCient,
-    updatesInvCient,
-    deletesInvCient,}=useInvCient()
+  const { Profesores, getProfesores } = useProfesor();
+  const {InvCients, getInvCients }=useInvCient()
   const [profesores,setprofesores]=useState([])
   const [query, setQuery] = useState('');
   const [filteredProfesor, setFilteredProfesor] = useState([]);
@@ -69,13 +58,10 @@ function InvCient({username}) {
     setFilteredProfesor(profesores)
   },[Profesores,InvCients])
 
-  // const propsi={
-  //   id:1,nombre:"Name", apellidos:"Last", pt:3, tf:5, pi:6, tt:7, th:9}
- 
+  
     return (
       <>
         <div className="sticky-top"> 
-          
           <Header username={username}/>    
           <SearchBar 
             query={query}
@@ -83,7 +69,6 @@ function InvCient({username}) {
             setQuery={setQuery}
           />  
           <ThInvCient />
-          
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {filteredProfesor.map((profesor,i)=>(
@@ -92,9 +77,6 @@ function InvCient({username}) {
             {...profesor}
           />
           ))}
-            
-        
-      
         </div>
       </>
     )

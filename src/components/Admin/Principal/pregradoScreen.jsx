@@ -29,8 +29,8 @@ function Pregrado({username}) {
     if(query==='')
       setFilteredProfesor(profesorInicio)
   }, [query])
-  useEffect(() => {
 
+  useEffect(() => {
     const load=async()=>{
       await getProfesores();
       await getAsignaturas();
@@ -63,8 +63,6 @@ function Pregrado({username}) {
           })
         }
         aux.th+=parseInt(aux.te)+parseInt(aux.tm)
-        
-        
         profesoresArray.push(aux)
       })
     }    
@@ -72,12 +70,10 @@ function Pregrado({username}) {
     setFilteredProfesor(profesorInicio)
   }, [Profesores,Asignaturas])
   
-  
 
     return (
       <>
         <div className="sticky-top"> 
-          
           <Header username={username}/>       
           <SearchBar 
             query={query}
@@ -85,7 +81,6 @@ function Pregrado({username}) {
             setQuery={setQuery}
           />
           <ThPregrado />
-          
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {filteredProfesor.map((profesor,i)=>(
@@ -93,15 +88,10 @@ function Pregrado({username}) {
             key={profesor._id} 
             profesorInicio={profesorInicio}
             setprofesorInicio={setprofesorInicio}
-            
             {...profesor}
           />
           ))}
-            
-        
-      
         </div>
-        
       </>
     )
   }

@@ -15,6 +15,10 @@ const Modificar = () => {
       createsAsignatura,
       updatesAsignatura,
       deletesAsignatura,} =useAsignatura()
+    const [asigCon, setasigCon] = useState([])
+    const [asigSin, setasigSin] = useState([])
+    const [conProf, setconProf] = useState(asigCon.length>0)
+    const [sinProf, setsinProf] = useState(asigSin.length>0)
     const [carrera, setcarrera] = useState(null)
     const [asignaturasCarrera, setasignaturasCarrera] = useState([])
     const _id=useParams()._id;
@@ -35,6 +39,13 @@ const Modificar = () => {
       }
     }, [Asignaturas,carrera])
     
+    useEffect(() => {
+      setasigCon(asignaturasCarrera.filter((asignatura)=>asignatura.profesor))
+      setasigSin(asignaturasCarrera.filter((asignatura)=>!asignatura.profesor))
+      setconProf(asigCon.length>0)
+      setsinProf(asigSin.length>0)
+    }, [asignaturasCarrera])
+    
   return (
     <>
       <div className="sticky-top"> 
@@ -44,12 +55,31 @@ const Modificar = () => {
           
       </div>
       <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
-          {asignaturasCarrera.map((asignatura,i)=>(
+      {sinProf && (<div className='text-center'>
+            <h6>Sin Profesor Asignado</h6>
+            
+            {asigSin.map((asignatura)=>(
+            
             <ElementModificar 
-            key={asignatura._id} 
-            {...asignatura}
-          />
-          ))}
+                key={asignatura._id}
+                asignatura={asignatura}/>
+        
+            ))}
+        </div>)}
+        {conProf && (<div className='text-center'>
+            <h6>Con Profesor Asignado</h6>
+            
+            {asigCon.map((asignatura)=>(
+            
+            <ElementModificar 
+                key={asignatura._id}
+                asignatura={asignatura}/>
+        
+            ))}
+        </div>)}
+        {asignaturasCarrera.length<1 && (
+            <div className='text-center'><p>No hay Asignaturas en esta Carrera</p></div>
+        )}
             
         
       

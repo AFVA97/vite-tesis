@@ -3,7 +3,7 @@ import {
   getExtesRequest,
   deleteExtRequest,
   createExtRequest,
- // getExtRequest,
+  getExtRequest,
  // getExtProfRequest,
   updateExtRequest
 } from "../api/extuniv";
@@ -97,16 +97,16 @@ export function ExtUnivProvider({ children }) {
   // };
   
 
-  // const getExtUniv = async (id) => {
-  //   try {
-  //     const res = await getExtRequest(id); 
+  const getExtUniv = async (id) => {
+    try {
+      const res = await getExtRequest(id); 
       
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
+      return res.data;
+    } catch (error) {
+      console.error(error);
+      setErrors(error.response.data);
+    }
+  };
 
   
 
@@ -122,7 +122,7 @@ export function ExtUnivProvider({ children }) {
         
         // ExtProf,
         
-        // getExtUniv,
+        getExtUniv,
         // getExtUnivProf,
         
       }}

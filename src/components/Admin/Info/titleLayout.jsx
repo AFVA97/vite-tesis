@@ -7,6 +7,7 @@ function titleLayout({_id,isprofesor}){
     const [Profesor, setProfesor] = useState({nombre:"",apellidos:"",graduado:""})
     const {getProfesor}=useProfesor();
     const {getFacultad}=useFacultad();
+    
     useEffect(() => {
         const load=async()=>{
             if(isprofesor)
@@ -16,7 +17,6 @@ function titleLayout({_id,isprofesor}){
         };load()
     }, [])
     
-
     
     return(
         <div className="row bg-white">
@@ -26,7 +26,6 @@ function titleLayout({_id,isprofesor}){
                     Graduado de: {Profesor.graduado}
                 </div>
             )}
-            
         </div>
     )
 }

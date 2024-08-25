@@ -1,6 +1,6 @@
 //import { useParams } from "react-router-dom"
-import { Link, NavLink } from "react-router-dom"
-import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
+
 
 function infoInicio({title,link}) {
     let text="Información";
@@ -39,7 +39,6 @@ function infoInicio({title,link}) {
           break;
       }
     
-    // const params=useParams();
     return (
       <>
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark ">
@@ -59,9 +58,7 @@ function infoInicio({title,link}) {
             <li className="nav-item">
               <a className="nav-link text-white " href="#">{text} {title}</a>
             </li>   
-            
             <li><img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block "/></li>
-            
           </ul>
           
         </nav>
@@ -72,6 +69,4 @@ function infoInicio({title,link}) {
   
   export default infoInicio
 
-  infoInicio.propTypes={
-    id:PropTypes.string
-  }
+  

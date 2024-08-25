@@ -2,53 +2,42 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../../context/authContext"
 import InfoInicio from "../Info/infoNavBar"
 import ThUsuarios from "../Principal/TableHead/ThUsuarios"
-import ElementUser from "../Principal/Elements/ElementUser";
+import ElementUser from './ElementUser';
 import SearchBar from "../Principal/searchBar";
 import { Link } from "react-router-dom";
 
 
 const Users = () => {
-    //const [search, setsearch] = useState("");
-    const {user,
-        users,
-        getUsers,
-        signup,
-        signin,
-        logout,
-        isAuthenticated,
-        errors,
-        loading,}=useAuth();
-    const [query, setQuery] = useState('');
-    const [filteredUsers, setFilteredUsers] = useState([]);
-  
-    const handleInputChange = (e) => {
-        const value = e.target.value;
-        setQuery(value);
-        setFilteredUsers(
-          users.filter((usuarios) =>
-            usuarios.username.toLowerCase().includes(value.toLowerCase())
-          )
-        );
-      };
-  
-      useEffect(() => {
-        if(query==='')
-          setFilteredUsers(users)
-      }, [query,users])
-      
+    
+  const { users, getUsers}=useAuth();
+  const [query, setQuery] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setQuery(value);
+    setFilteredUsers(
+      users.filter((usuarios) =>
+        usuarios.username.toLowerCase().includes(value.toLowerCase())
+      )
+    );
+  };
 
-    useEffect(() => {
-        const load=async()=>{
-          await getUsers()
-        };load()
-        setFilteredUsers(users)
-    }, []);
+  useEffect(() => {
+    if(query==='')
+      setFilteredUsers(users)
+  }, [query,users])
+  
+  useEffect(() => {
+      const load=async()=>{
+        await getUsers()
+      };load()
+      setFilteredUsers(users)
+  }, []);
     
   return (
     <>  
     <div className="sticky-top"> 
-          
         <InfoInicio title={"Usuarios"}/>
         <SearchBar 
             query={query}
@@ -56,7 +45,6 @@ const Users = () => {
             setQuery={setQuery}
         />      
         <ThUsuarios/>
-          
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">
           {filteredUsers.map((usuario,i)=>(
@@ -65,12 +53,8 @@ const Users = () => {
             getUsers={getUsers}
             {...usuario}
           />
-            
           ))
-            
           }
-        
-      
         </div>
         <Link
                 className="navbar-brand" 

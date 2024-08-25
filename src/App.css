@@ -1,9 +1,10 @@
 .profile-menu {
-    background-color: rgb(36, 34, 34);
+    background-color: rgb(54, 53, 53);
     position: fixed;
     right: 10px;
-    color: black;
-    background-color: white;
+    color: rgb(255, 255, 255);
+    border-radius: 5%; /* o absolute dependiendo de tu diseño */
+    z-index: 1030; /* valor mayor que el de sticky-top */
     
   }
   .floatingbutton{

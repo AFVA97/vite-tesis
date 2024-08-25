@@ -1,5 +1,4 @@
 import { useState } from "react"
-import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 
 function elementExtUniv({_id,nombre, apellidos, are, tch, ae, th}){
@@ -13,34 +12,18 @@ function elementExtUniv({_id,nombre, apellidos, are, tch, ae, th}){
                 <div scope="col" className=" col-2 text-truncate">{tch}</div>
                 <div scope="col" className=" col-2 text-truncate">{ae}</div>
                 <div scope="col" className=" col-2 text-truncate">{th}</div> 
-                
             </div>
-            
             {active &&
-                
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
-                        
                         <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
-                        
-                        
                     </div>
-                
-                
             }
         </>
     );
 }
 
-elementExtUniv.propTypes={
-    id:PropTypes.number,
-    nombre:PropTypes.string,
-    apellidos:PropTypes.string,
-    are:PropTypes.number,
-    tch:PropTypes.number,
-    ae:PropTypes.number,
-    th:PropTypes.number
-}
+
 
 export default elementExtUniv

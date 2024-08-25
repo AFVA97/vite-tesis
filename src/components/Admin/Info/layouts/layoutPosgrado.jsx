@@ -6,7 +6,6 @@ import { useEffect, useState } from "react"
 
 function layoutPosgrado({_id}){
     const [review, setreview] = useState({hi:0,hr:0,th:0})
-    //const element={nombre:"posgrado",impartido:true,modalidad:"Qwerty",ubicacion:"Sede",cc:3,horas:6}
     const [elementos, setelementos] = useState([])
     const {Posgrados,getPosgrados}=usePosgrado()
     
@@ -16,6 +15,7 @@ function layoutPosgrado({_id}){
             
           };load()
     }, [])
+
     useEffect(() => {
       if(Array.isArray(Posgrados)){
         let elememntoTemp=Posgrados.filter((posgrado)=>posgrado.profesor===_id)

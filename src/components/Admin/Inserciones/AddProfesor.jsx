@@ -2,26 +2,63 @@ import { useEffect, useState } from "react"
 import InfoInicio from "../Info/infoNavBar"
 import { useForm } from "react-hook-form";
 import { useProfesor } from "../../../context/profesorContext";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 
 
 const AddProfesor = () => {
-    const params=useParams();  
-      
+    const params=useParams();     
     const [fijo, setfijo] = useState(false);
     const [cargo, setcargo] = useState(false);
     const {Profesores,createsProfesor,getProfesores,updatesProfesor,getProfesor} =useProfesor();
     const [error, seterror] = useState([])
-
-
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-  
     const navigate=useNavigate()
+ 
+    const onSubmit=handleSubmit(data=>{        
+        try {
+            if(!params._id){  
+                const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
+                const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
+                if(proftemp.length==0){
+                    if(proftempCI.length==0){
+                        createsProfesor(data)
+                        navigate("/admin/inicio")
+                    }
+                    else{
+                        seterror(['Carnet de Identidad en uso, rectifique su Información'])
+                    }
+                }
+                else{
+                    seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
+                }
+            }
+            else{
+                updatesProfesor(data);
+                navigate("/admin/inicio")
+            }
+        } catch (error) {
+                
+    }})
     
+    const handleCancelar=(e)=>{
+        e.preventDefault();
+        navigate("/admin/inicio")
+    }
+
+    const handleOnChange=()=>{
+        setfijo(!fijo)
+        setValue('pagoHoras',"")
+    }
+    const handleOnChanges=()=>{
+        setcargo(!cargo)
+        setValue('funcionDireccion',"")
+    }
+
     useEffect(() => {
       if(errors.length>0)
         seterror([...error,...errors])
     }, [errors])
+
     useEffect(() => {
         if (error.length > 0) {
           const timer = setTimeout(() => {
@@ -70,58 +107,10 @@ const AddProfesor = () => {
     }, []);
     
     
-    
-    
-
-    const onSubmit=handleSubmit(data=>{        
-        try {
-            if(!params._id){  
-                const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
-                const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
-                
-                
-                if(proftemp.length==0){
-
-                    if(proftempCI.length==0){
-                        createsProfesor(data)
-                        navigate("/admin/inicio")
-                    }
-                    else{
-                        seterror(['Carnet de Identidad en uso, rectifique su Información'])
-                    }
-                }
-                else{
-                    seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
-                }
-                
-            }
-            else{
-                updatesProfesor(data);
-                navigate("/admin/inicio")
-            }
-        } catch (error) {
-                
-    }})
-    
-    const handleCancelar=(e)=>{
-        e.preventDefault();
-        navigate("/admin/inicio")
-    }
-
-    const handleOnChange=()=>{
-        setfijo(!fijo)
-        setValue('pagoHoras',"")
-    }
-    const handleOnChanges=()=>{
-        setcargo(!cargo)
-        setValue('funcionDireccion',"")
-    }
-    
   return (
     <>
     
       <InfoInicio title={"Añadir Profesor"}/>    
-      
         <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
             <div className="row p-5">
                 <div className="input-group mb-3 col-6">
@@ -151,7 +140,6 @@ const AddProfesor = () => {
                         <p className="form-label"> CI is required</p>
                     )}
                 </div>
-            
                 <div className="input-group mb-3 p-1 col-6">
                     <span className="input-group-text" id="basic-addon1">Nombre(s)</span>
                     <input 
@@ -186,41 +174,32 @@ const AddProfesor = () => {
                     )}
                 </div>
                 <div className="row justify-content-around container ">
-                    
                         <span className="input-group-text" id="basic-addon1">Plaza Fija</span>
                         <div className="form-check">
                             <input className="form-check-input " type="checkbox" value="Sí" id="fijosi" checked={fijo} onChange={handleOnChange}/>
                             <label className="form-check-label" htmlFor="fijosi">
                                 Sí
                             </label>
-                        
                         </div>
                         <div className="form-check">
                             <input className="form-check-input " type="checkbox" value="No" id="fijono" checked={!fijo} onChange={handleOnChange}/>
                             <label className="form-check-label" htmlFor="fijono">
                                 No
                             </label>
-                        
                         </div>
-                        
-                        
-                    
                         <span className="input-group-text" id="basic-addon1">Ocupa Cargo de Dirección</span>
                         <div className="form-check">
                             <input className="form-check-input " type="checkbox" value="Sí" id="cargosi" checked={cargo} onChange={handleOnChanges}/>
                             <label className="form-check-label" htmlFor="cargosi">
                                 Sí
                             </label>
-                        
                         </div>
                         <div className="form-check ">
                             <input className="form-check-input " type="checkbox" value="No" id="cargono" checked={!cargo} onChange={handleOnChanges}/>
                             <label className="form-check-label" htmlFor="cargono">
                                 No
                             </label>
-                        
                         </div>
-                    
                 </div>
                 <div className="row container-fluid">
                     {fijo ? (
@@ -250,7 +229,6 @@ const AddProfesor = () => {
                                     type="text" 
                                     className="form-control col-12 mw-100" 
                                     {...register("funcionDireccion", { required: true })}
-                                    
                                     />
                             </div>
                     </div>
@@ -262,7 +240,6 @@ const AddProfesor = () => {
                 {error.map((errores,i)=>(
                         <p key={i} className="alert alert-danger text-center"> {errores} </p>
                     ))}
-              
                 </>
             ):<div></div>}  
             <div className="fixed-bottom p-2 row bottom-0 end-0">

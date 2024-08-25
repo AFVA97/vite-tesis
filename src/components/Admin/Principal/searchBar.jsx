@@ -11,7 +11,6 @@ function searchBar  ({handleInputChange,query,setQuery})  {
                 onChange={e=>handleInputChange(e)}
                 placeholder="Buscar por Nombre"
                 />
-                
             </div>
             <div className='col-2'>
                 <button

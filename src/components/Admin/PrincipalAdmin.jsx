@@ -1,5 +1,4 @@
-import { BrowserRouter, Route, Routes,Navigate, useNavigate } from "react-router-dom"
-import Header from "./HeaderAdmin"
+import { Route, Routes } from "react-router-dom"
 import Inicio from "./Principal/inicioScreen"
 import Facultad from "./Principal/facultadScreen"
 import Pregrado from "./Principal/pregradoScreen"
@@ -8,13 +7,12 @@ import Investigacion from "./Principal/invCientScreen"
 import Extension from "./Principal/extUnivScreen"
 import InfoScreen  from "./Info/infoScreen"
 import { useAuth } from "../../context/authContext"
-import AddProfesor from "./Principal/AddProfesor"
+import AddProfesor from './Inserciones/AddProfesor'
 import { useEffect, useState } from "react"
-import AddFacultad from "./Principal/AddFacultad"
-import Users from "./user/Users"
-import AddUser from "./user/AddUser"
-import InfoUSer from "./Info/InfoUSer"
-import ModificarAsignatura from "./Info/layouts/elemlayout/ModificarAsignatura"
+import AddFacultad from "./Inserciones/AddFacultad"
+import Users from "./Admin_User/Users"
+import AddUser from "./Admin_User/AddUser"
+import ModificarAsignatura from "./Inserciones/ModificarAsignatura"
 
 
 export default function App() {
@@ -40,11 +38,8 @@ export default function App() {
           <Route path="/addfacultad" element={<AddFacultad/>}/>
           <Route path="/addfacultad/:_id" element={<AddFacultad/>}/>
           <Route path="/users" element={<Users/>}/>
-          <Route path="/users/info/:_id" element={<InfoUSer/>}/>
-          
           <Route path="/users/add" element={<AddUser/>}/>
           <Route path="/users/add/:_id" element={<AddUser/>}/>
-
           <Route path="/facultad" element={<Facultad username={username}/>} />
           <Route path="/pregrado" element={<Pregrado username={username}/>} />
           <Route path="/posgrado" element={<Posgrado username={username}/>} />

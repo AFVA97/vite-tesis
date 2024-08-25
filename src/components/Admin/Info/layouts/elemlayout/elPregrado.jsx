@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 
 
 function elPregrado({carrera,anno,semestre,asignatura,horas,frecuencia,taa,tef}){
@@ -16,17 +15,6 @@ function elPregrado({carrera,anno,semestre,asignatura,horas,frecuencia,taa,tef})
         </div> 
      </>
     )
-}
-
-elPregrado.propTypes={
-    carrera:PropTypes.string, 
-    anno:PropTypes.number, 
-    semestre:PropTypes.bool, 
-    asignatura:PropTypes.string, 
-    horas:PropTypes.number,
-    frecuencia:PropTypes.number,
-    taa:PropTypes.number,
-    tef:PropTypes.string
 }
 
 export default elPregrado

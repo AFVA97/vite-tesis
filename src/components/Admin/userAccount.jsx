@@ -3,9 +3,6 @@ import "../../App.css"
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 
-
-
-
 function UserAccount() {
   const [showProfile, setShowProfile] = useState(false)
   const {logout}=useAuth();
@@ -13,7 +10,7 @@ function UserAccount() {
   
   function ProfileMenu() {
     return (
-      <ul className=" profile-menu">
+      <ul className=" profile-menu mt-1">
         <li >Opcion 1</li>
         <li >Opcion 2</li>
         <li >Opcion 3</li>
@@ -23,9 +20,7 @@ function UserAccount() {
     )
   }
   return (
-      
-
-      <div className="profile">
+      <div className="profile ">
         <button
           onClick={() => {
             setShowProfile(!showProfile)
@@ -42,7 +37,6 @@ function UserAccount() {
         </button>
         {showProfile ? <ProfileMenu /> : ""}
       </div>
-    
   )
 }
 

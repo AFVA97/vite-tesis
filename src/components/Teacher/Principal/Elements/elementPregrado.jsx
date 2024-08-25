@@ -10,14 +10,14 @@ function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className="col-4 text-truncate">{nombre} </div>
-                <div scope="col" className="col-2 text-truncate">{carrera}</div>
+                <div scope="col" className="col-2 text-truncate">{nombre} </div>
+                <div scope="col" className="col-3 text-truncate">{carrera}</div>
                 
-                <div scope="col" className="col-2 text-truncate">{facultad}</div>
+                <div scope="col" className="col-3 text-truncate">{facultad}</div>
                 
                 <div scope="col" className="col-2 row justify-content-center text-center container-fluid">
-                    <div>{semestre?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
-                    <div>{!semestre?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
+                    <div className="col justify-content-center text-center">{semestre?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
+                    <div className="col justify-content-center text-center">{!semestre?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
                 </div>
                 <div scope="col" className="col-1 text-truncate">{tipocurso}</div>
                 <div scope="col" className="col-1 text-truncate">{horas}</div>
@@ -27,7 +27,7 @@ function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}
                 
                     <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`info/${_id}`}>
+                        <div className="col table-info"><Link to={`/teacher/infopre/${_id}`}>
                             Información</Link>
                         </div>
                         
