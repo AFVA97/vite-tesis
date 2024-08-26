@@ -73,7 +73,7 @@ function Pregrado({username}) {
 
     return (
       <>
-        <div className="sticky-top"> 
+        <div className="sticky-top bg-white"> 
           <Header username={username}/>       
           <SearchBar 
             query={query}

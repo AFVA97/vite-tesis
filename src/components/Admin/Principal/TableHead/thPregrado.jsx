@@ -9,8 +9,8 @@ function thInicio() {
                 <div scope="col" className=" col-3">
                     <div>Imparte Docencia</div>
                     <div className="row justify-content-center text-center text-truncate">
-                        <div>1er</div>
-                        <div>2do</div>
+                        <div className="col justify-content-center text-center">1er</div>
+                        <div className="col justify-content-center text-center">2do</div>
                     </div>
                 </div>
                 <div scope="col" className=" col-1 text-truncate">Tutoria Estudiantes</div>

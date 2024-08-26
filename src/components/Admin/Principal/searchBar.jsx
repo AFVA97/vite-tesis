@@ -2,7 +2,7 @@
 
 function searchBar  ({handleInputChange,query,setQuery})  {
     return (
-        <div className='row m-1 justify-content-around'>
+        <div className='row m-1  justify-content-around'>
             <div className='col-10'>
                 <input
                 type="text"

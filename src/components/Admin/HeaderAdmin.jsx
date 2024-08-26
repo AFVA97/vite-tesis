@@ -10,7 +10,7 @@ function Header({username}) {
                 className="navbar-brand" 
                 to="/admin/inicio"
             >
-                    <img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top"/>
+                    <img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block ml-5 align-text-top"/>
                     {username}
             </Link>
             <div className="navbar-collapse">

@@ -17,8 +17,8 @@ function elementPregrado({ _id,nombre, apellidos, first=false, second=false, te,
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
                 <div scope="col" className="col-4 text-truncate">{nombre} {apellidos}</div>
                 <div scope="col" className="col-3 row justify-content-center text-center container-fluid">
-                    <div>{first?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
-                    <div>{second?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
+                    <div className="col justify-content-center text-center">{first?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
+                    <div className="col justify-content-center text-center">{second?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
                 </div>
                 <div scope="col" className="col-1 text-truncate">{te}</div>
                 <div scope="col" className="col-1 text-truncate">{tm}</div>

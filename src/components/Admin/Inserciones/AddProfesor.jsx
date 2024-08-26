@@ -112,23 +112,24 @@ const AddProfesor = () => {
     
       <InfoInicio title={"Añadir Profesor"}/>    
         <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-            <div className="row p-5">
-                <div className="input-group mb-3 col-6">
-                    <span className="input-group-text" id="basic-addon1">#</span>
-                    <input 
-                        type="number" 
-                        className="form-control" 
-                        placeholder="Número ID" 
-                        aria-label="NumeroID" 
-                        name="idUniversidad"
-                        {...register("idUniversidad", { required: true })}
-                        disabled={(params._id)?"disabled":""}
-                    />
-                    {errors.idUniversidad && (
-                        <p className="form-label"> ID is required</p>
-                    )}
-                </div>
-                <div className="input-group mb-3 col-6">
+            <div className="justify-content-center container  align-items-center text-center">
+                <div className="row p-2 pt-5 ml-5 mr-5">
+                    <div className="input-group mb-3 col">
+                        <span className="input-group-text" id="basic-addon1">#</span>
+                        <input 
+                            type="number" 
+                            className="form-control" 
+                            placeholder="Número ID" 
+                            aria-label="NumeroID" 
+                            name="idUniversidad"
+                            {...register("idUniversidad", { required: true })}
+                            disabled={(params._id)?"disabled":""}
+                        />
+                        {errors.idUniversidad && (
+                            <p className="form-label"> ID is required</p>
+                        )}
+                    </div>
+                    <div className="input-group mb-3 col">
                     <span className="input-group-text" id="basic-addon1">CI</span>
                     <input 
                         type="number" 
@@ -140,71 +141,78 @@ const AddProfesor = () => {
                         <p className="form-label"> CI is required</p>
                     )}
                 </div>
-                <div className="input-group mb-3 p-1 col-6">
-                    <span className="input-group-text" id="basic-addon1">Nombre(s)</span>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        {...register("nombre", { required: true })}
-                    />
-                    {errors.nombre && (
-                        <p className="form-label"> El Nombre is required</p>
-                    )}
                 </div>
-                <div className="input-group mb-3 p-1 col-6">
-                <span className="input-group-text" id="basic-addon1">Apellidos</span>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        {...register("apellidos", { required: true })}
-                    />
-                    {errors.apellidos && (
-                        <p className="form-label"> Apellidos is required</p>
-                    )}
+                <div className="row p-2 ml-5 mr-5">
+                    <div className="input-group mb-3 p-1 col">
+                        <span className="input-group-text" id="basic-addon1">Nombre(s)</span>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            {...register("nombre", { required: true })}
+                        />
+                        {errors.nombre && (
+                            <p className="form-label"> El Nombre is required</p>
+                        )}
+                    </div>
+                    <div className="input-group mb-3 p-1 col">
+                    <span className="input-group-text" id="basic-addon1">Apellidos</span>
+                        <input 
+                            type="text" 
+                            className="form-control" 
+                            {...register("apellidos", { required: true })}
+                        />
+                        {errors.apellidos && (
+                            <p className="form-label"> Apellidos is required</p>
+                        )}
+                    </div>
                 </div>
-                <div className="input-group mb-3 p-1">
-                <span className="input-group-text" id="basic-addon1">Graduado de</span>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        {...register("graduado", { required: true })}
-                    />
-                    {errors.graduado && (
-                        <p className="form-label"> Graduado de is required</p>
-                    )}
+                <div className="input-group justify-content-around col-11 p-2 ml-5 mr-5">
+                    <span className="input-group-text  mb-3 p-1 " id="basic-addon1">Graduado de</span>
+                        <input 
+                            type="text" 
+                            className="form-control mb-3 p-1  mr-5 pr-5" 
+                            {...register("graduado", { required: true })}
+                        />
+                        {errors.graduado && (
+                            <p className="form-label"> Graduado de is required</p>
+                        )}
                 </div>
-                <div className="row justify-content-around container ">
-                        <span className="input-group-text" id="basic-addon1">Plaza Fija</span>
-                        <div className="form-check">
-                            <input className="form-check-input " type="checkbox" value="Sí" id="fijosi" checked={fijo} onChange={handleOnChange}/>
-                            <label className="form-check-label" htmlFor="fijosi">
-                                Sí
-                            </label>
+                <div className="row justify-content-around container p-2 ml-5 mr-5 ">
+                        <div className="col-5 row">
+                            <span className="input-group-text col-3" id="basic-addon1">Plaza Fija</span>
+                            <div className="form-check col-1 m-2">
+                                <input className="form-check-input " type="checkbox" value="Sí" id="fijosi" checked={fijo} onChange={handleOnChange}/>
+                                <label className="form-check-label" htmlFor="fijosi">
+                                    Sí
+                                </label>
+                            </div>
+                            <div className="form-check col-1 m-2">
+                                <input className="form-check-input " type="checkbox" value="No" id="fijono" checked={!fijo} onChange={handleOnChange}/>
+                                <label className="form-check-label" htmlFor="fijono">
+                                    No
+                                </label>
+                            </div>
                         </div>
-                        <div className="form-check">
-                            <input className="form-check-input " type="checkbox" value="No" id="fijono" checked={!fijo} onChange={handleOnChange}/>
-                            <label className="form-check-label" htmlFor="fijono">
-                                No
-                            </label>
-                        </div>
-                        <span className="input-group-text" id="basic-addon1">Ocupa Cargo de Dirección</span>
-                        <div className="form-check">
-                            <input className="form-check-input " type="checkbox" value="Sí" id="cargosi" checked={cargo} onChange={handleOnChanges}/>
-                            <label className="form-check-label" htmlFor="cargosi">
-                                Sí
-                            </label>
-                        </div>
-                        <div className="form-check ">
-                            <input className="form-check-input " type="checkbox" value="No" id="cargono" checked={!cargo} onChange={handleOnChanges}/>
-                            <label className="form-check-label" htmlFor="cargono">
-                                No
-                            </label>
+                        <div className="col-7 row">
+                            <span className="input-group-text col-5" id="basic-addon1">Ocupa Cargo de Dirección</span>
+                            <div className="form-check col-1 m-2">
+                                <input className="form-check-input " type="checkbox" value="Sí" id="cargosi" checked={cargo} onChange={handleOnChanges}/>
+                                <label className="form-check-label" htmlFor="cargosi">
+                                    Sí
+                                </label>
+                            </div>
+                            <div className="form-check col-1 m-2">
+                                <input className="form-check-input " type="checkbox" value="No" id="cargono" checked={!cargo} onChange={handleOnChanges}/>
+                                <label className="form-check-label" htmlFor="cargono">
+                                    No
+                                </label>
+                            </div>
                         </div>
                 </div>
                 <div className="row container-fluid">
                     {fijo ? (
-                        <div className="input-group m-3 align-items-start col">
-                            <label className="form-check-label col-12" >
+                        <div className="input-group m-3 align-items-start row col">
+                            <label className="form-check-label row" >
                             Monto del Pago Por Horas
                             </label>
                             <div className="row">
@@ -212,26 +220,26 @@ const AddProfesor = () => {
                                 <span className="input-group-text col-2">$</span>
                                 <input 
                                     type="number" 
-                                    className="form-control col-10" 
+                                    className="form-control col" 
                                     {...register("pagoHoras", { required: true })}
                                     />
                             </div>
                     </div>
                     ):<div className="col"> </div>}
                     {cargo ? (
-                        <div className="input-group m-3 col">
-                            <label className="form-check-label col-12" >
+                        <div className="input-group m-3 row col">
+                            <label className="form-check-label col-6 mw-100" >
                             Cargo de Dirección
                             </label>
                             <div className="">
                                 
                                 <input 
                                     type="text" 
-                                    className="form-control col-12 mw-100" 
+                                    className="form-control col-6 mw-100" 
                                     {...register("funcionDireccion", { required: true })}
                                     />
                             </div>
-                    </div>
+                        </div>
                     ):<div className="col"> </div>}
                 </div>
             </div>

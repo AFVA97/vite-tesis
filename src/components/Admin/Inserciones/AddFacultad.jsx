@@ -18,7 +18,7 @@ const AddFacultad = () => {
                 const factemp=Facultades.filter((facultad)=>facultad.nombre==data.nombre)
                 if(factemp.length==0){
                     createsFacultad(data);
-                    handleCancelar();
+                    navigate("/admin/facultad")
                 }
                 else{
                     seterror(['Nombre de Facultad en uso, rectifique su Información'])
@@ -26,7 +26,7 @@ const AddFacultad = () => {
             }
             else{
                 updatesFacultad(data);
-                handleCancelar();
+                navigate("/admin/facultad")
             }
         } catch (error) {
     }})
