@@ -3,7 +3,7 @@ import InfoNavBar from "./infoNavBar"
 import { useCarrera } from "../../../context/carreraContext"
 import { useEffect, useState } from "react";
 import { useAsignatura } from "../../../context/asignaturaContext";
-import ElementModificar from "./ElementModificar";
+import ElementModificar from "../Asignaturas/ElementModificar";
 
 
 const Modificar = () => {
@@ -37,6 +37,7 @@ const Modificar = () => {
           
         }
       }
+      
     }, [Asignaturas,carrera])
     
     useEffect(() => {
@@ -45,6 +46,13 @@ const Modificar = () => {
       setconProf(asigCon.length>0)
       setsinProf(asigSin.length>0)
     }, [asignaturasCarrera])
+    useEffect(() => {
+      if(asignaturasCarrera.length==0){
+        setconProf(false)
+        setsinProf(false)
+      }
+    }, [asignaturasCarrera])
+    
     
   return (
     <>
@@ -60,7 +68,7 @@ const Modificar = () => {
             
             {asigSin.map((asignatura)=>(
             
-            <ElementModificar 
+              <ElementModificar 
                 key={asignatura._id}
                 asignatura={asignatura}/>
         
@@ -79,6 +87,7 @@ const Modificar = () => {
         </div>)}
         {asignaturasCarrera.length<1 && (
             <div className='text-center'><p>No hay Asignaturas en esta Carrera</p></div>
+            
         )}
             
         

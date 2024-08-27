@@ -40,7 +40,7 @@ const ElementModificar = ({asignatura}) => {
             </div>
             <div  className="row justify-content-center text-center container-fluid m-0 p-0">
                     <div scope="col" className="col-12">Notas: </div>
-                    <div scope="col" className="col-12"><p>{asignatura.notas}</p> </div>
+                    <div scope="col" className="col-12"><p>{asignatura.notas===""?"---":asignatura.notas}</p> </div>
             </div>
         </div>
       {active &&

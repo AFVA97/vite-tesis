@@ -33,8 +33,21 @@ const AddProfesor = () => {
                 }
             }
             else{
-                updatesProfesor(data);
-                navigate("/admin/inicio")
+                const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
+                const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
+                if(proftemp.length==0){
+                    if(proftempCI.length==0){
+                        updatesProfesor(data);
+                        navigate("/admin/inicio")
+                    }
+                    else{
+                        seterror(['Carnet de Identidad en uso, rectifique su Información'])
+                    }
+                }
+                else{
+                    seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
+                }
+                
             }
         } catch (errores) {
             error.push(errores.message)

@@ -56,6 +56,7 @@ export function AsignaturaProvider({ children }) {
       const res = await createAsignaturaRequest(Asignatura);
       if(res.status===200)
         setAsignaturas([...Asignaturas,Asignatura])
+      return res.status
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);

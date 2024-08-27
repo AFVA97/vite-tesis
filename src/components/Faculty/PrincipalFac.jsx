@@ -5,7 +5,7 @@ import { useAuth } from "../../context/authContext";
 import { useEffect, useState } from "react";
 import AddCarrera from "./Add_Carrera/AddCarrera";
 import Modificar from "./Add_Carrera/Modificar";
-import AddAsignatura from "./Add_Carrera/AddAsignatura";
+import AddAsignatura from "./Asignaturas/AddAsignatura";
 
 
 export default function App() {

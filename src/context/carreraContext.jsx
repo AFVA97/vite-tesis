@@ -52,6 +52,7 @@ export function CarreraProvider({ children }) {
     try {
       const res = await createCarreraRequest(Carrera);
       if(res.status===200)setCarreras([...Carreras,res.data]);
+      return res.status
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
