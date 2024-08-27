@@ -28,7 +28,8 @@ const AddFacultad = () => {
                 updatesFacultad(data);
                 navigate("/admin/facultad")
             }
-        } catch (error) {
+        } catch (errores) {
+            error.push(errores.message)
     }})
     
     const handleCancelar=(e)=>{
@@ -68,10 +69,11 @@ const AddFacultad = () => {
                         className="form-control" 
                         {...register("nombre", { required: true })}
                     />
-                    {errors.nombre && (
-                        <p className="form-label"> El Nombre is required</p>
-                    )}
+                    
                 </div>
+                {errors.nombre && (
+                        <p className="alert alert-danger text-center"> El Nombre is required</p>
+                    )}
                 <div className="input-group mb-3 col-6">
                     <span className="input-group-text" id="basic-addon1">Abreviatura</span>
                     <input 
@@ -80,10 +82,11 @@ const AddFacultad = () => {
                         name="abreviatura"
                         {...register("abreviatura", { required: true })}
                     />
-                    {errors.abreviatura && (
-                        <p className="form-label"> Abreviatura is required</p>
-                    )}
+                    
                 </div>
+                {errors.abreviatura && (
+                        <p className="alert alert-danger text-center"> Abreviatura is required</p>
+                    )}
             </div>
             {error.length>0 ? (
                 <>

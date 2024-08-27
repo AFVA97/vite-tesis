@@ -43,6 +43,7 @@ function layoutInvCient({_id}){
 
     return(
         <>
+        <div className="container-fluid text-center">
             <ThlInvCient  />
             {elementos.map((element)=>(
                 <ElInvCient 
@@ -54,6 +55,8 @@ function layoutInvCient({_id}){
                     No tiene Investigaciones Asignadas
                 </div> </>)}
             <RlInvCient {...review}/>
+        </div>
+            
         </>
     )
 }

@@ -27,6 +27,8 @@ const SearchBar = ({  Profesores, onSelect}) => {
           setFilteredSuggestions([]);
         }
       }
+      
+      
       onSelect(profesor);
     };
 
@@ -44,24 +46,24 @@ const SearchBar = ({  Profesores, onSelect}) => {
 
 
     return (
-        <div>
-        <input
-          type="text"
-          value={query}
-          className="w-100"
-          onChange={handleInputChange}
-          placeholder="Buscar..."
-        />
-        {filteredSuggestions.length > 0 && (
-          <ul >
-            {filteredSuggestions.map((profesor, index) => (
-              <><li key={index} onClick={() => handleSuggestionClick(profesor)}>
-                {objectList(profesor)}</li>
-              </>
-            ))}
-          </ul>
-        )}
-      </div>
+        <>
+          <input
+            type="text"
+            value={query}
+            className="w-100"
+            onChange={handleInputChange}
+            placeholder="Buscar..."
+          />
+          {filteredSuggestions.length > 0 && (
+              <ul>
+                  {filteredSuggestions.map((profesor) => (
+                      <li key={profesor._id} onClick={() => handleSuggestionClick(profesor)}>
+                          {objectList(profesor)}
+                      </li>
+                  ))}
+              </ul>
+          )}
+      </>
     );
   };
   

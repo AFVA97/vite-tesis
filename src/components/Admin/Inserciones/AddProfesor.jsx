@@ -36,8 +36,8 @@ const AddProfesor = () => {
                 updatesProfesor(data);
                 navigate("/admin/inicio")
             }
-        } catch (error) {
-                
+        } catch (errores) {
+            error.push(errores.message)
     }})
     
     const handleCancelar=(e)=>{
@@ -54,11 +54,7 @@ const AddProfesor = () => {
         setValue('funcionDireccion',"")
     }
 
-    useEffect(() => {
-      if(errors.length>0)
-        seterror([...error,...errors])
-    }, [errors])
-
+    
     useEffect(() => {
         if (error.length > 0) {
           const timer = setTimeout(() => {
@@ -113,69 +109,83 @@ const AddProfesor = () => {
       <InfoInicio title={"Añadir Profesor"}/>    
         <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
             <div className="justify-content-center container  align-items-center text-center">
-                <div className="row p-2 pt-5 ml-5 mr-5">
-                    <div className="input-group mb-3 col">
-                        <span className="input-group-text" id="basic-addon1">#</span>
-                        <input 
-                            type="number" 
-                            className="form-control" 
-                            placeholder="Número ID" 
-                            aria-label="NumeroID" 
-                            name="idUniversidad"
-                            {...register("idUniversidad", { required: true })}
-                            disabled={(params._id)?"disabled":""}
-                        />
-                        {errors.idUniversidad && (
-                            <p className="form-label"> ID is required</p>
-                        )}
+                <div className=" p-2 pt-5 ml-5 mr-5">
+                    <div className=" row">
+                        <div className="input-group mb-3 mr-2 col row ">
+                            <span className="input-group-text col-2" id="basic-addon1">#</span>
+                            <input 
+                                type="number" 
+                                className="form-control col" 
+                                placeholder="Número ID" 
+                                aria-label="NumeroID" 
+                                name="idUniversidad"
+                                {...register("idUniversidad", { required: true })}
+                                disabled={(params._id)?"disabled":""}
+                            />
+                            
+                        </div>
+                        <div className="input-group mb-3 row col">
+                            <span className="input-group-text col-2" id="basic-addon1">CI</span>
+                            <input 
+                                type="number" 
+                                className="form-control col" 
+                                placeholder="CI" 
+                                {...register("ci", { required: true })}
+                            />
+                            
+                        </div>
                     </div>
-                    <div className="input-group mb-3 col">
-                    <span className="input-group-text" id="basic-addon1">CI</span>
-                    <input 
-                        type="number" 
-                        className="form-control" 
-                        placeholder="CI" 
-                        {...register("ci", { required: true })}
-                    />
-                    {errors.ci && (
-                        <p className="form-label"> CI is required</p>
+                    <div className=" row">
+                        
+                        {errors.idUniversidad ? (
+                                <p className="col alert alert-danger mr-2 text-center"> Identificador de Universidad es Requerido</p>
+                            ):<div className="col mr-2"></div>}
+                        {errors.ci ? (
+                                <p className="col alert alert-danger text-center"> CI is required</p>
+                            ):<div className="col "></div>}
+                    </div>
+                </div>
+                <div className="  ml-5 mr-5">
+                    <div className="row ">
+                        <div className="input-group mb-3 mr-2 p-1 col row">
+                            <span className="input-group-text col-3" id="basic-addon1">Nombre(s)</span>
+                            <input 
+                                type="text" 
+                                className="form-control col" 
+                                {...register("nombre", { required: true })}
+                            />
+                            
+                        </div>
+                        <div className="input-group mb-3 p-1 col row">
+                            <span className="input-group-text col-3" id="basic-addon1">Apellidos</span>
+                                <input 
+                                    type="text" 
+                                    className="form-control col" 
+                                    {...register("apellidos", { required: true })}
+                                /> 
+                        </div>                    
+                    </div>
+                    <div className="row">
+                        {errors.nombre ? (
+                            <p className="col alert alert-danger mr-2 text-center"> El Nombre es Requerido</p>
+                        ):<div className="col mr-2"></div>}
+                        {errors.apellidos ? (
+                            <p className="col alert alert-danger text-center"> Los Apellidos son Requeridos</p>
+                        ):<div className="col"></div>}
+                    </div>
+                </div>
+                <div className="  ml-5 mr-5">
+                    <div className="input-group justify-content-around row ">
+                        <span className="input-group-text col-2  mb-3 p-1 " id="basic-addon1">Graduado de</span>
+                            <input 
+                                type="text" 
+                                className="form-control col mb-3 p-1  mr-5 pr-5" 
+                                {...register("graduado", { required: true })}
+                            />                            
+                    </div>
+                    {errors.graduado && (
+                        <p className="alert alert-danger text-center"> Graduado de is required</p>
                     )}
-                </div>
-                </div>
-                <div className="row p-2 ml-5 mr-5">
-                    <div className="input-group mb-3 p-1 col">
-                        <span className="input-group-text" id="basic-addon1">Nombre(s)</span>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            {...register("nombre", { required: true })}
-                        />
-                        {errors.nombre && (
-                            <p className="form-label"> El Nombre is required</p>
-                        )}
-                    </div>
-                    <div className="input-group mb-3 p-1 col">
-                    <span className="input-group-text" id="basic-addon1">Apellidos</span>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            {...register("apellidos", { required: true })}
-                        />
-                        {errors.apellidos && (
-                            <p className="form-label"> Apellidos is required</p>
-                        )}
-                    </div>
-                </div>
-                <div className="input-group justify-content-around col-11 p-2 ml-5 mr-5">
-                    <span className="input-group-text  mb-3 p-1 " id="basic-addon1">Graduado de</span>
-                        <input 
-                            type="text" 
-                            className="form-control mb-3 p-1  mr-5 pr-5" 
-                            {...register("graduado", { required: true })}
-                        />
-                        {errors.graduado && (
-                            <p className="form-label"> Graduado de is required</p>
-                        )}
                 </div>
                 <div className="row justify-content-around container p-2 ml-5 mr-5 ">
                         <div className="col-5 row">
@@ -250,7 +260,7 @@ const AddProfesor = () => {
                     ))}
                 </>
             ):<div></div>}  
-            <div className="fixed-bottom p-2 row bottom-0 end-0">
+            <div className="sticky-bottom p-2 row bg-white">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
                 <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>

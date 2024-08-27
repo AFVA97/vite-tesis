@@ -7,7 +7,7 @@ import LayoutExtUniv from "./layoutExtUniv"
 function layoutInicio({_id}){
     return(
         <>
-            <div className="container-fluid text-center">
+            <div className=" text-center">
                 <h6>Pregrado</h6>
                 <LayoutPregrado _id={_id}/>
                 <h6>Posgrado</h6>

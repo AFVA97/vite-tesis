@@ -137,10 +137,7 @@ const AddExtUniv = () => {
                     <span className="input-group-text" id="basic-addon1">Fecha</span>
                     <input 
                         type="date" 
-                        onSelect={e=>{setValue('fecha',e.target.value);
-                            
-                            
-                        }}
+                        onSelect={e=>{setValue('fecha',e.target.value)}}
 
                         {...register("fecha", { required: true })}
                     />

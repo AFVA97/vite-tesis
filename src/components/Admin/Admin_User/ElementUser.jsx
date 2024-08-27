@@ -7,6 +7,7 @@ import { useFacultad } from "../../../context/facultadContext";
 
 function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
     
+    
     const {getFacultad}=useFacultad();
     const {getProfesor}=useProfesor();
     const [asignado, setasignado] = useState("")

@@ -28,38 +28,49 @@ useEffect(()=>{
     
     return (
       <>
-      <div className="container p-5 ">
-        {signinErrors.map((error,i)=>(
-          <div key={i}>
-            {error}
-          </div>
-        ))}
-          <div className="mb-3 ">
-           <form onSubmit={handleSubmit(onSubmit)}>
-              <input
-                label="Escribe tu Usuario"
-                className="form-control mb-3 mt-5 "
-                name="username"
-                placeholder="Nombre de Usuario"
-                {...register("username", { required: true })}
-              />
-              {errors.username && (
-                <p className="form-label"> username is required</p>
-              )}
+      <div className="container d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
+        <div className="card" style={{width: "125rem"}}>
+            <div className="card-header">
+                Bienvenido al Balance de Carga Docente
+            </div>
+            {signinErrors.map((error,i)=>(
+              <div key={i}>
+                {error}
+              </div>
+            ))}
+            <div className="card-body">
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  label="Escribe tu Usuario"
+                  className="form-control mb-3"
+                  name="username"
+                  placeholder="Nombre de Usuario"
+                  {...register("username", { required: true })}
+                />
+                {errors.username && (
+                  <p className="form-label"> username is required</p>
+                )}
 
-              <input
-                type="password"
-                name="password"
-                className="form-control mb-3"
-                placeholder="Write your password"
-                {...register("password", { required: true, minLength: 6 })}
-              />
-              {errors.password && (
-                <p className="form-label"> password is required</p>
-              )}
+                <input
+                  type="password"
+                  name="password"
+                  className="form-control mb-3"
+                  placeholder="Write your password"
+                  {...register("password", { required: true, minLength: 6 })}
+                />
+                {errors.password && (
+                  <p className="form-label"> password is required</p>
+                )}
 
-              <button type="submit" className="btn btn-primary mb-3">Login</button>
-            </form>
+                <button type="submit" className="btn btn-primary mb-3">Login</button>
+              </form>
+            </div>
+        </div>
+    </div>
+      <div className="container card mt-3 d-flex p-6  justify-content-center">
+        
+          <div className="mb-3 card-body">
+           
         
           </div>
             

@@ -59,13 +59,31 @@ const AddAsignatura = ({User}) => {
         setexafinal(!exafinal)
         setValue('exafinal',exafinal)
     }
+
+    // const [comienzo, setcomienzo] = useState("")
+    //     const [finaliza, setfinaliza] = useState("")
+    // useEffect(() => {
+    //     setValue('comienzo',comienzo)
+    //     console.log(comienzo);
+    // }, [comienzo])
+    // useEffect(() => {
+    //     setValue('finaliza',finaliza)
+    //     console.log(finaliza);
+    // }, [finaliza])
+        
+        
+    
+    // function handleFinaliza(e){
+    //     setValue('finaliza',e.target.value)
+    //     console.log(e.target.value);
+    // }
     
   return (
     <>
       <InfoNavBar title={"Añadir Asignatura"} link={`/faculty/modificar/${params._id}`}/>      
-        <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-            <div className="row   p-5">
-                <div className="input-group mb-3 mw-100 justify-content-center p-1 col-6">
+        <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar} className="m-4">
+            <div className="row m-2">
+                <div className="input-group mb-3  justify-content-center p-1 col">
                     <span className="input-group-text" id="basic-addon1">Asignatura</span>
                     <select 
                         className="form-select" 
@@ -80,7 +98,7 @@ const AddAsignatura = ({User}) => {
                             <p className="form-label"> Nombre de la Asignatura is required</p>
                         )}
                 </div>
-                <div className="input-group mb-3 p-1  justify-content-center mw-100 col-6">
+                <div className="input-group mb-3 p-1  justify-content-center  col">
                     <span className="input-group-text" id="basic-addon1">Año</span>
                     <select 
                         className="form-select" 
@@ -98,7 +116,9 @@ const AddAsignatura = ({User}) => {
                             <p className="form-label"> Nombre de la Asignatura is required</p>
                         )}
                 </div>
-                <div className="input-group mb-3 col-6">
+            </div>
+            <div className="row  m-2 ">
+                <div className="input-group mb-3 col">
                     <span className="input-group-text" id="basic-addon1">Cantidad de Grupos</span>
                     <input 
                         type="number" 
@@ -111,7 +131,7 @@ const AddAsignatura = ({User}) => {
                         <p className="form-label"> Cantidad de Grupos is required</p>
                     )}
                 </div>
-                <div className="input-group mb-3 col-6">
+                <div className="input-group mb-3 col">
                     <span className="input-group-text" id="basic-addon1">Horas</span>
                     <input 
                         type="number" 
@@ -124,8 +144,9 @@ const AddAsignatura = ({User}) => {
                         <p className="form-label"> Horas is required</p>
                     )}
                 </div>
-                
-                <div className="input-group mb-3 col-6">
+            </div>
+            <div className="row  m-2">
+                <div className="input-group mb-3 col">
                     <span className="input-group-text" id="basic-addon1">Frecuencia Semanal</span>
                     <input 
                         type="number" 
@@ -139,7 +160,7 @@ const AddAsignatura = ({User}) => {
                     )}
                 </div>
                 
-                <div className="input-group mb-3 col-6">
+                <div className="input-group mb-3 col">
                     <span className="input-group-text" id="basic-addon1">Tutoría a Alumnos Ayudantes</span>
                     <input 
                         type="number" 
@@ -154,64 +175,99 @@ const AddAsignatura = ({User}) => {
                         <p className="form-label"> Tutoria a Alumnos Ayudantes is required</p>
                     )}
                 </div>
-                <div className="input-group mb-3 p-1 justify-content-center">
-                    <span className="input-group-text" id="basic-addon1">Tipo de Curso</span>
-                    <select 
-                        className="form-select" 
-                        onChange={ e => setValue('tipocurso',e.target.value)}
-                        //value={tipoSelect}
-                    >
-                        <option value="" >Seleccione una Opción</option>
-                        <option value="CRD" >CRD</option>
-                        <option value="CPT" >CPT</option>
-                        <option value="CPE" >CPE</option>
-                        
-                    </select>
-                        {errors.tipocurso && (
-                            <p className="form-label"> Tipo de Curso is required</p>
-                        )}
-                </div>
-                <div className="row justify-content-around container-fluid ">
-
+            </div>
+            <div className="input-group  p-1 mb-3 justify-content-center">
+                <span className="input-group-text" id="basic-addon1">Tipo de Curso</span>
+                <select 
+                    className="form-select" 
+                    onChange={ e => setValue('tipocurso',e.target.value)}
+                >
+                    <option value="" >Seleccione una Opción</option>
+                    <option value="CRD" >CRD</option>
+                    <option value="CPT" >CPT</option>
+                    <option value="CPE" >CPE</option>
                     
-                        <span className="input-group-text" id="basic-addon1">Semestre</span>
-                        <div className="form-check">
+                </select>
+                    {errors.tipocurso && (
+                        <p className="form-label"> Tipo de Curso is required</p>
+                    )}
+            </div>
+            <div className="row mb-3 justify-content-around container-fluid ">
+
+                                        
+                    <div className="row col">
+                        <span className="input-group-text col" id="basic-addon1">Semestre</span>
+                        <div className="form-check col ml-1">
                             <input className="form-check-input " type="checkbox" value="Sí" id="fijosi" checked={semestre} onChange={handleOnChange}/>
                             <label className="form-check-label" htmlFor="fijosi">
                                 1er
                             </label>
-                        
+
                         </div>
-                        <div className="form-check">
+                        <div className="form-check col">
                             <input className="form-check-input " type="checkbox" value="No" id="fijono" checked={!semestre} onChange={handleOnChange}/>
                             <label className="form-check-label" htmlFor="fijono">
                                 2do
                             </label>
-                        
+
                         </div>
-                        
-                        
-                    
-                        <span className="input-group-text" id="basic-addon1">Examen Final</span>
-                        <div className="form-check">
+                    </div>
+
+
+
+                    <div className="row col">
+                        <span className="input-group-text col" id="basic-addon1">Examen Final</span>
+                        <div className="form-check col ml-1">
                             <input className="form-check-input " type="checkbox" value="Sí" id="cargosi" checked={exafinal} onChange={handleOnChanges}/>
                             <label className="form-check-label" htmlFor="cargosi">
                                 Sí
                             </label>
-                        
+
                         </div>
-                        <div className="form-check ">
+                        <div className="form-check  col">
                             <input className="form-check-input " type="checkbox" value="No" id="cargono" checked={!exafinal} onChange={handleOnChanges}/>
                             <label className="form-check-label" htmlFor="cargono">
                                 No
                             </label>
-                        
+
                         </div>
-                    
+                    </div>
+
                 </div>
-                
+            <div className="row">
+                <span className="input-group-text col" id="basic-addon1">Curso</span>
+                <div className="col">
+                    <span className="input-group-text" id="basic-addon1">Empieza</span>
+                        <input 
+                            type="date" 
+                            className="form-control" 
+                            placeholder="#" 
+                            onSelect={e=>{setValue('comienzo',e.target.value)}}
+                            
+                            {...register("comienzo", { required: true })}
+                            
+                        />
+                        {errors.comienzo && (
+                            <p className="form-label"> Comienzo is required</p>
+                        )}
+                </div>
+                <div className="col">
+                    <span className="input-group-text" id="basic-addon1">Finaliza</span>
+                        <input 
+                            type="date" 
+                            className="form-control" 
+                            placeholder="#" 
+                            onSelect={e=>{setValue('finaliza',e.target.value)}}
+                            {...register("finaliza", { required: true })}
+                            
+                        />
+                        {errors.finaliza && (
+                            <p className="form-label"> Finaliza is required</p>
+                        )}
+                </div>
             </div>
-            <div className="fixed-bottom p-2 row bottom-0 end-0">
+            
+            <div className="fixed-bottom p-2 row bg-white bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
                 <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>

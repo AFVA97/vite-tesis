@@ -4,6 +4,7 @@ import InfoNavBar from '../Info_Carrera/infoNavBar'
 import { useNavigate } from 'react-router-dom';
 import { useCarrera } from '../../../context/carreraContext';
 import { useAuth } from '../../../context/authContext';
+import { useEffect } from 'react';
 
 
 
@@ -20,11 +21,23 @@ const AddCarrera = () => {
         getCarrera,
         getCarreraProf,
         updatesCarrera,}=useCarrera()
-    getProfile();
+    useEffect(() => {
+      const load=async()=>{
+        await getProfile()
+      }
+      load()
+    }, [])
+    useEffect(() => {
+      if(user.facuser){
+        setValue('facultad',user.facuser)
+      }
+    }, [user])
+    
+    
     const navigate=useNavigate();
     const onSubmit=handleSubmit(data=>{        
         try {
-            setValue('facultad',user.facuser)
+            
            
                 createsCarrera(data);
                 navigate("/faculty/inicio")

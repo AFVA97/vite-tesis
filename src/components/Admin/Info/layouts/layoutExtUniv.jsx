@@ -43,6 +43,7 @@ function layoutExtUniv({_id}){
 
     return(
         <>
+        <div className="container-fluid text-center">
             <ThlExtUniv/>
             {elementos.map((element)=>(
                 <ElExtUniv 
@@ -54,6 +55,8 @@ function layoutExtUniv({_id}){
                     No tiene Extensiones Asignadas
                 </div> </>)}
             <RlExtUniv {...review}/>
+        </div>
+            
         </>
     )
 }

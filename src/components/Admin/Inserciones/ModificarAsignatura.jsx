@@ -13,8 +13,8 @@ const ModificarAsignatura = () => {
     const _id=useParams()._id
     const {Profesores,getProfesores}=useProfesor();
     const {getAsignatura,updatesAsignatura,getAsignaturas}=useAsignatura();
-    const [asignatura, setasignatura] = useState({nombre:"",facultad:"",notas:""})
-    const [carrera,setCarrera]=useState({nombre:""})
+    const [asignatura, setasignatura] = useState({nombre:"",facultad:{_id:""},carrera:{nombre:""},notas:""})
+    //const [carrera,setCarrera]=useState({nombre:""})
     const {getCarrera}=useCarrera()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const navigate=useNavigate()    
@@ -30,7 +30,7 @@ const ModificarAsignatura = () => {
         try {
         if(asignatura.carrera){
                 updatesAsignatura(data);
-                navigate(`/admin/facultad/info/${asignatura.facultad}`)
+                navigate(`/admin/facultad/info/${asignatura.facultad._id}`)
         }
         } catch (error) {
                 console.log(error);
@@ -38,7 +38,7 @@ const ModificarAsignatura = () => {
 
     const handleCancelar=(e)=>{
         e.preventDefault();
-        navigate(`/admin/facultad/info/${asignatura.facultad}`)
+        navigate(`/admin/facultad/info/${asignatura.facultad._id}`)
     }
 
     useEffect(() => {
@@ -46,17 +46,16 @@ const ModificarAsignatura = () => {
         await getProfesores()
         setasignatura(await getAsignatura(_id))
       };load()
+      
     }, [])
 
     useEffect(() => {
         if(asignatura.carrera){
-            const load=async()=>{
-                setCarrera(await getCarrera(asignatura.carrera))
-            };load()
+            
             setValue('_id',asignatura._id)
             setValue('nombre',asignatura.nombre)
-            setValue('carrera',asignatura.carrera)
-            setValue('facultad',asignatura.facultad)
+            setValue('carrera',asignatura.carrera._id)
+            setValue('facultad',asignatura.facultad._id)
             setValue('anno',asignatura.anno)
             setValue('semestre',asignatura.semestre)
             setValue('frecuencia',asignatura.frecuencia)
@@ -68,18 +67,20 @@ const ModificarAsignatura = () => {
             setValue('profesor',asignatura.profesor)
             setValue('notas',asignatura.notas)
         }
+        
+        
     }, [asignatura])
     
   return (
     <>
-        <InfoNavBar title={`Modificar Asignatura: ${asignatura.nombre} ~~~~~~ Carrera: ${carrera.nombre}`} link={`facultad/info/${asignatura.facultad}`}/>
+        <InfoNavBar title={`Modificar Asignatura: ${asignatura.nombre} ~~~~~~ Carrera: ${asignatura.carrera.nombre}`} link={`facultad/info/${asignatura.facultad._id}`}/>
         <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
             <div className="row p-5">
                 <div className="col-3">
                     <span className="input-group-text w-100" id="basic-addon1">Profesor</span>
                     <SearchBar Profesores={Profesores} onSelect={handleSelect} prof={asignatura.profesor} />
                 </div>
-                <div className="input-group mb-3 col-9 p-1 ">
+                <div className="input-group mb-3 col p-1 ">
                     <div className="w-100"><span className="input-group-text w-100" >Notas</span></div>
                         <div className="w-100"><textarea 
                             rows={3}
@@ -89,7 +90,7 @@ const ModificarAsignatura = () => {
                         /></div>
                 </div>
             </div>
-            <div className="fixed-bottom p-2 row bottom-0 end-0">
+            <div className="fixed-bottom bg-white p-2 row bottom-0 end-0">
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
                 <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>

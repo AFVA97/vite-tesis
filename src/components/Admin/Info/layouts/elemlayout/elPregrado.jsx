@@ -1,9 +1,27 @@
+import { useState, useEffect } from "react"
+import { useAsignatura } from "../../../../../context/asignaturaContext"
 
 
-function elPregrado({carrera,anno,semestre,asignatura,horas,frecuencia,taa,tef}){
+function elPregrado({_id,carrera,anno,semestre,asignatura,horas,frecuencia,taa,tef}){
+    const [active, setactive] = useState(false)
+    const {getAsignatura,updatesAsignatura}=useAsignatura()
+    const [Asignatura, setAsignatura] = useState(null);
+    
+    useEffect(() => {
+        const load=async()=>{
+            setAsignatura(await getAsignatura(_id))
+        };load()
+    }, []);
+    
+    const handleDelete=async()=>{
+        if(Asignatura){
+            await updatesAsignatura({...Asignatura,profesor:null})
+        }
+    }
+
     return(
         <>
-        <div className="row justify-content-center text-center container-fluid  m-0 p-0">
+        <div  onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid  m-0 p-0">
             <div scope="col" className=" col-3 text-truncate">{carrera}</div>
             <div scope="col" className=" col-1 text-truncate">{anno}</div>
             <div scope="col" className=" col-1 text-truncate">{semestre?"1ro":"2do"}</div>
@@ -13,6 +31,14 @@ function elPregrado({carrera,anno,semestre,asignatura,horas,frecuencia,taa,tef})
             <div scope="col" className=" col-1 text-truncate">{taa}</div>
             <div scope="col" className=" col-1 text-truncate">{tef}</div> 
         </div> 
+        {active &&
+                    <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
+                                                
+                        <div className="col table-danger" onClick={()=>handleDelete()}>
+                            Quitar Asignación de esta Asignatura
+                        </div>
+                    </div>
+            }
      </>
     )
 }

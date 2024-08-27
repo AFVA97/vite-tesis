@@ -15,7 +15,6 @@ const ElementModificar = ({asignatura}) => {
             if(asignatura.profesor)
                 setProfesor(await getProfesor(asignatura.profesor));
           };load();
-          
     }, [])
     
     
@@ -26,9 +25,6 @@ const ElementModificar = ({asignatura}) => {
                     <div scope="col" className="col-6 ">Asignatura: {asignatura.nombre} </div>
                     <div scope="col" className="col-3 ">Tipo de Curso: {asignatura.tipocurso}</div>
                     <div scope="col" className="col-3 ">Cantidad de Grupos: {asignatura.cantgrupos}</div>
-                    
-                    
-                    
             </div>
 
             <div  className="row justify-content-center text-center container-fluid m-0 p-0">
@@ -53,7 +49,7 @@ const ElementModificar = ({asignatura}) => {
                     
                     
                     
-                    <div className="col table-danger" onClick={()=>deletesAsignatura(_id)}>
+                    <div className="col table-danger" onClick={()=>deletesAsignatura(asignatura._id)}>
                         Eliminar
                     </div>
                     

@@ -17,12 +17,7 @@ function elementPosgrado({_id,nombre, apellidos, hi, hr,th}){
                         <div className="col table-info"><Link to={`info/${_id}`}>
                             Información</Link>
                         </div>
-                        <div className="col table-success">
-                            Modificar
-                        </div>
-                        <div className="col table-danger">
-                            Eliminar
-                        </div>
+                        
                     </div>
             }
         </>

@@ -81,9 +81,9 @@ export function FacultadProvider({ children }) {
 
   
 
-  const getFacultad = async (id) => {
+  const getFacultad = async (_id) => {
     try {      
-      const res = await getFacRequest(id);       
+      const res = await getFacRequest(_id);       
       return res.data;
     } catch (error) {
       console.error(error);

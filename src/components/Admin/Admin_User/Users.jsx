@@ -37,7 +37,7 @@ const Users = () => {
     
   return (
     <>  
-    <div className="sticky-top"> 
+    <div className="sticky-top bg-white"> 
         <InfoInicio title={"Usuarios"}/>
         <SearchBar 
             query={query}

@@ -71,17 +71,19 @@ function layoutPregrado({_id}){
 
     return(
         <>
-            <ThlPregrado />
-            {elementos.map((element)=>(
-                <ElPregrado 
-                key={element._id}
-                {...element}/>
-            ))}
-            {(elementos.length===0) && (
-                <><div className="row justify-content-center text-center container-fluid  m-0 p-0">
-                    No tiene Asignaturas Asignadas
-                </div> </>)}
-            <RlPregrado {...review}/>
+            <div className="container-fluid text-center">
+                <ThlPregrado />
+                {elementos.map((element)=>(
+                    <ElPregrado 
+                    key={element._id}
+                    {...element}/>
+                ))}
+                {(elementos.length===0) && (
+                    <><div className="row justify-content-center text-center container-fluid  m-0 p-0">
+                        No tiene Asignaturas Asignadas
+                    </div> </>)}
+                <RlPregrado {...review}/>
+            </div>
         </>
     )
 }

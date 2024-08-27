@@ -20,9 +20,9 @@ function titleLayout({_id,isprofesor}){
     
     return(
         <div className="row bg-white">
-            <div className="col-6">{isprofesor?`${Profesor.nombre} ${Profesor.apellidos}`:Profesor.nombre}</div>
+            <div className="col ml-5 mr-2">{isprofesor?`${Profesor.nombre} ${Profesor.apellidos}`:Profesor.nombre}</div>
             {isprofesor && (
-                <div className="col-6">
+                <div className="col align-items-rigth ml-2 mr-2">
                     Graduado de: {Profesor.graduado}
                 </div>
             )}

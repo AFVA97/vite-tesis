@@ -33,13 +33,14 @@ function layoutFacultad({_id}){
     
     return(
         <>
-            {carrerasFac.map((carrera)=>(
+        <div className="container-fluid text-center">{carrerasFac.map((carrera)=>(
                 <ComponentFacultad
                     key={carrera._id}
                     carrera={carrera}
                     asignaturas={AsignaturasFac.filter((asignatura)=>asignatura.carrera===carrera._id)}
                 />
-            ))}
+            ))}</div>
+            
         </>
     )
 }

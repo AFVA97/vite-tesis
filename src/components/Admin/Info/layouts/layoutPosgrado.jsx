@@ -50,6 +50,7 @@ function layoutPosgrado({_id}){
     
     return(
         <>
+        <div className="container-fluid text-center">
             <ThlPosgrado />
             {elementos.map((element)=>(
                 <ElPosgrado 
@@ -61,6 +62,8 @@ function layoutPosgrado({_id}){
                     No tiene Posgrados Asignados
                 </div> </>)}
             <RlPosgrado {...review}/>
+        </div>
+            
         </>
     )
 }
