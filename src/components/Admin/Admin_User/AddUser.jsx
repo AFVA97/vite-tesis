@@ -138,7 +138,14 @@ const AddUser = () => {
         }
     }, [usuario])
 
+
+
+    function handleSelectTipo(e){
+        
+        settipoSelect(e.target.value)
+    }
     useEffect(() => {
+        
         async function informacion() {
         if(tipoSelect==="1"|| tipoSelect===""){
             setValue('ciuser',null)
@@ -164,9 +171,10 @@ const AddUser = () => {
             }
             setselectores(
                 <>
-                    {!modificando&& (
+                    {!modificando&& (<>
+                        <label >Asignado a:</label>
                         <SearchBar Profesores={profesorfiltrado} onSelect={handleSelect} />
-                    )}
+                    </>)}
                 </>
             )
             if(profesorfiltrado[0])
@@ -187,9 +195,10 @@ const AddUser = () => {
             }
             setselectores(
                 <>
-                    {!modificando && (
+                    {!modificando && (<>
+                        <label >Asignado a:</label>
                         <SearchBar Profesores={facultadfiltrad} onSelect={handleSelect} />
-                    )}
+                    </>)}
                 </>
             )
             if(facultadfiltrad[0])
@@ -199,107 +208,93 @@ const AddUser = () => {
         }informacion()
     }, [tipoSelect])
         
-       
+    
   return (
     <>
       <InfoInicio title={"Añadir Usuario"}/>
+      <div className="container mt-5">
+
       <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-            <div className="row p-5">
-                <div className="row">
-                    <div className="input-group mb-3 p-1 col">
-                        <span className="input-group-text" id="basic-addon1">Nombre de Usuario</span>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            {...register("username", { required: true })}
-                            disabled={(params._id)?"disabled":""}
-                        />                        
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="username">Título</label>
+                        <input type="text" disabled={(params._id)?"disabled":""} className="form-control" {...register("username", { required: true })} id="username" placeholder="Nombre de Usuario" />
+                        {errors.username && (
+                            <p className="alert-danger rounded text-center mt-2"> El Nombre de Usuario es Requerido</p>
+                        )}
                     </div>
-                    <div className="input-group mb-3 p-1 col">
-                    <span className="input-group-text" id="basic-addon1">Tipo de Usuario</span>
-                    <select 
+                    <div className="form-group col-md-6">
+                            <label htmlFor="tipo">Tipo de Usuario</label>
+                            <select 
+                                className="form-select" 
+                                onChange={e=>handleSelectTipo(e)}
+                                id="tipo"
+                                value={tipoSelect}
+                                >
+                                <option value="" >Seleccione una Opción</option>
+                            <option value="1">Administrador</option>
+                            <option value="2">Profesor</option>
+                            <option value="3">Facultad</option>
+                            </select>
+                            {errors.tipo && (
+                            <p className="alert-danger rounded text-center mt-2"> Tipo de Usuario es Requerido</p>
+                        )}
+                    </div>
+                    
+                </div>
+                <div className="form-row">
+                    
+                    <div className="form-group col-md-6">
+                        <label htmlFor="activo">Activo</label>
+                        <select 
                         className="form-select" 
-                        onChange={ e => settipoSelect(e.target.value)}
-                        value={tipoSelect}
-                    >
+                        id="activo"
+                        onChange={ e => setValue('active',e.target.value)}
+                        {...register("active", { required: true })}
+                        >
                         <option value="" >Seleccione una Opción</option>
-                        <option value="1">Administrador</option>
-                        <option value="2">Profesor</option>
-                        <option value="3">Facultad</option>
-                    </select>
-                        
-                    </div>
-                </div>
-                <div className="row">
-                    {errors.username && (
-                                <p className="alert alert-danger text-center col-6"> El Nombre de Usuario es Requerido</p>
+                        <option value="true" >Sí</option>
+                        <option value="false" >No</option>
+                        </select>                        
+                        {errors.active && (
+                                <p className="alert-danger rounded text-center mt-2"> Activo es Requerido</p>
                             )}
-                    {errors.tipo && (
-                            <p className="alert alert-danger text-center col-6"> Tipo de Usuario es Requerido</p>
+                    
+                    </div>
+                    <div className="form-group col-md-6">
+                            {selectores}
+                    </div>
+                </div>
+                
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="password">Contraseña</label>
+                        <input type="password" className="form-control"  {...register("password", { required: true })} id="password" />
+                        {errors.password && (
+                            <p className="alert-danger rounded text-center mt-2"> Contraseña es Requerida</p>
                         )}
-                </div>
-                <div className="row">
-                    <div className=" mb-3 mw-100">
-                        {selectores}
                     </div>
-                </div>
-                <div className="row justify-content-around  m-2 container  ">
-                        <span className="input-group-text col " id="basic-addon1">Activo</span>
-                        <div className="form-check col m-2 justify-content-around">
-                            <input className="form-check-input " type="checkbox" value="Sí" id="activesi" checked={active} onChange={()=>handleOnChange()}/>
-                            <label className="form-check-label" htmlFor="activesi">
-                                Sí
-                            </label>
-                        </div>
-                        <div className="form-check col m-2 justify-content-around">
-                            <input className="form-check-input " type="checkbox" value="No" id="activeno" checked={!active} onChange={()=>handleOnChange()}/>
-                            <label className="form-check-label" htmlFor="activeno">
-                                No
-                            </label>
-                        </div>
-                </div>
-                <div className="row">
-                    <div className="input-group mb-3 p-1 col">
-                        <span className="input-group-text" id="basic-addon1">Contraseña</span>
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            {...register("password", { required: true })}
-                        />
-                        
-                    </div>
-                    <div className="input-group mb-3 p-1 col">
-                        <span className="input-group-text" id="basic-addon1">Confirme su Contraseña</span>
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            {...register("confirmacion", { required: true })}
-                        />
-                        
-                    </div>
-                </div>
-                <div className="row">
-                    {errors.password ? (
-                                <p className="alert alert-danger mr-2 text-center col"> La Contraseña es Requerida</p>
-                            ):<div className="col-6"></div>}
-                    {errors.confirmacion && (
-                            <p className="alert alert-danger text-center col"> La Confirmación de Contraseña es Requerida</p>
+                    <div className="form-group col-md-6">
+                    <label htmlFor="confirmacion">Confirmación de la Contraseña</label>
+                        <input type="password" className="form-control"  {...register("confirmacion", { required: true })} id="confirmacion" />
+                        {errors.confirmacion && (
+                            <p className="alert-danger rounded text-center mt-2">Confirmación de la Contraseña es Requerida</p>
                         )}
+                    </div>
                 </div>
-            </div>
-            {error.length>0 ? (
-                <>
-                {error.map((errores,i)=>(
-                        <p key={i} className="alert alert-danger text-center"> {errores} </p>
-                    ))}
-              
-                </>
-            ):<div></div>}  
-            <div className="fixed-bottom p-2 bg-white row bottom-0 end-0">
-                <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
-            </div>
-        </form>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <button type="submit" className="btn btn-success">Guardar</button>
+                    </div>
+                    <div className="form-group col-md-6 text-right">
+                        <button type="button" onClick={e=>handleCancelar(e)} className="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+
+
+       
+        </div>
     </>
   )
 }

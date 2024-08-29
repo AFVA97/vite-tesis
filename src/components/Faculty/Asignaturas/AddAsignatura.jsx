@@ -10,12 +10,8 @@ const AddAsignatura = ({User}) => {
     const params=useParams();
     const{ createsAsignatura}=useAsignatura()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-    const [semestre, setsemestre] = useState(true);
-    const [exafinal, setexafinal] = useState(true);
     const navigate=useNavigate()
-    const [error, seterror] = useState([])
-    const [flag, setflag] = useState(false)
-
+    
     const{NombreAsignaturas, getNombreAsignaturas, }=useNombreAsignatura()
 
     useEffect(() => {
@@ -42,26 +38,15 @@ const AddAsignatura = ({User}) => {
     
       const onSubmit=handleSubmit(async data=>{        
         try {  
+           
             
-            if(data.nombre=="" ){
-                seterror(['Seleccione la Asignatura a Solicitar'])                
-            }
-            if(data.anno=="" ){
-                seterror(['Seleccione el Año a Solicitar'])
-                                
-            }
-            if(data.tipocurso==""){
-                seterror(['Seleccione el Tipo de Curso a Solicitar'])
-            }
-            if(data.comienzo>data.finaliza){
-                seterror(['El Curso debe tener la fecha final después de la fecha de inicio'])
-            }
-            if(data.nombre!="" && data.anno!="" && data.tipocurso!="" && data.comienzo<data.finaliza){
+            
                 createsAsignatura(data);
                 navigate(`/faculty/modificar/${params._id}`)
-            }
+            
         } catch (errores) {
-            seterror([...error,errores])
+            console.log(errores);
+            
     }})
     
     const handleCancelar=(e)=>{
@@ -70,64 +55,45 @@ const AddAsignatura = ({User}) => {
     }
     
 
-    const handleOnChange=()=>{
-        setsemestre(!semestre)
-        
-    }
-    useEffect(() => {
-        setValue('semestre',semestre)
-    }, [semestre])
     
-    const handleOnChanges=()=>{
-        setexafinal(!exafinal)
-        
-    }
-    useEffect(() => {
-        setValue('exafinal',exafinal)
-    }, [exafinal])
     
-    useEffect(() => {
-      if(error.length==0)
-        setflag(true)
-      else
-        setflag(false)
-    }, [error])
+    
+    
+   
     
 
-    useEffect(() => {
-        if (error.length > 0) {
-          const timer = setTimeout(() => {
-            seterror([]);
-          }, 5000);
-          return () => clearTimeout(timer);
-        }
-      }, [error]);
+    
     
   return (
     <>
-      <InfoNavBar title={"Añadir Asignatura"} link={`/faculty/modificar/${params._id}`}/>      
-        <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar} className="m-4">
-            <div className="row m-2">
-                <div className="input-group mb-3  justify-content-center p-1 col">
-                    <span className="input-group-text" id="basic-addon1">Asignatura</span>
-                    <select 
+      <InfoNavBar title={"Añadir Asignatura"} link={`/faculty/modificar/${params._id}`}/>    
+      <div className="container mt-5">
+            <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="nombre">Asignatura</label>
+                        <select 
                         className="form-select" 
-                        name="nombre"
+                        id="nombre"
                         onChange={ e => setValue('nombre',e.target.value)}
+                        {...register("nombre", { required: true })}
                     >
                         <option value="" >Seleccione una Opción</option>
                         {NombreAsignaturas.map((asignatura)=>(
                             <option value={asignatura.nombre} key={asignatura._id}>{asignatura.nombre}</option>
                         ))}
-                    </select>
-                        
-                </div>
-                <div className="input-group mb-3 p-1  justify-content-center  col">
-                    <span className="input-group-text" id="basic-addon1">Año</span>
-                    <select 
+                    </select>                        
+                    {errors.nombre && (
+                            <p className="alert-danger rounded text-center mt-2"> La Asignatura es Requerida</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="anno">Año</label>
+                        <select 
                         className="form-select" 
+                        id="anno"
                         onChange={ e => setValue('anno',e.target.value)}
-                        name="anno"
+                        {...register("anno", { required: true })}
                     >
                         <option value="" >Seleccione una Opción</option>
                         <option value="1" >1ro</option>
@@ -135,190 +101,119 @@ const AddAsignatura = ({User}) => {
                         <option value="3" >3ro</option>
                         <option value="4" >4to</option>
                         <option value="5" >5to</option>
-                        
-                    </select>
-                        
-                </div>
-            </div>
-            <div className="row  m-2 ">
-                <div className="input-group mb-3 col">
-                    <span className="input-group-text" id="basic-addon1">Cantidad de Grupos</span>
-                    <input 
-                        type="number" 
-                        className="form-control" 
-                        placeholder="#" 
-                        name="cantgrupos"
-                        {...register("cantgrupos", { required: true })}
-                        
-                    />
-                    
-                </div>
-                <div className="input-group mb-3 col">
-                    <span className="input-group-text" id="basic-addon1">Horas</span>
-                    <input 
-                        type="number" 
-                        className="form-control"
-                        name="horas" 
-                        placeholder="#" 
-                        {...register("horas", { required: true })}
-                        
-                    />
-                    
-                </div>
-            </div>
-            <div className="row">
-                <div className="row col  m-2">
-                    <div className="input-group mb-3 col-6">
-                        <span className="input-group-text" id="basic-addon1">Frecuencia Semanal</span>
-                        <input 
-                            type="number" 
-                            className="form-control" 
-                            placeholder="#" 
-                            name="frecuencia"
-                            {...register("frecuencia", { required: true })}
-                            
-                        />
-                        
+                    </select>                        
+                    {errors.anno && (
+                            <p className="alert-danger rounded text-center mt-2"> El Año es Requerido</p>
+                        )}
                     </div>
                     
-                    
-                    
                 </div>
-                <div className="input-group col p-1 mb-3 justify-content-center">
-                    <span className="input-group-text" id="basic-addon1">Tipo de Curso</span>
-                    <select 
+                
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="grupos">Cantidad de Grupos</label>
+                        <input type="number" className="form-control"  {...register("cantgrupos", { required: true })} id="cantgrupos" placeholder="Cantidad de Grupos" />
+                        {errors.cantgrupos && (
+                            <p className="alert-danger rounded text-center mt-2"> Cantidad de Grupos es Requerida</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="horas">Horas</label>
+                        <input type="number" {...register("horas", { required: true })} className="form-control" id="horas" placeholder="Horas" />
+                        {errors.horas && (
+                            <p className="alert-danger rounded text-center mt-2"> Horas es Requerido</p>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="frecuencia">Frecuencia Semanal</label>
+                        <input type="number" className="form-control"  {...register("frecuencia", { required: true })} id="frecuencia" placeholder="Frecuencia Semanal" />
+                        {errors.frecuencia && (
+                            <p className="alert-danger rounded text-center mt-2"> Fecha es Requerida</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="tipocurso">Tipo de Curso</label>
+                        <select 
                         className="form-select" 
-                        name="tipocurso"
+                        id="tipocurso"
                         onChange={ e => setValue('tipocurso',e.target.value)}
+                        {...register("tipocurso", { required: true })}
                     >
                         <option value="" >Seleccione una Opción</option>
                         <option value="CRD" >CRD</option>
                         <option value="CPT" >CPT</option>
                         <option value="CPE" >CPE</option>
-                        
-                    </select>
-                        
-                </div>
-            </div>
-            <div className="row mb-3 justify-content-around container-fluid ">
-
-                                        
-                    <div className="row col">
-                        <span className="input-group-text col" id="basic-addon1">Semestre</span>
-                        <div className="form-check col ml-1">
-                            <input className="form-check-input " type="checkbox" value="Sí" id="fijosi" checked={semestre} onChange={handleOnChange}/>
-                            <label className="form-check-label" htmlFor="fijosi">
-                                1er
-                            </label>
-
-                        </div>
-                        <div className="form-check col">
-                            <input className="form-check-input " type="checkbox" value="No" id="fijono" checked={!semestre} onChange={handleOnChange}/>
-                            <label className="form-check-label" htmlFor="fijono">
-                                2do
-                            </label>
-
-                        </div>
+                    </select>                        
+                    {errors.tipocurso && (
+                            <p className="alert-danger rounded text-center mt-2"> El Tipo de Curso es Requerido</p>
+                        )}
                     </div>
-
-
-
-                    <div className="row col">
-                        <span className="input-group-text col" id="basic-addon1">Examen Final</span>
-                        <div className="form-check col ml-1">
-                            <input className="form-check-input " type="checkbox" value="Sí" id="cargosi" checked={exafinal} onChange={handleOnChanges}/>
-                            <label className="form-check-label" htmlFor="cargosi">
-                                Sí
-                            </label>
-
-                        </div>
-                        <div className="form-check  col">
-                            <input className="form-check-input " type="checkbox" value="No" id="cargono" checked={!exafinal} onChange={handleOnChanges}/>
-                            <label className="form-check-label" htmlFor="cargono">
-                                No
-                            </label>
-
-                        </div>
-                    </div>
-
                 </div>
-            <div className="row">
-                <span className="input-group-text col-2" id="basic-addon1">Curso</span>
-                <div className="col">
-                    <div className="row">
-                        <div className="col">
-                            <span className="input-group-text" id="basic-addon1">Empieza</span>
-                                <input 
-                                    type="date" 
-                                    className="form-control" 
-                                    placeholder="#" 
-                                    name="comienzo"
-                                    onSelect={e=>{setValue('comienzo',e.target.value)}}
-                                    
-                                    {...register("comienzo", { required: true })}
-                                    
-                                />
-                                
-                        </div>
-                        <div className="col">
-                            <span className="input-group-text" id="basic-addon1">Finaliza</span>
-                                <input 
-                                    type="date" 
-                                    className="form-control" 
-                                    placeholder="#" 
-                                    name="finaliza"
-                                    onSelect={e=>{setValue('finaliza',e.target.value)}}
-                                    {...register("finaliza", { required: true })}
-                                    
-                                />
-                                
-                        </div>
-                        </div>
-                        <div className="row align-items-center">
-                            {errors.comienzo ? (
-                                <p className="alert alert-danger text-center col-6 "> Comienzo is required</p>
-                            ):<div className="col-6"></div>}
-                            {errors.finaliza && (
-                                <p className="alert alert-danger text-center col-6"> Finaliza is required</p>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="semestre">Semestre</label>
+                        <select 
+                        className="form-select" 
+                        id="semestre"
+                        onChange={ e => setValue('semestre',e.target.value)}
+                        {...register("semestre", { required: true })}
+                        >
+                        <option value="" >Seleccione una Opción</option>
+                        <option value="true" >1ro</option>
+                        <option value="false" >2do</option>
+                        </select>                        
+                        {errors.semestre && (
+                                <p className="alert-danger rounded text-center mt-2"> Semestre es Requerido</p>
                             )}
-                        </div>
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="exafinal">Examen Final</label>
+                        <select 
+                        className="form-select" 
+                        id="exafinal"
+                        onChange={ e => setValue('exafinal',e.target.value)}
+                        {...register("exafinal", { required: true })}
+                        >
+                        <option value="" >Seleccione una Opción</option>
+                        <option value="true" >Sí</option>
+                        <option value="false" >No</option>
+                        </select>                        
+                        {errors.exafinal && (
+                                <p className="alert-danger rounded text-center mt-2"> Examen Final es Requerido</p>
+                            )}
                     </div>
                 </div>
-            
-            <div >
-                {errors.nombre && (
-                    <p className="alert alert-danger text-center"> Nombre de la Asignatura is required</p>
-                )}
-                {errors.cantgrupos && (
-                    <p className="alert alert-danger text-center"> Cantidad de Grupos is required</p>
-                )}
-                {errors.anno && (
-                    <p className="alert alert-danger text-center"> Nombre de la Asignatura is required</p>
-                )}
-                {errors.horas && (
-                    <p className="alert alert-danger text-center"> Horas is required</p>
-                )}
-                {errors.frecuencia && (
-                    <p className="alert alert-danger text-center"> Frecuencia is required</p>
-                )}
-                {errors.tipocurso && (
-                    <p className="alert alert-danger text-center"> Tipo de Curso is required</p>
-                )}
-                {error.length>0 && 
-                    <>
-                        {error.map((errores,i)=>(
-                                <p key={i} className="alert alert-danger text-center"> {errores} </p>
-                        ))}
-                    </>
-                }
-                
-            </div>
-            
-            <div className="fixed-bottom p-2 row bg-white bottom-0 end-0">
-                <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
-            </div>
-        </form>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="comienzo">Inicio del Curso</label>
+                        <input type="date" className="form-control" onSelect={e=>{setValue('comienzo',e.target.value);}} {...register("comienzo", { required: true })} id="comienzo" />
+                        {errors.comienzo && (
+                            <p className="alert-danger rounded text-center mt-2"> Fecha de Comienzo del Curso es Requerida</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="finaliza">Cierre del Curso</label>
+                        <input type="date" className="form-control" onSelect={e=>{setValue('finaliza',e.target.value);}} {...register("finaliza", { required: true })} id="finaliza" />
+                        {errors.finaliza && (
+                            <p className="alert-danger rounded text-center mt-2"> Fecha de Finalización del Curso es Requerida</p>
+                        )}
+                    </div>
+                </div>
+
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <button type="submit" className="btn btn-success">Guardar</button>
+                    </div>
+                    <div className="form-group col-md-6 text-right">
+                        <button type="button" onClick={e=>handleCancelar(e)} className="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>  
+        
+           
     </>
   )
 }

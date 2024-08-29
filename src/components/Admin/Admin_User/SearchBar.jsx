@@ -50,7 +50,7 @@ const SearchBar = ({  Profesores, onSelect}) => {
           <input
             type="text"
             value={query}
-            className="w-100"
+            className="w-100 form-control"
             onChange={handleInputChange}
             placeholder="Buscar..."
           />

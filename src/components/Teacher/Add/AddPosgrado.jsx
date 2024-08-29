@@ -24,7 +24,6 @@ const {user,getProfile}=useAuth()
   }=usePosgrado()
   const{register,handleSubmit, formState:{errors}, setValue}=useForm();
   const navigate=useNavigate()
-  const [tipoSelect, settipoSelect] = useState("Default")
   
   useEffect(() => {
     async function loadPosgrado() {
@@ -42,13 +41,14 @@ const {user,getProfile}=useAuth()
           setValue('horas',posgrado.horas)
           
       }
+      else
+        setValue('impartido',impartido)
 
 
     }loadPosgrado()
           
   }, [])
   useEffect(() => {
-    //console.log(user);
     
     if(user!=null){
         setValue('profesor',user.ciuser)
@@ -59,11 +59,6 @@ const {user,getProfile}=useAuth()
   const onSubmit=handleSubmit(data=>{        
     try {
         
-        
-            //setValue('profesor',userModif.ciuser)
-             
-                //console.log(data);
-                
             if(!params._id){  
                 createsPosgrado(data);
                 navigate("/teacher/posgrado")
@@ -81,8 +76,14 @@ const {user,getProfile}=useAuth()
 }})
 const handleCancelar=(e)=>{
     e.preventDefault();
-    navigate("/teacher/inv_cient")
+    navigate("/teacher/posgrado")
+    
 }
+const [impartido, setimpartido] = useState(true)
+useEffect(() => {
+  setValue('impartido',impartido)
+}, [impartido])
+
   //nombre //fecha //impartido cantcuadros ubicacion //modalidad horas
    
     return (
@@ -90,113 +91,98 @@ const handleCancelar=(e)=>{
       <InfoNavBar
         title={"Añadir Posgrado"}
         link={"/teacher/posgrado"}/>
-      <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-            <div className="row p-5">
-                <div className="input-group mb-3 p-1">
-                    <span className="input-group-text" id="basic-addon1">Nombre del Posgrado</span>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            {...register("nombre", { required: true })}
-                        />
-                    {errors.nombre && (
-                        <p className="form-label"> Nombre del Posgrado is required</p>
-                    )}
-                </div>
-                <div className="input-group mb-3 p-1 col-6 ">
-                    <span className="input-group-text" id="basic-addon1">Modalidad de Posgrado</span>
-                    <select 
-                        className="form-select" 
-                        onChange={ e => {settipoSelect(e.target.value); setValue('modalidad',e.target.value)}}
-                        value={tipoSelect}
-                        >
-                        <option value="Default" >Seleccione una Opción</option>
+        <div className="container mt-5">
+            <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="nombrePosgrado">Nombre del Posgrado</label>
+                        <input type="text" className="form-control" {...register("nombre", { required: true })} id="nombrePosgrado" placeholder="Nombre del Posgrado" />
+                        {errors.nombre && (
+                            <p className="alert-danger rounded text-center mt-2"> Nombre del Posgrado es Requerido</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="modalidadPosgrado">Modalidad de Posgrado</label>
+                        <select className="form-control" 
+                            id="modalidadPosgrado"
+                            onChange={ e => {setValue('modalidad',e.target.value)}}
+                            {...register("modalidad", { required: true })}
+                            >
+                        <option value="" >Seleccione una Opción</option>
                         <option value="Curso">Curso</option>
                         <option value="Diplomado">Diplomado</option>
                         <option value="Especialidad">Especialidad</option>
                         <option value="Entrenamiento">Entrenamiento</option>
                         <option value="Maestría">Maestría</option>
                         <option value="Doctorado">Doctorado</option>
-                        
-                    </select>
+                        </select>
                         {errors.modalidad && (
-                            <p className="form-label"> Modalidad is required</p>
+                            <p className="alert-danger rounded text-center mt-2"> Modalidad es Requerida</p>
                         )}
+                    </div>
                 </div>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="fecha">Fecha</label>
+                        <input type="date" className="form-control" onSelect={e=>{setValue('fecha',e.target.value);}} {...register("fecha", { required: true })} id="fecha" />
+                        {errors.fecha && (
+                            <p className="alert-danger rounded text-center mt-2"> Fecha es Requerida</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="cantidadCuadros">Cantidad de Cuadros</label>
+                        <input type="number" className="form-control" {...register("cantcuadros", { required: true })} id="cantidadCuadros" placeholder="Cantidad de Cuadros" />
+                        {errors.cantcuadros && (
+                            <p className="alert-danger rounded text-center mt-2"> Cantidad de Cuadros es Requerido</p>
+                        )}
+                    </div>
+                </div>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="horas">Horas</label>
+                        <input type="number" {...register("horas", { required: true })} className="form-control" id="horas" placeholder="Horas" />
+                        {errors.horas && (
+                            <p className="alert-danger rounded text-center mt-2"> Horas es Requerido</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label>Impartido</label>
+                        <div className="form-row ml-3">
+                            <div className="form-check col-md-3" onClick={()=>setimpartido(!impartido)}>
+                                <input className="form-check-input" type="checkbox" checked={impartido} onChange={()=>{}} id="impartidoSi" />
+                                <label className="form-check-label" htmlFor="impartidoSi">
+                                    Sí
+                                </label>
+                            </div>
+                            <div className="form-check col-md-3" onClick={()=>setimpartido(!impartido)}>
+                                <input className="form-check-input" type="checkbox" checked={!impartido } onChange={()=>{}} id="impartidoNo" />
+                                <label className="form-check-label" htmlFor="impartidoNo">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 
                 
-                <div className="input-group mb-3 col-6 ">
-                    <span className="input-group-text" id="basic-addon1">Impartido</span>
-                    <select 
-                        className="form-select" 
-                        onChange={ e => setValue('impartido',e.target.value)}
-                        >
-                        <option value="Default" >Seleccione una Opción</option>
-                        <option value="true">Sí</option>
-                        <option value="false">No</option>
-                        
-                    </select>
-                        {errors.impartido && (
-                            <p className="form-label"> Impartido is required</p>
-                        )}
                 </div>
-                <div className="input-group mb-3 col-4">
-                    <span className="input-group-text" id="basic-addon1">Fecha</span>
-                    <input 
-                        type="date" 
-                        onSelect={e=>{setValue('fecha',e.target.value);
-                            
-                            
-                        }}
 
-                        {...register("fecha", { required: true })}
-                    />
-                    {errors.fecha && (
-                        <p className="form-label"> Fecha is required</p>
-                    )}
+                <div className="form-row">
+                    <div className="form-group col-12">
+                        <label htmlFor="ubicacion">Ubicación</label>
+                        <textarea className="form-control" id="ubicacion" {...register("ubicacion")} rows="3" placeholder="Ubicación"></textarea>
+                    </div>
                 </div>
-                <div className="input-group mb-3 col-5">
-                    <span className="input-group-text" id="basic-addon1">Cantidad de Cuadros</span>
-                        <input 
-                            type="number" 
-                            className="form-control" 
-                            {...register("cantcuadros", { required: true })}
-                        />
-                    {errors.cantcuadros && (
-                        <p className="form-label"> Cantidad de Cuadros is required</p>
-                    )}
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <button type="submit" className="btn btn-success">Guardar</button>
+                    </div>
+                    <div className="form-group col-md-6 text-right">
+                        <button type="button" onClick={e=>handleCancelar(e)} className="btn btn-secondary">Cancelar</button>
+                    </div>
                 </div>
-                <div className="input-group mb-3 col-3">
-                    <span className="input-group-text" id="basic-addon1">Horas</span>
-                        <input 
-                            type="number"
-                            className="form-control" 
-                            {...register("horas", { required: true })}
-                        />
-                    {errors.horas && (
-                        <p className="form-label"> Horas is required</p>
-                    )}
-                </div>
-                <div className="input-group mb-3 col-12">
-                    <span className="input-group-text" id="basic-addon1">Ubicación</span>
-                        <textarea
-                            rows={3}
-                            cols={50} 
-                            className="form-control" 
-                            {...register("ubicacion", { required: true })}
-                        />
-                    {errors.ubicacion && (
-                        <p className="form-label"> Ubicación is required</p>
-                    )}
-                </div>
-                
-                
-            </div>
-            <div className="fixed-bottom p-2 row bottom-0 end-0 bg-white">
-                <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
-            </div>
-        </form>
+            </form>
+        </div>
+     
     </>
   )
 }

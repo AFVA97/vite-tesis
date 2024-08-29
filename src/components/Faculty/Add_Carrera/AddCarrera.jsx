@@ -65,7 +65,34 @@ const AddCarrera = () => {
   return (
     <div>
       <InfoNavBar title={"Añadir Carrera"} link={"/faculty/inicio"}/>
-      <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
+      <div className="container mt-5">
+            <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
+                <div className="form-row">
+                    <div className="form-group col-md-12">
+                        <label htmlFor="nombre">Nombre de la Carrera</label>
+                        <input type="text" className="form-control" {...register("nombre", { required: true })} id="nombre" placeholder="Nombre de la Carrera" />
+                        {errors.nombre && (
+                            <p className="alert-danger rounded text-center mt-2"> El Nombre de la Carrera es Requerido</p>
+                        )}
+                    </div>
+                    
+                </div>
+                
+                {error.length>0 && (
+                        <p className="alert-danger rounded text-center mt-2"> {error[0]}</p>
+                    )}
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <button type="submit" className="btn btn-success">Guardar</button>
+                    </div>
+                    <div className="form-group col-md-6 text-right">
+                        <button type="button" onClick={e=>handleCancelar(e)} className="btn btn-secondary">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      
+      {/* <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
             <div className="row p-5">
                 <div className="input-group mb-3 p-1 col-12">
                     <span className="input-group-text" id="basic-addon1">Nombre de la Carrera</span>
@@ -87,7 +114,7 @@ const AddCarrera = () => {
                 <button type="submit" className="btn col btn-success  m-3">Guardar</button>
                 <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
             </div>
-        </form>
+        </form> */}
     </div>
   )
 }
