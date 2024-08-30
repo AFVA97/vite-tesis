@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import {  useNavigate, useParams } from "react-router-dom";
 import {useAsignatura} from '../../../context/asignaturaContext'
 import { useNombreAsignatura } from "../../../context/nombreAsigContext";
+import { useTipoCurso } from "../../../context/tipoCursoContext";
 
 
 const AddAsignatura = ({User}) => {
@@ -13,10 +14,11 @@ const AddAsignatura = ({User}) => {
     const navigate=useNavigate()
     
     const{NombreAsignaturas, getNombreAsignaturas, }=useNombreAsignatura()
-
+    const{TipoCursos, getTipoCursos}=useTipoCurso()
     useEffect(() => {
         const load=async()=>{
-            await getNombreAsignaturas();            
+            await getNombreAsignaturas();     
+            await getTipoCursos();       
           };load();
           setValue('semestre',true) 
           setValue('exafinal',true) 
@@ -142,9 +144,9 @@ const AddAsignatura = ({User}) => {
                         {...register("tipocurso", { required: true })}
                     >
                         <option value="" >Seleccione una Opción</option>
-                        <option value="CRD" >CRD</option>
-                        <option value="CPT" >CPT</option>
-                        <option value="CPE" >CPE</option>
+                        {TipoCursos.map((tipocurso)=>(
+                            <option value={tipocurso.nombre} key={tipocurso._id}>{tipocurso.nombre}</option>
+                        ))}
                     </select>                        
                     {errors.tipocurso && (
                             <p className="alert-danger rounded text-center mt-2"> El Tipo de Curso es Requerido</p>
@@ -188,14 +190,14 @@ const AddAsignatura = ({User}) => {
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="comienzo">Inicio del Curso</label>
-                        <input type="date" className="form-control" onSelect={e=>{setValue('comienzo',e.target.value);}} {...register("comienzo", { required: true })} id="comienzo" />
+                        <input type="date" className="form-control" onSelect={e=>{setValue('comienzo',new Date(e.target.value).getFullYear());}} {...register("comienzo", { required: true })} id="comienzo" />
                         {errors.comienzo && (
                             <p className="alert-danger rounded text-center mt-2"> Fecha de Comienzo del Curso es Requerida</p>
                         )}
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="finaliza">Cierre del Curso</label>
-                        <input type="date" className="form-control" onSelect={e=>{setValue('finaliza',e.target.value);}} {...register("finaliza", { required: true })} id="finaliza" />
+                        <input type="date" className="form-control" onSelect={e=>{setValue('finaliza',new Date(e.target.value).getFullYear());}} {...register("finaliza", { required: true })} id="finaliza" />
                         {errors.finaliza && (
                             <p className="alert-danger rounded text-center mt-2"> Fecha de Finalización del Curso es Requerida</p>
                         )}

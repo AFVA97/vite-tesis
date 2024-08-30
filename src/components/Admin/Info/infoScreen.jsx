@@ -31,7 +31,7 @@ function infoScreen({title}){
     }
     return(
         <>
-          <div className="sticky-top">
+          <div className="sticky-top ">
             <InfoNavBar {...{title}}/>
             <TitleLayout _id={params._id} isprofesor={(title==="Facultad")?(false):(true)} />
           </div>

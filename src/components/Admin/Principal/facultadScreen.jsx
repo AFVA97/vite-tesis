@@ -86,7 +86,7 @@ function Facultad({username}) {
           className="navbar-brand" 
           to="/admin/addfacultad"
         >
-          <button className="floatingbutton btn btn-primary"
+          <button className="floatingbutton btn btn-success"
             >Agregar
           </button>
         </Link>

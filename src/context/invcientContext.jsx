@@ -46,9 +46,11 @@ export function InvCientProvider({ children }) {
   // }, [])
 
   const getInvCients = async () => {
+    
+    
     const res = await getInvCientesRequest();
     setInvCients(res.data);
-  };
+  }; 
 
   
 

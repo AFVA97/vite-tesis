@@ -53,6 +53,7 @@ const AddInvCient = () => {
   
   const onSubmit=handleSubmit(data=>{        
     try {
+        console.log(data);
         
         
              

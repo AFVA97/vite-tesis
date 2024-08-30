@@ -1,21 +1,34 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
 import "../../App.css"
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { FechaContext } from "../../context/fechaContext";
 
 function UserAccount() {
   const [showProfile, setShowProfile] = useState(false)
   const {logout}=useAuth();
   const navigate=useNavigate();
+  const [second, setsecond] = useState(false)
+  const {year, globalData, setGlobalData}=useContext(FechaContext)
   
   function ProfileMenu() {
     return (
-      <ul className=" profile-menu mt-1">
+      <ul  className=" profile-menu mt-1">
         <li >Opcion 1</li>
-        <li >Opcion 2</li>
-        <li >Opcion 3</li>
+        <li onClick={()=>setsecond(!second)} className={second?"bg-white text-black":""}>Período</li>
+        <li onClick={()=>{navigate("/admin/gestion")}}>Gestionar</li>
         <li onClick={()=>{navigate("/admin/users")}}>Usuarios</li>
         <li onClick={()=>{logout()}}>Cerrar Sesión</li>
+      </ul>
+    )
+  }
+  function ProfileMenu2() {
+    return (
+      <ul   className=" profile-menu2 mt-1">
+        <li className={parseInt(year)==parseInt(globalData)?"bg-white text-black":""} onClick={()=>{setGlobalData(year);setsecond(false);setShowProfile(false)}}>Este Curso</li>
+        <li className={parseInt(year)==(parseInt(globalData)+1)?"bg-white text-black":""} onClick={()=>{setGlobalData(year-1);setsecond(false);setShowProfile(false)}} >Curso Anterior</li>
+        <li className={(parseInt(year)!=parseInt(globalData)&&parseInt(year)!=(parseInt(globalData)+1))?"bg-white text-black":""} onClick={()=>{setGlobalData(0);setsecond(false);setShowProfile(false)}}>Toda la Información</li>
+        
       </ul>
     )
   }
@@ -36,6 +49,7 @@ function UserAccount() {
         />  
         </button>
         {showProfile ? <ProfileMenu /> : ""}
+        {second?<ProfileMenu2/>:""}
       </div>
   )
 }

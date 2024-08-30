@@ -19,13 +19,21 @@ function titleLayout({_id,isprofesor}){
     
     
     return(
-        <div className="row bg-white">
-            <div className="col ml-5 mr-2">{isprofesor?`${Profesor.nombre} ${Profesor.apellidos}`:Profesor.nombre}</div>
-            {isprofesor && (
-                <div className="col align-items-rigth ml-2 mr-2">
-                    Graduado de: {Profesor.graduado}
+        <div className=" bg-white">
+            <div className="form-row">
+                <div className="form-group col-md-6">
+                    <label >{isprofesor?`${Profesor.nombre} ${Profesor.apellidos}`:Profesor.nombre}</label>
                 </div>
-            )}
+                <div className="form-group col-md-6 text-right">
+                    {isprofesor && (
+                        <label >
+                            Graduado de: {Profesor.graduado}
+                        </label>
+                    )}
+                </div>
+            </div>
+            
+            
         </div>
     )
 }

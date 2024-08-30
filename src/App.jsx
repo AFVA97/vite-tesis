@@ -22,39 +22,45 @@ import { ExtUnivProvider } from './context/extunivContext';
 import { InvCientProvider } from './context/invcientContext';
 import { CarreraProvider } from './context/carreraContext';
 import { NombreAsignaturaProvider } from './context/nombreAsigContext';
+import { TipoCursoProvider } from './context/tipoCursoContext';
+import { FechaProvider } from './context/fechaContext';
 
 function App() {
   return (
     <>
-      <AuthProvider>
-        <ProfesorProvider>
-          <FacultadProvider>  
-            <AsignaturaProvider>
-              <PosgradoProvider>
-                <ExtUnivProvider>
-                  <InvCientProvider>
-                    <CarreraProvider>
-                      <NombreAsignaturaProvider>
-                        <BrowserRouter>
-                          <Routes>
-                            <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
-                            <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
-                            <Route element={<ProtectedRoute/>}>
-                              <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
-                              <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
-                              <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
-                            </Route>
-                          </Routes>
-                        </BrowserRouter>
-                      </NombreAsignaturaProvider>
-                    </CarreraProvider>
-                  </InvCientProvider>
-                </ExtUnivProvider>
-              </PosgradoProvider>
-            </AsignaturaProvider>
-          </FacultadProvider>
-        </ProfesorProvider>
-      </AuthProvider>
+      <FechaProvider>
+        <AuthProvider>
+          <ProfesorProvider>
+            <FacultadProvider>  
+              <AsignaturaProvider>
+                <PosgradoProvider>
+                  <ExtUnivProvider>
+                    <InvCientProvider>
+                      <CarreraProvider>
+                        <NombreAsignaturaProvider>
+                          <TipoCursoProvider>
+                            <BrowserRouter>
+                              <Routes>
+                                <Route path='/' element={<Login/>} errorElement={<ErrorPage/>}/>
+                                <Route path='/login' element={<Login/>} errorElement={<ErrorPage/>}/>
+                                <Route element={<ProtectedRoute/>}>
+                                  <Route path='/admin/*' element={<Admin/>} errorElement={<ErrorPage/>}/>
+                                  <Route path='/faculty/*' element={<Faculty/>} errorElement={<ErrorPage/>}/>
+                                  <Route path='/teacher/*' element={<Teacher/>} errorElement={<ErrorPage/>}/>
+                                </Route>
+                              </Routes>
+                            </BrowserRouter>
+                          </TipoCursoProvider>
+                        </NombreAsignaturaProvider>
+                      </CarreraProvider>
+                    </InvCientProvider>
+                  </ExtUnivProvider>
+                </PosgradoProvider>
+              </AsignaturaProvider>
+            </FacultadProvider>
+          </ProfesorProvider>
+        </AuthProvider>
+      </FechaProvider>
     </>
   )
 }

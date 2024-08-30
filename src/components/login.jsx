@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import {useForm} from 'react-hook-form'
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom"
@@ -12,8 +12,10 @@ function login() {
     signin(data);
     
   })
-
+ //const {globalData, setGlobalData}=useContext(FechaContext)
   const navigate=useNavigate();
+  
+  
 
 useEffect(()=>{
   if(isAuthenticated){
@@ -109,5 +111,6 @@ useEffect(()=>{
       </>
     )
   }
+import { FechaContext } from "../context/fechaContext";
   
   export default login

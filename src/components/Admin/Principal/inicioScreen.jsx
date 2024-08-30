@@ -2,7 +2,7 @@ import ThInicio from "./TableHead/thInicio"
 import Header from "../HeaderAdmin"
 import ElementInicio from "./Elements/elementInicio"
 import SearchBar from "./searchBar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import 'animate.css';
 import { useProfesor } from "../../../context/profesorContext"
 import { Link} from "react-router-dom"
@@ -11,6 +11,7 @@ import { usePosgrado } from "../../../context/posgradoContext"
 import { useExtUniv } from "../../../context/extunivContext"
 import { useInvCient } from "../../../context/invcientContext"
 import { useAuth } from "../../../context/authContext"
+import { FechaContext } from "../../../context/fechaContext"
 
 function inicio({username}) {
   
@@ -38,8 +39,8 @@ function inicio({username}) {
       if(query==='')
         setFilteredProfesor(profesorInicio)
     }, [query])
-
-  useEffect(() => {
+    const {globalData}=useContext(FechaContext)
+  useEffect(() => {    
     const load=async () => {
       await getProfesores();
       await getAsignaturas();
@@ -49,6 +50,16 @@ function inicio({username}) {
       await getUsers();
     };load()
   }, []);
+  useEffect(() => {    
+    const load=async () => {
+      await getProfesores();
+      await getAsignaturas();
+      await getPosgrados();
+      await getExtUnivs();
+      await getInvCients()
+      await getUsers();
+    };load()
+  }, [globalData]);
 
   useEffect(() => {
     let profesoresArray=[]    
@@ -123,14 +134,16 @@ function inicio({username}) {
             />
           ))}
         </div>
-        <Link 
-          to="/admin/addprofesor"
-        >
-          <button 
-            className="floatingbutton btn btn-primary"
-            >Agregar
-          </button>
-        </Link>
+        <div className="sticky-bottom bg-white row mw-100">
+          <Link 
+            to="/admin/addprofesor"
+          >
+            <button 
+              className="floatingbutton btn btn-success"
+              >Agregar
+            </button>
+          </Link>
+        </div>
       </>
     )
   }

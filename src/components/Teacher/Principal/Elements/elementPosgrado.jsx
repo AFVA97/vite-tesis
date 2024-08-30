@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { usePosgrado } from "../../../../context/posgradoContext";
@@ -6,7 +6,20 @@ import { usePosgrado } from "../../../../context/posgradoContext";
 function elementPosgrado({_id,nombre,impartido,modalidad,fecha,horas}){
     const [active, setactive] = useState(false);
     const {deletesPosgrado}=usePosgrado()
-    let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
+    //let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
+    const [fecch, setFecch] = useState('');
+
+    useEffect(() => {
+        const obtenerFecha = () => {
+            const fechaActual = new Date(fecha);
+            const dia = String(fechaActual.getDate()).padStart(2, '0');
+            const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+            const año = fechaActual.getFullYear();
+            setFecch(`${dia}/${mes}/${año}`);
+        };
+
+        obtenerFecha();
+    }, []);
     let impart="Sí"
     if(!impartido)
         impart="No"
@@ -18,7 +31,7 @@ function elementPosgrado({_id,nombre,impartido,modalidad,fecha,horas}){
                 <div scope="col" className=" col-2 text-truncate ">{impart}</div>
                 <div scope="col" className=" col-2  text-truncate">{modalidad}</div>
                 <div scope="col" className=" col-2 text-truncate ">{horas}</div> 
-                <div scope="col" className=" col-2 text-truncate ">{`${parseInt(fecch[1])+1}/${fecch[0]}/${fecch[2]}`}</div>                
+                <div scope="col" className=" col-2 text-truncate ">{fecch}</div>                
             </div>
             
             {active &&

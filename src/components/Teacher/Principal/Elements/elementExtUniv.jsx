@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useExtUniv } from "../../../../context/extunivContext";
@@ -6,7 +6,20 @@ import { useExtUniv } from "../../../../context/extunivContext";
 function elementExtUniv({_id,titulo,tipo,horas,fecha}){
     const [active, setactive] = useState(false);
     const {deletesExtUniv }=useExtUniv()
-    let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
+    const [fecch, setFecch] = useState('');
+
+    useEffect(() => {
+        const obtenerFecha = () => {
+            const fechaActual = new Date(fecha);
+            const dia = String(fechaActual.getDate()).padStart(2, '0');
+            const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+            const año = fechaActual.getFullYear();
+            setFecch(`${dia}/${mes}/${año}`);
+        };
+
+        obtenerFecha();
+    }, []);
+    //let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
     
     return(
         <>
@@ -14,7 +27,7 @@ function elementExtUniv({_id,titulo,tipo,horas,fecha}){
             <div scope="col" className=" col-6 text-truncate">{titulo}</div>
                 <div scope="col" className=" col-2 text-truncate">{tipo}</div>
                 <div scope="col" className=" col-2 text-truncate">{horas}</div>
-                <div scope="col" className=" col-2 text-truncate">{`${parseInt(fecch[1])+1}/${fecch[0]}/${fecch[2]}`}</div>
+                <div scope="col" className=" col-2 text-truncate">{fecch}</div>
                 
             </div>
             

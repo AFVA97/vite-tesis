@@ -7,6 +7,15 @@
     z-index: 1030; /* valor mayor que el de sticky-top */
     
   }
+  .profile-menu2 {
+    background-color: rgb(54, 53, 53);
+    position: fixed;
+    right: 120px;
+    color: rgb(255, 255, 255);
+    border-radius: 5%; /* o absolute dependiendo de tu diseño */
+    z-index: 1030; /* valor mayor que el de sticky-top */
+    
+  }
   .floatingbutton{
     position: fixed;
     right: 10px;

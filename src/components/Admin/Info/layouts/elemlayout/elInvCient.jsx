@@ -4,8 +4,19 @@ import { Link } from "react-router-dom";
 
 function elInvCient({investigacion,ti,titulo,alcance,fecha}){
     
-    let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
-    const [active, setactive] = useState(false);
+    const [fecch, setFecch] = useState('');
+
+    useEffect(() => {
+        const obtenerFecha = () => {
+            const fechaActual = new Date(fecha);
+            const dia = String(fechaActual.getDate()).padStart(2, '0');
+            const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
+            const año = fechaActual.getFullYear();
+            setFecch(`${dia}/${mes}/${año}`);
+        };
+
+        obtenerFecha();
+    }, []); const [active, setactive] = useState(false);
     const [selectores, setselectores] = useState()
 
     useEffect(() => {
@@ -176,7 +187,7 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                         </div>
                         <div className="input-group mb-3 border-bottom p-1 col-6">
                             <span className="input-group-text" id="basic-addon1">Presencial</span>
-                            <div>{investigacion.issbnn}</div>
+                            <div>{investigacion.issbnn?"Sí":"No"}</div>
                         </div>
                         
                         <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
@@ -217,7 +228,7 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center  bg-tertiary container-fluid  m-0 p-0">
                 <div scope="col" className=" col-6 text-truncate">{titulo}</div>
                 <div scope="col" className=" col-4 text-truncate">{ti}</div>
-                <div scope="col" className=" col-2 text-truncate">{`${parseInt(fecch[1])+1}/${fecch[0]}/${fecch[2]}`}</div> 
+                <div scope="col" className=" col-2 text-truncate">{fecch}</div> 
             </div>
             {active &&
                 <div className="row justify-content-center text-center border  container-fluid m-0 p-0">

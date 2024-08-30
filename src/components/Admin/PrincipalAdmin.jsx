@@ -13,6 +13,7 @@ import AddFacultad from "./Inserciones/AddFacultad"
 import Users from "./Admin_User/Users"
 import AddUser from "./Admin_User/AddUser"
 import ModificarAsignatura from "./Inserciones/ModificarAsignatura"
+import Gestionar from "./Gestion/Gestionar"
 
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/users" element={<Users/>}/>
           <Route path="/users/add" element={<AddUser/>}/>
           <Route path="/users/add/:_id" element={<AddUser/>}/>
+          <Route path="/gestion" element={<Gestionar/>}/>
           <Route path="/facultad" element={<Facultad username={username}/>} />
           <Route path="/pregrado" element={<Pregrado username={username}/>} />
           <Route path="/posgrado" element={<Posgrado username={username}/>} />

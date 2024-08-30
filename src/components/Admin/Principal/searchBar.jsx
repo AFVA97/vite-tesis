@@ -14,7 +14,7 @@ function searchBar  ({handleInputChange,query,setQuery})  {
             </div>
             <div className='col'>
                 <button
-                    className="btn m-1 btn-block btn-outline-primary"
+                    className="btn m-1 btn-block btn-outline-secondary"
                     onClick={()=>{setQuery('')}}
                 >
                     Reset...

@@ -99,7 +99,7 @@ export function NombreAsignaturaProvider({ children }) {
         NombreAsignaturas,
         errors,
         getNombreAsignaturas,
-        createNombreAsignaturaRequest,
+        createsNombreAsignatura,
         updatesNombreAsignatura,
         deletesNombreAsignatura,
         getNombreAsignatura,

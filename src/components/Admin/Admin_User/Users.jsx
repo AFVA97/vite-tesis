@@ -59,7 +59,7 @@ const Users = () => {
         <Link
                 className="navbar-brand" 
                 to="/admin/users/add"
-            ><button className="floatingbutton btn btn-primary"
+            ><button className="floatingbutton btn btn-success"
             >Agregar</button></Link>
     </>
   )
