@@ -23,6 +23,7 @@ const AddAsignatura = ({User}) => {
           setValue('semestre',true) 
           setValue('exafinal',true) 
           setValue('nombre',"")
+          setValue('tutoriaaa',0)
           setValue('tipocurso',"")
           setValue('anno',"")            
           setValue('carrera',params._id)
@@ -190,14 +191,14 @@ const AddAsignatura = ({User}) => {
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="comienzo">Inicio del Curso</label>
-                        <input type="date" className="form-control" onSelect={e=>{setValue('comienzo',new Date(e.target.value).getFullYear());}} {...register("comienzo", { required: true })} id="comienzo" />
+                        <input type="date" className="form-control" onSelect={e=>{setValue('comienzo',e.target.value)}} {...register("comienzo", { required: true })} id="comienzo" />
                         {errors.comienzo && (
                             <p className="alert-danger rounded text-center mt-2"> Fecha de Comienzo del Curso es Requerida</p>
                         )}
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="finaliza">Cierre del Curso</label>
-                        <input type="date" className="form-control" onSelect={e=>{setValue('finaliza',new Date(e.target.value).getFullYear());}} {...register("finaliza", { required: true })} id="finaliza" />
+                        <input type="date" className="form-control" onSelect={e=>{setValue('finaliza',e.target.value)}} {...register("finaliza", { required: true })} id="finaliza" />
                         {errors.finaliza && (
                             <p className="alert-danger rounded text-center mt-2"> Fecha de Finalización del Curso es Requerida</p>
                         )}
