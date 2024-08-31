@@ -30,15 +30,15 @@ const ElFacultad = ({asignatura}) => {
         </div>
         {active && (
             <div>
-                <div>
-                <div scope="col" className=" col-12 text-truncate">Notas: {asignatura.notas?asignatura.notas:"---"}</div>
+              <div>
                 <div scope="col" className=" col-12 text-truncate">Profesor: {asignatura.profesor?`${profesor.nombre} ${profesor.apellidos}`:"---"}</div>
-            </div>
-            <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0"> 
-                <div className="col table-success"><Link to={`/admin/modificarasignatura/${asignatura._id}`}>
-                Modificar</Link>
-                </div>
-            </div>
+                <div scope="col" className=" col-12 text-truncate">Notas: {asignatura.notas?asignatura.notas:"---"}</div>
+              </div>
+              <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0"> 
+                  <div className="col table-success"><Link to={`/admin/modificarasignatura/${asignatura._id}`}>
+                  Modificar</Link>
+                  </div>
+              </div>
             </div>
         )}
     </>
