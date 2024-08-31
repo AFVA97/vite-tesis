@@ -2,6 +2,8 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useProfesor } from "../../../../context/profesorContext";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}){
     const [active, setactive] = useState(false);
@@ -24,16 +26,21 @@ function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}
             </div>
             
             {active &&
+                <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
+                <Link to={`/teacher/infopre/${_id}`} className="btn btn1 col btn1-info btn-sm m-2">
+                    <FontAwesomeIcon icon={faInfoCircle} /> Información
+                </Link>
                 
-                    <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
+            </div>
+                    // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`/teacher/infopre/${_id}`}>
-                            Información</Link>
-                        </div>
+                    //     <div className="col table-info"><Link to={`/teacher/infopre/${_id}`}>
+                    //         Información</Link>
+                    //     </div>
                         
                         
                         
-                    </div>
+                    // </div>
                 
                 
             }

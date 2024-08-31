@@ -6,14 +6,16 @@
     border-radius: 5%; /* o absolute dependiendo de tu diseño */
     z-index: 1030; /* valor mayor que el de sticky-top */
     
+    border: 2px solid #198754;
   }
   .profile-menu2 {
     background-color: rgb(54, 53, 53);
     position: fixed;
-    right: 120px;
+    right: 170px;
     color: rgb(255, 255, 255);
     border-radius: 5%; /* o absolute dependiendo de tu diseño */
     z-index: 1030; /* valor mayor que el de sticky-top */
+    border: 2px solid #198754;
     
   }
   .floatingbutton{

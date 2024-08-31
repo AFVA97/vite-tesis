@@ -3,6 +3,7 @@ import "../../App.css"
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
 import { FechaContext } from "../../context/fechaContext";
+import DescargarExcel from "../../Descarga/descarga";
 
 function UserAccount() {
   const [showProfile, setShowProfile] = useState(false)
@@ -13,8 +14,8 @@ function UserAccount() {
   
   function ProfileMenu() {
     return (
-      <ul  className=" profile-menu mt-1">
-        <li >Opcion 1</li>
+      <ul  className="list-gorup profile-menu mt-1 ">
+        <li ><DescargarExcel userType={0}/></li>
         <li onClick={()=>setsecond(!second)} className={second?"bg-white text-black":""}>Período</li>
         <li onClick={()=>{navigate("/admin/gestion")}}>Gestionar</li>
         <li onClick={()=>{navigate("/admin/users")}}>Usuarios</li>
@@ -24,39 +25,39 @@ function UserAccount() {
   }
   function ProfileMenu2() {
     return (
-      <ul   className=" profile-menu2 mt-1">
+      <ul   className="list-group profile-menu2 mt-5 ">
         <li 
           className={
             parseInt(year)==parseInt(globalData)
-            ?"bg-white text-black"
-            :""} 
+            ?"bg-white text-black ml-2"
+            :" ml-2"} 
           onClick={()=>{
             setGlobalData(year);
             setsecond(false);
             setShowProfile(false);
-            navigate.push('/');}}
+            navigate('/');}}
           >Este Curso</li>
         <li 
           className={
             parseInt(year)==(parseInt(globalData)+1)
-            ?"bg-white text-black"
-            :""} 
+            ?"bg-white text-black ml-2"
+            :" ml-2"} 
           onClick={()=>{
             setGlobalData(year-1);
             setsecond(false);
             setShowProfile(false);
-            navigate.push('/');}} 
+            navigate('/');}} 
           >Curso Anterior</li>
         <li 
           className={
             (parseInt(year)!=parseInt(globalData) && parseInt(year)!=(parseInt(globalData)+1))
-            ?"bg-white text-black"
-            :""} 
+            ?"bg-white text-black ml-2"
+            :" ml-2"} 
           onClick={()=>{
             setGlobalData(0);
             setsecond(false);            
             setShowProfile(false);
-            navigate.push('/');}}
+            navigate('/');}}
           >Toda la Información</li>
         
       </ul>
