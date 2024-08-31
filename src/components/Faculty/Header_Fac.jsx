@@ -8,7 +8,7 @@ function Header({username}) {
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             
     <Link 
-        className="navbar-brand" 
+        className="navbar-brand ml-3" 
         to="/faculty/inicio"
     >
         

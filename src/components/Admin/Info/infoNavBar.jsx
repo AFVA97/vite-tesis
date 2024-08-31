@@ -44,7 +44,7 @@ function infoInicio({title,link}) {
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark ">
           <button 
             type="button" 
-            className="btn btn-link"
+            className="btn btn-link ml-3"
           >
             <Link 
                   className="navbar-brand" 

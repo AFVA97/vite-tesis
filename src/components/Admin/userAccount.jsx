@@ -25,9 +25,36 @@ function UserAccount() {
   function ProfileMenu2() {
     return (
       <ul   className=" profile-menu2 mt-1">
-        <li className={parseInt(year)==parseInt(globalData)?"bg-white text-black":""} onClick={()=>{setGlobalData(year);setsecond(false);setShowProfile(false)}}>Este Curso</li>
-        <li className={parseInt(year)==(parseInt(globalData)+1)?"bg-white text-black":""} onClick={()=>{setGlobalData(year-1);setsecond(false);setShowProfile(false)}} >Curso Anterior</li>
-        <li className={(parseInt(year)!=parseInt(globalData)&&parseInt(year)!=(parseInt(globalData)+1))?"bg-white text-black":""} onClick={()=>{setGlobalData(0);setsecond(false);setShowProfile(false)}}>Toda la Información</li>
+        <li 
+          className={
+            parseInt(year)==parseInt(globalData)
+            ?"bg-white text-black"
+            :""} 
+          onClick={()=>{
+            setGlobalData(year);
+            setsecond(false);
+            setShowProfile(false)}}
+          >Este Curso</li>
+        <li 
+          className={
+            parseInt(year)==(parseInt(globalData)+1)
+            ?"bg-white text-black"
+            :""} 
+          onClick={()=>{
+            setGlobalData(year-1);
+            setsecond(false);
+            setShowProfile(false)}} 
+          >Curso Anterior</li>
+        <li 
+          className={
+            (parseInt(year)!=parseInt(globalData) && parseInt(year)!=(parseInt(globalData)+1))
+            ?"bg-white text-black"
+            :""} 
+          onClick={()=>{
+            setGlobalData(0);
+            setsecond(false);
+            setShowProfile(false)}}
+          >Toda la Información</li>
         
       </ul>
     )

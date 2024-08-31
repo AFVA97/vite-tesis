@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useAsignatura} from '../../../context/asignaturaContext'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import InfoNavBar from '../layouts/infoNavBar'
 import {Container,Card, Row,Col} from 'react-bootstrap'
 import { useForm } from 'react-hook-form'
@@ -11,6 +11,7 @@ const InfoPre = () => {
     const [asignatura,setasignatura]=useState({})
     const [loaded, setloaded] = useState(false)
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
+    const navigate=useNavigate()
    
     useEffect(() => {
       const load=async()=>{

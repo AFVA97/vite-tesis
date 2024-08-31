@@ -46,7 +46,7 @@ export default function App() {
   
   return (
     <>
-      
+      <div className="pb-5">
         <Routes>
           <Route exact path="/" element={<Inicio user={username}/>}/>
           <Route path="/addext_univ" element={<AddExtUniv />}/>
@@ -66,7 +66,7 @@ export default function App() {
           <Route path="/ext_univ" element={<Extension user={username}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
-      
+        </div>
     </>
   )
 }

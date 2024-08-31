@@ -57,7 +57,7 @@ function inicio({username}) {
       await getPosgrados();
       await getExtUnivs();
       await getInvCients()
-      await getUsers();
+      //await getUsers();
     };load()
   }, [globalData]);
 

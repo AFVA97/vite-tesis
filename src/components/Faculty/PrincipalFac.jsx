@@ -36,7 +36,7 @@ export default function App() {
   // },[isAuthenticated])
   return (
     <>      
-        
+        <div className="pb-5">
         <Routes>
           <Route exact path="/inicio" element={<Inicio User={User}/>}/>
           <Route path="/login" element={<Login />} />
@@ -45,7 +45,7 @@ export default function App() {
           <Route path="/addasignatura/:_id" element={<AddAsignatura User={User}/>}/>
           
         </Routes>
-      
+        </div>
     </>
   )
 }
