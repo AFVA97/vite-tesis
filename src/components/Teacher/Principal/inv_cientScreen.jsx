@@ -17,7 +17,7 @@ function inv_cient({user}) {
         </div>
         <InvCientLayout user={user}/>
         <Link  to="/teacher/addinv_cient">          
-        <button className="floatingbutton btn btn-primary"
+        <button className="floatingbutton btn btn-success"
             >Agregar</button></Link>
       </>
     )

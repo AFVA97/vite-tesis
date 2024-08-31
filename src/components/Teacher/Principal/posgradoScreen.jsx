@@ -16,7 +16,7 @@ function posgrado({user}) {
         </div>
         <PosgradoLayout user={user}/>
         <Link  to="/teacher/addposgrado">          
-          <button className="floatingbutton btn btn-primary"
+          <button className="floatingbutton btn btn-success"
               >Agregar</button></Link>
         
       </>

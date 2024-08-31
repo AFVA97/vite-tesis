@@ -25,20 +25,16 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 
                 setselectores(
                     <>
+                        <div >
+                           
+                                <p ><strong>Programa:</strong> {investigacion.descripcion}</p>
+                                <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
+                                <p ><strong>Programa Asociado:</strong> {investigacion.issbnn}</p>
+                                
+                        </div>
                         
-                        <div  className="row justify-content-center text-center border-bottom container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Programa: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        <hr/>
-                        <div className="input-group mb-3 justify-content-center border-bottom p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Alcance</span>
-                            <div>{investigacion.alcance}</div>
-                        </div>
-                        <div className="input-group justify-content-center mb-3 p-1 border-bottom col-6">
-                            <span className="input-group-text" id="basic-addon1">Programa Asociado</span>
-                            <div>{investigacion.issbnn}</div>
-                        </div>
+                        
+                        
                         
                     
                     </>
@@ -48,29 +44,16 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 
                 setselectores(
                     <>
-                        <div  className="row justify-content-center text-center border-bottom container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
+                        <div >
+                            
+                                <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                                <p ><strong>Grupo:</strong> {investigacion.alcance}</p>
+                                <p ><strong>ISSN:</strong> {investigacion.issbnn}</p>
+                                <p ><strong>Link:</strong> <a href={investigacion.link}>{investigacion.link}</a></p>
+                                <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
+                           
                         </div>
-                        
-                        <div className="input-group mb-3 justify-content-center border-bottom p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Grupo</span>
-                            <div className="mb-3 p-1">{investigacion.alcance}</div>
-                        </div>
-                        <div className="input-group mb-3 p-1 justify-content-center border-bottom col-6">
-                            <span className="input-group-text" id="basic-addon1">ISSN</span>
-                            <div className="mb-3 p-1">{investigacion.issbnn}</div>
-                        </div>
-                        
-                        <div className="input-group mb-3 p-1 justify-content-center border-bottom col-6">
-                            <span className="input-group-text" id="basic-addon1">Link</span>
-                            <div className="mb-3 p-1"><Link>{investigacion.link}</Link></div>
-                        </div>
-                        
-                        <div  className="row justify-content-center text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Autor(es): </div>
-                            <div scope="col" className="col-12"><p>{investigacion.autores}</p> </div>
-                        </div>
+                       
                         
                         
                     </>
@@ -81,18 +64,15 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Publicación Libro o Capítulo":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        <div className="input-group justify-content-center mb-3 p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">ISBN</span>
-                            <div>{investigacion.issbnn}</div>
-                        </div>
-                        <div className="input-group justify-content-center  mb-3 p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Link</span>
-                            <div><Link>{investigacion.link}</Link></div>
-                        </div>
+                         <div >
+                            
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            <p ><strong>ISBN:</strong> {investigacion.issbnn}</p>
+                            <p ><strong>Link:</strong> <a href={investigacion.link}>{investigacion.link}</a></p>
+                            
+                    </div>
+                       
+                        
                         
                         
                         
@@ -104,15 +84,13 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Premio ACC":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        <div  className="row justify-content-center text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Autor(es): </div>
-                            <div scope="col" className="col-12"><p>{investigacion.autores}</p> </div>
-                        </div>
+                        <div >
+                                
+                                <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                                <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
                         
+                        </div>
+                       
                     
                     </>
                 )
@@ -120,13 +98,11 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Premio BTJ":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Autor(es): </div>
-                            <div scope="col" className="col-12"><p>{investigacion.autores}</p> </div>
+                         <div >
+                                
+                                <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                                <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
+                        
                         </div>
                     
                     </>
@@ -135,15 +111,12 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Otro Premio":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        
-                        <div className="input-group mb-3 p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Alcance</span>
-                            <div>{investigacion.alcance}</div>
-                        </div>
+                         <div >
+                            
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
+                           
+                         </div>
                     
                     </>
                 )
@@ -151,10 +124,12 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Red Académica":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
+                         <div >
+                            
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                           
+                       
+                    </div>
                         
                     </>
                 )
@@ -162,14 +137,11 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Fórum":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        
-                        <div className="input-group mb-3 p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Alcance</span>
-                            <div>{investigacion.alcance}</div>
+                        <div >
+                            
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
+                           
                         </div>
                     </>
                 )
@@ -177,37 +149,27 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             case "Participación en Evento":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
-                        <div className="input-group mb-3 border-bottom p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Alcance</span>
-                            <div>{investigacion.alcance}</div>
-                        </div>
-                        <div className="input-group mb-3 border-bottom p-1 col-6">
-                            <span className="input-group-text" id="basic-addon1">Presencial</span>
-                            <div>{investigacion.issbnn?"Sí":"No"}</div>
+                        <div >
+                            
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
+                            <p ><strong>Presencial:</strong> {investigacion.issbnn?"Sí":"No"}</p>
+                            <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
+                       
                         </div>
                         
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Ponente: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.autores}</p> </div>
-                        </div>
-                        
-                        
-                        
-                    
+                       
                     </>
                 )
             break;
             case "Otro":
                 setselectores(
                     <>
-                        <div  className="row justify-content-center border-bottom text-center container-fluid m-0 p-0">
-                            <div scope="col" className="col-12 text-truncate">Descripción: </div>
-                            <div scope="col" className="col-12"><p>{investigacion.descripcion}</p> </div>
-                        </div>
+                        <div >
+                            
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            
+                    </div>
                         
                     </>
                 )
@@ -231,7 +193,7 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 <div scope="col" className=" col-2 text-truncate">{fecch}</div> 
             </div>
             {active &&
-                <div className="row justify-content-center text-center border  container-fluid m-0 p-0">
+                <div className="border  ">
                     {selectores}
                 </div>
         }

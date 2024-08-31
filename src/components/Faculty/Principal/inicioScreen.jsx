@@ -125,7 +125,7 @@ function inicio({User}) {
         
           </div>
           <Link  to="/faculty/addcarrera">          
-          <button className="floatingbutton btn btn-primary"
+          <button className="floatingbutton btn btn-success"
               >Agregar Carrera</button></Link>
         
       </>

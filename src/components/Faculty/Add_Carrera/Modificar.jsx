@@ -94,7 +94,7 @@ const Modificar = () => {
       
         </div>
         <Link  to={`/faculty/addasignatura/${_id}`}>          
-          <button className="floatingbutton btn btn-primary"
+          <button className="floatingbutton btn btn-success"
               >Agregar Asignatura</button></Link>
     </>
   )

@@ -2,6 +2,8 @@ import { useState } from "react"
 import "../../App.css"
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import DescargarExcel from "../../Descarga/descarga";
+
 
 
 
@@ -14,9 +16,7 @@ function UserAccount() {
   function ProfileMenu() {
     return (
       <ul className=" profile-menu">
-        <li >Opcion 1</li>
-        <li >Opcion 2</li>
-        <li >Opcion 3</li>
+        <li ><DescargarExcel userType={2}/></li>
         <li onClick={()=>{logout()}}>Cerrar Sesión</li>
       </ul>
     )

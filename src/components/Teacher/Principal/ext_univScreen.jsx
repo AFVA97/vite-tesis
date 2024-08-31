@@ -39,7 +39,7 @@ function ext_univ({user}) {
           <ExUnivLayout user={user}/>
         
           <Link  to="/teacher/addext_univ">          
-          <button className="floatingbutton btn btn-primary"
+          <button className="floatingbutton btn btn-success"
               >Agregar</button></Link>
       </>
     )
