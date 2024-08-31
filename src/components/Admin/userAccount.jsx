@@ -33,7 +33,8 @@ function UserAccount() {
           onClick={()=>{
             setGlobalData(year);
             setsecond(false);
-            setShowProfile(false)}}
+            setShowProfile(false);
+            navigate.push('/');}}
           >Este Curso</li>
         <li 
           className={
@@ -43,7 +44,8 @@ function UserAccount() {
           onClick={()=>{
             setGlobalData(year-1);
             setsecond(false);
-            setShowProfile(false)}} 
+            setShowProfile(false);
+            navigate.push('/');}} 
           >Curso Anterior</li>
         <li 
           className={
@@ -52,8 +54,9 @@ function UserAccount() {
             :""} 
           onClick={()=>{
             setGlobalData(0);
-            setsecond(false);
-            setShowProfile(false)}}
+            setsecond(false);            
+            setShowProfile(false);
+            navigate.push('/');}}
           >Toda la Información</li>
         
       </ul>

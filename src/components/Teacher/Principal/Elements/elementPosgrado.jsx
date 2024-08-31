@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { usePosgrado } from "../../../../context/posgradoContext";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function elementPosgrado({_id,nombre,impartido,modalidad,fecha,horas}){
     const [active, setactive] = useState(false);
@@ -35,16 +37,22 @@ function elementPosgrado({_id,nombre,impartido,modalidad,fecha,horas}){
             </div>
             
             {active &&
-                
-                    <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
+                <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
+                    
+                    <button onClick={()=>deletesPosgrado(_id)} className=" btn btn1 col btn1-danger btn-sm m-2">
+                        <FontAwesomeIcon icon={faTrash} /> Eliminar
+                    </button>
+                    
+                </div>
+                    // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
                         
                         
                         
-                        <div className="col table-danger" onClick={()=>deletesPosgrado(_id)}>
-                            Eliminar
-                        </div>
-                    </div>
+                    //     <div className="col table-danger" onClick={()=>deletesPosgrado(_id)}>
+                    //         Eliminar
+                    //     </div>
+                    // </div>
                 
                 
             }

@@ -2,6 +2,8 @@ import { useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useCarrera } from "../../../context/carreraContext";
+import { faInfoCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function elementInicio({_id,nombre,ca,cg,cef,horas}){
     const [active, setactive] = useState(false);
@@ -21,18 +23,27 @@ function elementInicio({_id,nombre,ca,cg,cef,horas}){
             </div>
             
             {active &&
+                <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
+                <Link to={`/faculty/modificar/${_id}`} className="btn btn1 col btn1-info btn-sm m-2">
+                    <FontAwesomeIcon icon={faInfoCircle} /> Información
+                </Link>
                 
-                    <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
+                <button onClick={()=>deletesCarrera(_id)} className=" btn btn1 col btn1-danger btn-sm m-2">
+                    <FontAwesomeIcon icon={faTrash} /> Eliminar
+                </button>
+                
+            </div>
+                    // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`/faculty/modificar/${_id}`}>
-                            Información</Link>
-                        </div>
-                       <div className="col table-danger" onClick={()=>deletesCarrera(_id)}>
-                            Eliminar
-                        </div>
+                    //     <div className="col table-info"><Link to={`/faculty/modificar/${_id}`}>
+                    //         Información</Link>
+                    //     </div>
+                    //    <div className="col table-danger" onClick={()=>deletesCarrera(_id)}>
+                    //         Eliminar
+                    //     </div>
                         
                         
-                    </div>
+                    // </div>
                 
                 
             }

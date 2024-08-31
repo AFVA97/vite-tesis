@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react"
 import { useAsignatura } from "../../../../../context/asignaturaContext"
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function elPregrado({_id,carrera,anno,semestre,asignatura,horas,frecuencia,taa,tef}){
@@ -32,12 +34,19 @@ function elPregrado({_id,carrera,anno,semestre,asignatura,horas,frecuencia,taa,t
             <div scope="col" className=" col-1 text-truncate">{tef}</div> 
         </div> 
         {active &&
-                    <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
+            <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
+                
+                <button onClick={()=>handleDelete()} className=" btn btn1 col btn1-danger btn-sm m-2">
+                    <FontAwesomeIcon icon={faTrash} /> Quitar Asignación de esta Asignatura
+                </button>
+                
+            </div>
+                    // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                                                 
-                        <div className="col table-danger" onClick={()=>handleDelete()}>
-                            Quitar Asignación de esta Asignatura
-                        </div>
-                    </div>
+                    //     <div className="col table-danger" onClick={()=>handleDelete()}>
+                    //         Quitar Asignación de esta Asignatura
+                    //     </div>
+                    // </div>
             }
      </>
     )

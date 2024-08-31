@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import PropTypes from "prop-types"
 import { Link } from "react-router-dom";
 import { useInvCient } from "../../../../context/invcientContext";
+import { faInfoCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function elementInvCient({_id,titulo, tipo, fecha}){
     const [active, setactive] = useState(false);
@@ -31,17 +33,26 @@ function elementInvCient({_id,titulo, tipo, fecha}){
             </div>
             
             {active &&
-                
-                    <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
+                <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
+                    <Link to={`/teacher/infoinv/${_id}`} className="btn btn1 col btn1-info btn-sm m-2">
+                        <FontAwesomeIcon icon={faInfoCircle} /> Información
+                    </Link>
+                    
+                    <button onClick={()=>deletesInvCient(_id)} className=" btn btn1 col btn1-danger btn-sm m-2">
+                        <FontAwesomeIcon icon={faTrash} /> Eliminar
+                    </button>
+                    
+                </div>
+                    // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
                         
-                        <div className="col table-info"><Link to={`/teacher/infoinv/${_id}`}>
-                            Información</Link>
-                        </div>
-                        <div className="col table-danger" onClick={()=>deletesInvCient(_id)}>
-                            Eliminar
-                        </div>
+                    //     <div className="col table-info"><Link to={`/teacher/infoinv/${_id}`}>
+                    //         Información</Link>
+                    //     </div>
+                    //     <div className="col table-danger" onClick={()=>deletesInvCient(_id)}>
+                    //         Eliminar
+                    //     </div>
                         
-                    </div>
+                    // </div>
                 
                 
             }

@@ -35,3 +35,32 @@
   li:hover {
     cursor: pointer;
   }
+
+
+  .btn1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1px 6px; /* Ajusta el padding para reducir la altura */
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-size: 0.8rem; /* Ajusta el tamaño de la fuente si es necesario */
+}
+
+.btn1-info {
+    background-color: #17a2b8;
+}
+
+.btn1-warning {
+    background-color: #ffc107;
+}
+
+.btn1-danger {
+    background-color: #dc3545;
+}
+
+.btn1:hover {
+    opacity: 0.8;
+}
