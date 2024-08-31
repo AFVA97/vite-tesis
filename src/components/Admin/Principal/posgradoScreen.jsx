@@ -2,10 +2,11 @@ import ThInicio from "./TableHead/thPosgrado"
 import Header from "../HeaderAdmin"
 import ElementPosgrado from "./Elements/elementPosgrado"
 import SearchBar from "./searchBar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import 'animate.css';
 import { usePosgrado } from "../../../context/posgradoContext"
 import { useProfesor } from "../../../context/profesorContext"
+import { FechaContext } from "../../../context/fechaContext"
 
 function inicio({username}) {
 
@@ -14,6 +15,7 @@ function inicio({username}) {
   const [profesorInicio,setprofesorInicio]=useState([])
   const [query, setQuery] = useState('');
   const [filteredProfesor, setFilteredProfesor] = useState([]);
+  const {globalData}=useContext(FechaContext)
 
   const handleInputChange = (e) => {
       const value = e.target.value;
@@ -36,6 +38,12 @@ function inicio({username}) {
       await getPosgrados();
     };load()
   }, []);
+  useEffect(() => {
+    const load=async () => {
+      //await getProfesores();
+      await getPosgrados();
+    };load()
+  }, [globalData]);
 
   useEffect(() => {
     let profesoresArray=[]

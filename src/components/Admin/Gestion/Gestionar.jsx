@@ -3,11 +3,6 @@ import InfoNavBar from '../Info/infoNavBar'
 import FormularioAsignaturas from './FormularioAsignaturas'
 import FormularioCursos from './FormularioCursos'
 
-
-
-
-
-
 const Gestionar = () => {
   return (
     <>
@@ -15,10 +10,9 @@ const Gestionar = () => {
             <InfoNavBar title={"Gestión"}/>
         </div>
         <div className="row text-center m-3">
-                <FormularioAsignaturas />
-                <FormularioCursos />
-            </div>
-        
+            <FormularioAsignaturas />
+            <FormularioCursos />
+        </div>
     </>
   )
 }

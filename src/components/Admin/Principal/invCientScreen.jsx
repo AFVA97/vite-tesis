@@ -2,10 +2,11 @@ import ThInvCient from "./TableHead/thInvCient"
 import Header from "../HeaderAdmin"
 import ElementInvCient from "./Elements/elementInvCient"
 import SearchBar from "./searchBar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import 'animate.css';
 import { useInvCient } from "../../../context/invcientContext"
 import { useProfesor } from "../../../context/profesorContext"
+import { FechaContext } from "../../../context/fechaContext"
 
 function InvCient({username}) {
 
@@ -14,6 +15,7 @@ function InvCient({username}) {
   const [profesores,setprofesores]=useState([])
   const [query, setQuery] = useState('');
   const [filteredProfesor, setFilteredProfesor] = useState([]);
+  const {globalData}=useContext(FechaContext)
 
   const handleInputChange = (e) => {
       const value = e.target.value;
@@ -30,6 +32,12 @@ function InvCient({username}) {
         setFilteredProfesor(profesores)
     }, [query])
   
+  useEffect(() => {
+    const load=async () => {
+      //await getProfesores();
+      await getInvCients()
+    };load()  
+  }, [globalData])
   useEffect(() => {
     const load=async () => {
       await getProfesores();

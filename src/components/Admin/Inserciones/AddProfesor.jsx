@@ -18,39 +18,45 @@ const AddProfesor = () => {
 
     const onSubmit=handleSubmit(data=>{        
         try {
-            if(!params._id){  
-                const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
-                const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
-                if(proftemp.length==0){
-                    if(proftempCI.length==0){
-                        createsProfesor(data)
-                        navigate("/admin/inicio")
+            if(data.ci.length==11){
+                if(!params._id){  
+                    const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
+                    const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
+                    if(proftemp.length==0){
+                        if(proftempCI.length==0){
+                            createsProfesor(data)
+                            navigate("/admin/inicio")
+                        }
+                        else{
+                            seterror(['Carnet de Identidad en uso, rectifique su Información'])
+                        }
                     }
                     else{
-                        seterror(['Carnet de Identidad en uso, rectifique su Información'])
+                        seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
                     }
                 }
                 else{
-                    seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
+                    const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
+                    const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
+                    if(proftemp.length==0){
+                        if(proftempCI.length==0){
+                            updatesProfesor(data);
+                            navigate("/admin/inicio")
+                        }
+                        else{
+                            seterror(['Carnet de Identidad en uso, rectifique su Información'])
+                        }
+                    }
+                    else{
+                        seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
+                    }
                 }
+                return
             }
             else{
-                const proftemp=Profesores.filter((profesor)=>profesor.idUniversidad==data.idUniversidad)
-                const proftempCI=Profesores.filter((profesor)=>profesor.ci==data.ci)
-                if(proftemp.length==0){
-                    if(proftempCI.length==0){
-                        updatesProfesor(data);
-                        navigate("/admin/inicio")
-                    }
-                    else{
-                        seterror(['Carnet de Identidad en uso, rectifique su Información'])
-                    }
-                }
-                else{
-                    seterror(['Identificador de Uiversidad en uso, rectifique su Información'])
-                }
-                
+                seterror(['CI incorrecto, rectifique su Información'])
             }
+            
         } catch (errores) {
             error.push(errores.message)
     }})
@@ -134,7 +140,13 @@ const AddProfesor = () => {
                     </div>
                     <div className="form-group col-md-6">
                         <label htmlFor="ci">Carnet de Identidad</label>
-                        <input type="number" {...register("ci", { required: true })} className="form-control" id="ci" placeholder="CI" />
+                        <input 
+                            type="number" 
+                            {...register("ci", { required: true } )}
+                            className="form-control" 
+                            id="ci" 
+                            
+                            placeholder="CI" />
                         {errors.ci && (
                             <p className="alert-danger rounded text-center mt-2"> CI es Requerido</p>
                         )}
@@ -221,7 +233,11 @@ const AddProfesor = () => {
                     </div>}
                     
                 </div>
-
+                <div className="form-row">
+                {error.length>0 && (
+                            <p className="alert-danger rounded text-center col-12 mt-2">{ error[0]}</p>
+                        )}
+                </div>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <button type="submit" className="btn btn-success">Guardar</button>

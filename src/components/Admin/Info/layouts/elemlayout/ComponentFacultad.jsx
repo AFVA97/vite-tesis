@@ -28,7 +28,6 @@ const ComponentFacultad = ({asignaturas,carrera}) => {
                 <ElFacultad 
                     key={asignatura._id}
                     asignatura={asignatura}/>
-        
             ))}
         </div>)}
         {conProf && (<div className='text-center'>

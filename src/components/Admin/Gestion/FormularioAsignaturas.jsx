@@ -3,16 +3,8 @@ import { useNombreAsignatura } from '../../../context/nombreAsigContext';
 
 const FormularioAsignaturas = () => {
     
-    
     const{NombreAsignaturas, getNombreAsignaturas, createsNombreAsignatura,deletesNombreAsignatura,}=useNombreAsignatura()
     const [asignatura, setAsignatura] = useState('');
-    //const [asignaturas, setAsignaturas] = useState([]);
-
-    useEffect(() => {
-        const load=async()=>{
-            await getNombreAsignaturas();            
-          };load();
-        }, [])
 
     const handleAddAsignatura = async () => {
         if (asignatura) {
@@ -24,6 +16,12 @@ const FormularioAsignaturas = () => {
     const handleRemoveAsignatura =async (_id) => {
         await deletesNombreAsignatura(_id)
     };
+
+    useEffect(() => {
+        const load=async()=>{
+            await getNombreAsignaturas();            
+          };load();
+        }, [])
 
     return (
         <div className="col-md-6">

@@ -11,15 +11,13 @@ export const FechaProvider = ({children}) => {
 useEffect(() => {
     const fechaActual = new Date();    
     const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
-    if(mes<=6){
+    if(mes<=7){
         setyear(year-1)
     }
     if(!globalData)
         setGlobalData(year)
 }, [])
     useEffect(() => {
-        
-        
         Cookies.set('globalData',globalData)
     }, [globalData])
     

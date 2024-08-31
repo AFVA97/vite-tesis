@@ -2,10 +2,11 @@ import Header from "../HeaderAdmin"
 import ThPregrado from "./TableHead/thPregrado" 
 import ElementPregrado from "./Elements/elementPregrado"
 import SearchBar from "./searchBar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import 'animate.css';
 import { useProfesor } from "../../../context/profesorContext"
 import { useAsignatura } from "../../../context/asignaturaContext"
+import { FechaContext } from "../../../context/fechaContext"
 
 function Pregrado({username}) {
   
@@ -14,6 +15,7 @@ function Pregrado({username}) {
   const [profesorInicio,setprofesorInicio]=useState([])
   const [query, setQuery] = useState('');
   const [filteredProfesor, setFilteredProfesor] = useState([]);
+  const {globalData}=useContext(FechaContext)
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -30,6 +32,12 @@ function Pregrado({username}) {
       setFilteredProfesor(profesorInicio)
   }, [query])
 
+  useEffect(() => {
+    const load=async()=>{
+      //await getProfesores();
+      await getAsignaturas();
+    };load()    
+  }, [globalData])
   useEffect(() => {
     const load=async()=>{
       await getProfesores();

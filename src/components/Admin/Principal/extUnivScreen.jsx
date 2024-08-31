@@ -2,10 +2,11 @@ import ThExtUniv from "./TableHead/thExtUniv"
 import Header from "../HeaderAdmin"
 import ElementExtUniv from "./Elements/elementExtUniv"
 import SearchBar from "./searchBar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import 'animate.css';
 import { useProfesor } from "../../../context/profesorContext"
 import { useExtUniv } from "../../../context/extunivContext"
+import { FechaContext } from "../../../context/fechaContext"
 
 function ExtUniv({username}) {
 
@@ -14,6 +15,7 @@ function ExtUniv({username}) {
   const [profesores,setprofesores]=useState([])
   const [query, setQuery] = useState('');
   const [filteredProfesor, setFilteredProfesor] = useState([]);
+  const {globalData}=useContext(FechaContext)
 
   const handleInputChange = (e) => {
       const value = e.target.value;
@@ -29,14 +31,19 @@ function ExtUniv({username}) {
       if(query==='')
         setFilteredProfesor(profesores)
     }, [query])
-    
+    useEffect(() => {
+      const load=async () => {
+        await getProfesores();
+        await getExtUnivs();      
+      };load()  
+    }, [])
 
   useEffect(() => {
     const load=async () => {
-      await getProfesores();
+      //await getProfesores();
       await getExtUnivs();      
     };load()  
-  }, [])
+  }, [globalData])
   
   useEffect(()=>{
     let profesoresArray=[];

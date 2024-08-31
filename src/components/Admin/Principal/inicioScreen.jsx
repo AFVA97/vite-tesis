@@ -49,10 +49,10 @@ function inicio({username}) {
       await getInvCients()
       await getUsers();
     };load()
-  }, []);
+  }, [,globalData]);
   useEffect(() => {    
     const load=async () => {
-      await getProfesores();
+      //await getProfesores();
       await getAsignaturas();
       await getPosgrados();
       await getExtUnivs();

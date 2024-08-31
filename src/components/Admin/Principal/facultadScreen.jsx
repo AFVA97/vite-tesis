@@ -2,11 +2,12 @@ import Header from "../HeaderAdmin"
 import ThFacultad from "./TableHead/thFacultad" 
 import ElementFacultad from "./Elements/elementFacultad"
 import SearchBar from "./searchBar"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import 'animate.css';
 import { useFacultad } from "../../../context/facultadContext"
 import { Link } from "react-router-dom"
 import { useAsignatura } from "../../../context/asignaturaContext"
+import { FechaContext } from "../../../context/fechaContext"
 
 function Facultad({username}) {
 
@@ -15,6 +16,7 @@ function Facultad({username}) {
   const [facelement, setfacelement] = useState([])
   const [query, setQuery] = useState('');
   const [filteredFacultad, setFilteredFacultad] = useState([]);
+  const {globalData}=useContext(FechaContext)
 
   const handleInputChange = (e) => {
       const value = e.target.value;
@@ -31,6 +33,12 @@ function Facultad({username}) {
         setFilteredFacultad(facelement)
     }, [query])
     
+  useEffect(() => {
+    const load =async()=>{
+      //await getFacultades();
+      await getAsignaturas();
+    };load()
+  }, [globalData])
   useEffect(() => {
     const load =async()=>{
       await getFacultades();

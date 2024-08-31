@@ -19,7 +19,6 @@ export const useInvCient = () => {
 export function InvCientProvider({ children }) {
   const [InvCients, setInvCients] = useState([]);
   const [errors, setErrors] = useState([]);
-  //const [InvProf,setInvProf]=useState([])
 
 
 
@@ -46,8 +45,6 @@ export function InvCientProvider({ children }) {
   // }, [])
 
   const getInvCients = async () => {
-    
-    
     const res = await getInvCientesRequest();
     setInvCients(res.data);
   }; 

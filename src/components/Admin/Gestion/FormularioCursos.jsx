@@ -2,15 +2,10 @@ import React, {useState, useEffect} from 'react'
 import { useTipoCurso } from '../../../context/tipoCursoContext';
 
 const FormularioCursos = () => {
+
     const [curso, setCurso] = useState('');
     const{TipoCursos, getTipoCursos, createsTipoCurso,deletesTipoCurso,}=useTipoCurso()
 
-
-    useEffect(() => {
-        const load=async()=>{
-            await getTipoCursos();            
-          };load();
-        }, [])
     const handleAddCurso = async() => {
         if (curso) {
             await createsTipoCurso({nombre:curso})
@@ -21,6 +16,12 @@ const FormularioCursos = () => {
     const handleRemoveCurso =async (_id) => {
         await deletesTipoCurso(_id)
     };
+
+    useEffect(() => {
+        const load=async()=>{
+            await getTipoCursos();            
+          };load();
+        }, [])
 
     return (
         <div className="col-md-6">

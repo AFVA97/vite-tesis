@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 
 const SearchBar = ({  Profesores, onSelect}) => {
-    
-  
+
     const [query, setQuery] = useState('');
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   
@@ -41,7 +40,7 @@ const SearchBar = ({  Profesores, onSelect}) => {
   useEffect(() => {
     setQuery('');
     setFilteredSuggestions([]);    
-  setFilteredSuggestions(Profesores)
+    setFilteredSuggestions(Profesores)
   }, [,Profesores])
 
 

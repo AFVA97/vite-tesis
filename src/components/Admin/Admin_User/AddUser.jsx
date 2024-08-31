@@ -15,6 +15,7 @@ const AddUser = () => {
     const navigate=useNavigate()    
     const {Facultades, getFacultades }=useFacultad()
 
+
     const [modificando, setmodificando] = useState(false)
     const [usuario, setUsuario] = useState(null)  
     const [active, setactive] = useState(true)
@@ -66,13 +67,14 @@ const AddUser = () => {
         } catch (error) {
                 
     }})
+
     const handleCancelar=(e)=>{
         e.preventDefault();
         navigate("/admin/users")
     }
 
-    function handleOnChange(){
-        setactive(!active) 
+    function handleSelectTipo(e){
+        settipoSelect(e.target.value)
     }
 
     const handleSelect = (profesor) => {
@@ -107,15 +109,15 @@ const AddUser = () => {
     }, [active])
 
     useEffect(() => {
-    async function loadUser() {
-        await getProfesores();
-        await getUsers();
-        await getFacultades();
-        if(params._id)
-            setUsuario(await getUser(params._id))  
-    };
-    loadUser()
-    setValue('active',active)
+        async function loadUser() {
+            await getProfesores();
+            await getUsers();
+            await getFacultades();
+            if(params._id)
+                setUsuario(await getUser(params._id))  
+        };
+        loadUser()
+        setValue('active',active)
     }, [])
     
     useEffect(() => {
@@ -137,15 +139,8 @@ const AddUser = () => {
                 settipoSelect("1")
         }
     }, [usuario])
-
-
-
-    function handleSelectTipo(e){
-        
-        settipoSelect(e.target.value)
-    }
+    
     useEffect(() => {
-        
         async function informacion() {
         if(tipoSelect==="1"|| tipoSelect===""){
             setValue('ciuser',null)
@@ -156,9 +151,7 @@ const AddUser = () => {
             return
         }
         else if(tipoSelect==="2"){
-            
             if(Array.isArray(Profesores)){
-                
                 for (let index = 0; index < Profesores.length; index++) {
                     let flag=false;
                     for (let index2 = 0; index2 < users.length; index2++) {
@@ -213,7 +206,6 @@ const AddUser = () => {
     <>
       <InfoInicio title={"Añadir Usuario"}/>
       <div className="container mt-5">
-
       <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
                 <div className="form-row">
                     <div className="form-group col-md-6">
@@ -240,10 +232,8 @@ const AddUser = () => {
                             <p className="alert-danger rounded text-center mt-2"> Tipo de Usuario es Requerido</p>
                         )}
                     </div>
-                    
                 </div>
                 <div className="form-row">
-                    
                     <div className="form-group col-md-6">
                         <label htmlFor="activo">Activo</label>
                         <select 
@@ -259,13 +249,11 @@ const AddUser = () => {
                         {errors.active && (
                                 <p className="alert-danger rounded text-center mt-2"> Activo es Requerido</p>
                             )}
-                    
                     </div>
                     <div className="form-group col-md-6">
                             {selectores}
                     </div>
                 </div>
-                
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="password">Contraseña</label>
@@ -291,9 +279,6 @@ const AddUser = () => {
                     </div>
                 </div>
             </form>
-
-
-       
         </div>
     </>
   )
