@@ -10,7 +10,7 @@ function posgrado({user}) {
       <>
         <div className="sticky-top"> 
           
-          <Header username={user.username} _id={user._id}/>      
+          <Header username={user.username} _id={user.ciuser}/>      
           
           
         </div>

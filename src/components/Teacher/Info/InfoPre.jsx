@@ -47,7 +47,7 @@ const InfoPre = () => {
                         <strong>Cantidad de Grupos:</strong> {data.cantgrupos}<br />
                         <strong>Horas:</strong> {data.horas}<br />
                         <strong>Tutoría a Alumnos Ayudantes:</strong> {data.tutoriaaa}<br />
-                        <strong>Tipo de Curso:</strong> {data.tipoCurso}<br />
+                        <strong>Tipo de Curso:</strong> {data.tipocurso}<br />
                         <strong>Frecuencia Semanal:</strong> {data.frecuencia}<br />
                         <strong>Semestre:</strong> {data.semestre?"1ro":"2do"}<br />
                         <strong>Tiene Examen Final:</strong> {data.exafinal ? 'Sí' : 'No'}<br />
