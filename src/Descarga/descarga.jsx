@@ -9,7 +9,7 @@ const DescargarExcel = ({userType,_id}) => {
     
     const handleDownload = async () => {
         try {
-            const response = (userType==0? await getExcelAdmin():(userType==1? await getExcelFaculty(_id): await getExcelProfesor()))
+            const response = (userType==0? await getExcelAdmin():(userType==1? await getExcelFaculty(_id): await getExcelProfesor(_id)))
 
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');

@@ -8,7 +8,7 @@ import DescargarExcel from "../../Descarga/descarga";
 
 
 
-function UserAccount() {
+function UserAccount({_id}) {
   const [showProfile, setShowProfile] = useState(false)
   const {logout}=useAuth();
   const navigate=useNavigate();
@@ -16,7 +16,7 @@ function UserAccount() {
   function ProfileMenu() {
     return (
       <ul className=" profile-menu">
-        <li ><DescargarExcel  userType={2}/></li>
+        <li ><DescargarExcel _id={_id} userType={2}/></li>
         <li onClick={()=>{logout()}}>Cerrar Sesión</li>
       </ul>
     )

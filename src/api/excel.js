@@ -9,6 +9,6 @@ export const getExcelFaculty =async(_id)=>await axios.get(`/excelfaculty/${_id}`
     responseType: 'blob',
 });
 
-export const getExcelProfesor =async()=>await axios.get(`/excelprofesor`, {
+export const getExcelProfesor =async(_id)=>await axios.get(`/excelprofesor/${_id}`, {
     responseType: 'blob',
 });

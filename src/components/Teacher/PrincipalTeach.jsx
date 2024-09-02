@@ -48,7 +48,7 @@ export default function App() {
     <>
       <div className="pb-5">
         <Routes>
-          <Route exact path="/" element={<Inicio user={username}/>}/>
+          <Route exact path="/" element={<Inicio user={user}/>}/>
           <Route path="/addext_univ" element={<AddExtUniv />}/>
           <Route path="/addext_univ/:_id" element={<AddExtUniv />}/>
           <Route path="/addinv_cient" element={<AddInvCient />}/>
@@ -59,11 +59,11 @@ export default function App() {
           <Route path="/infoinv/:_id" element={<InfoInv user={username}/>}/>
           <Route path="/infopre/:_id" element={<InfoPre user={username}/>}/>
 
-          <Route path="/inicio" element={<Inicio user={username}/>}/>
-          <Route path="/pregrado" element={<Pregrado  user={username}/>} />
-          <Route path="/posgrado" element={<Posgrado user={username}/>} />
-          <Route path="/inv_cient" element={<Investigacion user={username}/>} />
-          <Route path="/ext_univ" element={<Extension user={username}/>} />
+          <Route path="/inicio" element={<Inicio user={user}/>}/>
+          <Route path="/pregrado" element={<Pregrado  user={user}/>} />
+          <Route path="/posgrado" element={<Posgrado user={user}/>} />
+          <Route path="/inv_cient" element={<Investigacion user={user}/>} />
+          <Route path="/ext_univ" element={<Extension user={user}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
         </div>

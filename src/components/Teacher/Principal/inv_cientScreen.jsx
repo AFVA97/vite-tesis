@@ -11,7 +11,7 @@ function inv_cient({user}) {
     return (
       <>
         <div className="sticky-top">
-        <Header username={user.username}/>
+        <Header username={user.username} _id={user._id}/>
         
         
         </div>

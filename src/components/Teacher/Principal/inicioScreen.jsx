@@ -15,7 +15,7 @@ function inicio({user}) {
     return (
       <>
         <div className='sticky-top'>
-          <Header username={user.username}/>
+          <Header username={user.username} _id={user.ciuser}/>
         </div>
         <div className='text-center'>
           <h3 >Pregrados</h3>
