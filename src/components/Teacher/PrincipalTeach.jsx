@@ -31,7 +31,8 @@ export default function App() {
 
   const {user,getProfile}=useAuth();
 //let usuario=null
-  const [username, setusername] = useState("UserName");
+  //const [username, setusername] = useState("UserName");
+  const [usuario,setusuario]=useState({_id:"",usename:""})
   useEffect(() => {
     const load=async()=>{
       getProfile()
@@ -40,15 +41,17 @@ export default function App() {
   
 
   useEffect(() => {
-    if(user)
-      setusername(user)
+    if(user){
+      //setusername(user)
+      setusuario(user)
+    }
   }, [user]);
   
   return (
     <>
       <div className="pb-5">
         <Routes>
-          <Route exact path="/" element={<Inicio user={user}/>}/>
+          <Route exact path="/" element={<Inicio user={usuario}/>}/>
           <Route path="/addext_univ" element={<AddExtUniv />}/>
           <Route path="/addext_univ/:_id" element={<AddExtUniv />}/>
           <Route path="/addinv_cient" element={<AddInvCient />}/>
@@ -56,14 +59,14 @@ export default function App() {
           <Route path="/addposgrado" element={<AddPosgrado />}/>
           <Route path="/addposgrado/:_id" element={<AddPosgrado />}/>
           
-          <Route path="/infoinv/:_id" element={<InfoInv user={username}/>}/>
-          <Route path="/infopre/:_id" element={<InfoPre user={username}/>}/>
+          <Route path="/infoinv/:_id" element={<InfoInv />}/>
+          <Route path="/infopre/:_id" element={<InfoPre/>}/>
 
-          <Route path="/inicio" element={<Inicio user={user}/>}/>
-          <Route path="/pregrado" element={<Pregrado  user={user}/>} />
-          <Route path="/posgrado" element={<Posgrado user={user}/>} />
-          <Route path="/inv_cient" element={<Investigacion user={user}/>} />
-          <Route path="/ext_univ" element={<Extension user={user}/>} />
+          <Route path="/inicio" element={<Inicio user={usuario}/>}/>
+          <Route path="/pregrado" element={<Pregrado  user={usuario}/>} />
+          <Route path="/posgrado" element={<Posgrado user={usuario}/>} />
+          <Route path="/inv_cient" element={<Investigacion user={usuario}/>} />
+          <Route path="/ext_univ" element={<Extension user={usuario}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
         </div>

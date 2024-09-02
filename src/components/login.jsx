@@ -35,11 +35,10 @@ useEffect(()=>{
             <div className="card-header">
                 Bienvenido al Balance de Carga Docente
             </div>
-            {signinErrors.map((error,i)=>(
-              <div key={i}>
-                {error}
-              </div>
-            ))}
+            {signinErrors.length>0 &&
+                  <p className="alert-danger rounded text-center mt-2"> {signinErrors[0]}</p>
+                }
+            
             <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input
@@ -72,40 +71,13 @@ useEffect(()=>{
       <div className="container card mt-3 d-flex p-6  justify-content-center">
         
           <div className="mb-3 card-body">
-           
+                
         
           </div>
             
       </div> 
           
-{/*           
-          {activeadmin && (<Navigate to="/admin/inicio" replace={true} />)}
-            <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={()=>setactiveadmin(true)}
-            >
-              Sign in Admin
-            </button>
-         
-            {activeteacher && (<Navigate to="/teacher/inicio" replace={true} />)}
-            <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={()=>setactiveteacher(true)}
-            >
-              Sign in Prof
-            </button>
-         
-            {activefaculty && (<Navigate to="/faculty/inicio" replace={true} />)}
-            <button
-            type="submit"
-            className="btn btn-primary"
-            onClick={()=>setactivefaculty(true)}
-            >
-              Sign in Fac
-            </button>
-         */}
+
         
         
       </>
