@@ -8,7 +8,8 @@ import { faEdit, faInfoCircle, faTrash } from "@fortawesome/free-solid-svg-icons
 function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, th,profesorInicio,setprofesorInicio,users}){
     const [active, setactive] = useState(false);
     const {deletesProfesor}=useProfesor()
-    const [error,seterror]=useState([])
+    //const [error,seterror]=useState([])
+    const [userProf,setuserProf]=useState(false)
 
     const handleDelete=()=>{
         const temp=users.filter((user)=>user.ciuser===_id)
@@ -16,16 +17,26 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
             deletesProfesor(_id);
             setprofesorInicio(profesorInicio.filter((Profesor) => Profesor._id !== _id))
         }
+        else
+            setuserProf(true)
     }
 
     useEffect(() => {
-        if (error.length > 0) {
+        if (userProf) {
           const timer = setTimeout(() => {
-            seterror([]);
-          }, 5000);
+            setuserProf(false);
+          }, 3000);
           return () => clearTimeout(timer);
         }
-      }, [error]);
+      }, [userProf]);
+    // useEffect(() => {
+    //     if (error.length > 0) {
+    //       const timer = setTimeout(() => {
+    //         seterror([]);
+    //       }, 5000);
+    //       return () => clearTimeout(timer);
+    //     }
+    //   }, [error]);
       
     return(
         <>
@@ -63,13 +74,16 @@ function elementInicio({_id,nombre, apellidos, graduado, hpre, hpos, hic, heu, t
                     //     </div>
                     // </div>
             }
-            {error.length>0 ? (
+            {/* {error.length>0 ? (
                 <>
                 {error.map((errores,i)=>(
                         <p key={i} className="alert alert-danger text-center"> {errores} </p>
                     ))}
                 </>
-            ):<div></div>}
+            ):<div></div>} */}
+            {userProf && 
+                <p className="alert-danger rounded text-center m-2"> No se puede eliminar el Profesor porque tiene un usuario asignado </p>
+    }
         </>
     );
 }

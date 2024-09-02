@@ -17,10 +17,18 @@ function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}
                 
                 <div scope="col" className="col-3 text-truncate">{facultad}</div>
                 
-                <div scope="col" className="col-2 row justify-content-center text-center container-fluid">
+                {/* <div scope="col" className="col-2 row justify-content-center text-center container-fluid">
                     <div className="col justify-content-center text-center">{semestre?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
                     <div className="col justify-content-center text-center">{!semestre?(<input type="radio" readOnly disabled checked></input>): (<input type="radio" readOnly disabled ></input>)}</div>
-                </div>
+                </div> */}
+                    <div scope="col" className="col-2 row justify-content-center text-center container-fluid">
+                        <div className="col-6 justify-content-center align-items-center text-center">
+                            <div className={`circle ${semestre ? 'active' : ''} m-auto `}></div>
+                        </div>
+                        <div className="col-6 justify-content-center text-center">
+                            <div className={`circle ${!semestre ? 'active' : ''} m-auto`}></div>
+                        </div>
+                    </div>
                 <div scope="col" className="col-1 text-truncate">{tipocurso}</div>
                 <div scope="col" className="col-1 text-truncate">{horas}</div>
             </div>

@@ -25,8 +25,8 @@ function inicio({User}) {
       createsAsignatura,
       updatesAsignatura,
       deletesAsignatura,}=useAsignatura()
-    let asignaturas=[]
-    const [data, setData] = useState([]);
+    // let asignaturas=[]
+    // const [data, setData] = useState([]);
 
   // useEffect(() => {
   //   if(user){
@@ -104,13 +104,15 @@ function inicio({User}) {
       }
     }
     setCarreraInicio(carrerasInicio);
+    //console.log('✅ User._id    ', User._id)
+    
   }, [Asignaturas,User,Carreras])
   
   
     return (
       <>
         <div className="sticky-top">
-          <Header username={User.username}/>
+          <Header _id={User.facuser} username={User.username}/>
           <ThInicio/>
         </div>
         <div className="container-fluid justify-content-center animate__animated animate__fadeIn">

@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom"
 import UserAccount from "./userAccount"
 
-function Header({username}) {
+function Header({username,_id}) {
 
     
   return (
@@ -68,7 +68,7 @@ function Header({username}) {
         </div>
 
         <ul className="navbar-nav ml-auto">
-            <UserAccount/>
+            <UserAccount _id={_id}/>
         </ul>
     
     </nav>

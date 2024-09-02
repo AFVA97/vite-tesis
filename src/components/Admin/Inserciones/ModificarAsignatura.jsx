@@ -77,11 +77,11 @@ const ModificarAsignatura = () => {
         <div className="container mt-5">
             <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
                 <div className="form-row">
-                    <div className="form-group col-md-3">
+                    <div className="form-group col-md-5">
                         <label htmlFor="grupos">Seleccione un Profesor</label>
                         <SearchBar Profesores={Profesores} onSelect={handleSelect} prof={asignatura.profesor} />
                     </div>
-                    <div className="form-group col-md-9">
+                    <div className="form-group col-md-7">
                         <label htmlFor="horas">Notas</label>
                         <textarea 
                             rows={3}

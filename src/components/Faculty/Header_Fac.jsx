@@ -1,8 +1,9 @@
 import { Link, NavLink } from "react-router-dom"
 import { useAuth } from "../../context/authContext"
+import UserAccount from "./userAccount"
 
-function Header({username}) {
-    const {logout}=useAuth()
+function Header({username,_id}) {
+    
   return (
     
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -33,12 +34,8 @@ function Header({username}) {
 
             
         </div>
-        <ul className="navbar-nav ml-auto text-white"
-            onClick={()=>logout()}
-        >
-            
-                Logout
-            
+        <ul className="navbar-nav ml-auto">
+            <UserAccount _id={_id}/>
         </ul>
     
     </div>

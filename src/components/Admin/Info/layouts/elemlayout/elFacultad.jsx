@@ -34,7 +34,7 @@ const ElFacultad = ({asignatura}) => {
             <div>
               <div>
                 <div scope="col" className=" col-12 text-truncate">Profesor: {asignatura.profesor?`${profesor.nombre} ${profesor.apellidos}`:"---"}</div>
-                <div scope="col" className=" col-12 text-truncate">Notas: {asignatura.notas?asignatura.notas:"---"}</div>
+                <div scope="col" className=" col-12 "><p>Notas: {asignatura.notas?asignatura.notas:"---"}</p></div>
               </div>
               <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
                         

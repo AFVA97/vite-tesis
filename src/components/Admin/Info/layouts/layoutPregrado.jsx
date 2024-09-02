@@ -36,7 +36,7 @@ function layoutPregrado({_id}){
         if(Array.isArray(elememntoTemp)){
             elememntoTemp.map((asignatura)=>{
                 let carre=(Carreras.filter((carrera)=>carrera.id=asignatura.carrera))[0];
-                if(carre.nombre)
+                if(carre)
                     carre=carre.nombre
                 else
                 carre={nombre:''}
