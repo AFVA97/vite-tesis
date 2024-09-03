@@ -3,8 +3,6 @@ import {
   getPosgradosRequest,
   deletePosgradoRequest,
   createPosgradoRequest,
-  //getPosgradoRequest,
-  //getPosgradoProfRequest,
   updatePosgradoRequest
 } from "../api/posgrado";
 
@@ -18,10 +16,7 @@ export const usePosgrado = () => {
 
 export function PosgradoProvider({ children }) {
   const [Posgrados, setPosgrados] = useState([]);
-  const [errors, setErrors] = useState([]);
-  //const [PosProf, setPosProf] = useState([])
-
-  
+  const [errors, setErrors] = useState([]) 
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -31,18 +26,6 @@ export function PosgradoProvider({ children }) {
       return () => clearTimeout(timer);
     }
   }, [errors]);
-
-
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getPosgrados();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
 
   const getPosgrados = async () => {
     const res = await getPosgradosRequest();
@@ -54,8 +37,6 @@ export function PosgradoProvider({ children }) {
       const res = await createPosgradoRequest(Posgrado);
       if (res.status===200)
         setPosgrados([...Posgrados,res.data])
-      // if(res.status===200)
-      //   getPosgrados();
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
@@ -66,7 +47,6 @@ export function PosgradoProvider({ children }) {
     try {
       const res=await updatePosgradoRequest( Posgrado);
       setPosgrados(Posgrados.map(posgrado=>(posgrado._id===Posgrado._id?res.data:posgrado)))
-  
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -83,19 +63,7 @@ export function PosgradoProvider({ children }) {
     }
   };
 
-  // const getPosgradoProf = async (id) => {
-  //   try {
-  //     const res = await getPosgradoProfRequest(id); 
-      
-  //     setPosProf(res.data)
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
-  
-
+ 
   const getPosgrado = async (id) => {
     try {
       const res = await getPosgradoRequest(id); 
@@ -107,8 +75,6 @@ export function PosgradoProvider({ children }) {
     }
   };
 
-  
-
   return (
     <PosgradoContext.Provider
       value={{
@@ -119,11 +85,6 @@ export function PosgradoProvider({ children }) {
         createsPosgrado,
         updatesPosgrado,
         deletesPosgrado,
-        
-        // PosProf,
-         
-        // getPosgradoProf,
-        
       }}
     >
       {children}

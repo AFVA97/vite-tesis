@@ -14,7 +14,6 @@ function layoutExtUniv({_id}){
     useEffect(() => {
         const load=async () => {
             await getExtUnivs()
-            
           };load()
     }, [])
     

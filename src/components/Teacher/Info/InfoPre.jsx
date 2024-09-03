@@ -13,29 +13,19 @@ const InfoPre = () => {
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const navigate=useNavigate()
    
-    useEffect(() => {
-      const load=async()=>{
-        setasignatura(await getAsignatura(params._id))
-      };load()
-    }, [])
-    
-    useEffect(() => {
-      if(asignatura.nombre){
-        setloaded(true)
-        setValue('tutoriaaa',asignatura.tutoriaaa)
-      }
-    }, [asignatura])
+
     const onSubmit=handleSubmit(async data=>{        
-      try {
-          await updatesAsignatura({...asignatura,tutoriaaa:data.tutoriaaa})
-          setasignatura(await getAsignatura(params._id))
-      } catch (errores) {
-          
-  }})
-  const handleCancelar=(e)=>{
-    e.preventDefault();
-    navigate("/teacher/pregrado")
-}
+        try {
+            await updatesAsignatura({...asignatura,tutoriaaa:data.tutoriaaa})
+            setasignatura(await getAsignatura(params._id))
+        } catch (errores) {
+            
+    }})
+    
+    const handleCancelar=(e)=>{
+        e.preventDefault();
+        navigate("/teacher/pregrado")
+    }
 
     const DataCard = ({ data }) => {
         return (
@@ -59,8 +49,19 @@ const InfoPre = () => {
         );
     };
 
-
+    useEffect(() => {
+      const load=async()=>{
+        setasignatura(await getAsignatura(params._id))
+      };load()
+    }, [])
     
+    useEffect(() => {
+      if(asignatura.nombre){
+        setloaded(true)
+        setValue('tutoriaaa',asignatura.tutoriaaa)
+      }
+    }, [asignatura])
+
     
   return (
     <>
@@ -77,13 +78,8 @@ const InfoPre = () => {
                             <div className="form-group col-md-12">
                                 <label htmlFor="tutoriaaa">Tutoría a Alumnos Ayudantes</label>
                                 <input type="number" className="form-control" {...register("tutoriaaa")} id="tutoriaaa" placeholder="Tutoría a Alumnos Ayudantes" />
-                                
-                                
                             </div>
-                            
                         </div>
-                        
-                        
                         <div className="form-row">
                             <div className="form-group col-md-6">
                                 <button type="submit" className="btn btn-success">Modificar</button>

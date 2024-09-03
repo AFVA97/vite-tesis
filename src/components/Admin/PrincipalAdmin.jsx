@@ -29,8 +29,7 @@ export default function App() {
 
   return (
     <>
-      
-       <div className="pb-5">
+      <div className="pb-5">
         <Routes>
           <Route path="/inicio" element={<Inicio username={username}/>}/>
           <Route path="/addprofesor" element={<AddProfesor/>}/>
@@ -54,7 +53,7 @@ export default function App() {
           <Route path="/inv_cient/info/:_id" element={<InfoScreen title={"Investigación Científica"}/>} />
           <Route path="/ext_univ/info/:_id" element={<InfoScreen title={"Extensión Universitaria"}/>} />
         </Routes>
-        </div> 
+      </div> 
     </>
   )
 }

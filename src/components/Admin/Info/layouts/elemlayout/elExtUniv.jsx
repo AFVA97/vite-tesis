@@ -15,7 +15,7 @@ function elExtUniv({nombre, tipo, horas, fecha}){
 
         obtenerFecha();
     }, []);
-    //let fecch=((new Date(fecha)).toLocaleDateString().split('T')[0]).split('/');
+    
     return(
         <>
             <div className="row justify-content-center text-center container-fluid  m-0 p-0">

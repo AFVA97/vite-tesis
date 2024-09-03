@@ -26,8 +26,6 @@ const SearchBar = ({  Profesores, onSelect}) => {
           setFilteredSuggestions([]);
         }
       }
-      
-      
       onSelect(profesor);
     };
 

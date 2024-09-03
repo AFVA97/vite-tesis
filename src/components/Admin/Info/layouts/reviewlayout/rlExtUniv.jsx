@@ -14,8 +14,6 @@ function rlExtUniv({are,tch,ae,th }) {
         </>
     )
   }
-
-  
   
   export default rlExtUniv
 

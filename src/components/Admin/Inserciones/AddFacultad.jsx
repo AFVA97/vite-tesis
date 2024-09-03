@@ -73,9 +73,7 @@ const AddFacultad = () => {
                             <p className="alert-danger rounded text-center mt-2"> Este Nombre de Facultad ya está en uso, Verifique su Información</p>
                         )}
                     </div>
-                    
                 </div>
-                
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="abreviatura">Abreviatura</label>
@@ -95,46 +93,6 @@ const AddFacultad = () => {
                 </div>
             </form>
         </div>   
-        {/* <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-            <div className="row p-5">
-                <div className="input-group mb-3 p-1 col-12">
-                    <span className="input-group-text" id="basic-addon1">Nombre de la Facultad</span>
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        {...register("nombre", { required: true })}
-                    />
-                    
-                </div>
-                {errors.nombre && (
-                        <p className="alert alert-danger text-center"> El Nombre is required</p>
-                    )}
-                <div className="input-group mb-3 col-6">
-                    <span className="input-group-text" id="basic-addon1">Abreviatura</span>
-                    <input 
-                        type="text" 
-                        className="form-control"
-                        name="abreviatura"
-                        {...register("abreviatura", { required: true })}
-                    />
-                    
-                </div>
-                {errors.abreviatura && (
-                        <p className="alert alert-danger text-center"> Abreviatura is required</p>
-                    )}
-            </div>
-            {error.length>0 ? (
-                <>
-                {error.map((errores,i)=>(
-                        <p key={i} className="alert alert-danger text-center"> {errores} </p>
-                    ))}
-                </>
-            ):<div></div>}  
-            <div className="fixed-bottom p-2 row bottom-0 end-0">
-                <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
-            </div>
-        </form> */}
     </>
   )
 }

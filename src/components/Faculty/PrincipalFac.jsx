@@ -11,6 +11,7 @@ import AddAsignatura from "./Asignaturas/AddAsignatura";
 export default function App() {
   const {user,getProfile}=useAuth();
   const [User, setUser] = useState("UserName");
+
   useEffect(() => {
     const load=async()=>{
       getProfile()
@@ -22,18 +23,7 @@ export default function App() {
     if(user)
       setUser(user)
   }, [user]);
-  // const {user,loading,isAuthenticated}=useAuth();
-  // const navigate=useNavigate();
-  // useEffect(()=>{
-  //   if(isAuthenticated){
-  //     if(user.ciuser) 
-  //       navigate('/teacher/inicio')
-  //     else if(user.facuser)
-  //       navigate('/faculty/inicio')
-  //     else
-  //     navigate('/admin/inicio') 
-  //   }
-  // },[isAuthenticated])
+
   return (
     <>      
         <div className="pb-5">
@@ -43,7 +33,6 @@ export default function App() {
           <Route path="/addcarrera" element={<AddCarrera User={User}/>}/>
           <Route path="/modificar/:_id" element={<Modificar User={User}/>}/>
           <Route path="/addasignatura/:_id" element={<AddAsignatura User={User}/>}/>
-          
         </Routes>
         </div>
     </>

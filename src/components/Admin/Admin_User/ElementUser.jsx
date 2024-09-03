@@ -65,14 +65,6 @@ function ElementUser ({_id,username,ciuser,facuser,active:activo}) {
                     </button>
                     
                 </div>
-                // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
-                //     <div className="col table-success"><Link to={`/admin/users/add/${_id}`} >
-                //     Modificar</Link>
-                //     </div>
-                //     <div className="col table-danger" onClick={()=>handleDelete()}>
-                //         Eliminar
-                //     </div>
-                // </div>
             }
         </>
   )

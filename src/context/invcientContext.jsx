@@ -4,7 +4,6 @@ import {
   deleteInvCientRequest,
   createInvCientRequest,
   getInvCientRequest,
-  //getInvCientProfRequest,
   updateInvCientRequest
 } from "../api/invcient";
 
@@ -32,18 +31,6 @@ export function InvCientProvider({ children }) {
     }
   }, [errors]);
 
-
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getInvCients();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-
   const getInvCients = async () => {
     const res = await getInvCientesRequest();
     setInvCients(res.data);
@@ -56,8 +43,6 @@ export function InvCientProvider({ children }) {
       const res = await createInvCientRequest(InvCient);
       if(res.status===200)
         setInvCients([...InvCients,res.data])
-      // if(res.status===200)
-      //   getInvCients();
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
@@ -84,30 +69,15 @@ export function InvCientProvider({ children }) {
     }
   };
 
-  // const getInvCientProf = async (id) => {
-  //   try {
-  //     const res = await getInvCientProfRequest(id); 
-  //     setInvProf(res.data)
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
-  
-
   const getInvCient = async (_id) => {
     try {
       const res = await getInvCientRequest(_id); 
-      
       return res.data;
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
     }
   };
-
-  
 
   return (
     <InvCientContext.Provider

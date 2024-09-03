@@ -6,7 +6,6 @@ import {
   getFacesRequest,
   updateFacRequest
 } from "../api/fac";
-import { set } from "react-hook-form";
 
 const FacultadContext = createContext();
 
@@ -29,24 +28,10 @@ export function FacultadProvider({ children }) {
     }
   }, [errors]);
 
-
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getFacultades();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-
   const getFacultades = async () => {
     const res = await getFacesRequest();       
     setFacultades(res.data);
   };
-
-  
 
   const createsFacultad = async (Facultad) => {
     try {
@@ -62,7 +47,6 @@ export function FacultadProvider({ children }) {
     try {
       const res= await updateFacRequest( Facultad);
       setFacultades(Facultades.map(facultad=>(facultad._id===Facultad._id?res.data:facultad)))
-   
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -79,8 +63,6 @@ export function FacultadProvider({ children }) {
     }
   };
 
-  
-
   const getFacultad = async (_id) => {
     try {      
       const res = await getFacRequest(_id);       
@@ -90,8 +72,6 @@ export function FacultadProvider({ children }) {
       setErrors(error.response.data);
     }
   };
-
-  
 
   return (
     <FacultadContext.Provider
@@ -103,7 +83,6 @@ export function FacultadProvider({ children }) {
         updatesFacultad,
         deletesFacultad,
         getFacultad,
-        
       }}
     >
       {children}

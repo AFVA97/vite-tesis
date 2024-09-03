@@ -6,7 +6,6 @@ import {
   getTipoCursosRequest,
   updateTipoCursoRequest
 } from "../api/tipoCurso";
-import { set } from "react-hook-form";
 
 const TipoCursoContext = createContext();
 
@@ -29,24 +28,10 @@ export function TipoCursoProvider({ children }) {
     }
   }, [errors]);
 
-
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getFacultades();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-
   const getTipoCursos = async () => {
     const res = await getTipoCursosRequest();       
     setTipoCursos(res.data);
   };
-
-  
 
   const createsTipoCurso = async (TipoCurso) => {
     try {
@@ -62,7 +47,6 @@ export function TipoCursoProvider({ children }) {
     try {
       const res= await updateTipoCursoRequest( TipoCurso);
       setTipoCursos(TipoCursos.map(asig=>(asig._id===TipoCurso._id?res.data:asig)))
-   
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -71,7 +55,6 @@ export function TipoCursoProvider({ children }) {
 
   const deletesTipoCurso = async (_id) => {
     try {
-      
       const res = await deleteTipoCursoRequest(_id);
       if(res.status===204)setTipoCursos(TipoCursos.filter((asig) => asig._id !== _id));
     } catch (error) {
@@ -79,8 +62,6 @@ export function TipoCursoProvider({ children }) {
       setErrors(error.response.data);
     }
   };
-
-  
 
   const getTipoCurso = async (id) => {
     try {      
@@ -92,8 +73,6 @@ export function TipoCursoProvider({ children }) {
     }
   };
 
-  
-
   return (
     <TipoCursoContext.Provider
       value={{
@@ -104,7 +83,6 @@ export function TipoCursoProvider({ children }) {
         updatesTipoCurso,
         deletesTipoCurso,
         getTipoCurso,
-        
       }}
     >
       {children}

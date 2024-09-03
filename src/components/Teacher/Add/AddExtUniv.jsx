@@ -6,22 +6,33 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../../context/authContext";
 
 
-
-
 const AddExtUniv = () => {
     const{user,getProfile}=useAuth()
     const params=useParams();
-    const {
-        createsExtUniv,
-        getExtUniv,
-        updatesExtUniv,
-      } =useExtUniv();
-    
-      const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-  
+    const {createsExtUniv, getExtUniv, updatesExtUniv,} =useExtUniv();
+    const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const navigate=useNavigate()
     const [tipoSelect, settipoSelect] = useState("")
     const [extension, setextension] = useState(null)
+
+    const onSubmit=handleSubmit(data=>{        
+        try {
+            if(!params._id){  
+                createsExtUniv(data);
+                navigate("/teacher/ext_univ")
+            }
+            else{
+                updatesExtUniv(data);
+                navigate("/teacher/ext_univ")
+            }
+        } catch (error) {
+                
+    }})
+
+    const handleCancelar=(e)=>{
+        e.preventDefault();
+        navigate("/teacher/ext_univ")
+    }
     
     useEffect(() => {
       async function loadExt() {
@@ -51,38 +62,16 @@ const AddExtUniv = () => {
       }, [extension])
       
     
-    const onSubmit=handleSubmit(data=>{        
-        try {
-           
-            
-                if(!params._id){  
-                    createsExtUniv(data);
-                    navigate("/teacher/ext_univ")
-                }
-                else{
-                    updatesExtUniv(data);
-                    navigate("/teacher/ext_univ")
-                }
-            
-            
-        } catch (error) {
-                
-    }})
-    const handleCancelar=(e)=>{
-        e.preventDefault();
-        navigate("/teacher/ext_univ")
-    }
+    
+
 useEffect(() => {
   setValue('tipo',tipoSelect)
   console.log(tipoSelect);
-  
 }, [tipoSelect])
 
 
   return (
     <>
-
-      
       <InfoNavBar title={"Añadir Extensión Universitaria"} link={"/teacher/ext_univ"}/>
       <div className="container mt-5">
             <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
@@ -94,7 +83,6 @@ useEffect(() => {
                             <p className="alert-danger rounded text-center mt-2"> El Título de la Extensión Universitaria es Requerido</p>
                         )}
                     </div>
-                    
                 </div>
                 <div className="form-row">
                     <div className="form-group col-md-12">
@@ -142,7 +130,6 @@ useEffect(() => {
                 </div>
             </form>
         </div>
-    
     </>
   )
 }

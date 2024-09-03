@@ -18,7 +18,6 @@ function layoutFacultad({_id}){
       const load=async()=>{
         await getAsignaturas();
         await getCarreras();
-
       };load()
     }, [])
 
@@ -40,7 +39,6 @@ function layoutFacultad({_id}){
                     asignaturas={AsignaturasFac.filter((asignatura)=>asignatura.carrera===carrera._id)}
                 />
             ))}</div>
-            
         </>
     )
 }

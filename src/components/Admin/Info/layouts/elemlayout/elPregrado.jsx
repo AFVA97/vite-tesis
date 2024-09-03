@@ -41,13 +41,7 @@ function elPregrado({_id,carrera,anno,semestre,asignatura,horas,frecuencia,taa,t
                 </button>
                 
             </div>
-                    // <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0">
-                                                
-                    //     <div className="col table-danger" onClick={()=>handleDelete()}>
-                    //         Quitar Asignación de esta Asignatura
-                    //     </div>
-                    // </div>
-            }
+        }   
      </>
     )
 }

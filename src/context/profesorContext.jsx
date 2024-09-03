@@ -19,8 +19,6 @@ export function ProfesorProvider({ children }) {
   const [Profesores, setProfesores] = useState([]);
   const [errors, setErrors] = useState([]);
 
-  
-
   useEffect(() => {
     if (errors.length > 0) {
       const timer = setTimeout(() => {
@@ -30,27 +28,11 @@ export function ProfesorProvider({ children }) {
     }
   }, [errors]);
 
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getProfesores();
-  //       console.log(Profesores);
-        
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-
   const getProfesores = async () => {
     const res = await getProfesoresRequest();
     //console.log(res);
     if(res.status===200){
       setProfesores(res.data);
-      //console.log(Profesores);
-      //return res.data
-      
     }
   };
 
@@ -59,9 +41,6 @@ export function ProfesorProvider({ children }) {
       const res = await createProfesorRequest(Profesor);
       if(res.status===200)
         setProfesores([...Profesores,Profesor])
-      
-        
-      // }
     } catch (error) {
       console.log(error.response.data);
       setErrors(error.response.data);
@@ -72,7 +51,6 @@ export function ProfesorProvider({ children }) {
     try {
       const res=await updateProfesorRequest( Profesor);
       setProfesores(Profesores.map(profesor=>(profesor._id===Profesor._id?res.data:profesor)))
-   
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -89,8 +67,6 @@ export function ProfesorProvider({ children }) {
     }
   };
 
-  
-
   const getProfesor = async (_id) => {
     try {
       const res = await getProfesorRequest(_id); 
@@ -102,22 +78,16 @@ export function ProfesorProvider({ children }) {
     }
   };
 
-  
-
   return (
     <ProfesorContext.Provider
       value={{
         Profesores,
         errors,
-        
-        
         getProfesores,
         createsProfesor,
         updatesProfesor,
         deletesProfesor,
         getProfesor,
-        
-        
       }}
     >
       {children}

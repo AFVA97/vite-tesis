@@ -3,7 +3,6 @@ import {
     getCarrerasRequest,
     createCarreraRequest,
     getCarreraRequest,
-    //getCarreraProfRequest,
     updateCarreraRequest,
     deleteCarreraRequest
 } from "../api/carrera";
@@ -19,7 +18,6 @@ export const useCarrera = () => {
 export function CarreraProvider({ children }) {
   const [Carreras, setCarreras] = useState([]);
   const [errors, setErrors] = useState([]);
-  //const [CarreraFac, setCarreraFac] = useState([])
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -30,23 +28,10 @@ export function CarreraProvider({ children }) {
     }
   }, [errors]);
 
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getCarreras();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-
   const getCarreras = async () => {
     const res = await getCarrerasRequest();
     setCarreras(res.data);
   };
-
-  
 
   const createsCarrera = async (Carrera) => {
     try {
@@ -63,7 +48,6 @@ export function CarreraProvider({ children }) {
     try {
       const res=await updateCarreraRequest( Carrera);
       setAsignaturas(Carreras.map(carrera=>(carrera._id===Carrera._id?res.data:carrera)))
-    
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -78,25 +62,11 @@ export function CarreraProvider({ children }) {
       console.log(error);
       setErrors(error.response.data);
     }
-  };
-
-  // const getCarreraProf = async (id) => {
-  //   try {
-  //     const res = await getCarreraProfRequest(id); 
-  //     setCarreraFac(res.data)
-  //     console.log(res.data);      
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
-  
+  };  
 
   const getCarrera = async (id) => {
     try {
       const res = await getCarreraRequest(id); 
-      
       return res.data;
     } catch (error) {
       console.error(error);
@@ -116,11 +86,6 @@ export function CarreraProvider({ children }) {
         updatesCarrera,
         deletesCarrera,
         getCarrera,
-        // CarreraFac,
-        
-        
-        // getCarreraProf,
-        
       }}
     >
       {children}

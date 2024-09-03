@@ -14,8 +14,6 @@ const AddProfesor = () => {
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const navigate=useNavigate()
  
-    
-
     const onSubmit=handleSubmit(data=>{        
         try {
             if(data.ci.length==11){
@@ -70,6 +68,7 @@ const AddProfesor = () => {
         setfijo(!fijo)
         setValue('pagoHoras',"")
     }
+
     const handleOnChanges=()=>{
         setcargo(!cargo)
         setValue('funcionDireccion',"")
@@ -145,7 +144,6 @@ const AddProfesor = () => {
                             {...register("ci", { required: true } )}
                             className="form-control" 
                             id="ci" 
-                            
                             placeholder="CI" />
                         {errors.ci && (
                             <p className="alert-danger rounded text-center mt-2"> CI es Requerido</p>
@@ -178,7 +176,6 @@ const AddProfesor = () => {
                             <p className="alert-danger rounded text-center mt-2"> Gradudo es Requerido</p>
                         )}
                     </div>
-                    
                 </div >
                 <div className="form-row">
                     <div className="form-group col-md-6">
@@ -248,53 +245,6 @@ const AddProfesor = () => {
                 </div>
             </form>
         </div>  
-        {/* 
-                <div className="row container-fluid">
-                    {fijo ? (
-                        <div className="input-group m-3 align-items-start row col">
-                            <label className="form-check-label row" >
-                            Monto del Pago Por Horas
-                            </label>
-                            <div className="row">
-                                
-                                <span className="input-group-text col-2">$</span>
-                                <input 
-                                    type="number" 
-                                    className="form-control col" 
-                                    {...register("pagoHoras", { required: true })}
-                                    />
-                            </div>
-                    </div>
-                    ):<div className="col"> </div>}
-                    {cargo ? (
-                        <div className="input-group m-3 row col">
-                            <label className="form-check-label col-6 mw-100" >
-                            Cargo de Dirección
-                            </label>
-                            <div className="">
-                                
-                                <input 
-                                    type="text" 
-                                    className="form-control col-6 mw-100" 
-                                    {...register("funcionDireccion", { required: true })}
-                                    />
-                            </div>
-                        </div>
-                    ):<div className="col"> </div>}
-                </div>
-            </div>
-            {error.length>0 ? (
-                <>
-                {error.map((errores,i)=>(
-                        <p key={i} className="alert alert-danger text-center"> {errores} </p>
-                    ))}
-                </>
-            ):<div></div>}  
-            <div className="sticky-bottom p-2 row bg-white">
-                <button type="submit" className="btn col btn-success  m-3">Guardar</button>
-                <button  className="btn btn-danger col m-3" onClick={e=>handleCancelar(e)}>Cancelar</button>
-            </div>
-        </form> */}
     </>
   )
 }

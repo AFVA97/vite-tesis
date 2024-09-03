@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 function elInvCient({investigacion,ti,titulo,alcance,fecha}){
     
     const [fecch, setFecch] = useState('');
+    const [active, setactive] = useState(false);
+    const [selectores, setselectores] = useState()
 
     useEffect(() => {
         const obtenerFecha = () => {
@@ -14,84 +16,53 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
             const año = fechaActual.getFullYear();
             setFecch(`${dia}/${mes}/${año}`);
         };
-
         obtenerFecha();
-    }, []); const [active, setactive] = useState(false);
-    const [selectores, setselectores] = useState()
-
+    }, []); 
+    
     useEffect(() => {
         switch (ti) {
             case "Proyecto":
-                
                 setselectores(
                     <>
                         <div >
-                           
                                 <p ><strong>Programa:</strong> {investigacion.descripcion}</p>
                                 <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
                                 <p ><strong>Programa Asociado:</strong> {investigacion.issbnn}</p>
-                                
                         </div>
-                        
-                        
-                        
-                        
-                    
                     </>
                 )
                 break;
             case "Publicación Artículo":
-                
                 setselectores(
                     <>
                         <div >
-                            
                                 <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
                                 <p ><strong>Grupo:</strong> {investigacion.alcance}</p>
                                 <p ><strong>ISSN:</strong> {investigacion.issbnn}</p>
                                 <p ><strong>Link:</strong> <a href={investigacion.link}>{investigacion.link}</a></p>
                                 <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
-                           
                         </div>
-                       
-                        
-                        
                     </>
                 )
-        
-                   
                 break;
             case "Publicación Libro o Capítulo":
                 setselectores(
                     <>
                          <div >
-                            
                             <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
                             <p ><strong>ISBN:</strong> {investigacion.issbnn}</p>
                             <p ><strong>Link:</strong> <a href={investigacion.link}>{investigacion.link}</a></p>
-                            
-                    </div>
-                       
-                        
-                        
-                        
-                        
+                        </div>
                     </>
-                    
-                    
                 )
                 break;
             case "Premio ACC":
                 setselectores(
                     <>
                         <div >
-                                
-                                <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
-                                <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
-                        
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
                         </div>
-                       
-                    
                     </>
                 )
                 break;
@@ -99,38 +70,28 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 setselectores(
                     <>
                          <div >
-                                
-                                <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
-                                <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
-                        
+                            <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
+                            <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
                         </div>
-                    
                     </>
                 )
                 break;
             case "Otro Premio":
                 setselectores(
                     <>
-                         <div >
-                            
+                        <div >
                             <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
                             <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
-                           
-                         </div>
-                    
+                        </div>
                     </>
                 )
                 break;
             case "Red Académica":
                 setselectores(
                     <>
-                         <div >
-                            
+                        <div >
                             <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
-                           
-                       
-                    </div>
-                        
+                        </div>
                     </>
                 )
                 break;
@@ -138,10 +99,8 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 setselectores(
                     <>
                         <div >
-                            
                             <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
                             <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
-                           
                         </div>
                     </>
                 )
@@ -150,15 +109,11 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 setselectores(
                     <>
                         <div >
-                            
                             <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
                             <p ><strong>Alcance:</strong> {investigacion.alcance}</p>
                             <p ><strong>Presencial:</strong> {investigacion.issbnn?"Sí":"No"}</p>
                             <p ><strong>Autor(es):</strong> {investigacion.autores}</p>
-                       
                         </div>
-                        
-                       
                     </>
                 )
             break;
@@ -166,15 +121,11 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
                 setselectores(
                     <>
                         <div >
-                            
                             <p ><strong>Descripción:</strong> {investigacion.descripcion}</p>
-                            
-                    </div>
-                        
+                        </div>
                     </>
                 )
                 break;
-          
             default:
                 setselectores(
                     <>

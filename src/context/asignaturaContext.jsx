@@ -28,31 +28,14 @@ export function AsignaturaProvider({ children }) {
       return () => clearTimeout(timer);
     }
   }, [errors]);
-  
-  
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getAsignaturas();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-  
 
   const getAsignaturas = async () => {
     const res = await getAsignaturasRequest();
     setAsignaturas(res.data);
   };
 
-  
-
   const createsAsignatura = async (Asignatura) => {
     try {
-      //console.log(Asignatura);
-      
       const res = await createAsignaturaRequest(Asignatura);
       if(res.status===200)
         setAsignaturas([...Asignaturas,Asignatura])
@@ -83,38 +66,15 @@ export function AsignaturaProvider({ children }) {
     }
   };
 
-  // const getAsignaturaProf = async (id) => {
-  //   try {
-  //     const res = await getAsignaturaProfRequest(id); 
-  //     setAsigProf(res.data)
-  //     return res.data;
-  //   } catch (error) {
-  //     setErrors(error.response.data);
-  //   }
-  // };
-  // const getAsignaturaFac = async (id) => {
-  //   try {
-  //     const res = await getAsignaturaFacRequest(id); 
-      
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
-
   const getAsignatura = async (id) => {
     try {
       const res = await getAsignaturaRequest(id); 
-      
       return res.data;
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
     }
   };
-
-  
 
   return (
     <AsignaturaContext.Provider
@@ -125,12 +85,7 @@ export function AsignaturaProvider({ children }) {
         createsAsignatura,
         updatesAsignatura,
         deletesAsignatura,
-        
-        getAsignatura,/*
-        getAsignaturaFac,
-        AsigProf,
-        getAsignaturaProf,*/
-        
+        getAsignatura,
       }}
     >
       {children}

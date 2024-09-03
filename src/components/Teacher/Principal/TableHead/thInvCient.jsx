@@ -8,7 +8,6 @@ function thInvCient() {
                 <div scope="col" className=" col-6 text-truncate">Titulo</div>
                 <div scope="col" className=" col-4 text-truncate">Tipo</div>
                 <div scope="col" className=" col-2 text-truncate">Fecha</div>
-                 
             </div>                
         </>
     )

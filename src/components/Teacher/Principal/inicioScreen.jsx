@@ -9,9 +9,7 @@ import { get } from 'mongoose'
 
 function inicio({user}) {
   
-  //console.log(user);
   
-  //const user=getProfile()
     return (
       <>
         <div className='sticky-top'>

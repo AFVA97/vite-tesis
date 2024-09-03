@@ -17,22 +17,10 @@ import InfoPre from "./Info/InfoPre"
 
 export default function App() {
   
-  // useEffect(()=>{
-  //   if(isAuthenticated){
-  //     if(user.ciuser) 
-  //       navigate('/teacher/inicio')
-  //     else if(user.facuser)
-  //       navigate('/faculty/inicio')
-  //     else
-  //     navigate('/admin/inicio') 
-  //   }
-  // },[isAuthenticated])
   
-
   const {user,getProfile}=useAuth();
-//let usuario=null
-  //const [username, setusername] = useState("UserName");
   const [usuario,setusuario]=useState({_id:"",usename:""})
+
   useEffect(() => {
     const load=async()=>{
       getProfile()
@@ -42,7 +30,6 @@ export default function App() {
 
   useEffect(() => {
     if(user){
-      //setusername(user)
       setusuario(user)
     }
   }, [user]);
@@ -58,10 +45,8 @@ export default function App() {
           <Route path="/addinv_cient/:_id" element={<AddInvCient />}/>
           <Route path="/addposgrado" element={<AddPosgrado />}/>
           <Route path="/addposgrado/:_id" element={<AddPosgrado />}/>
-          
           <Route path="/infoinv/:_id" element={<InfoInv />}/>
           <Route path="/infopre/:_id" element={<InfoPre/>}/>
-
           <Route path="/inicio" element={<Inicio user={usuario}/>}/>
           <Route path="/pregrado" element={<Pregrado  user={usuario}/>} />
           <Route path="/posgrado" element={<Posgrado user={usuario}/>} />

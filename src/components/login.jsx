@@ -7,26 +7,22 @@ function login() {
     
   const{register,handleSubmit, formState:{errors}}=useForm();
   const {signin, errors:signinErrors,isAuthenticated,user}=useAuth();
-  
+  const navigate=useNavigate();
+
   const onSubmit=handleSubmit(data=>{
     signin(data);
-    
   })
- //const {globalData, setGlobalData}=useContext(FechaContext)
-  const navigate=useNavigate();
   
-  
-
-useEffect(()=>{
-  if(isAuthenticated){
-    if(user.ciuser) 
-      navigate('/teacher/inicio')
-    else if(user.facuser)
-      navigate('/faculty/inicio')
-    else
-    navigate('/admin/inicio') 
-  }
-},[isAuthenticated])
+  useEffect(()=>{
+    if(isAuthenticated){
+      if(user.ciuser) 
+        navigate('/teacher/inicio')
+      else if(user.facuser)
+        navigate('/faculty/inicio')
+      else
+      navigate('/admin/inicio') 
+    }
+  },[isAuthenticated])
     
     return (
       <>
@@ -38,7 +34,6 @@ useEffect(()=>{
             {signinErrors.length>0 &&
                   <p className="alert-danger rounded text-center mt-2"> {signinErrors[0]}</p>
                 }
-            
             <div className="card-body">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input
@@ -51,7 +46,6 @@ useEffect(()=>{
                 {errors.username && (
                   <p className="form-label"> username is required</p>
                 )}
-
                 <input
                   type="password"
                   name="password"
@@ -62,27 +56,17 @@ useEffect(()=>{
                 {errors.password && (
                   <p className="form-label"> password is required</p>
                 )}
-
-                <button type="submit" className="btn btn-primary mb-3">Login</button>
+                <button type="submit" className="btn btn-success mb-3">Login</button>
               </form>
             </div>
         </div>
     </div>
       <div className="container card mt-3 d-flex p-6  justify-content-center">
-        
           <div className="mb-3 card-body">
-                
-        
           </div>
-            
       </div> 
-          
-
-        
-        
       </>
     )
   }
-import { FechaContext } from "../context/fechaContext";
   
   export default login

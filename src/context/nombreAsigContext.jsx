@@ -2,11 +2,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   createNombreAsignaturaRequest,
   deleteNombreAsignaturaRequest,
-  getNombreAsignaturaRequest,
   getNombreAsignaturasRequest,
   updateNombreAsignaturaRequest
 } from "../api/nombreAsignaturas";
-import { set } from "react-hook-form";
 
 const NombreAsignaturaContext = createContext();
 
@@ -29,24 +27,10 @@ export function NombreAsignaturaProvider({ children }) {
     }
   }, [errors]);
 
-
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getFacultades();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-
   const getNombreAsignaturas = async () => {
     const res = await getNombreAsignaturasRequest();       
     setNombreAsignaturas(res.data);
   };
-
-  
 
   const createsNombreAsignatura = async (NombreAsignatura) => {
     try {
@@ -62,7 +46,6 @@ export function NombreAsignaturaProvider({ children }) {
     try {
       const res= await updateNombreAsignaturaRequest( NombreAsignatura);
       setNombreAsignaturas(NombreAsignaturas.map(asig=>(asig._id===NombreAsignatura._id?res.data:asig)))
-   
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -78,8 +61,6 @@ export function NombreAsignaturaProvider({ children }) {
       setErrors(error.response.data);
     }
   };
-
-  
 
   const getNombreAsignatura = async (id) => {
     try {      
@@ -103,7 +84,6 @@ export function NombreAsignaturaProvider({ children }) {
         updatesNombreAsignatura,
         deletesNombreAsignatura,
         getNombreAsignatura,
-        
       }}
     >
       {children}

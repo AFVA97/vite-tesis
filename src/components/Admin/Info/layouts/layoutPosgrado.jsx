@@ -12,7 +12,6 @@ function layoutPosgrado({_id}){
     useEffect(() => {
         const load=async () => {
             await getPosgrados()
-            
           };load()
     }, [])
 
@@ -20,7 +19,6 @@ function layoutPosgrado({_id}){
       if(Array.isArray(Posgrados)){
         let elememntoTemp=Posgrados.filter((posgrado)=>posgrado.profesor===_id)
         let element=[]
-        
         if(Array.isArray(elememntoTemp)){
             let hi=0;
             let hr=0;
@@ -33,7 +31,6 @@ function layoutPosgrado({_id}){
                     ubicacion:posgrado.ubicacion,
                     cc:posgrado.cantcuadros,
                     horas:posgrado.horas}
-                    
                 if(posgrado.impartido)
                     hi+=parseInt(posgrado.horas)
                 else 

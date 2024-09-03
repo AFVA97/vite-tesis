@@ -43,20 +43,19 @@ function layoutInvCient({_id}){
 
     return(
         <>
-        <div className="container-fluid text-center">
-            <ThlInvCient  />
-            {elementos.map((element)=>(
-                <ElInvCient 
-                key={element._id}
-                {...element}/>
-            ))}
-            {(elementos.length===0) && (
-                <><div className="row justify-content-center text-center container-fluid  m-0 p-0">
-                    No tiene Investigaciones Asignadas
-                </div> </>)}
-            <RlInvCient {...review}/>
-        </div>
-            
+            <div className="container-fluid text-center">
+                <ThlInvCient  />
+                {elementos.map((element)=>(
+                    <ElInvCient 
+                    key={element._id}
+                    {...element}/>
+                ))}
+                {(elementos.length===0) && (
+                    <><div className="row justify-content-center text-center container-fluid  m-0 p-0">
+                        No tiene Investigaciones Asignadas
+                    </div> </>)}
+                <RlInvCient {...review}/>
+            </div>
         </>
     )
 }

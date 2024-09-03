@@ -32,8 +32,6 @@ function titleLayout({_id,isprofesor}){
                     )}
                 </div>
             </div>
-            
-            
         </div>
     )
 }

@@ -57,7 +57,6 @@ function layoutPregrado({_id}){
                     second=true
                 te+=parseInt(asignatura.tutoriaaa)
                 th+=parseInt(asignatura.horas)
-
             })
         }
         setelementos(element);

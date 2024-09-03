@@ -8,83 +8,62 @@ import { usePosgrado } from "../../../context/posgradoContext";
 
 
 const AddPosgrado = () => {
-    //const [userModif, setuserModif] = useState(null)
-const {user,getProfile}=useAuth()
-
-     const params=useParams();
-    const {
-    Posgrados,
-    errors:errorsPosgrado,
-    getPosgrados,
-    deletesPosgrado,
-    createsPosgrado,
-    getPosgrado,
-    getPosgradoProf,
-    updatesPosgrado,
-  }=usePosgrado()
-  const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-  const navigate=useNavigate()
+    const {user,getProfile}=useAuth()
+    const params=useParams();
+    const { createsPosgrado, getPosgrado, }=usePosgrado()
+    const{register,handleSubmit, formState:{errors}, setValue}=useForm();
+    const navigate=useNavigate()
+    const [impartido, setimpartido] = useState(true)
   
-  useEffect(() => {
-    async function loadPosgrado() {
-        getProfile();
-      if(params._id){
-          const posgrado=await getPosgrado(params._id);
-          setValue('_id',posgrado._id)
-          
-          setValue('fecha',new Date(posgrado.fecha).toISOString().slice(0, 10))
-          setValue('nombre',posgrado.nombre)
-          setValue('impartido',posgrado.impartido)
-          settipoSelect(posgrado.modalidad)
-          setValue('cantcuadros',posgrado.cantcuadros)
-          setValue('ubicacion',posgrado.ubicacion)
-          setValue('horas',posgrado.horas)
-          
-      }
-      else
-        setValue('impartido',impartido)
+    const onSubmit=handleSubmit(data=>{        
+        try {
+                if(!params._id){  
+                    createsPosgrado(data);
+                    navigate("/teacher/posgrado")
+                }
+                else{
+                    updatesInvCient(data);
+                    navigate("/teacher/posgrado")
+                }
+        } catch (error) {
+            console.log(error);
+    }})
 
-
-    }loadPosgrado()
-          
-  }, [])
-  useEffect(() => {
-    
-    if(user!=null){
-        setValue('profesor',user.ciuser)
+    const handleCancelar=(e)=>{
+        e.preventDefault();
+        navigate("/teacher/posgrado")
     }
-    
-  }, [user])
-  
-  const onSubmit=handleSubmit(data=>{        
-    try {
-        
-            if(!params._id){  
-                createsPosgrado(data);
-                navigate("/teacher/posgrado")
-            }
-            else{
-                
-                updatesInvCient(data);
-                navigate("/teacher/posgrado")
-            }
-        
-    } catch (error) {
-        console.log(error);
-        
-            
-}})
-const handleCancelar=(e)=>{
-    e.preventDefault();
-    navigate("/teacher/posgrado")
-    
-}
-const [impartido, setimpartido] = useState(true)
-useEffect(() => {
-  setValue('impartido',impartido)
-}, [impartido])
 
-  //nombre //fecha //impartido cantcuadros ubicacion //modalidad horas
+    useEffect(() => {
+        async function loadPosgrado() {
+            getProfile();
+        if(params._id){
+            const posgrado=await getPosgrado(params._id);
+            setValue('_id',posgrado._id)
+            setValue('fecha',new Date(posgrado.fecha).toISOString().slice(0, 10))
+            setValue('nombre',posgrado.nombre)
+            setValue('impartido',posgrado.impartido)
+            settipoSelect(posgrado.modalidad)
+            setValue('cantcuadros',posgrado.cantcuadros)
+            setValue('ubicacion',posgrado.ubicacion)
+            setValue('horas',posgrado.horas)
+        }
+        else
+            setValue('impartido',impartido)
+        }loadPosgrado()
+    }, [])
+
+    useEffect(() => {
+        if(user!=null){
+            setValue('profesor',user.ciuser)
+        }
+    }, [user])
+  
+    useEffect(() => {
+    setValue('impartido',impartido)
+    }, [impartido])
+
+  
    
     return (
     <>
@@ -162,10 +141,7 @@ useEffect(() => {
                             </div>
                         </div>
                     </div>
-                
-                
                 </div>
-
                 <div className="form-row">
                     <div className="form-group col-12">
                         <label htmlFor="ubicacion">Ubicación</label>
@@ -182,7 +158,6 @@ useEffect(() => {
                 </div>
             </form>
         </div>
-     
     </>
   )
 }

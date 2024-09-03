@@ -37,18 +37,10 @@ const ElFacultad = ({asignatura}) => {
                 <div scope="col" className=" col-12 "><p>Notas: {asignatura.notas?asignatura.notas:"---"}</p></div>
               </div>
               <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
-                        
-                        <Link to={`/admin/modificarasignatura/${asignatura._id}`} className="btn btn1 col btn1-warning btn-sm m-2">
-                            <FontAwesomeIcon icon={faEdit} /> Modificar
-                        </Link>
-                        
-                        
-                    </div>
-              {/* <div className="row justify-content-center text-center bg-ligth container-fluid m-0 p-0"> 
-                  <div className="col table-success"><Link to={`/admin/modificarasignatura/${asignatura._id}`}>
-                  Modificar</Link>
-                  </div>
-              </div> */}
+                <Link to={`/admin/modificarasignatura/${asignatura._id}`} className="btn btn1 col btn1-warning btn-sm m-2">
+                    <FontAwesomeIcon icon={faEdit} /> Modificar
+                </Link>
+              </div>
             </div>
         )}
     </>

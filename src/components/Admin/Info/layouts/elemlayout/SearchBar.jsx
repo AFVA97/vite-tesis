@@ -26,7 +26,6 @@ const SearchBar = ({  Profesores, onSelect, prof}) => {
         onSelect(profesor);
       };
 
-
       useEffect(() => {
         if(prof){      
           const temp=Profesores.filter((profesor)=>profesor._id===prof)

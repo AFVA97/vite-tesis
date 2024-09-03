@@ -60,9 +60,7 @@ function infoInicio({title,link}) {
             </li>   
             <li><img src="/logo.png" alt="Logo" width="30" height="24" className="d-inline-block "/></li>
           </ul>
-          
         </nav>
-        
       </>
     )
   }

@@ -4,7 +4,6 @@ import {
   deleteExtRequest,
   createExtRequest,
   getExtRequest,
- // getExtProfRequest,
   updateExtRequest
 } from "../api/extuniv";
 
@@ -21,7 +20,6 @@ export const useExtUniv = () => {
 export function ExtUnivProvider({ children }) {
   const [ExtUnivs, setExtUnivs] = useState([]);
   const [errors, setErrors] = useState([]);
-  // const [ExtProf, setExtProf] = useState([])
 
   useEffect(() => {
     if (errors.length > 0) {
@@ -32,25 +30,10 @@ export function ExtUnivProvider({ children }) {
     }
   }, [errors]);
   
-  // useEffect(() => {
-  //   const fetchData= async()=>{
-  //     try {
-  //       await getExtUnivs();
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     }
-  //   };
-  //   fetchData(); 
-  // }, [])
-  
-
-
-
   const getExtUnivs = async () => {
     const res = await getExtesRequest();
     setExtUnivs(res.data);
   };
-
   
   const createsExtUniv = async (ExtUniv) => {
     try {
@@ -67,7 +50,6 @@ export function ExtUnivProvider({ children }) {
     try {
       const res=await updateExtRequest( ExtUniv);
       setExtUnivs(ExtUnivs.map(extension=>(extension._id===ExtUniv._id?res.data:extension)))
-   
     } catch (error) {
       console.error(error);
       setErrors(error.response.data);
@@ -84,23 +66,9 @@ export function ExtUnivProvider({ children }) {
     }
   };
 
-  // const getExtUnivProf = async (id) => {
-  //   try {
-  //     const res = await getExtProfRequest(id); 
-  //     setExtProf(res.data)
-  //     console.log(res.data);      
-  //     return res.data;
-  //   } catch (error) {
-  //     console.error(error);
-  //     setErrors(error.response.data);
-  //   }
-  // };
-  
-
   const getExtUniv = async (id) => {
     try {
       const res = await getExtRequest(id); 
-      
       return res.data;
     } catch (error) {
       console.error(error);
@@ -119,12 +87,7 @@ export function ExtUnivProvider({ children }) {
         createsExtUniv,
         updatesExtUniv,
         deletesExtUniv,
-        
-        // ExtProf,
-        
         getExtUniv,
-        // getExtUnivProf,
-        
       }}
     >
       {children}

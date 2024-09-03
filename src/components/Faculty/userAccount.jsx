@@ -1,19 +1,11 @@
 import { useState } from "react"
 import "../../App.css"
 import { useAuth } from "../../context/authContext";
-import { useNavigate } from "react-router-dom";
 import DescargarExcel from "../../Descarga/descarga";
-
-
-
-
 
 function UserAccount({_id}) {
   const [showProfile, setShowProfile] = useState(false)
   const {logout}=useAuth();
-  //const navigate=useNavigate();
-  //console.log('✅ _id    ', _id)
-  
   
   function ProfileMenu() {
     return (
@@ -24,8 +16,6 @@ function UserAccount({_id}) {
     )
   }
   return (
-      
-
       <div className="profile">
         <button
           onClick={() => {
@@ -43,7 +33,6 @@ function UserAccount({_id}) {
         </button>
         {showProfile ? <ProfileMenu /> : ""}
       </div>
-    
   )
 }
 

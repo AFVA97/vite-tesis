@@ -11,10 +11,24 @@ const AddAsignatura = ({User}) => {
     const params=useParams();
     const{ createsAsignatura}=useAsignatura()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-    const navigate=useNavigate()
-    
+    const navigate=useNavigate()    
     const{NombreAsignaturas, getNombreAsignaturas, }=useNombreAsignatura()
     const{TipoCursos, getTipoCursos}=useTipoCurso()
+
+
+    const onSubmit=handleSubmit(async data=>{        
+        try { 
+            createsAsignatura(data);
+            navigate(`/faculty/modificar/${params._id}`)
+        } catch (errores) {
+            console.log(errores);
+    }})
+
+    const handleCancelar=(e)=>{
+        e.preventDefault();
+        navigate(`/faculty/modificar/${params._id}`)
+    }
+
     useEffect(() => {
         const load=async()=>{
             await getNombreAsignaturas();     
@@ -37,36 +51,7 @@ const AddAsignatura = ({User}) => {
         if(User.facuser)
             setValue('facultad',User.facuser)
     }, [User])
-    
-    
-      const onSubmit=handleSubmit(async data=>{        
-        try {  
-           
-            
-            
-                createsAsignatura(data);
-                navigate(`/faculty/modificar/${params._id}`)
-            
-        } catch (errores) {
-            console.log(errores);
-            
-    }})
-    
-    const handleCancelar=(e)=>{
-        e.preventDefault();
-        navigate(`/faculty/modificar/${params._id}`)
-    }
-    
-
-    
-    
-    
-    
    
-    
-
-    
-    
   return (
     <>
       <InfoNavBar title={"Añadir Asignatura"} link={`/faculty/modificar/${params._id}`}/>    
@@ -109,9 +94,7 @@ const AddAsignatura = ({User}) => {
                             <p className="alert-danger rounded text-center mt-2"> El Año es Requerido</p>
                         )}
                     </div>
-                    
                 </div>
-                
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="grupos">Cantidad de Grupos</label>
@@ -204,7 +187,6 @@ const AddAsignatura = ({User}) => {
                         )}
                     </div>
                 </div>
-
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <button type="submit" className="btn btn-success">Guardar</button>
@@ -215,8 +197,6 @@ const AddAsignatura = ({User}) => {
                 </div>
             </form>
         </div>  
-        
-           
     </>
   )
 }
