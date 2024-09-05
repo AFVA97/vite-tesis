@@ -8,6 +8,7 @@ const ComponentFacultad = ({asignaturas,carrera}) => {
     const [asigSin, setasigSin] = useState([])
     const [conProf, setconProf] = useState(asigCon.length>0)
     const [sinProf, setsinProf] = useState(asigSin.length>0)
+    const [desplegado, setdesplegado] = useState(true)
 
     useEffect(() => {
       setasigCon(asignaturas.filter((asignatura)=>asignatura.profesor))
@@ -15,32 +16,41 @@ const ComponentFacultad = ({asignaturas,carrera}) => {
       setconProf(asigCon.length>0)
       setsinProf(asigSin.length>0)
     }, [,asignaturas])
-    
+
+    const onclick=()=>{
+        setdesplegado(!desplegado)
+    }
   return (
     <>
         <ThFacultad
             key={carrera._id} 
-            carrera={carrera.nombre}/>
-        {sinProf && (<div className='text-center'>
-            <h6>Sin Profesor Asignado</h6>
-            <ThAsignatura/>
-            {asigSin.map((asignatura)=>(
-                <ElFacultad 
-                    key={asignatura._id}
-                    asignatura={asignatura}/>
-            ))}
-        </div>)}
-        {conProf && (<div className='text-center'>
-            <h6>Con Profesor Asignado</h6>
-            <ThAsignatura/>
-            {asigCon.map((asignatura)=>(
-                <ElFacultad 
-                    key={asignatura._id}
-                    asignatura={asignatura}/>
-            ))}
-        </div>)}
+            carrera={carrera.nombre}
+            onclick={onclick}
+            desplegado={desplegado}/>
+
+        {desplegado && (<>
+            {sinProf && (<div className='text-center'>
+                <h6>Sin Profesor Asignado</h6>
+                <ThAsignatura/>
+                {asigSin.map((asignatura)=>(
+                    <ElFacultad 
+                        key={asignatura._id}
+                        asignatura={asignatura}/>
+                ))}
+            </div>)}
+            {conProf && (<div className='text-center'>
+                <h6>Con Profesor Asignado</h6>
+                <ThAsignatura/>
+                {asigCon.map((asignatura)=>(
+                    <ElFacultad 
+                        key={asignatura._id}
+                        asignatura={asignatura}/>
+                ))}
+            </div>)}
         {asignaturas.length<1 && (
             <div className='text-center'><p>No hay Asignaturas en esta Carrera</p></div>
+        )}
+        </>
         )}
     </>
   )

@@ -36,7 +36,7 @@ export default function App() {
   
   return (
     <>
-      <div className="pb-5">
+      <div className="pb-5  full-height bg-color" >
         <Routes>
           <Route exact path="/" element={<Inicio user={usuario}/>}/>
           <Route path="/addext_univ" element={<AddExtUniv />}/>

@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <>
-      <div className="pb-5">
+      <div className="pb-5 full-height bg-color">
         <Routes>
           <Route path="/inicio" element={<Inicio username={username}/>}/>
           <Route path="/addprofesor" element={<AddProfesor/>}/>

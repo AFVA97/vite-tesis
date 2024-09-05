@@ -19,7 +19,7 @@ function titleLayout({_id,isprofesor}){
     
     
     return(
-        <div className=" bg-white">
+        <div className=" bg-color">
             <div className="form-row pl-3 pr-3">
                 <div className="form-group col-md-6">
                     <label >{isprofesor?`${Profesor.nombre} ${Profesor.apellidos}`:Profesor.nombre}</label>

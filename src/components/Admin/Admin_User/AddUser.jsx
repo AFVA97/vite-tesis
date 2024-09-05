@@ -209,7 +209,7 @@ const AddUser = () => {
       <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
                 <div className="form-row">
                     <div className="form-group col-md-6">
-                        <label htmlFor="username">Título</label>
+                        <label htmlFor="username">Nombre de Usuario</label>
                         <input type="text" disabled={(params._id)?"disabled":""} className="form-control" {...register("username", { required: true })} id="username" placeholder="Nombre de Usuario" />
                         {errors.username && (
                             <p className="alert-danger rounded text-center mt-2"> El Nombre de Usuario es Requerido</p>

@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <>      
-        <div className="pb-5">
+        <div className="pb-5 full-height bg-color">
         <Routes>
           <Route exact path="/inicio" element={<Inicio User={User}/>}/>
           <Route path="/login" element={<Login />} />

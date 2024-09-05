@@ -29,9 +29,9 @@ function layoutExtUniv({_id}){
                     tipo:extension.tipo,
                     horas:extension.horas,
                     fecha:extension.fecha})
-                  if(extension.tipo==="Atención a la Residencia"){are+=extension.horas}
-                  else if(extension.tipo==="Trabajo Cátedras Honoríficas"){tch+=extension.horas}
-                  else{ae+=extension.horas}
+                  if(extension.tipo==="Atención a la Residencia"){are+=parseInt(extension.horas)}
+                  else if(extension.tipo==="Trabajo Cátedras Honoríficas"){tch+=parseInt(extension.horas)}
+                  else{ae+=parseInt(extension.horas)}
               })
           }
           th=parseInt(are)+parseInt(tch)+parseInt(ae)

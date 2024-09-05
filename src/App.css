@@ -1,17 +1,31 @@
+body {
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: white;
+}
 .profile-menu {
     background-color: rgb(54, 53, 53);
     position: fixed;
-    right: 10px;
+    right: 11%;
     color: rgb(255, 255, 255);
     border-radius: 5%; /* o absolute dependiendo de tu diseño */
     z-index: 1030; /* valor mayor que el de sticky-top */
     
     border: 2px solid #198754;
   }
+
+  .full-height {
+    min-height: 100vh; /* Ocupa al menos el alto de la pantalla */
+    height: auto; /* Ajusta el alto según el contenido */
+    
+  }
+  .bg-color{
+    background-color: #F0F0F0;
+  }
   .profile-menu2 {
     background-color: rgb(54, 53, 53);
     position: fixed;
-    right: 170px;
+    right: 23%;
     color: rgb(255, 255, 255);
     border-radius: 5%; /* o absolute dependiendo de tu diseño */
     z-index: 1030; /* valor mayor que el de sticky-top */
@@ -20,7 +34,7 @@
   }
   .floatingbutton{
     position: fixed;
-    right: 7px;
+    right: 12%;
     bottom: 7px
   }
   ul {
