@@ -13,6 +13,7 @@ import AddInvCient from "./Add/AddInvCient"
 import AddPosgrado from "./Add/AddPosgrado"
 import InfoInv from "./Info/InfoInv"
 import InfoPre from "./Info/InfoPre"
+import Gestion from "./Gestion"
 
 
 export default function App() {
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="/posgrado" element={<Posgrado user={usuario}/>} />
           <Route path="/inv_cient" element={<Investigacion user={usuario}/>} />
           <Route path="/ext_univ" element={<Extension user={usuario}/>} />
+          <Route path="/gestion" element={<Gestion user={usuario}/>} />
           <Route path="/login" element={<Login />} />
         </Routes>
         </div>

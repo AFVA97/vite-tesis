@@ -15,7 +15,7 @@ function UserAccount() {
   function ProfileMenu() {
     return (
       <ul  className="list-gorup profile-menu mt-1 ">
-        <li ><DescargarExcel userType={0} _id={null}/></li>
+        <li ><DescargarExcel userType={0} _id={null} setShowProfile={setShowProfile}/></li>
         <li onClick={()=>setsecond(!second)} className={second?"bg-white text-black":""}>Período</li>
         <li onClick={()=>{navigate("/admin/gestion")}}>Gestionar</li>
         <li onClick={()=>{navigate("/admin/users")}}>Usuarios</li>

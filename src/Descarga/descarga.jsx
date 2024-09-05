@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {FechaContext} from '../context/fechaContext'
 import { getExcelAdmin,getExcelFaculty,getExcelProfesor } from '../api/excel';
 
-const DescargarExcel = ({userType,_id}) => {
+const DescargarExcel = ({userType,_id, setShowProfile}) => {
     const {globalData}=useContext(FechaContext)
     
     const handleDownload = async () => {
@@ -21,7 +21,7 @@ const DescargarExcel = ({userType,_id}) => {
     };
 
     return (
-        <button onClick={handleDownload} className='btn btn-success'>
+        <button onClick={()=>{handleDownload(),setShowProfile(false)}} className='btn btn-success'>
             Descargar Excel
         </button>
     );

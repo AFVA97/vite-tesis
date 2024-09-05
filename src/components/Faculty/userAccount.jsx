@@ -10,7 +10,7 @@ function UserAccount({_id}) {
   function ProfileMenu() {
     return (
       <ul className=" profile-menu">
-        <li ><DescargarExcel _id={_id} userType={1}/></li>
+        <li ><DescargarExcel _id={_id} userType={1} setShowProfile={setShowProfile}/></li>
         <li onClick={()=>{logout()}}>Cerrar Sesión</li>
       </ul>
     )
