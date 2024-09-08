@@ -29,7 +29,7 @@ const ComponentFacultad = ({asignaturas,carrera}) => {
             desplegado={desplegado}/>
 
         {desplegado && (<>
-            {sinProf && (<div className='text-center'>
+            {sinProf && (<div className='text-center table-danger'>
                 <h6>Sin Profesor Asignado</h6>
                 <ThAsignatura/>
                 {asigSin.map((asignatura)=>(

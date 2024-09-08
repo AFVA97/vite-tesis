@@ -4,11 +4,12 @@ const ThInicio = () => {
   return (
     <>
         <div className="row justify-content-center text-center container-fluid bg-secondary text-white m-0 p-0">
-                <div scope="col" className=" col-4 text-truncate">Nombre de la Carrera</div>
-                <div scope="col" className=" col-2 text-truncate">Cant. Asignaturas</div>
-                <div scope="col" className=" col-2 text-truncate">Cant. Grupos</div>
-                <div scope="col" className=" col-2 text-truncate">Cant. EF</div> 
-                <div scope="col" className=" col-2 text-truncate">Horas</div> 
+                <div scope="col" className=" col-5  ">Nombre de la Carrera</div>
+                <div scope="col" className=" col-2  ">Cant. Asignaturas</div>
+                <div scope="col" className=" col-2  ">Asignaturas Cubiertas</div>
+                <div scope="col" className=" col-1  ">Cant. Grupos</div>
+                <div scope="col" className=" col-1  ">Cant. EF</div> 
+                <div scope="col" className=" col-1  ">Horas</div> 
         </div>  
     </>
   )

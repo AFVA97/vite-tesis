@@ -139,9 +139,9 @@ function elInvCient({investigacion,ti,titulo,alcance,fecha}){
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center  bg-tertiary container-fluid  m-0 p-0">
-                <div scope="col" className=" col-6 text-truncate">{titulo}</div>
-                <div scope="col" className=" col-4 text-truncate">{ti}</div>
-                <div scope="col" className=" col-2 text-truncate">{fecch}</div> 
+                <div scope="col" className=" col-6 ">{titulo}</div>
+                <div scope="col" className=" col-4 ">{ti}</div>
+                <div scope="col" className=" col-2 ">{fecch}</div> 
             </div>
             {active &&
                 <div className="border  ">

@@ -23,11 +23,11 @@ function elementPosgrado({_id,nombre,impartido,modalidad,fecha,horas}){
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-            <div scope="col" className=" col-4  text-truncate">{nombre} </div>
-                <div scope="col" className=" col-2 text-truncate ">{impartido?"Sí":"No"}</div>
-                <div scope="col" className=" col-2  text-truncate">{modalidad}</div>
-                <div scope="col" className=" col-2 text-truncate ">{horas}</div> 
-                <div scope="col" className=" col-2 text-truncate ">{fecch}</div>                
+            <div scope="col" className=" col-4   ">{nombre} </div>
+                <div scope="col" className=" col-2   ">{impartido?"Sí":"No"}</div>
+                <div scope="col" className=" col-2   ">{modalidad}</div>
+                <div scope="col" className=" col-2   ">{horas}</div> 
+                <div scope="col" className=" col-2   ">{fecch}</div>                
             </div>
             {active &&
                 <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

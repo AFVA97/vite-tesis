@@ -31,10 +31,12 @@ function inicio({User}) {
         asignaturaFiltradaFac=Asignaturas.filter((asignatura)=>asignatura.facultad===User.facuser)
       if(carreraFiltrada.length>0){
         carreraFiltrada.map((carrera)=>{
-          let aux={_id:carrera._id,nombre:carrera.nombre,ca:0,cg:0,cef:0,horas:0};
+          let aux={_id:carrera._id,nombre:carrera.nombre,ca:0,ac:0,cg:0,cef:0,horas:0};
           let asignaturaFiltradaCarr=asignaturaFiltradaFac.filter((asignatura)=>asignatura.carrera===carrera._id)
           asignaturaFiltradaCarr.map((asignatura)=>{
             aux.ca+=1;
+            if(asignatura.profesor)
+              aux.ac+=1
             aux.cg+=parseInt(asignatura.cantgrupos)
             if(asignatura.exafinal)
               aux.cef+=1

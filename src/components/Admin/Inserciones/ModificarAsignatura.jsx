@@ -13,7 +13,7 @@ const ModificarAsignatura = () => {
     const _id=useParams()._id
     const {Profesores,getProfesores}=useProfesor();
     const {getAsignatura,updatesAsignatura,getAsignaturas}=useAsignatura();
-    const [asignatura, setasignatura] = useState({nombre:"",facultad:{_id:""},carrera:{nombre:""},notas:""})
+    const [asignatura, setasignatura] = useState({nombre:"",facultad:{_id:""},carrera:{nombre:""},notas:"",tipocurso:"",cantgrupos:"",anno:"",exafinal:"",semestre:"",horas:""})
     const {getCarrera}=useCarrera()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const navigate=useNavigate()    
@@ -71,7 +71,21 @@ const ModificarAsignatura = () => {
         <InfoNavBar title={`Modificar Asignatura: ${asignatura.nombre} ~~~~~~ Carrera: ${asignatura.carrera.nombre}`} link={`facultad/info/${asignatura.facultad._id}`}/>
         <div className="container mt-5">
             <form onSubmit={handleSubmit(onSubmit)} onAbort={handleCancelar}>
-                <div className="form-row">
+                
+                    <div className="table-success pb-3">
+                        <div  className="row justify-content-center text-center container-fluid m-0 p-0">
+                            <div scope="col" className="col-6 ">Asignatura: {asignatura.nombre} </div>
+                            <div scope="col" className="col-3 ">Tipo de Curso: {asignatura.tipocurso}</div>
+                            <div scope="col" className="col-3 ">Cantidad de Grupos: {asignatura.cantgrupos}</div>
+                        </div>
+                        <div  className="row justify-content-center text-center container-fluid m-0 p-0">
+                            <div scope="col" className="col-3 ">Año: {asignatura.anno} </div>
+                            <div scope="col" className="col-3 ">Examen Final: {asignatura.exafinal?("Sí"):("No")}</div>
+                            <div scope="col" className="col-3 ">Semestre: {asignatura.semestre?("1ro"):("2do")}</div>
+                            <div scope="col" className="col-3 ">Horas: {asignatura.horas}</div>
+                        </div>
+                    </div>
+                <div className="form-row mt-3">
                     <div className="form-group col-md-5">
                         <label htmlFor="grupos">Seleccione un Profesor</label>
                         <SearchBar Profesores={Profesores} onSelect={handleSelect} prof={asignatura.profesor} />

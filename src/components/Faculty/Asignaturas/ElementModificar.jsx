@@ -26,10 +26,10 @@ const ElementModificar = ({asignatura}) => {
                     <div scope="col" className="col-3 ">Cantidad de Grupos: {asignatura.cantgrupos}</div>
             </div>
             <div  className="row justify-content-center text-center container-fluid m-0 p-0">
-                    <div scope="col" className="col-3 text-truncate">Año: {asignatura.anno} </div>
-                    <div scope="col" className="col-3 text-truncate">Examen Final: {asignatura.exafinal?("Sí"):("No")}</div>
-                    <div scope="col" className="col-3 text-truncate">Semestre: {asignatura.semestre?("1ro"):("2do")}</div>
-                    <div scope="col" className="col-3 text-truncate">Horas: {asignatura.horas}</div>
+                    <div scope="col" className="col-3  ">Año: {asignatura.anno} </div>
+                    <div scope="col" className="col-3  ">Examen Final: {asignatura.exafinal?("Sí"):("No")}</div>
+                    <div scope="col" className="col-3  ">Semestre: {asignatura.semestre?("1ro"):("2do")}</div>
+                    <div scope="col" className="col-3  ">Horas: {asignatura.horas}</div>
             </div>
             <div  className="row justify-content-center text-center container-fluid m-0 p-0">
                     <div scope="col" className="col-12">Profesor: {Profesor?`${Profesor.nombre} ${Profesor.apellidos}`:"---"} </div>

@@ -4,18 +4,19 @@ import { useCarrera } from "../../../context/carreraContext";
 import { faInfoCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function elementInicio({_id,nombre,ca,cg,cef,horas}){
+function elementInicio({_id,nombre,ca,ac,cg,cef,horas}){
     const [active, setactive] = useState(false);
     const {deletesCarrera}=useCarrera()
     
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className="col-4 text-truncate">{nombre} </div>
-                <div scope="col" className="col-2 text-truncate">{ca}</div>
-                <div scope="col" className="col-2 text-truncate">{cg}</div>
-                <div scope="col" className="col-2 text-truncate">{cef}</div>
-                <div scope="col" className="col-2 text-truncate">{horas}</div>
+                <div scope="col" className="col-5  ">{nombre} </div>
+                <div scope="col" className="col-2  ">{ca}</div>
+                <div scope="col" className="col-2  ">{ac}</div>
+                <div scope="col" className="col-1  ">{cg}</div>
+                <div scope="col" className="col-1  ">{cef}</div>
+                <div scope="col" className="col-1  ">{horas}</div>
             </div>
             {active &&
                 <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

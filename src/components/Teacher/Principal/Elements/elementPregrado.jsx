@@ -10,9 +10,9 @@ function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className="col-2 text-truncate">{nombre} </div>
-                <div scope="col" className="col-3 text-truncate">{carrera}</div>
-                <div scope="col" className="col-3 text-truncate">{facultad}</div>
+                <div scope="col" className="col-2  ">{nombre} </div>
+                <div scope="col" className="col-3  ">{carrera}</div>
+                <div scope="col" className="col-3  ">{facultad}</div>
                 <div scope="col" className="col-2 row justify-content-center text-center container-fluid">
                     <div className="col-6 justify-content-center align-items-center text-center">
                         <div className={`circle ${semestre ? 'active' : ''} m-auto `}></div>
@@ -21,8 +21,8 @@ function elementPregrado({ _id,nombre,carrera,semestre,facultad,tipocurso,horas}
                         <div className={`circle ${!semestre ? 'active' : ''} m-auto`}></div>
                     </div>
                 </div>
-                <div scope="col" className="col-1 text-truncate">{tipocurso}</div>
-                <div scope="col" className="col-1 text-truncate">{horas}</div>
+                <div scope="col" className="col-1  ">{tipocurso}</div>
+                <div scope="col" className="col-1  ">{horas}</div>
             </div>
             {active &&
                 <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

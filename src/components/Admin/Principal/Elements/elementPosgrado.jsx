@@ -9,10 +9,10 @@ function elementPosgrado({_id,nombre, apellidos, hi, hr,th}){
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-            <div scope="col" className=" col-4  text-truncate">{nombre} {apellidos}</div>
-                <div scope="col" className=" col-3 text-truncate ">{hi}</div>
-                <div scope="col" className=" col-3  text-truncate">{hr}</div>
-                <div scope="col" className=" col-2 text-truncate ">{th}</div>                 
+            <div scope="col" className=" col-4 ">{nombre} {apellidos}</div>
+                <div scope="col" className=" col-3 ">{hi}</div>
+                <div scope="col" className=" col-3  ">{hr}</div>
+                <div scope="col" className=" col-2 ">{th}</div>                 
             </div>
             {active &&
                     <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

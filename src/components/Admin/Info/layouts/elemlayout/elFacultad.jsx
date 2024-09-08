@@ -20,20 +20,20 @@ const ElFacultad = ({asignatura}) => {
   return (
     <>
         <div onClick={()=>setactive(!active)}className="row justify-content-center text-center container-fluid bg-ligth  text-black m-0 p-0">
-            <div scope="col" className=" col-4 text-truncate">{asignatura.nombre}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.anno}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.cantgrupos}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.tipocurso}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.frecuencia}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.semestre?"1ro":"2do"}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.tutoriaaa}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.exafinal?"Sí":"No"}</div>
-            <div scope="col" className=" col-1 text-truncate">{asignatura.horas}</div>            
+            <div scope="col" className=" col-4 ">{asignatura.nombre}</div>
+            <div scope="col" className=" col-1 ">{asignatura.anno}</div>
+            <div scope="col" className=" col-1 ">{asignatura.cantgrupos}</div>
+            <div scope="col" className=" col-1 ">{asignatura.tipocurso}</div>
+            <div scope="col" className=" col-1 ">{asignatura.frecuencia}</div>
+            <div scope="col" className=" col-1 ">{asignatura.semestre?"1ro":"2do"}</div>
+            <div scope="col" className=" col-1 ">{asignatura.tutoriaaa}</div>
+            <div scope="col" className=" col-1 ">{asignatura.exafinal?"Sí":"No"}</div>
+            <div scope="col" className=" col-1 ">{asignatura.horas}</div>            
         </div>
         {active && (
             <div>
               <div>
-                <div scope="col" className=" col-12 text-truncate">Profesor: {asignatura.profesor?`${profesor.nombre} ${profesor.apellidos}`:"---"}</div>
+                <div scope="col" className=" col-12 ">Profesor: {asignatura.profesor?`${profesor.nombre} ${profesor.apellidos}`:"---"}</div>
                 <div scope="col" className=" col-12 "><p>Notas: {asignatura.notas?asignatura.notas:"---"}</p></div>
               </div>
               <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

@@ -30,7 +30,8 @@ function layoutPosgrado({_id}){
                     modalidad:posgrado.modalidad,
                     ubicacion:posgrado.ubicacion,
                     cc:posgrado.cantcuadros,
-                    horas:posgrado.horas}
+                    horas:posgrado.horas,
+                    fecha:posgrado.fecha}
                 if(posgrado.impartido)
                     hi+=parseInt(posgrado.horas)
                 else 

@@ -9,11 +9,11 @@ function elementInvCient({_id,nombre, apellidos, proyecto, premios, publicacione
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className=" col-4 text-truncate">{nombre} {apellidos}</div>
-                <div scope="col" className=" col-2 text-truncate">{proyecto}</div>
-                <div scope="col" className=" col-2 text-truncate">{premios}</div>
-                <div scope="col" className=" col-2 text-truncate">{publicaciones}</div>
-                <div scope="col" className=" col-2 text-truncate">{otros}</div>
+                <div scope="col" className=" col-4 ">{nombre} {apellidos}</div>
+                <div scope="col" className=" col-2 ">{proyecto}</div>
+                <div scope="col" className=" col-2 ">{premios}</div>
+                <div scope="col" className=" col-2 ">{publicaciones}</div>
+                <div scope="col" className=" col-2 ">{otros}</div>
             </div>
             {active &&
                     <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

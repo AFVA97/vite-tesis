@@ -14,11 +14,11 @@ function elementFacultad({_id,nombre, ca, cg, cef, th}){
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-                <div scope="col" className=" col-4 text-truncate ">{nombre}</div>
-                <div scope="col" className=" col-2 text-truncate " >{ca}</div>
-                <div scope="col" className=" col-2 text-truncate ">{cg}</div>
-                <div scope="col" className=" col-2 text-truncate ">{cef}</div>
-                <div scope="col" className=" col-2 text-truncate ">{th}</div>
+                <div scope="col" className=" col-4 ">{nombre}</div>
+                <div scope="col" className=" col-2 " >{ca}</div>
+                <div scope="col" className=" col-2 ">{cg}</div>
+                <div scope="col" className=" col-2 ">{cef}</div>
+                <div scope="col" className=" col-2 ">{th}</div>
             </div>
             {active &&
                     <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

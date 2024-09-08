@@ -1,4 +1,4 @@
-import { useState,useContext } from "react"
+import { useState,useContext, useEffect } from "react"
 import "../../App.css"
 import { useAuth } from "../../context/authContext";
 import { useNavigate } from "react-router-dom";
@@ -10,14 +10,16 @@ function UserAccount() {
   const {logout}=useAuth();
   const navigate=useNavigate();
   const [second, setsecond] = useState(false)
-  const {year, globalData, setGlobalData}=useContext(FechaContext)
+  const {year, globalData,globalData1, setGlobalData, setGlobalData1,Cursos}=useContext(FechaContext)
+  
+  
   
   function ProfileMenu() {
     return (
       <ul  className="list-gorup profile-menu mt-1 ">
         <li ><DescargarExcel userType={0} _id={null} setShowProfile={setShowProfile}/></li>
         <li onClick={()=>setsecond(!second)} className={second?"bg-white text-black":""}>Período</li>
-        <li onClick={()=>{navigate("/admin/gestion")}}>Gestionar</li>
+        <li onClick={()=>{navigate("/admin/gestion")}}>Cursos</li>
         <li onClick={()=>{navigate("/admin/users")}}>Usuarios</li>
         <li onClick={()=>{logout()}}>Cerrar Sesión</li>
       </ul>
@@ -26,35 +28,29 @@ function UserAccount() {
   function ProfileMenu2() {
     return (
       <ul   className="list-group profile-menu2 mt-5 ">
-        <li 
+        {Cursos.map((curso,index)=>(<li 
           className={
-            parseInt(year)==parseInt(globalData)
+            (globalData==curso.comienzo && globalData1==curso.finaliza)
             ?"bg-white text-black ml-2"
             :" ml-2"} 
+            key={index}
           onClick={()=>{
-            setGlobalData(year);
+            setGlobalData(curso.comienzo);
+            setGlobalData1(curso.finaliza);
             setsecond(false);
             setShowProfile(false);
             navigate('/');}}
-          >Este Curso</li>
+          >{(new Date(curso.comienzo)).getFullYear()}-{(new Date(curso.finaliza)).getFullYear()}</li>))}
+        
+        
         <li 
           className={
-            parseInt(year)==(parseInt(globalData)+1)
-            ?"bg-white text-black ml-2"
-            :" ml-2"} 
-          onClick={()=>{
-            setGlobalData(year-1);
-            setsecond(false);
-            setShowProfile(false);
-            navigate('/');}} 
-          >Curso Anterior</li>
-        <li 
-          className={
-            (parseInt(year)!=parseInt(globalData) && parseInt(year)!=(parseInt(globalData)+1))
+            (parseInt(globalData)==0)
             ?"bg-white text-black ml-2"
             :" ml-2"} 
           onClick={()=>{
             setGlobalData(0);
+            setGlobalData1(0);
             setsecond(false);            
             setShowProfile(false);
             navigate('/');}}

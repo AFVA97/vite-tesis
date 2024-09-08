@@ -24,14 +24,14 @@ function elPregrado({_id,carrera,anno,semestre,asignatura,horas,frecuencia,taa,t
     return(
         <>
         <div  onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid  m-0 p-0">
-            <div scope="col" className=" col-3 text-truncate">{carrera}</div>
-            <div scope="col" className=" col-1 text-truncate">{anno}</div>
-            <div scope="col" className=" col-1 text-truncate">{semestre?"1ro":"2do"}</div>
-            <div scope="col" className=" col-3 text-truncate">{asignatura}</div> 
-            <div scope="col" className=" col-1 text-truncate">{horas}</div>
-            <div scope="col" className=" col-1 text-truncate">{frecuencia}</div>
-            <div scope="col" className=" col-1 text-truncate">{taa}</div>
-            <div scope="col" className=" col-1 text-truncate">{tef}</div> 
+            <div scope="col" className=" col-3 ">{carrera}</div>
+            <div scope="col" className=" col-1 ">{anno}</div>
+            <div scope="col" className=" col-1 ">{semestre?"1ro":"2do"}</div>
+            <div scope="col" className=" col-3 ">{asignatura}</div> 
+            <div scope="col" className=" col-1 ">{horas}</div>
+            <div scope="col" className=" col-1 ">{frecuencia}</div>
+            <div scope="col" className=" col-1 ">{taa}</div>
+            <div scope="col" className=" col-1 ">{tef}</div> 
         </div> 
         {active &&
             <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">

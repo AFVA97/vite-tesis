@@ -1,25 +1,60 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import InfoNavBar from "../Add_Carrera/infoNavBar"
 import { useForm } from "react-hook-form";
 import {  useNavigate, useParams } from "react-router-dom";
 import {useAsignatura} from '../../../context/asignaturaContext'
 import { useNombreAsignatura } from "../../../context/nombreAsigContext";
 import { useTipoCurso } from "../../../context/tipoCursoContext";
+import { FechaContext } from "../../../context/fechaContext";
 
 
 const AddAsignatura = ({User}) => {
     const params=useParams();
     const{ createsAsignatura}=useAsignatura()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
+    const {Cursos}=useContext(FechaContext)
     const navigate=useNavigate()    
     const{NombreAsignaturas, getNombreAsignaturas, }=useNombreAsignatura()
     const{TipoCursos, getTipoCursos}=useTipoCurso()
+    const [tipocurso, settipocurso] = useState("")
+    const [curso, setcurso] = useState("")
+    const [isCC, setisCC] = useState(false)
+    const [errorst, seterrorst] = useState([])
+    const [errorsc, seterrorsc] = useState([])
 
+    useEffect(() => {
+        setValue('tipocurso',tipocurso) 
+        if(tipocurso=="CC")   
+            setisCC(true)
+        else
+            setisCC(false)
+
+    }, [tipocurso])
+
+    useEffect(() => {
+      if(curso!=""){
+        setValue('comienzo',Cursos[curso].comienzo)
+        setValue('finaliza',Cursos[curso].finaliza)
+      }
+    }, [curso])
+    
 
     const onSubmit=handleSubmit(async data=>{        
         try { 
-            createsAsignatura(data);
-            navigate(`/faculty/modificar/${params._id}`)
+            //console.log(data);
+            if(tipocurso==""){
+                seterrorst(["El Tipo de Curso es Requerido"])
+            }
+            else{
+                if(data.comienzo==""||!data.comienzo){
+                    seterrorsc(["Seleccione un Cruso"])
+                }
+                else{
+                    createsAsignatura(data);
+                navigate(`/faculty/modificar/${params._id}`)
+                }
+            }
+            
         } catch (errores) {
             console.log(errores);
     }})
@@ -51,6 +86,7 @@ const AddAsignatura = ({User}) => {
         if(User.facuser)
             setValue('facultad',User.facuser)
     }, [User])
+
    
   return (
     <>
@@ -124,16 +160,16 @@ const AddAsignatura = ({User}) => {
                         <select 
                         className="form-select" 
                         id="tipocurso"
-                        onChange={ e => setValue('tipocurso',e.target.value)}
-                        {...register("tipocurso", { required: true })}
+                        onChange={ e => settipocurso(e.target.value)}
                     >
                         <option value="" >Seleccione una Opción</option>
+                        <option value="CC" >CC</option>
                         {TipoCursos.map((tipocurso)=>(
                             <option value={tipocurso.nombre} key={tipocurso._id}>{tipocurso.nombre}</option>
                         ))}
                     </select>                        
-                    {errors.tipocurso && (
-                            <p className="alert-danger rounded text-center mt-2"> El Tipo de Curso es Requerido</p>
+                    {errorst.length>0 && (
+                            <p className="alert-danger rounded text-center mt-2"> {errorst[0]}</p>
                         )}
                     </div>
                 </div>
@@ -171,6 +207,7 @@ const AddAsignatura = ({User}) => {
                             )}
                     </div>
                 </div>
+                {(isCC&&tipocurso!="") && 
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="comienzo">Inicio del Curso</label>
@@ -187,6 +224,29 @@ const AddAsignatura = ({User}) => {
                         )}
                     </div>
                 </div>
+                }
+                {(!isCC&&tipocurso!="") && 
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="tipocurso">Curso</label>
+                        <select 
+                        className="form-select" 
+                        id="tipocurso"
+                        onChange={ e => setcurso(e.target.value)}
+                        
+                    >
+                        <option value="" >Seleccione una Opción</option>
+                        
+                        {Cursos.map((curso,index)=>(
+                            <option value={index} key={curso._id}>{(new Date(curso.comienzo)).getFullYear()}-{(new Date(curso.finaliza)).getFullYear()}</option>
+                        ))}
+                    </select>                        
+                    {errorsc.length>0 && (
+                            <p className="alert-danger rounded text-center mt-2"> {errorsc[0]}</p>
+                        )}
+                    </div>
+                </div>
+                }
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <button type="submit" className="btn btn-success">Guardar</button>
@@ -195,6 +255,7 @@ const AddAsignatura = ({User}) => {
                         <button type="button" onClick={e=>handleCancelar(e)} className="btn btn-secondary">Cancelar</button>
                     </div>
                 </div>
+                
             </form>
         </div>  
     </>

@@ -9,11 +9,11 @@ function elementExtUniv({_id,nombre, apellidos, are, tch, ae, th}){
     return(
         <>
             <div onClick={()=>{setactive(!active)}} className="row justify-content-center text-center container-fluid m-0 p-0">
-            <div scope="col" className=" col-4 text-truncate">{nombre} {apellidos}</div>
-                <div scope="col" className=" col-2 text-truncate">{are}</div>
-                <div scope="col" className=" col-2 text-truncate">{tch}</div>
-                <div scope="col" className=" col-2 text-truncate">{ae}</div>
-                <div scope="col" className=" col-2 text-truncate">{th}</div> 
+            <div scope="col" className=" col-4 ">{nombre} {apellidos}</div>
+                <div scope="col" className=" col-2 ">{are}</div>
+                <div scope="col" className=" col-2 ">{tch}</div>
+                <div scope="col" className=" col-2 ">{ae}</div>
+                <div scope="col" className=" col-2 ">{th}</div> 
             </div>
             {active &&
                     <div className="row justify-content-center text-center bg-light container-fluid m-0 p-0">
