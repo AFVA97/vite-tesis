@@ -6,11 +6,13 @@ import {useAsignatura} from '../../../context/asignaturaContext'
 import { useNombreAsignatura } from "../../../context/nombreAsigContext";
 import { useTipoCurso } from "../../../context/tipoCursoContext";
 import { FechaContext } from "../../../context/fechaContext";
+import { usePlan } from "../../../context/planesContext";
 
 
 const AddAsignatura = ({User}) => {
     const params=useParams();
     const{ createsAsignatura}=useAsignatura()
+    const {Plans,getPlans}=usePlan()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
     const {Cursos}=useContext(FechaContext)
     const navigate=useNavigate()    
@@ -41,7 +43,6 @@ const AddAsignatura = ({User}) => {
 
     const onSubmit=handleSubmit(async data=>{        
         try { 
-            //console.log(data);
             if(tipocurso==""){
                 seterrorst(["El Tipo de Curso es Requerido"])
             }
@@ -67,7 +68,8 @@ const AddAsignatura = ({User}) => {
     useEffect(() => {
         const load=async()=>{
             await getNombreAsignaturas();     
-            await getTipoCursos();       
+            await getTipoCursos();     
+            await getPlans();  
           };load();
           setValue('semestre',true) 
           setValue('exafinal',true) 
@@ -147,32 +149,7 @@ const AddAsignatura = ({User}) => {
                         )}
                     </div>
                 </div>
-                <div className="form-row">
-                    <div className="form-group col-md-6">
-                        <label htmlFor="frecuencia">Frecuencia Semanal</label>
-                        <input type="number" className="form-control"  {...register("frecuencia", { required: true })} id="frecuencia" placeholder="Frecuencia Semanal" />
-                        {errors.frecuencia && (
-                            <p className="alert-danger rounded text-center mt-2"> Fecha es Requerida</p>
-                        )}
-                    </div>
-                    <div className="form-group col-md-6">
-                        <label htmlFor="tipocurso">Tipo de Curso</label>
-                        <select 
-                        className="form-select" 
-                        id="tipocurso"
-                        onChange={ e => settipocurso(e.target.value)}
-                    >
-                        <option value="" >Seleccione una Opción</option>
-                        <option value="CC" >CC</option>
-                        {TipoCursos.map((tipocurso)=>(
-                            <option value={tipocurso.nombre} key={tipocurso._id}>{tipocurso.nombre}</option>
-                        ))}
-                    </select>                        
-                    {errorst.length>0 && (
-                            <p className="alert-danger rounded text-center mt-2"> {errorst[0]}</p>
-                        )}
-                    </div>
-                </div>
+                
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <label htmlFor="semestre">Semestre</label>
@@ -207,6 +184,36 @@ const AddAsignatura = ({User}) => {
                             )}
                     </div>
                 </div>
+                <div className="form-row">
+                    <div className="form-group col-md-6">
+                        <label htmlFor="frecuencia">Frecuencia Semanal</label>
+                        <input type="number" className="form-control"  {...register("frecuencia", { required: true })} id="frecuencia" placeholder="Frecuencia Semanal" />
+                        {errors.frecuencia && (
+                            <p className="alert-danger rounded text-center mt-2"> Frecuencia es Requerida</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
+                        <label htmlFor="tipocurso">Tipo de Curso</label>
+                        <select 
+                        className="form-select" 
+                        id="tipocurso"
+                        onChange={ e => settipocurso(e.target.value)}
+                    >
+                        <option value="" >Seleccione una Opción</option>
+                        <option value="CC" >CC</option>
+                        {TipoCursos.map((tipocurso)=>(
+                            <option value={tipocurso.nombre} key={tipocurso._id}>{tipocurso.nombre}</option>
+                        ))}
+                    </select>                        
+                    {errorst.length>0 && (
+                            <p className="alert-danger rounded text-center mt-2"> {errorst[0]}</p>
+                        )}
+                    </div>
+                    
+                </div>
+                <div className="form-row">
+                
+                </div>
                 {(isCC&&tipocurso!="") && 
                 <div className="form-row">
                     <div className="form-group col-md-6">
@@ -228,6 +235,22 @@ const AddAsignatura = ({User}) => {
                 {(!isCC&&tipocurso!="") && 
                 <div className="form-row">
                     <div className="form-group col-md-6">
+                        <label htmlFor="tipocurso">Tipo de Plan</label>
+                        <select 
+                        className="form-select" 
+                        id="tipocurso"
+                        onChange={ e => setValue('plan',e.target.value)}
+                        >
+                        <option value="" >Seleccione una Opción</option>
+                        {Plans.map((plan)=>(
+                            <option value={plan.nombre} key={plan._id}>{plan.nombre}</option>
+                        ))}
+                    </select>                        
+                    {errors.plan && (
+                            <p className="alert-danger rounded text-center mt-2"> Seleccione un Plan</p>
+                        )}
+                    </div>
+                    <div className="form-group col-md-6">
                         <label htmlFor="tipocurso">Curso</label>
                         <select 
                         className="form-select" 
@@ -245,7 +268,7 @@ const AddAsignatura = ({User}) => {
                             <p className="alert-danger rounded text-center mt-2"> {errorsc[0]}</p>
                         )}
                     </div>
-                </div>
+                </div> 
                 }
                 <div className="form-row">
                     <div className="form-group col-md-6">

@@ -12,7 +12,7 @@ function infoInicio({title,link}) {
           >
             <Link 
                   className="navbar-brand" 
-                  to={`${link}`}
+                  to={`${(link?link:"/faculty/inicio")}`}
             >
               <img src="/untitled.svg" alt="Arrow Back" width="30" height="30" className="d-inline-block align-text-top"/>
             </Link>

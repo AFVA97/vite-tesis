@@ -1,38 +1,42 @@
 import React, {useState, useEffect} from 'react'
-import { useTipoCurso } from '../../../context/tipoCursoContext';
+import { usePlan } from '../../../context/planesContext';
 
 const FormularioCursos = () => {
 
-    const [curso, setCurso] = useState('');
-    const{TipoCursos, getTipoCursos, createsTipoCurso,deletesTipoCurso,}=useTipoCurso()
+    const [plan, setPlan] = useState('');
+    const{Plans,
+        errors,
+        getPlans,
+        createsPlan,
+        deletesPlan,}=usePlan()
 
     const handleAddCurso = async() => {
-        if (curso) {
-            await createsTipoCurso({nombre:curso})
-            setCurso('');
+        if (plan) {
+            await createsPlan({nombre:plan})
+            setPlan('');
         }
     };
 
     const handleRemoveCurso =async (_id) => {
-        await deletesTipoCurso(_id)
+        await deletesPlan(_id)
     };
 
     useEffect(() => {
         const load=async()=>{
-            await getTipoCursos();            
+            await getPlans();            
           };load();
         }, [])
 
     return (
         <div className="col-md-6">
-            <h4>Tipos de Cursos</h4>
+            <h4>Plan de Curso</h4>
             <div className="input-group mb-3">
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="Tipo de Curso"
-                    value={curso}
-                    onChange={(e) => setCurso(e.target.value)}
+                    placeholder="Plan"
+                    value={plan}
+                    onChange={(e) => setPlan(e.target.value)}
                 />
                 <div className="input-group-append">
                     <button className="btn btn-success" type="button" onClick={handleAddCurso}>
@@ -41,7 +45,7 @@ const FormularioCursos = () => {
                 </div>
             </div>
             <ul className="list-group">
-                {TipoCursos.map((item, index) => (
+                {Plans.map((item, index) => (
                     <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                         {item.nombre}
                         <button className="btn btn-secondary btn-sm" onClick={() => handleRemoveCurso(item._id)}>

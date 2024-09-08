@@ -10,7 +10,17 @@ function UserAccount() {
   const {logout}=useAuth();
   const navigate=useNavigate();
   const [second, setsecond] = useState(false)
-  const {year, globalData,globalData1, setGlobalData, setGlobalData1,Cursos}=useContext(FechaContext)
+  const [annos, setannos] = useState([])
+  const {globalData,globalData1, setGlobalData, setGlobalData1,Cursos,getCursos}=useContext(FechaContext)
+  
+  useEffect(() => {
+    const load=async()=>{
+        await getCursos()
+    };load()
+  }, [])
+  useEffect(() => {
+    setannos(Cursos)
+  }, [Cursos])
   
   
   
@@ -28,7 +38,7 @@ function UserAccount() {
   function ProfileMenu2() {
     return (
       <ul   className="list-group profile-menu2 mt-5 ">
-        {Cursos.map((curso,index)=>(<li 
+        {annos.map((curso,index)=>(<li 
           className={
             (globalData==curso.comienzo && globalData1==curso.finaliza)
             ?"bg-white text-black ml-2"

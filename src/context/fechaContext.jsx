@@ -7,9 +7,8 @@ export const FechaContext = createContext();
 
 
 export const FechaProvider = ({children}) => {
-  const [first, setfirst] = useState([])
     const [Cursos, setCursos] = useState([])
-    const [year, setyear] = useState(new Date().getFullYear())
+    //const [year, setyear] = useState(new Date().getFullYear())
     const [globalData, setGlobalData] = useState(Cookies.get().globalData);
     const [globalData1, setGlobalData1] = useState(Cookies.get().globalData1);
     // useEffect(() => {
@@ -21,19 +20,10 @@ export const FechaProvider = ({children}) => {
     //     if(!globalData)
     //         setGlobalData(year)
     // }, [])
-    useEffect(() => {
-      const load=async()=>{
-        setfirst((await getCursosRequest()).data)
-      };load()
-      const fechaActual = new Date();    
-        const mes = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Los meses empiezan desde 0
-        if(mes<=7){
-            setyear(year-1)
-        }
-    }, [])
-    useEffect(() => {
-      setCursos(first)
-    }, [first])
+    
+    // useEffect(() => {
+    //   setCursos(first)
+    // }, [first])
     
 
     useEffect(() => {
@@ -62,7 +52,10 @@ export const FechaProvider = ({children}) => {
       
   }, [globalData1])
 
-
+  const getCursos=async()=>{
+    const res=await getCursosRequest();
+    setCursos(res.data)
+  }
     
     const createCurso=async(curso)=>{
       const res = await createCursoRequest(curso);
@@ -81,7 +74,7 @@ export const FechaProvider = ({children}) => {
     };
 
     return (
-        <FechaContext.Provider value={{ year,globalData, setGlobalData,globalData1,setGlobalData1,Cursos,createCurso,deleteCurso }}>
+        <FechaContext.Provider value={{ getCursos,globalData, setGlobalData,globalData1,setGlobalData1,Cursos,createCurso,deleteCurso }}>
             {children}
         </FechaContext.Provider>
     );

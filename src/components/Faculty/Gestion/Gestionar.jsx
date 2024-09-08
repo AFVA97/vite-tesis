@@ -1,7 +1,7 @@
 import React from 'react'
-import InfoNavBar from '../Info/infoNavBar'
+import InfoNavBar from '../Info_Carrera/infoNavBar'
 import FormularioAsignaturas from './FormularioAsignaturas'
-import FormularioCursos from './FormularioCursos'
+import FormularioPlanes from './FormularioPlanes'
 
 const Gestionar = () => {
   return (
@@ -11,7 +11,7 @@ const Gestionar = () => {
         </div>
         <div className="row text-center m-3">
             <FormularioAsignaturas />
-            <FormularioCursos />
+            <FormularioPlanes />
         </div>
     </>
   )
