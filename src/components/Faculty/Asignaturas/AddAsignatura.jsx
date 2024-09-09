@@ -14,7 +14,8 @@ const AddAsignatura = ({User}) => {
     const{ createsAsignatura}=useAsignatura()
     const {Plans,getPlans}=usePlan()
     const{register,handleSubmit, formState:{errors}, setValue}=useForm();
-    const {Cursos}=useContext(FechaContext)
+    const {Cursos,getCursos}=useContext(FechaContext)
+    const [cursos, setcursos] = useState([])
     const navigate=useNavigate()    
     const{NombreAsignaturas, getNombreAsignaturas, }=useNombreAsignatura()
     const{TipoCursos, getTipoCursos}=useTipoCurso()
@@ -25,18 +26,35 @@ const AddAsignatura = ({User}) => {
     const [errorsc, seterrorsc] = useState([])
 
     useEffect(() => {
+        if(tipocurso!="")
+            seterrorst([])
         setValue('tipocurso',tipocurso) 
         if(tipocurso=="CC")   
             setisCC(true)
         else
             setisCC(false)
 
+
     }, [tipocurso])
+
+
+    useEffect(() => {
+        const load=async()=>{
+            await getCursos()
+        };load()
+        settipocurso("")
+    }, [])
+    
+    useEffect(() => {
+      setcursos(Cursos)
+    }, [Cursos])
+    
 
     useEffect(() => {
       if(curso!=""){
-        setValue('comienzo',Cursos[curso].comienzo)
-        setValue('finaliza',Cursos[curso].finaliza)
+        seterrorsc([])
+        setValue('comienzo',cursos[curso].comienzo)
+        setValue('finaliza',cursos[curso].finaliza)
       }
     }, [curso])
     
@@ -52,7 +70,7 @@ const AddAsignatura = ({User}) => {
                 }
                 else{
                     createsAsignatura(data);
-                navigate(`/faculty/modificar/${params._id}`)
+                    navigate(`/faculty/modificar/${params._id}`)
                 }
             }
             
@@ -240,6 +258,7 @@ const AddAsignatura = ({User}) => {
                         className="form-select" 
                         id="tipocurso"
                         onChange={ e => setValue('plan',e.target.value)}
+                        {...register("plan", { required: true })}
                         >
                         <option value="" >Seleccione una Opción</option>
                         {Plans.map((plan)=>(
@@ -260,7 +279,7 @@ const AddAsignatura = ({User}) => {
                     >
                         <option value="" >Seleccione una Opción</option>
                         
-                        {Cursos.map((curso,index)=>(
+                        {cursos.map((curso,index)=>(
                             <option value={index} key={curso._id}>{(new Date(curso.comienzo)).getFullYear()}-{(new Date(curso.finaliza)).getFullYear()}</option>
                         ))}
                     </select>                        

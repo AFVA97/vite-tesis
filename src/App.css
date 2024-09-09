@@ -13,6 +13,10 @@ body {
     
     border: 2px solid #198754;
   }
+  /* .login{
+    margin-left: 10%;
+    margin-right: 10%;
+  } */
 
   .full-height {
     min-height: 100vh; /* Ocupa al menos el alto de la pantalla */
@@ -117,3 +121,5 @@ body {
   background-color: #198754;
   border-color: #198754;
 }
+
+

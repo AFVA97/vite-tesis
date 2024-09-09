@@ -54,7 +54,7 @@ function Pregrado({username}) {
           nombre:profesor.nombre, 
           apellidos:profesor.apellidos, 
           first:false, second:false, 
-          te:(parseInt(profesor.trabajoec)+parseInt(profesor.trabajoc)+parseInt(profesor.trabajod)+parseInt(profesor.tutoria)), 
+          te:0, 
           tm:profesor.trabajometo, 
           th:0
         }            
@@ -67,6 +67,7 @@ function Pregrado({username}) {
             else{
               aux.second=true
             }
+            aux.te+=asignatura.tutoriaaa
             aux.th+=parseInt(asignatura.horas)
           })
         }

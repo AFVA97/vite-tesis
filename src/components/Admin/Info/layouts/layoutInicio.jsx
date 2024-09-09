@@ -27,12 +27,12 @@ function layoutInicio({_id}){
                 {desplegadoPos&& <LayoutPosgrado _id={_id}/>}
                 <div className="d-flex justify-content-between align-items-center border container-fluid  m-0 p-2" onClick={() => setdesplegadoInv(!desplegadoInv)}>
                     <h6 className='mb-0'>Investigación Científica</h6>
-                    <FontAwesomeIcon icon={desplegadoPre ? faChevronUp : faChevronDown} />
+                    <FontAwesomeIcon icon={desplegadoInv ? faChevronUp : faChevronDown} />
                 </div>
                 {desplegadoInv&& <LayoutInvCient _id={_id}/>}
                 <div className="d-flex justify-content-between align-items-center border container-fluid  m-0 p-2" onClick={() => setdesplegadoExt(!desplegadoExt)}>
                     <h6 className='mb-0'>Extensión Univeraitaria</h6>
-                    <FontAwesomeIcon icon={desplegadoPre ? faChevronUp : faChevronDown} />
+                    <FontAwesomeIcon icon={desplegadoExt ? faChevronUp : faChevronDown} />
                 </div>
                 {desplegadoExt&& <LayoutExtUniv _id={_id}/>}
                 

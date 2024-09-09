@@ -26,9 +26,10 @@ function login() {
     
     return (
       <>
-      <div className="container d-flex justify-content-center align-items-center" style={{height: '100vh'}}>
-        <div className="card" style={{width: "125rem"}}>
-            <div className="card-header">
+      <div className="container d-flex justify-content-center align-items-center"  style={{height: '100vh'}}>
+        
+        <div className="card login bg-white" >
+            <div className="card-header bg-secondary text-white">
                 Bienvenido al Balance de Carga Docente
             </div>
             {signinErrors.length>0 &&
@@ -44,17 +45,17 @@ function login() {
                   {...register("username", { required: true })}
                 />
                 {errors.username && (
-                  <p className="form-label"> username is required</p>
+                  <p className="alert-danger rounded text-center mt-2"> El Nombre de Usuario es Requerido</p>
                 )}
                 <input
                   type="password"
                   name="password"
                   className="form-control mb-3"
-                  placeholder="Write your password"
+                  placeholder="Contraseña"
                   {...register("password", { required: true, minLength: 6 })}
                 />
                 {errors.password && (
-                  <p className="form-label"> password is required</p>
+                  <p className="alert-danger rounded text-center mt-2"> La Contraseña es Requerida</p>
                 )}
                 <button type="submit" className="btn btn-success mb-3">Login</button>
               </form>

@@ -31,13 +31,14 @@ export const FechaProvider = ({children}) => {
         setGlobalData(0)
       }
       else{
+        if(!Cookies.get().globalData ||Cookies.get().globalData==""){
         let ultimo=Cursos[0]
         for (let index = 1; index < Cursos.length; index++) {
             if(ultimo.comienzo<Cursos[index].comienzo)
                 ultimo=Cursos[index]
         }
         setGlobalData(ultimo.comienzo)
-        setGlobalData1(ultimo.finaliza)
+        setGlobalData1(ultimo.finaliza)}
       }
     }, [Cursos])
     
